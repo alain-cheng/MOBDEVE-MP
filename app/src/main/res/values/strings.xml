@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Taboo</string>
+    <string name="title_desc">Title in main menu.</string>
+    <string name="gauge_desc">Taboo gauge.</string>
+    <string name="settings_desc">Settings.</string>
+    <string name="play_desc">Play.</string>
+    <string name="treasure_desc">Treasures.</string>
+    <string name="target_desc">target.</string>
+    <string name="counter_text">43</string>
+</resources>
