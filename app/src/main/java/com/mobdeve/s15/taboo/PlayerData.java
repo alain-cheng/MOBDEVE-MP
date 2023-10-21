@@ -29,54 +29,17 @@ public class PlayerData {
     }
 
     //Methods
-    public int getStat(String stat){
-        switch (stat){
-            case "health":{
-                return this.health;
-            }
-            case "bounty":{
-                return this.bounty;
-            }
-            case "diffMultiplier":{
-                return this.diffMultiplier;
-            }
-            case "luck":{
-                return this.luck;
-            }
-            case "bountyBonus":{
-                return this.bountyBonus;
-            }
-            default:{
-                return 0;
-            }
-        }
-    }
+    public int getHealth(){return this.health;}
+    public int getId(){return this.id;}
+    public int getBounty(){return this.bounty;}
+    public int getDiffMultiplier(){return this.diffMultiplier;}
+    public int getLuck(){return this.luck;}
+    public int getBountyBonus(){return this.bountyBonus;}
 
-    public void setStat(String stat, int value){
-        switch (stat){
-            case "health":{
-                this.health = value;
-                break;
-            }
-            case "bounty":{
-                this.bounty = value;
-                break;
-            }
-            case "diffMultiplier":{
-                this.diffMultiplier = value;
-                break;
-            }
-            case "luck":{
-                this.luck = value;
-                break;
-            }
-            case "bountyBonus":{
-                this.bountyBonus = value;
-                break;
-            }
-            default:{
-                Log.v("ERROR", "Stat does not exists!");
-            }
-        }
-    }
+    public void setId(){this.id = 0;}
+    public void setHealth(int value){this.health = value;}
+    public void setBounty(int value){this.bounty = bounty;}
+    public void setLuck(int value){this.luck = luck;}
+    public void setDiffMultiplier(int value){this.diffMultiplier = diffMultiplier;}
+    public void setBountyBonus(int value){this.bountyBonus = bountyBonus;}
 }
