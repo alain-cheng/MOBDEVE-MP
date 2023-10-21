@@ -1,5 +1,6 @@
 package com.mobdeve.s15.taboo;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Query;
 import androidx.room.Upsert;
@@ -15,10 +16,10 @@ public interface DAO {
     void updateTreasury(Treasure treasure);
 
     @Query("SELECT * FROM player_data WHERE id = 0 LIMIT 1;")
-    PlayerData getPlayerData();
+    LiveData<PlayerData> getPlayerData();
 
     @Query("SELECT * FROM treasury;")
-    List<Treasure> getTreasury();
+    LiveData<List<Treasure>> getTreasury();
 
     @Query("DELETE FROM player_data;")
     void deletePlayer();
