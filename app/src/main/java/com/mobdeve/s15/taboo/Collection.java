@@ -3,6 +3,7 @@ package com.mobdeve.s15.taboo;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -29,10 +30,17 @@ public class Collection extends AppCompatActivity {
     private void initListeners() {
         //Listeners
         binding.collectionBackIbtn.setOnClickListener(this::backListener);
+        binding.item1.setOnClickListener(this::itemListener);
     }
 
     private void backListener(View v){
         v.startAnimation(buttonClick);
         finish();
+    }
+
+    private void itemListener(View v) {
+        v.startAnimation(buttonClick);
+        Intent intent = new Intent(this, TreasureView.class);
+        startActivity(intent);
     }
 }
