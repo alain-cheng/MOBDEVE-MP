@@ -93,7 +93,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:contentDescription="@string/itembox"
-                    android:src="@drawable/itemBox_unknown2" />
+                    android:src="@drawable/itembox" />
 
                 <ImageView
                     android:id="@+id/item4"

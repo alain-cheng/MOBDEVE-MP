@@ -14,4 +14,11 @@
     <string name="treasure_container">Treasure Container.</string>
     <string name="scroll_view">Scroll.</string>
     <string name="itembox">ItemBox.</string>
+    <string name="button_back">Back.</string>
+    <string name="treasure_thumbnail">Treasure Thumbnail.</string>
+    <string name="treasure_name">Treasure Name.</string>
+    <string name="treasure_description">Treasure Description.</string>
+
+    <string name="lorem_ipsum_short">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
 </resources>
