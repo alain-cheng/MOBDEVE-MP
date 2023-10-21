@@ -12,4 +12,6 @@
     <string name="text_collection">Collection</string>
     <string name="btn_top_arrow">Return to main menu.</string>
     <string name="treasure_container">Treasure Container.</string>
+    <string name="scroll_view">Scroll.</string>
+    <string name="itembox">ItemBox.</string>
 </resources>
