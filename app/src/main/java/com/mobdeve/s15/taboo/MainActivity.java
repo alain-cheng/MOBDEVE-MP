@@ -1,5 +1,6 @@
 package com.mobdeve.s15.taboo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void settingsListener(View v){
         v.startAnimation(buttonClick);
-        //Add transition to settings activity
+        Intent intent = new Intent(this, Setting.class);
+        startActivity(intent);
     }
     private void playListener(View v){
         v.startAnimation(buttonClick);
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void treasureListener(View v){
         v.startAnimation(buttonClick);
-        //Add transition to view treasures activity
+        Intent intent = new Intent(this, Collection.class);
+        startActivity(intent);
     }
 }

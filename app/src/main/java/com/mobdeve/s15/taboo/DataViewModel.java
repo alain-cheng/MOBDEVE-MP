@@ -36,4 +36,8 @@ public class DataViewModel extends AndroidViewModel {
     public void updateTreasury(Treasure treasure){
         mDataRepository.updateTreasury(treasure);
     }
+
+    public void deleteData(){
+        mDataRepository.deleteData();
+    }
 }

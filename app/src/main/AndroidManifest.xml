@@ -13,6 +13,12 @@
         android:theme="@style/Theme.Taboo"
         tools:targetApi="31">
         <activity
+            android:name=".Collection"
+            android:exported="false" />
+        <activity
+            android:name=".Setting"
+            android:exported="false" />
+        <activity
             android:name=".DataViewModel"
             android:exported="false" />
         <activity
