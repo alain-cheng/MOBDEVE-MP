@@ -1,6 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backdrop1">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/treasure_container_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="13dp"
+        android:contentDescription="@string/treasure_container"
+        android:src="@drawable/treasure_container" />
+
+    <ImageView
+        android:id="@+id/treasure_iv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/treasure_container_iv"
+        android:layout_alignTop="@+id/treasure_container_iv"
+        android:layout_alignEnd="@+id/treasure_container_iv"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="94dp"
+        android:background="@drawable/item_kaprecigar"
+        android:backgroundTint="#000000"
+        android:backgroundTintMode="multiply"
+        android:contentDescription="@string/treasure_thumbnail"
+        />
+
+    <TextView
+        android:id="@+id/treasure_name_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/treasure_iv"
+        android:layout_alignStart="@+id/treasure_container_iv"
+        android:layout_alignEnd="@+id/treasure_container_iv"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="50dp"
+        android:fontFamily="@font/roboto_slab_thin"
+        android:gravity="center"
+        android:shadowColor="#000000"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="25sp"
+        android:contentDescription="@string/treasure_name"/>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="236dp"
+        android:layout_below="@+id/treasure_name_tv"
+        android:layout_alignStart="@+id/treasure_container_iv"
+        android:layout_alignEnd="@+id/treasure_container_iv"
+        android:layout_alignBottom="@+id/treasure_container_iv"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="24dp"
+        android:scrollbars="none">
+
+        <TextView
+            android:id="@+id/treasure_description_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_slab_thin"
+            android:shadowColor="#000000"
+            android:text="@string/lorem_ipsum_short"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:contentDescription="@string/treasure_description"/>
+    </ScrollView>
+
+    <ImageButton
+        android:id="@+id/back_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/treasure_container_iv"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="13dp"
+        android:background="null"
+        android:contentDescription="@string/button_back"
+        android:src="@drawable/btn_back" />
+
+</RelativeLayout>
