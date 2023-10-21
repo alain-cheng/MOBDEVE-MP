@@ -73,13 +73,14 @@
             android:src="@tools:sample/avatars"
             tools:srcCompat="@drawable/group_718email_sample" />
 
-        <ImageView
-            android:id="@+id/logoutView"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/logoutbutton2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="118dp"
             android:layout_marginTop="10dp"
-            android:src="@tools:sample/avatars"
-            tools:srcCompat="@drawable/group_717logout_button" />
+            android:background="#2D2727"
+            android:src="@drawable/group_717logout_button" />
 
         <ImageView
             android:id="@+id/gameheadView"
@@ -89,13 +90,14 @@
             android:src="@tools:sample/avatars"
             tools:srcCompat="@drawable/group_723game_heading" />
 
-        <ImageView
-            android:id="@+id/eraseView"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:id="@+id/erasebutton2"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="99dp"
             android:layout_marginTop="10dp"
-            android:src="@tools:sample/avatars"
-            tools:srcCompat="@drawable/group_724erase_button" />
+            android:background="#2D2727"
+            android:src="@drawable/group_724erase_button" />
     </LinearLayout>
 
 
