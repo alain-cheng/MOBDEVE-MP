@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backdrop1">
+
+    <ImageView
+        android:id="@+id/settings_text_iv"
+        android:layout_width="254dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="60dp"
+        android:layout_toEndOf="@+id/settings_back_ibtn"
+        android:contentDescription="@string/text_collection"
+        app:srcCompat="@drawable/settings_text" />
+
+    <ImageButton
+        android:id="@+id/settings_back_ibtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/placeholderbtnbackbutton"
+        android:contentDescription="@string/btn_top_arrow" />
+
+    <ImageView
+        android:id="@+id/settings_container_iv"
+        android:layout_width="600dp"
+        android:layout_height="600dp"
+        android:layout_below="@+id/settings_text_iv"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/treasure_container"
+        app:srcCompat="@drawable/treasure_container" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="110dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/accountheadView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@tools:sample/avatars"
+            tools:srcCompat="@drawable/group_725accountheading1" />
+
+        <ImageView
+            android:id="@+id/nameguestView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@tools:sample/avatars"
+            tools:srcCompat="@drawable/itemboxname_guest" />
+
+        <ImageButton
+            android:id="@+id/loginbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="70dp"
+            android:layout_marginTop="10dp"
+            android:background="#2D2727"
+            android:src="@drawable/group_716login_button" />
+
+        <ImageView
+            android:id="@+id/gameheadView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:src="@tools:sample/avatars"
+            tools:srcCompat="@drawable/group_723game_heading" />
+
+        <ImageButton
+            android:id="@+id/erasebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="99dp"
+            android:layout_marginTop="10dp"
+            android:background="#2D2727"
+            android:src="@drawable/group_724erase_button" />
+    </LinearLayout>
+
+
+</RelativeLayout>
