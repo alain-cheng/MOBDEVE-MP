@@ -18,7 +18,20 @@ public class Treasury {
         this.count = count;
     }
 
+    //Methods
     public String[] getTreasureList(){
         return treasureList;
+    }
+
+    public String getName(){
+        return this.name;
+    }
+
+    public int getCount(){
+        return this.count;
+    }
+
+    public void setCount(int value){
+        this.count = value;
     }
 }

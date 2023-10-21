@@ -1,5 +1,7 @@
 package com.mobdeve.s15.taboo;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -46,6 +48,34 @@ public class PlayerData {
             }
             default:{
                 return 0;
+            }
+        }
+    }
+
+    public void setStat(String stat, int value){
+        switch (stat){
+            case "health":{
+                this.health = value;
+                break;
+            }
+            case "bounty":{
+                this.bounty = value;
+                break;
+            }
+            case "diffMultiplier":{
+                this.diffMultiplier = value;
+                break;
+            }
+            case "luck":{
+                this.luck = value;
+                break;
+            }
+            case "bountyBonus":{
+                this.bountyBonus = value;
+                break;
+            }
+            default:{
+                Log.v("ERROR", "Stat does not exists!");
             }
         }
     }
