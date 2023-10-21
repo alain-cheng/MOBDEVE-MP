@@ -11,10 +11,10 @@ public class PlayerData {
 
     //Player Stats
     @ColumnInfo(name = "health", typeAffinity = ColumnInfo.INTEGER, defaultValue = "1") private int health;
-    @ColumnInfo(name = "counter", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int counter;
+    @ColumnInfo(name = "bounty", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int bounty;
     @ColumnInfo(name = "diffMultiplier", typeAffinity = ColumnInfo.INTEGER, defaultValue = "1") private int diffMultiplier;
     @ColumnInfo(name = "luck", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int luck;
-    @ColumnInfo(name = "counterBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int counterBonus;
+    @ColumnInfo(name = "bountyBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int bountyBonus;
 
     //Treasure counts
     private String[] treasureList = {"Black_Ash", "Acacia_Bark", "Giant_Inhaler", "Kapre_Cigar"}; //Register new Treasures here
@@ -28,15 +28,13 @@ public class PlayerData {
     //Note: Implement other treasures later
 
     //Constructor. Tip: Delete constructor and use Alt+Insert when updating to avoid insanity
-
-
-    public PlayerData(int id, int health, int counter, int diffMultiplier, int luck, int counterBonus, String[] treasureList, int black_Ash, int acacia_Bark, int giant_Inhaler, int kapre_Cigar) {
+    public PlayerData(int id, int health, int bounty, int diffMultiplier, int luck, int bountyBonus, String[] treasureList, int black_Ash, int acacia_Bark, int giant_Inhaler, int kapre_Cigar) {
         this.id = id;
         this.health = health;
-        this.counter = counter;
+        this.bounty = bounty;
         this.diffMultiplier = diffMultiplier;
         this.luck = luck;
-        this.counterBonus = counterBonus;
+        this.bountyBonus = bountyBonus;
         this.treasureList = treasureList;
         Black_Ash = black_Ash;
         Acacia_Bark = acacia_Bark;
@@ -50,8 +48,8 @@ public class PlayerData {
             case "health":{
                 return this.health;
             }
-            case "counter":{
-                return this.counter;
+            case "bounty":{
+                return this.bounty;
             }
             case "diffMultiplier":{
                 return this.diffMultiplier;
@@ -59,8 +57,8 @@ public class PlayerData {
             case "luck":{
                 return this.luck;
             }
-            case "counterBonus":{
-                return this.counterBonus;
+            case "bountyBonus":{
+                return this.bountyBonus;
             }
             default:{
                 return 0;

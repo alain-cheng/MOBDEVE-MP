@@ -25,11 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
         //Testing
         Random rand = new Random(System.nanoTime());
-        setCounter(rand.nextInt(101));
+        setBounty(rand.nextInt(101));
     }
 
-    private void setCounter(int i){
-        binding.activityMainTxtCounter.setText(String.valueOf(i));
+    private void setBounty(int i){
+        binding.activityMainTxtBounty.setText(String.valueOf(i));
     }
 
     private void init() {

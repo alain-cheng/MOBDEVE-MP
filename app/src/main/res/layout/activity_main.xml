@@ -94,12 +94,12 @@
             app:srcCompat="@drawable/target_icon" />
 
         <TextView
-            android:id="@+id/activity_main_txt_counter"
+            android:id="@+id/activity_main_txt_bounty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/roboto_slab_thin"
-            android:text="@string/counter_text"
+            android:text="@string/bounty_text"
             android:textColor="@color/counter_red"
             android:textSize="48sp"
             android:textStyle="bold" />
