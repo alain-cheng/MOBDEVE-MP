@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backdrop1">
+
+    <ImageView
+        android:id="@+id/collection_text_iv"
+        android:layout_width="254dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="60dp"
+        android:layout_toEndOf="@+id/collection_back_ibtn"
+        android:contentDescription="@string/text_collection"
+        app:srcCompat="@drawable/text_collection" />
+
+    <ImageButton
+        android:id="@+id/collection_back_ibtn"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        android:background="@drawable/btn_top_arrow"
+        android:contentDescription="@string/btn_top_arrow" />
+
+    <ImageView
+        android:id="@+id/treasure_container_iv"
+        android:layout_width="339dp"
+        android:layout_height="550dp"
+        android:layout_below="@+id/collection_text_iv"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="36dp"
+        android:contentDescription="@string/treasure_container"
+        app:srcCompat="@drawable/treasure_container" />
+
+
+</RelativeLayout>
