@@ -30,6 +30,7 @@ class DataRepository {
 
     void updatePlayer(PlayerData playerData) {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
+            playerData.setId(); //Set id to 0
             mTabooDao.updatePlayer(playerData);
         });
     }

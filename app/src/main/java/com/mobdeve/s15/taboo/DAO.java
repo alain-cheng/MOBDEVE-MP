@@ -2,20 +2,21 @@ package com.mobdeve.s15.taboo;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
+import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import androidx.room.Upsert;
 
 import java.util.List;
 
 @Dao
 public interface DAO {
-    @Upsert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void updatePlayer(PlayerData playerData);
 
-    @Upsert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void updateTreasury(Treasure treasure);
 
-    @Query("SELECT * FROM player_data WHERE id = 0 LIMIT 1;")
+    @Query("SELECT * FROM player_data;")
     LiveData<PlayerData> getPlayerData();
 
     @Query("SELECT * FROM treasury;")

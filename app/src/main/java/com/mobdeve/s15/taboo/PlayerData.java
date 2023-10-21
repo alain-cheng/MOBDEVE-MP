@@ -38,8 +38,8 @@ public class PlayerData {
 
     public void setId(){this.id = 0;}
     public void setHealth(int value){this.health = value;}
-    public void setBounty(int value){this.bounty = bounty;}
-    public void setLuck(int value){this.luck = luck;}
-    public void setDiffMultiplier(int value){this.diffMultiplier = diffMultiplier;}
-    public void setBountyBonus(int value){this.bountyBonus = bountyBonus;}
+    public void setBounty(int value){this.bounty = value;}
+    public void setLuck(int value){this.luck = value;}
+    public void setDiffMultiplier(int value){this.diffMultiplier = value;}
+    public void setBountyBonus(int value){this.bountyBonus = value;}
 }

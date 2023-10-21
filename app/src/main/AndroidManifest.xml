@@ -13,7 +13,7 @@
         android:theme="@style/Theme.Taboo"
         tools:targetApi="31">
         <activity
-            android:name=".TreasureViewModel"
+            android:name=".DataViewModel"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

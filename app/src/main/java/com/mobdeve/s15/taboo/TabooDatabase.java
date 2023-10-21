@@ -2,9 +2,11 @@ package com.mobdeve.s15.taboo;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -19,13 +21,33 @@ public abstract class TabooDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
+    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+
+            // If you want to keep data through app restarts,
+            // comment out the following block
+            databaseWriteExecutor.execute(() -> {
+                // Populate the database in the background.
+                // If you want to start with more words, just add them.
+                DAO dao = INSTANCE.TabooDao();
+                dao.deletePlayer();
+                dao.deleteTreasures();
+
+                PlayerData playerData = new PlayerData(0, 1, 0, 1, 0, 0);
+                dao.updatePlayer(playerData);
+            });
+        }
+    };
+
     static TabooDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (TabooDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                                    TabooDatabase.class, "word_database")
-                            .build();
+                                    TabooDatabase.class, "taboo_database")
+                            .addCallback(sRoomDatabaseCallback).build();
                 }
             }
         }
