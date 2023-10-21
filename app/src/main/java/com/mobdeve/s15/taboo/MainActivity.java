@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void treasureListener(View v){
         v.startAnimation(buttonClick);
-        //Add transition to view treasures activity
+        Intent intent = new Intent(this, Collection.class);
+        startActivity(intent);
     }
 }
