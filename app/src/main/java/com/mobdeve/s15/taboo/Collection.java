@@ -40,7 +40,7 @@ public class Collection extends AppCompatActivity {
 
     private void itemListener(View v) {
         v.startAnimation(buttonClick);
-        //Intent intent = new Intent(TreasureView.class);
-        //startActivity(intent);
+        Intent intent = new Intent(this, TreasureView.class);
+        startActivity(intent);
     }
 }
