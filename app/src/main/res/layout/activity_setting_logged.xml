@@ -54,7 +54,6 @@
             android:id="@+id/accountheadView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:src="@tools:sample/avatars"
             tools:srcCompat="@drawable/group_725accountheading1" />
 
         <ImageView
@@ -62,7 +61,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:src="@tools:sample/avatars"
             tools:srcCompat="@drawable/itemboxname_sample" />
 
         <ImageView
@@ -70,7 +68,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:src="@tools:sample/avatars"
             tools:srcCompat="@drawable/group_718email_sample" />
 
         <ImageButton
@@ -87,7 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:src="@tools:sample/avatars"
             tools:srcCompat="@drawable/group_723game_heading" />
 
         <ImageButton
