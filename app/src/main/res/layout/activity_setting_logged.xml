@@ -63,7 +63,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:src="@tools:sample/avatars"
-            tools:srcCompat="@drawable/itemboxname_guest" />
+            tools:srcCompat="@drawable/itemboxname_sample" />
 
         <ImageView
             android:id="@+id/loginView"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:src="@tools:sample/avatars"
-            tools:srcCompat="@drawable/group_716login_button" />
+            tools:srcCompat="@drawable/group_718email_sample" />
 
         <ImageView
             android:id="@+id/logoutView"
