@@ -27,7 +27,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="18dp"
-        android:background="@drawable/btn_top_arrow"
+        android:background="@drawable/placeholderbtnbackbutton"
         android:contentDescription="@string/btn_top_arrow" />
 
     <ImageView
