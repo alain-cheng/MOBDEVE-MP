@@ -34,8 +34,6 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     @Override
     public void onBindViewHolder(@NonNull TreasureRVAdapter.MyViewHolder holder, int position) {
         holder.imageView.setImageResource(treasures.get(position).getImage());
-        holder.tvName.setText(treasures.get(position).getItemName());
-        holder.tvBonus.setText(treasures.get(position).getItemBonus());
 
 
         holder.imageView.setOnClickListener(new View.OnClickListener() {
@@ -55,13 +53,10 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
-        TextView tvName, tvBonus;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.item_thumbnail_iv);
-            tvName = itemView.findViewById(R.id.item_name_tv);
-            tvBonus = itemView.findViewById(R.id.item_bonus_tv);
         }
     }
 }
