@@ -2,6 +2,7 @@ package com.mobdeve.s15.taboo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,8 +25,17 @@ public class Collection extends AppCompatActivity {
     // placeholder: for Prototype App only
     ArrayList<TreasureModelTemp> treasures = new ArrayList<>();
     int[] itemThumbnails = {R.drawable.item_kaprecigar,
-            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
-            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar};
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar, R.drawable.item_kaprecigar, R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,20 +51,15 @@ public class Collection extends AppCompatActivity {
 
         TreasureRVAdapter adapter = new TreasureRVAdapter(this, treasures);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
         initListeners();
     }
 
     private void setupTreasureModels() {
-        String[] itemNames = getResources().getStringArray(R.array.treasureNames);
-        String[] itemBonuses = getResources().getStringArray(R.array.treasureBonuses);
-
-        for(int i = 0; i < itemNames.length; i++) {
+        for(int i = 0; i < itemThumbnails.length; i++) {
             treasures.add(new TreasureModelTemp(
-                    itemThumbnails[i],
-                    itemNames[i],
-                    itemBonuses[i]
+                    itemThumbnails[i]
             ));
         }
     }
