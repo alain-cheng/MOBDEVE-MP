@@ -6,7 +6,7 @@ public class TreasureList {
 
     private static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY"};
     public static final String[] names = {"Black Ash", "Acacia Bark", "Giant Inhaler", "Kapre Cigar",
-    "Jamuel's Haymaker", "Alwyn's Grand Order", "Alain's Astragal"};
+    "Jamuel's Haymaker", "Alwyn's Grand Order", "Alain's Astragal", "Greedy Reign", "Last Farewell", "Untouchable"};
 
     public static final String[] bonuses = {"Not Implemented"};
     public static final String[] lores = {
@@ -17,10 +17,13 @@ public class TreasureList {
             "Not Implemented",
             "A meal consisting of a quarter-pounder burger with a side of fries and some soft drinks. Seems to contain an insane amount of magical energy. You will probably die trying to eat this...",
             "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
     };
 
     public static final String[] rarities = {RARITY[0], RARITY[0], RARITY[1], RARITY[3],
-            RARITY[3], RARITY[3], RARITY[3]};
+            RARITY[3], RARITY[3], RARITY[3], RARITY[2], RARITY[2], RARITY[3]};
 
     public static final int[] images = {R.drawable.item_kaprecigar};
 }

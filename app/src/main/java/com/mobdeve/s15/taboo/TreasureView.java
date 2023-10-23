@@ -1,6 +1,7 @@
 package com.mobdeve.s15.taboo;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -38,6 +39,26 @@ public class TreasureView extends AppCompatActivity {
         binding.treasureIv.setImageResource(intent.getIntExtra("ITEM_IMG", 0));
         binding.treasureNameTv.setText(intent.getStringExtra("ITEM_NAME"));
         binding.treasureDescriptionTv.setText(intent.getStringExtra("ITEM_DESC"));
+
+        String color = "";
+        switch (intent.getStringExtra("ITEM_RAR")){
+            case "COMMON":{
+                color = "#A0A0A0";
+                break;
+            }
+            case "RARE":{
+                color = "#0094FF";
+                break;
+            }
+            case "FORBIDDEN":{
+                color = "#FF006E";
+                break;
+            }
+            case "BLASPHEMY":{
+                color = "#B200FF";
+            }
+        }
+        binding.treasureNameTv.setTextColor(Color.parseColor(color));
     }
 
     private void backListener(View v){
