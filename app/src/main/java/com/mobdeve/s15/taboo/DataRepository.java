@@ -1,7 +1,6 @@
 package com.mobdeve.s15.taboo;
 
 import android.app.Application;
-import android.widget.Switch;
 
 import androidx.lifecycle.LiveData;
 

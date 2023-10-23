@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "player_data")
 public class PlayerData {
-    @PrimaryKey @ColumnInfo(name = "id", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0")private int id;
+    @PrimaryKey @NonNull @ColumnInfo(name = "playerid", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0")private int id;
 
     //Player Stats
     @ColumnInfo(name = "health", typeAffinity = ColumnInfo.INTEGER, defaultValue = "1") private int health;

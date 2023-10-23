@@ -19,7 +19,7 @@ public interface DAO {
     @Query("SELECT * FROM player_data;")
     LiveData<PlayerData> getPlayerData();
 
-    @Query("SELECT * FROM treasury;")
+    @Query("SELECT * FROM treasury ORDER BY itemid ASC;")
     LiveData<List<Treasure>> getTreasury();
 
     @Query("DELETE FROM player_data;")
