@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/backdrop1">
 
     <ImageView
@@ -30,8 +30,7 @@
         android:background="@drawable/item_kaprecigar"
         android:backgroundTint="#000000"
         android:backgroundTintMode="multiply"
-        android:contentDescription="@string/treasure_thumbnail"
-        />
+        android:contentDescription="@string/treasure_thumbnail" />
 
     <TextView
         android:id="@+id/treasure_name_tv"
@@ -43,13 +42,13 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="50dp"
+        android:contentDescription="@string/treasure_name"
         android:fontFamily="@font/roboto_slab_thin"
         android:gravity="center"
         android:shadowColor="#000000"
         android:text="TextView"
         android:textColor="#FFFFFF"
-        android:textSize="25sp"
-        android:contentDescription="@string/treasure_name"/>
+        android:textSize="25sp" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -68,13 +67,13 @@
             android:id="@+id/treasure_description_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/treasure_description"
             android:fontFamily="@font/roboto_slab_thin"
             android:shadowColor="#000000"
             android:text="@string/lorem_ipsum_short"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:contentDescription="@string/treasure_description"/>
+            android:textStyle="bold" />
     </ScrollView>
 
     <ImageButton

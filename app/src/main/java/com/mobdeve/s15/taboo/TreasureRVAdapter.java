@@ -3,22 +3,27 @@ package com.mobdeve.s15.taboo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.MyViewHolder> {
     Context context;
-    ArrayList<TreasureModelTemp> treasures;
+    List<Treasure> treasures;
+    private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
 
-    public TreasureRVAdapter(Context context, ArrayList<TreasureModelTemp> treasures) {
+    public TreasureRVAdapter(Context context, List<Treasure> treasures) {
         this.context = context;
         this.treasures = treasures;
     }
@@ -33,14 +38,21 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull TreasureRVAdapter.MyViewHolder holder, int position) {
+        int index = holder.getAdapterPosition();
         holder.imageView.setImageResource(treasures.get(position).getImage());
 
 
-        holder.imageView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(context, TreasureView.class);
-                context.startActivity(intent);
-            }
+        holder.imageView.setImageResource(treasures.get(position).getImageid());
+        holder.itemCount.setText("x" + String.valueOf(treasures.get(position).getCount()));;
+
+        holder.itemCard.setOnClickListener(v -> {
+            v.startAnimation(buttonClick);
+            Intent intent = new Intent(context, TreasureView.class);
+            intent.putExtra("ITEM_NAME", treasures.get(index).getName());
+            intent.putExtra("ITEM_IMG", treasures.get(index).getImageid());
+            intent.putExtra("ITEM_DESC", treasures.get(index).getLore());
+            intent.putExtra("ITEM_RAR", treasures.get(index).getRarity());
+            context.startActivity(intent);
         });
 
     }
@@ -53,10 +65,15 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
+        TextView itemCount;
+        CardView itemCard;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            itemCard = itemView.findViewById(R.id.item_card);
             imageView = itemView.findViewById(R.id.item_thumbnail_iv);
+            itemCount = itemView.findViewById(R.id.item_count_tv);
         }
     }
 }
