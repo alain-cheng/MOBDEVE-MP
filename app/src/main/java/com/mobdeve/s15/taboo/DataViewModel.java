@@ -29,12 +29,11 @@ public class DataViewModel extends AndroidViewModel {
     }
 
     public void updatePlayer(PlayerData playerData){
-        playerData.setId(); //Set id to 0
         mDataRepository.updatePlayer(playerData);
     }
 
-    public void updateTreasury(Treasure treasure){
-        mDataRepository.updateTreasury(treasure);
+    public void updateTreasury(Treasure treasure, PlayerData playerData){
+        mDataRepository.updateTreasury(treasure, playerData);
     }
 
     public void deleteData(){

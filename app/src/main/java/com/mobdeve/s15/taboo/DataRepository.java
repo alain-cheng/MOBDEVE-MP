@@ -33,9 +33,30 @@ class DataRepository {
             mTabooDao.updatePlayer(playerData);
         });
     }
-    void updateTreasury(Treasure treasure) {
+    void updateTreasury(Treasure treasure, PlayerData playerData) {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
+            //Calculate new bounty
+            playerData.setId(); //Set id to 0
+            int newBounty = 0;
+            switch (treasure.getRarity()){
+                case "COMMON":{
+                    playerData.setBounty(playerData.getBounty() + 5);
+                    break;
+                }
+                case "RARE":{
+                    playerData.setBounty(playerData.getBounty() + 10);
+                    break;
+                }
+                case "FORBIDDEN":{
+                    playerData.setBounty(playerData.getBounty() + 25);
+                    break;
+                }
+                case "BLASPHEMY":{
+                    playerData.setBounty(playerData.getBounty() + 50);
+                }
+            }
             mTabooDao.updateTreasury(treasure);
+            mTabooDao.updatePlayer(playerData);
         });
     }
 

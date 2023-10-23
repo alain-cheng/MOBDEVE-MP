@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 setBounty(playerData.getBounty());
             }catch (Exception e){
+                Log.v("ACTIVITY_ERR", e.toString());
                 setBounty(0);
             }
         });

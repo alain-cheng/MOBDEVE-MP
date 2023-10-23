@@ -8,6 +8,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -37,17 +38,34 @@ public abstract class TabooDatabase extends RoomDatabase {
 
                 //Load Player Data
                 PlayerData playerData = new PlayerData(0, 1, 0, 1, 0, 0);
-                dao.updatePlayer(playerData);
 
-                //TEST: Load Treasury Data
-                int[] itemThumbnails = TreasureList.getTreasureImages();
-                String[] itemNames = TreasureList.getTreasureList();
+                //TEST: Load Treasury Data. This should be loaded only if you get the item but testing stuff for now.
                 Treasure treasure;
-                for(int i = 0; i < itemNames.length; i++){
-                    treasure = new Treasure("item" + i+1, itemNames[i], itemThumbnails[0],
-                            "Not Implemented", "Note: Fill in later", "TEMP", 1);
+                Random rand = new Random(System.nanoTime());
+                for(int i = 0; i < TreasureList.names.length; i++){
+                    treasure = new Treasure("item" + i+1, TreasureList.names[i], TreasureList.images[0],
+                            TreasureList.bonuses[0], TreasureList.lores[i], TreasureList.rarities[i], rand.nextInt(5));
+                    switch (treasure.getRarity()){
+                        case "COMMON":{
+                            playerData.setBounty(playerData.getBounty() + 5*treasure.getCount());
+                            break;
+                        }
+                        case "RARE":{
+                            playerData.setBounty(playerData.getBounty() + 10*treasure.getCount());
+                            break;
+                        }
+                        case "FORBIDDEN":{
+                            playerData.setBounty(playerData.getBounty() + 25*treasure.getCount());
+                            break;
+                        }
+                        case "BLASPHEMY":{
+                            playerData.setBounty(playerData.getBounty() + 50*treasure.getCount());
+                        }
+                    }
                     dao.updateTreasury(treasure);
                 }
+
+                dao.updatePlayer(playerData);
             });
         }
     };

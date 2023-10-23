@@ -38,17 +38,19 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     @Override
     public void onBindViewHolder(@NonNull TreasureRVAdapter.MyViewHolder holder, int position) {
         String name = treasures.get(position).getName();
+        int index = holder.getAdapterPosition();
 
         holder.imageView.setImageResource(treasures.get(position).getImageid());
         holder.tvName.setText(name);
         holder.tvBonus.setText(treasures.get(position).getItemBonus());
 
-        holder.itemCard.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                v.startAnimation(buttonClick);
-                Intent intent = new Intent(context, TreasureView.class);
-                context.startActivity(intent);
-            }
+        holder.itemCard.setOnClickListener(v -> {
+            v.startAnimation(buttonClick);
+            Intent intent = new Intent(context, TreasureView.class);
+            intent.putExtra("ITEM_NAME", treasures.get(index).getName());
+            intent.putExtra("ITEM_IMG", treasures.get(index).getImageid());
+            intent.putExtra("ITEM_DESC", treasures.get(index).getLore());
+            context.startActivity(intent);
         });
 
     }

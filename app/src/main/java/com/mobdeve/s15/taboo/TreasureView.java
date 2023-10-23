@@ -1,5 +1,6 @@
 package com.mobdeve.s15.taboo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -23,13 +24,20 @@ public class TreasureView extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        Intent intent = getIntent();
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         initListeners();
+        initData(intent);
     }
 
     private void initListeners() {
         binding.backBtn.setOnClickListener(this::backListener);
+    }
+    private void initData(Intent intent) {
+        binding.treasureIv.setImageResource(intent.getIntExtra("ITEM_IMG", 0));
+        binding.treasureNameTv.setText(intent.getStringExtra("ITEM_NAME"));
+        binding.treasureDescriptionTv.setText(intent.getStringExtra("ITEM_DESC"));
     }
 
     private void backListener(View v){
