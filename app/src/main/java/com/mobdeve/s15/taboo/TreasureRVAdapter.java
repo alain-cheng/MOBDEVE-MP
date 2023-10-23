@@ -13,12 +13,13 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.MyViewHolder> {
     Context context;
-    ArrayList<TreasureModelTemp> treasures;
+    List<Treasure> treasures;
 
-    public TreasureRVAdapter(Context context, ArrayList<TreasureModelTemp> treasures) {
+    public TreasureRVAdapter(Context context, List<Treasure> treasures) {
         this.context = context;
         this.treasures = treasures;
     }
@@ -33,8 +34,8 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
 
     @Override
     public void onBindViewHolder(@NonNull TreasureRVAdapter.MyViewHolder holder, int position) {
-        holder.imageView.setImageResource(treasures.get(position).getImage());
-        holder.tvName.setText(treasures.get(position).getItemName());
+        holder.imageView.setImageResource(treasures.get(position).getImageid());
+        holder.tvName.setText(treasures.get(position).getName());
         holder.tvBonus.setText(treasures.get(position).getItemBonus());
 
 

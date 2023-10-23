@@ -35,8 +35,19 @@ public abstract class TabooDatabase extends RoomDatabase {
                 dao.deletePlayer();
                 dao.deleteTreasures();
 
+                //Load Player Data
                 PlayerData playerData = new PlayerData(0, 1, 0, 1, 0, 0);
                 dao.updatePlayer(playerData);
+
+                //TEST: Load Treasury Data
+                int[] itemThumbnails = TreasureList.getTreasureImages();
+                String[] itemNames = TreasureList.getTreasureList();
+                Treasure treasure;
+                for(int i = 0; i < itemNames.length; i++){
+                    treasure = new Treasure("item" + i+1, itemNames[i], itemThumbnails[0],
+                            "Not Implemented", "Note: Fill in later", "TEMP", 1);
+                    dao.updateTreasury(treasure);
+                }
             });
         }
     };
