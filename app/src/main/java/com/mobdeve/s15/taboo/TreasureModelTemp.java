@@ -6,23 +6,12 @@ package com.mobdeve.s15.taboo;
 
 public class TreasureModelTemp {
     int image;
-    String itemName, itemBonus;
 
-    public TreasureModelTemp(int image, String itemName, String itemBonus) {
+    public TreasureModelTemp(int image) {
         this.image = image;
-        this.itemName = itemName;
-        this.itemBonus = itemBonus;
     }
 
     public int getImage() {
         return image;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public String getItemBonus() {
-        return itemBonus;
     }
 }

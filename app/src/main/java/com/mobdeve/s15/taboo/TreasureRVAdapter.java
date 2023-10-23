@@ -39,6 +39,8 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     @Override
     public void onBindViewHolder(@NonNull TreasureRVAdapter.MyViewHolder holder, int position) {
         int index = holder.getAdapterPosition();
+        holder.imageView.setImageResource(treasures.get(position).getImage());
+
 
         holder.imageView.setImageResource(treasures.get(position).getImageid());
         holder.itemCount.setText("x" + String.valueOf(treasures.get(position).getCount()));;
@@ -63,8 +65,9 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView imageView;
-        TextView tvName, tvBonus, itemCount;
+        TextView itemCount;
         CardView itemCard;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
