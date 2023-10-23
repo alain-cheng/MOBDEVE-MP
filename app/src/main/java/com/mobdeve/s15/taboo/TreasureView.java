@@ -14,6 +14,8 @@ import com.mobdeve.s15.taboo.databinding.ActivityMainBinding;
 import com.mobdeve.s15.taboo.databinding.ActivityTreasureViewBinding;
 import com.mobdeve.s15.taboo.databinding.ActivityTreasureViewModelBinding;
 
+import java.util.Objects;
+
 public class TreasureView extends AppCompatActivity {
     ActivityTreasureViewBinding binding;
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
@@ -41,7 +43,7 @@ public class TreasureView extends AppCompatActivity {
         binding.treasureDescriptionTv.setText(intent.getStringExtra("ITEM_DESC"));
 
         String color = "";
-        switch (intent.getStringExtra("ITEM_RAR")){
+        switch (Objects.requireNonNull(intent.getStringExtra("ITEM_RAR"))){
             case "COMMON":{
                 color = "#A0A0A0";
                 break;

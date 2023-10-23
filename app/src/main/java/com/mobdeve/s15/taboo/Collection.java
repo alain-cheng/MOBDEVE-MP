@@ -2,7 +2,7 @@ package com.mobdeve.s15.taboo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -36,7 +36,7 @@ public class Collection extends AppCompatActivity {
             try {
                 TreasureRVAdapter adapter = new TreasureRVAdapter(this, treasures);
                 recyclerView.setAdapter(adapter);
-                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                recyclerView.setLayoutManager(new GridLayoutManager(this, 4));
             }catch (Exception e){
                 Log.v("ACTIVITY_ERR", e.toString());
             }

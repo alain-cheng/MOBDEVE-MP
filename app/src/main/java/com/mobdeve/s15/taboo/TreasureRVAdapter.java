@@ -39,31 +39,9 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     @Override
     public void onBindViewHolder(@NonNull TreasureRVAdapter.MyViewHolder holder, int position) {
         int index = holder.getAdapterPosition();
-        String color = "";
 
         holder.imageView.setImageResource(treasures.get(position).getImageid());
-        holder.tvName.setText(treasures.get(position).getName());
-        holder.tvBonus.setText(treasures.get(position).getItemBonus());
-        holder.itemCount.setText("x" + String.valueOf(treasures.get(position).getCount()));
-
-        switch (treasures.get(position).getRarity()){
-            case "COMMON":{
-                color = "#A0A0A0";
-                break;
-            }
-            case "RARE":{
-                color = "#0094FF";
-                break;
-            }
-            case "FORBIDDEN":{
-                color = "#FF006E";
-                break;
-            }
-            case "BLASPHEMY":{
-                color = "#B200FF";
-            }
-        }
-        holder.tvName.setTextColor(Color.parseColor(color));
+        holder.itemCount.setText("x" + String.valueOf(treasures.get(position).getCount()));;
 
         holder.itemCard.setOnClickListener(v -> {
             v.startAnimation(buttonClick);
@@ -92,8 +70,6 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
             super(itemView);
             itemCard = itemView.findViewById(R.id.item_card);
             imageView = itemView.findViewById(R.id.item_thumbnail_iv);
-            tvName = itemView.findViewById(R.id.item_name_tv);
-            tvBonus = itemView.findViewById(R.id.item_bonus_tv);
             itemCount = itemView.findViewById(R.id.item_count_tv);
         }
     }
