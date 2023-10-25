@@ -60,7 +60,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void playListener(View v){
         v.startAnimation(buttonClick);
-        //Add transition to game activity
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
     private void treasureListener(View v){
         v.startAnimation(buttonClick);
