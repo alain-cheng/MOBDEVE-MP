@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class GameActivity extends AppCompatActivity {
+import org.godotengine.godot.GodotActivity;
+
+public class GameActivity extends GodotActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

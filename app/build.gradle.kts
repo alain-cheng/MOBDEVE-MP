@@ -8,12 +8,16 @@ android {
 
     defaultConfig {
         applicationId = "com.mobdeve.s15.taboo"
-        minSdk = 23
+        minSdk = 21
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    androidResources{
+        ignoreAssetsPattern = "!.svn:!.git:!.gitignore:!.ds_store:!*.scc:<dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"
     }
 
     buildFeatures {
@@ -30,8 +34,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 }
 
@@ -53,4 +57,7 @@ dependencies {
     //UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.10.0")
+
+    //Godot
+    implementation("org.godotengine:godot:4.2.0.beta-SNAPSHOT")
 }
