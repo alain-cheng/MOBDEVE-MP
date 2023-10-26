@@ -13,20 +13,37 @@
         android:theme="@style/Theme.Taboo"
         tools:targetApi="31">
         <activity
-            android:name=".TreasureView"
+            android:name=".GameActivity"
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
             android:exported="false" />
+        <activity
+            android:name=".TreasureView"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".Collection"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".Setting"
-            android:exported="false" />
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".DataViewModel"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:screenOrientation="portrait"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout"
+            android:exported="true"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

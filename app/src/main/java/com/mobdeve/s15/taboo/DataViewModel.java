@@ -9,7 +9,6 @@ import android.app.Application;
 import java.util.List;
 
 public class DataViewModel extends AndroidViewModel {
-    //TODO: Finish the viewModel features for the treasures and connect to database
     private DataRepository mDataRepository;
     private final LiveData<List<Treasure>> mTreasury;
     private LiveData<PlayerData> mPlayer;
