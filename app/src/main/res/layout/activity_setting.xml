@@ -48,26 +48,26 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="110dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/accountheadView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/group_725accountheading1" />
+            app:srcCompat="@drawable/group_725accountheading1" />
 
         <ImageView
             android:id="@+id/nameguestView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            tools:srcCompat="@drawable/itemboxname_guest" />
+            app:srcCompat="@drawable/itemboxname_guest" />
 
         <ImageButton
             android:id="@+id/loginbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
             android:layout_marginTop="10dp"
             android:background="#2D2727"
             android:src="@drawable/group_716login_button" />
@@ -77,13 +77,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            tools:srcCompat="@drawable/group_723game_heading" />
+            app:srcCompat="@drawable/group_723game_heading" />
 
         <ImageButton
             android:id="@+id/erasebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="99dp"
             android:layout_marginTop="10dp"
             android:background="#2D2727"
             android:src="@drawable/group_724erase_button" />
