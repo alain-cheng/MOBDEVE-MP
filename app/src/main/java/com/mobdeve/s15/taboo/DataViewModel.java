@@ -21,17 +21,27 @@ public class DataViewModel extends AndroidViewModel {
     LiveData<List<Treasure>> getTreasury() {
         return mTreasury;
     }
+    List<Treasure> getCurrentTreasury() {
+        return mDataRepository.getCurrentTreasury();
+    }
 
     LiveData<PlayerData> getPlayer() {
         return mPlayer;
+    }
+    PlayerData getCurrentPlayerData() {
+        return mDataRepository.getCurrentPlayerData();
     }
 
     public void updatePlayer(PlayerData playerData){
         mDataRepository.updatePlayer(playerData);
     }
 
-    public void updateTreasury(Treasure treasure){
-        mDataRepository.updateTreasury(treasure, mPlayer.getValue());
+    public void updateTreasury(Treasure treasure, PlayerData playerData){
+        mDataRepository.updateTreasury(treasure, playerData);
+    }
+
+    public void sellTreasure(Treasure treasure, PlayerData playerData){
+        mDataRepository.sellTreasure(treasure, playerData);
     }
 
     public void deleteData(){
