@@ -6,16 +6,10 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.mobdeve.s15.taboo.databinding.ActivityMainBinding;
-
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding; //viewBinding variable

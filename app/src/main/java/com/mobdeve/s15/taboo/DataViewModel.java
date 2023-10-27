@@ -1,10 +1,9 @@
 package com.mobdeve.s15.taboo;
 
+import android.app.Application;
+
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
-import android.app.Application;
 
 import java.util.List;
 

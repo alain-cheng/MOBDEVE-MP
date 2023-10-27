@@ -1,20 +1,16 @@
 package com.mobdeve.s15.taboo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
-import com.mobdeve.s15.taboo.databinding.ActivityCollectionBinding;
-import com.mobdeve.s15.taboo.databinding.ActivitySettingBinding;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import com.mobdeve.s15.taboo.databinding.ActivityCollectionBinding;
 
 // Collection Activity
 public class Collection extends AppCompatActivity {

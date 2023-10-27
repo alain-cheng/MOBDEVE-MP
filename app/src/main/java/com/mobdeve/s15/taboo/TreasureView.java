@@ -9,10 +9,7 @@ import android.view.animation.AlphaAnimation;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.mobdeve.s15.taboo.databinding.ActivityCollectionBinding;
-import com.mobdeve.s15.taboo.databinding.ActivityMainBinding;
 import com.mobdeve.s15.taboo.databinding.ActivityTreasureViewBinding;
-import com.mobdeve.s15.taboo.databinding.ActivityTreasureViewModelBinding;
 
 import java.util.Objects;
 

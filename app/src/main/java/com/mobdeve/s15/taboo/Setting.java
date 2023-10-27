@@ -1,13 +1,12 @@
 package com.mobdeve.s15.taboo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
-import com.mobdeve.s15.taboo.databinding.ActivityMainBinding;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.mobdeve.s15.taboo.databinding.ActivitySettingBinding;
 
 public class Setting extends AppCompatActivity {
