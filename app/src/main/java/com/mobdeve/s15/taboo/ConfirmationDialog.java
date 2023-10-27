@@ -2,7 +2,10 @@ package com.mobdeve.s15.taboo;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Html;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,11 +19,22 @@ public class ConfirmationDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        builder.setMessage("Are you sure?").setPositiveButton("Yes", (dialog, id) ->
+        builder.setMessage(Html.fromHtml("<font color='#FFFFFF'>Are you sure?</font>"))
+                .setPositiveButton("Yes", (dialog, id) ->
                         listener.onYes(ConfirmationDialog.this, getTag()))
                 .setNegativeButton("Cancel", (dialog, id) ->
                         listener.onNo(ConfirmationDialog.this, getTag()));
-        return builder.create();
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
+        Button cancel = alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE);
+        Button yes = alertDialog.getButton(DialogInterface.BUTTON_POSITIVE);
+
+        yes.setBackgroundColor(getResources().getColor(R.color.background));
+        cancel.setBackgroundColor(getResources().getColor(R.color.background));
+        yes.setTextColor(getResources().getColor(R.color.white));
+        cancel.setTextColor(getResources().getColor(R.color.white));
+
+        return  alertDialog;
     }
 
     @Override
