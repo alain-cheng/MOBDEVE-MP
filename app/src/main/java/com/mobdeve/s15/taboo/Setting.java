@@ -1,5 +1,6 @@
 package com.mobdeve.s15.taboo;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -24,6 +25,8 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
 
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
+        //Todo: Add LiveData for the username and email part later
+
         initListeners();
     }
 
@@ -41,14 +44,16 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
     }
     private void loginListener(View v){
         v.startAnimation(buttonClick);
-        //TODO: Add a popup that will ask for login details to sign up or login.
         //TODO: Add a function in DataViewModel that will contact server to check or add login info
         //TODO: Connect to db to store login details in a table if data matches the server, logout empties the table.
-        //
+        //Login Activity, Add check for success in onResume maybe?
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
         //Test Only Delete later
         binding.nameguestView.setImageResource(R.drawable.itemboxname_sample);
         binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
+        
         binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
         binding.logoutbutton.setVisibility(View.VISIBLE);
 
