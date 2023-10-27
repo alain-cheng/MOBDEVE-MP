@@ -30,8 +30,8 @@ public class DataViewModel extends AndroidViewModel {
         mDataRepository.updatePlayer(playerData);
     }
 
-    public void updateTreasury(Treasure treasure, PlayerData playerData){
-        mDataRepository.updateTreasury(treasure, playerData);
+    public void updateTreasury(Treasure treasure){
+        mDataRepository.updateTreasury(treasure, mPlayer.getValue());
     }
 
     public void deleteData(){

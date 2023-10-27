@@ -53,7 +53,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
         //Test Only Delete later
         binding.nameguestView.setImageResource(R.drawable.itemboxname_sample);
         binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
-        
+
         binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
         binding.logoutbutton.setVisibility(View.VISIBLE);
 

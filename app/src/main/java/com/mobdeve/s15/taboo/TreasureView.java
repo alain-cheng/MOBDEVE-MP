@@ -32,12 +32,16 @@ public class TreasureView extends AppCompatActivity {
     }
 
     private void initListeners() {
+        binding.sellBtn.setOnClickListener(this::sellListener);
         binding.backBtn.setOnClickListener(this::backListener);
     }
     private void initData(Intent intent) {
         binding.treasureIv.setImageResource(intent.getIntExtra("ITEM_IMG", 0));
         binding.treasureNameTv.setText(intent.getStringExtra("ITEM_NAME"));
         binding.treasureDescriptionTv.setText(intent.getStringExtra("ITEM_DESC"));
+        if(intent.getIntExtra("ITEM_CNT", 0) >= 3){
+            binding.sellBtn.setVisibility(View.VISIBLE);
+        }
 
         String color = "";
         switch (Objects.requireNonNull(intent.getStringExtra("ITEM_RAR"))){
@@ -61,6 +65,10 @@ public class TreasureView extends AppCompatActivity {
     }
 
     private void backListener(View v){
+        v.startAnimation(buttonClick);
+        finish();
+    }
+    private void sellListener(View v){
         v.startAnimation(buttonClick);
         finish();
     }
