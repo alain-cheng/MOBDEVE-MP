@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="110dp"
-        android:gravity="center_horizontal"
+        android:gravity="center_horizontal|top"
         android:orientation="vertical">
 
         <ImageView
@@ -72,6 +72,16 @@
             android:background="#2D2727"
             android:src="@drawable/group_716login_button" />
 
+        <ImageButton
+            android:id="@+id/logoutbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="0dp"
+            android:background="@color/clear"
+            android:src="@drawable/group_717logout_button"
+            android:visibility="gone" />
+
         <ImageView
             android:id="@+id/gameheadView"
             android:layout_width="match_parent"
@@ -86,6 +96,7 @@
             android:layout_marginTop="10dp"
             android:background="#2D2727"
             android:src="@drawable/group_724erase_button" />
+
     </LinearLayout>
 
 
