@@ -5,11 +5,12 @@ import android.view.View;
 import android.view.animation.AlphaAnimation;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.mobdeve.s15.taboo.databinding.ActivitySettingBinding;
 
-public class Setting extends AppCompatActivity {
+public class Setting extends AppCompatActivity implements ConfirmationListener {
     ActivitySettingBinding binding;
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
     private DataViewModel mDataViewModel;
@@ -64,7 +65,25 @@ public class Setting extends AppCompatActivity {
     private void eraseListener(View v){
         //TODO: Add a popup that will ask if user is sure.
         v.startAnimation(buttonClick);
-        mDataViewModel.deleteData();
-        finish();
+        DialogFragment dialog = new ConfirmationDialog();
+        dialog.show(getSupportFragmentManager(), "EraseDialog");
+    }
+
+    //Erase button confirmation
+    @Override
+    public void onYes(DialogFragment dialog, String tag) {
+        switch (tag){
+            case "EraseDialog":{
+                mDataViewModel.deleteData();
+                finish();
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onNo(DialogFragment dialog, String tag) {
+
     }
 }
+

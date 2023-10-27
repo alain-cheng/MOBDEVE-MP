@@ -57,6 +57,7 @@ dependencies {
     //UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.10.0")
+    implementation("androidx.fragment:fragment:1.6.1")
 
     //Godot
     implementation("org.godotengine:godot:4.2.0.beta-SNAPSHOT")
