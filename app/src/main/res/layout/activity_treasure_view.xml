@@ -102,8 +102,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:layout_weight="1"
+            android:background="@color/clear"
             android:contentDescription="Sell button"
-            android:src="@android:drawable/btn_star"
+            android:src="@drawable/btn_sell"
             android:visibility="gone" />
     </LinearLayout>
 
