@@ -1,10 +1,9 @@
 package com.mobdeve.s15.taboo;
 
+import android.app.Application;
+
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
-
-import android.app.Application;
 
 import java.util.List;
 
@@ -22,9 +21,15 @@ public class DataViewModel extends AndroidViewModel {
     LiveData<List<Treasure>> getTreasury() {
         return mTreasury;
     }
+    List<Treasure> getCurrentTreasury() {
+        return mDataRepository.getCurrentTreasury();
+    }
 
     LiveData<PlayerData> getPlayer() {
         return mPlayer;
+    }
+    PlayerData getCurrentPlayerData() {
+        return mDataRepository.getCurrentPlayerData();
     }
 
     public void updatePlayer(PlayerData playerData){
@@ -33,6 +38,10 @@ public class DataViewModel extends AndroidViewModel {
 
     public void updateTreasury(Treasure treasure, PlayerData playerData){
         mDataRepository.updateTreasury(treasure, playerData);
+    }
+
+    public void sellTreasure(Treasure treasure, PlayerData playerData){
+        mDataRepository.sellTreasure(treasure, playerData);
     }
 
     public void deleteData(){

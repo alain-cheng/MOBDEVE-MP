@@ -1,16 +1,17 @@
 package com.mobdeve.s15.taboo;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
-import com.mobdeve.s15.taboo.databinding.ActivityMainBinding;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
+
 import com.mobdeve.s15.taboo.databinding.ActivitySettingBinding;
 
-public class Setting extends AppCompatActivity {
+public class Setting extends AppCompatActivity implements ConfirmationListener {
     ActivitySettingBinding binding;
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
     private DataViewModel mDataViewModel;
@@ -23,6 +24,8 @@ public class Setting extends AppCompatActivity {
         setContentView(view);
 
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
+
+        //Todo: Add LiveData for the username and email part later
 
         initListeners();
     }
@@ -41,31 +44,55 @@ public class Setting extends AppCompatActivity {
     }
     private void loginListener(View v){
         v.startAnimation(buttonClick);
-        //TODO: Add a popup that will ask for login details to sign up or login.
         //TODO: Add a function in DataViewModel that will contact server to check or add login info
         //TODO: Connect to db to store login details in a table if data matches the server, logout empties the table.
+        //Login Activity, Add check for success in onResume maybe?
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+
         //Test Only Delete later
         binding.nameguestView.setImageResource(R.drawable.itemboxname_sample);
         binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
+
         binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
         binding.logoutbutton.setVisibility(View.VISIBLE);
 
     }
     private void logoutListener(View v){
         v.startAnimation(buttonClick);
-        //TODO: Add a popup that will ask if user is sure.
-        //TODO: logout should delete data in table account
-        //Test Only Delete later
-        binding.nameguestView.setImageResource(R.drawable.itemboxname_guest);
-        binding.loginbutton.setImageResource(R.drawable.group_716login_button);
-        binding.loginbutton.setClickable(true);
-        binding.logoutbutton.setVisibility(View.GONE);
+        DialogFragment dialog = new ConfirmationDialog();
+        dialog.show(getSupportFragmentManager(), "LogoutDialog");
 
     }
     private void eraseListener(View v){
-        //TODO: Add a popup that will ask if user is sure.
         v.startAnimation(buttonClick);
-        mDataViewModel.deleteData();
-        finish();
+        DialogFragment dialog = new ConfirmationDialog();
+        dialog.show(getSupportFragmentManager(), "EraseDialog");
+    }
+
+    //Erase button confirmation
+    @Override
+    public void onYes(DialogFragment dialog, String tag) {
+        switch (tag){
+            case "EraseDialog":{
+                mDataViewModel.deleteData();
+                finish();
+                break;
+            }
+            case "LogoutDialog":{
+                //TODO: logout should delete data in table account
+                binding.nameguestView.setImageResource(R.drawable.itemboxname_guest);
+                binding.loginbutton.setImageResource(R.drawable.group_716login_button);
+                binding.loginbutton.setClickable(true);
+                binding.logoutbutton.setVisibility(View.GONE);
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onNo(DialogFragment dialog, String tag) {
+
     }
 }
+

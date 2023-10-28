@@ -3,7 +3,6 @@ package com.mobdeve.s15.taboo;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.MyViewHolder> {
@@ -49,6 +47,7 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
             Intent intent = new Intent(context, TreasureView.class);
             intent.putExtra("ITEM_NAME", treasures.get(index).getName());
             intent.putExtra("ITEM_IMG", treasures.get(index).getImageid());
+            intent.putExtra("ITEM_CNT", treasures.get(index).getCount());
             intent.putExtra("ITEM_DESC", treasures.get(index).getLore());
             intent.putExtra("ITEM_RAR", treasures.get(index).getRarity());
             context.startActivity(intent);

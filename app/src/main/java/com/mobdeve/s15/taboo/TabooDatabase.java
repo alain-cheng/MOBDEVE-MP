@@ -64,6 +64,7 @@ public abstract class TabooDatabase extends RoomDatabase {
                     }
                     dao.updateTreasury(treasure);
                 }
+                //Delete up to here
 
                 dao.updatePlayer(playerData);
             });
