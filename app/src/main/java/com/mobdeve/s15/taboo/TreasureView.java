@@ -110,7 +110,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
             }
         }catch (Exception e){
             Log.v("TREASURE_VIEW", e.toString());
-            Toast t = Toast.makeText(this, "Could not sell item", Toast.LENGTH_LONG);
+            Toast t = Toast.makeText(this, "Could not sell item", Toast.LENGTH_SHORT);
             t.show();
         }
 
