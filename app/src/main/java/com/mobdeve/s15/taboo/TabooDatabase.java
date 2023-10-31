@@ -37,7 +37,7 @@ public abstract class TabooDatabase extends RoomDatabase {
                 dao.deleteTreasures();
 
                 //Load Player Data
-                PlayerData playerData = new PlayerData(0, 1, 0, 1, 0, 0);
+                PlayerData playerData = new PlayerData(0, "", 1, 0, 0, 0, 0, 0);
 
                 //TEST: Load Treasury Data. This should be loaded only if you get the item but testing stuff for now.
                 Treasure treasure;

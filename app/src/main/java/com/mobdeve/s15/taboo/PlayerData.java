@@ -8,20 +8,24 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "player_data")
 public class PlayerData {
     @PrimaryKey @NonNull @ColumnInfo(name = "playerid", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0")private int id;
+    @ColumnInfo(name = "username", defaultValue = "")private String username;
 
     //Player Stats
     @ColumnInfo(name = "health", typeAffinity = ColumnInfo.INTEGER, defaultValue = "1") private int health;
     @ColumnInfo(name = "bounty", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int bounty;
-    @ColumnInfo(name = "diffMultiplier", typeAffinity = ColumnInfo.INTEGER, defaultValue = "1") private int diffMultiplier;
+    @ColumnInfo(name = "taboo", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int taboo;
+    @ColumnInfo(name = "tabooBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int tabooBonus;
     @ColumnInfo(name = "luck", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int luck;
     @ColumnInfo(name = "bountyBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int bountyBonus;
 
     //Constructor. Tip: Delete constructor and use Alt+Insert when updating to avoid insanity
-    public PlayerData(int id, int health, int bounty, int diffMultiplier, int luck, int bountyBonus) {
+    public PlayerData(int id, String username, int health, int bounty, int taboo, int tabooBonus, int luck, int bountyBonus) {
         this.id = id;
+        this.username = username;
         this.health = health;
         this.bounty = bounty;
-        this.diffMultiplier = diffMultiplier;
+        this.taboo = taboo;
+        this.tabooBonus = tabooBonus;
         this.luck = luck;
         this.bountyBonus = bountyBonus;
     }
@@ -29,15 +33,27 @@ public class PlayerData {
     //Methods
     public int getHealth(){return this.health;}
     public int getId(){return this.id;}
+
+    public String getUsername() {
+        return username;
+    }
+
     public int getBounty(){return this.bounty;}
-    public int getDiffMultiplier(){return this.diffMultiplier;}
+    public int getTaboo(){return this.taboo;}
+    public int getTabooBonus(){return this.tabooBonus;}
     public int getLuck(){return this.luck;}
     public int getBountyBonus(){return this.bountyBonus;}
 
     public void setId(){this.id = 0;}
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setHealth(int value){this.health = value;}
     public void setBounty(int value){this.bounty = value;}
     public void setLuck(int value){this.luck = value;}
-    public void setDiffMultiplier(int value){this.diffMultiplier = value;}
+    public void setTaboo(int value){this.taboo = value;}
+    public void setTabooBonus(int value){this.tabooBonus = value;}
     public void setBountyBonus(int value){this.bountyBonus = value;}
 }

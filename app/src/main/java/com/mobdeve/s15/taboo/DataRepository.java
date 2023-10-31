@@ -148,7 +148,7 @@ class DataRepository {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
-            mTabooDao.updatePlayer(new PlayerData(0, 1, 0, 1, 0, 0));
+            mTabooDao.updatePlayer(new PlayerData(0, "", 1, 0, 0, 0, 0, 0));
         });
     }
 }
