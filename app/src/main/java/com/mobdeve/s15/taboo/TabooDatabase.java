@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {PlayerData.class, Treasure.class}, version = 1, exportSchema = false)
+@Database(entities = {PlayerData.class, Treasure.class, User.class}, version = 1, exportSchema = false)
 public abstract class TabooDatabase extends RoomDatabase {
 
     public abstract DAO TabooDao();
@@ -67,6 +67,9 @@ public abstract class TabooDatabase extends RoomDatabase {
                 //Delete up to here
 
                 dao.updatePlayer(playerData);
+
+                //Initialize user table
+                User user = new User("", "");
             });
         }
     };

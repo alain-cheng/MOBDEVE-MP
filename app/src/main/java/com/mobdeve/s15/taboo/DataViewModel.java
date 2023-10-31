@@ -11,11 +11,13 @@ public class DataViewModel extends AndroidViewModel {
     private DataRepository mDataRepository;
     private final LiveData<List<Treasure>> mTreasury;
     private LiveData<PlayerData> mPlayer;
+    private LiveData<User> mUser;
     public DataViewModel(Application application) {
         super(application);
         mDataRepository = new DataRepository(application);
         mTreasury = mDataRepository.getTreasury();
         mPlayer = mDataRepository.getPlayerData();
+        mUser = mDataRepository.getUser();
     }
 
     LiveData<List<Treasure>> getTreasury() {
@@ -32,6 +34,13 @@ public class DataViewModel extends AndroidViewModel {
         return mDataRepository.getCurrentPlayerData();
     }
 
+    LiveData<User> getUser() {
+        return mUser;
+    }
+    User getCurrentUser() {
+        return mDataRepository.getCurrentUser();
+    }
+
     public void updatePlayer(PlayerData playerData){
         mDataRepository.updatePlayer(playerData);
     }
@@ -42,6 +51,14 @@ public class DataViewModel extends AndroidViewModel {
 
     public void sellTreasure(Treasure treasure, PlayerData playerData){
         mDataRepository.sellTreasure(treasure, playerData);
+    }
+
+    public void login(User user) {
+        mDataRepository.updateUser(user);
+    }
+
+    public void logout() {
+        mDataRepository.deleteUser();
     }
 
     public void deleteData(){

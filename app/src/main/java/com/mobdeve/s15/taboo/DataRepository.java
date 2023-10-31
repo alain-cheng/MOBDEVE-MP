@@ -15,12 +15,14 @@ class DataRepository {
     private DAO mTabooDao;
     private LiveData<List<Treasure>> mTreasury;
     private LiveData<PlayerData> mPlayerData;
+    private LiveData<User> mUser;
 
     DataRepository(Application application) {
         TabooDatabase db = TabooDatabase.getDatabase(application);
         mTabooDao = db.TabooDao();
         mPlayerData = mTabooDao.getPlayerData();
         mTreasury = mTabooDao.getTreasury();
+        mUser = mTabooDao.getUser();
     }
 
     LiveData<List<Treasure>> getTreasury() {
@@ -35,6 +37,13 @@ class DataRepository {
     }
     PlayerData getCurrentPlayerData() {
         return mTabooDao.getCurrentPlayerData();
+    }
+
+    LiveData<User> getUser(){
+        return mUser;
+    }
+    User getCurrentUser() {
+        return mTabooDao.getCurrentUser();
     }
 
     void updatePlayer(PlayerData playerData) {
@@ -66,6 +75,13 @@ class DataRepository {
             }
             mTabooDao.updateTreasury(treasure);
             mTabooDao.updatePlayer(playerData);
+        });
+    }
+
+    void updateUser(User user) {
+        TabooDatabase.databaseWriteExecutor.execute(() -> {
+            mTabooDao.deleteUser();
+            mTabooDao.updateUser(user);
         });
     }
 
@@ -144,11 +160,20 @@ class DataRepository {
         });
     }
 
+    void deleteUser() {
+        TabooDatabase.databaseWriteExecutor.execute(() -> {
+            mTabooDao.deleteUser();
+            mTabooDao.updateUser(new User("", ""));
+        });
+    }
+
     void deleteData() {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
+            mTabooDao.deleteUser();
             mTabooDao.updatePlayer(new PlayerData(0, "", 1, 0, 0, 0, 0, 0));
+            mTabooDao.updateUser(new User("", ""));
         });
     }
 }
