@@ -69,18 +69,22 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             try {
-                User result = futureUser.get();
-                if(result.getUsername().isBlank() && mode.equals("Login")) {
-                    throw new Exception("Account could not be found");
+                if(futureUser.isDone()){
+                    User result = futureUser.get();
+                    if(result.getUsername().isBlank() && mode.equals("Login")) {
+                        throw new Exception("Account could not be found");
+                    }
+                    mDataViewModel.login(result);
+                    threadpool.shutdown();
+                    finish();
                 }
-                mDataViewModel.login(result);
-                threadpool.shutdown();
-                finish();
             }
             catch (Exception e){
-                Log.v("LOGIN_ACTIVITY", e.toString());
-                threadpool.shutdown();
-                finish();
+                if(futureUser.isDone()){
+                    Log.v("LOGIN_ACTIVITY", e.toString());
+                    threadpool.shutdown();
+                    finish();
+                }
             }
         }
         else{
