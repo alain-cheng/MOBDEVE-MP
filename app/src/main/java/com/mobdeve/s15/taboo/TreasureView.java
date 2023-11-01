@@ -27,7 +27,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
     private DataViewModel mDataViewModel;
     private int img, cnt;
-    private String name, desc;
+    private String name, desc, rar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
         cnt = intent.getIntExtra("ITEM_CNT", 0);
         name = intent.getStringExtra("ITEM_NAME");
         desc = intent.getStringExtra("ITEM_DESC");
+        rar = intent.getStringExtra("ITEM_RAR");
 
         initListeners();
         initData(intent);
@@ -58,9 +59,11 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
         if(cnt >= 3){
             binding.sellBtn.setVisibility(View.VISIBLE);
         }
+        if(cnt == -1)
+            binding.receivedNotifTxt.setVisibility(View.VISIBLE);
 
         String color = "";
-        switch (Objects.requireNonNull(intent.getStringExtra("ITEM_RAR"))){
+        switch (rar){
             case "COMMON":{
                 color = "#A0A0A0";
                 break;
@@ -130,9 +133,15 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
                     );
 
                     mDataViewModel.updateTreasury(random, playerData);
-                    Toast t = Toast.makeText(this, "Obtained " + random.getName()
-                            + "!", Toast.LENGTH_SHORT);
-                    t.show();
+
+                    //Display in TreasureView
+                    Intent intent = new Intent(this, TreasureView.class);
+                    intent.putExtra("ITEM_IMG", random.getImageid());
+                    intent.putExtra("ITEM_NAME", random.getName());
+                    intent.putExtra("ITEM_DESC", random.getLore());
+                    intent.putExtra("ITEM_RAR", random.getRarity());
+                    intent.putExtra("ITEM_CNT", -1);
+                    startActivity(intent);
                     break;
                 }
             }

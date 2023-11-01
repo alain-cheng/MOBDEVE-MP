@@ -127,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                         Log.v("MAIN_ACTIVITY", "Generating unique treasure...");
                         //Loop through all names
                         boolean unique;
+                        Treasure treasure = new Treasure("","",0,"","","",0);
                         for(int i = 0; i < TreasureList.names.length; i++){
                             unique = true;
                             //Loop through treasury
@@ -138,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                             if(unique){
                                 //Add treasure and stop loop
-                                Treasure treasure = new Treasure(
+                                treasure = new Treasure(
                                         TreasureList.ids[i],
                                         TreasureList.names[i],
                                         TreasureList.images[i],
@@ -151,6 +152,15 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             }
                         }
+
+                        //Display in TreasureView
+                        Intent intent = new Intent(this, TreasureView.class);
+                        intent.putExtra("ITEM_IMG", treasure.getImageid());
+                        intent.putExtra("ITEM_NAME", treasure.getName());
+                        intent.putExtra("ITEM_DESC", treasure.getLore());
+                        intent.putExtra("ITEM_RAR", treasure.getRarity());
+                        intent.putExtra("ITEM_CNT", -1);
+                        startActivity(intent);
 
                         //Reset taboo to 0
                         playerData.setTaboo(0);
@@ -193,6 +203,15 @@ public class MainActivity extends AppCompatActivity {
                                 1
                         );
                         mDataViewModel.updateTreasury(treasure, playerData);
+
+                        //Display in TreasureView
+                        Intent intent = new Intent(this, TreasureView.class);
+                        intent.putExtra("ITEM_IMG", treasure.getImageid());
+                        intent.putExtra("ITEM_NAME", treasure.getName());
+                        intent.putExtra("ITEM_DESC", treasure.getLore());
+                        intent.putExtra("ITEM_RAR", treasure.getRarity());
+                        intent.putExtra("ITEM_CNT", -1);
+                        startActivity(intent);
 
                         //Update taboo
                         if(playerData.getTaboo() < 4)
