@@ -51,8 +51,8 @@ public class TreasureList {
             "Not Implemented",
             "Not Implemented",
             "Not Implemented",
-            "Not Implemented",
             "A meal consisting of a quarter-pounder burger with a side of fries and some soft drinks. Seems to contain an insane amount of magical energy. You will probably die trying to eat this...",
+            "Not Implemented",
     };
 
     public static final String[] rarities = {
