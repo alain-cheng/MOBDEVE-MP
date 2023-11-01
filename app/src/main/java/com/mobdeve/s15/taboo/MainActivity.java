@@ -45,9 +45,30 @@ public class MainActivity extends AppCompatActivity {
         mDataViewModel.getPlayer().observe(this, playerData -> {
             try {
                 setBounty(playerData.getBounty());
+                switch (playerData.getTaboo()){
+                    case 0:{
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge);
+                        break;
+                    }
+                    case 1:{
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_1_4);
+                        break;
+                    }
+                    case 2:{
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_2_4);
+                        break;
+                    }
+                    case 3:{
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_3_4);
+                        break;
+                    }
+                    case 4:{
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_4_4);
+                        break;
+                    }
+                }
             }catch (Exception e){
                 Log.v("MAIN_ACTIVITY", e.toString());
-                setBounty(0);
             }
         });
 
