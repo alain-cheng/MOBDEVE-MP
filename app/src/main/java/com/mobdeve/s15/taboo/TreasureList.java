@@ -1,23 +1,37 @@
 package com.mobdeve.s15.taboo;
 
 public class TreasureList {
-    //Register new Treasures here.
+    //Register new Treasures here. Note: Keep the creator's set at the end
 
-    private static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY"};
+    public static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY"};
+
+    public static final String[] ids = {
+            "item01",
+            "item02",
+            "item03",
+            "item04",
+            "item05",
+            "item06",
+            "item07",
+            "item08",
+            "item09",
+            "item10",
+    };
     public static final String[] names = {
             "Black Ash",
             "Acacia Bark",
             "Giant Inhaler",
             "Kapre Cigar",
+            "Greedy Reign",
+            "Last Farewell",
+            "Untouchable",
             "Jamuel's Haymaker",
             "Alwyn's Grand Order",
             "Alain's Astragal",
-            "Greedy Reign",
-            "Last Farewell",
-            "Untouchable"
     };
 
-    public static final String[] bonuses = {"Not Implemented",
+    public static final String[] bonuses = {
+            "Not Implemented",
             "Not Implemented",
             "Not Implemented",
             "Not Implemented",
@@ -34,11 +48,11 @@ public class TreasureList {
             "Not Implemented",
             "Not Implemented",
             "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
             "A meal consisting of a quarter-pounder burger with a side of fries and some soft drinks. Seems to contain an insane amount of magical energy. You will probably die trying to eat this...",
-            "Not Implemented",
-            "Not Implemented",
-            "Not Implemented",
-            "Not Implemented",
     };
 
     public static final String[] rarities = {
@@ -46,12 +60,12 @@ public class TreasureList {
             RARITY[0],
             RARITY[1],
             RARITY[3],
-            RARITY[3],
-            RARITY[3],
-            RARITY[3],
             RARITY[2],
             RARITY[2],
-            RARITY[3]
+            RARITY[3],
+            RARITY[3],
+            RARITY[3],
+            RARITY[3],
     };
 
     public static final int[] images = {

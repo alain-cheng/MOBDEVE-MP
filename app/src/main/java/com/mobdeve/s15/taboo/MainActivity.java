@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -19,6 +20,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -74,6 +78,112 @@ public class MainActivity extends AppCompatActivity {
             boolean generateTreasure = signal.getBoolean("generateTreasure");
             if(generateTreasure){
                 Log.v("MAIN_ACTIVITY", "Generating treasure...");
+
+                //Set signal to false
+                JSONObject signalBack = new JSONObject();
+                signalBack.put("generateTreasure", false);
+                String userString = signalBack.toString();
+                FileWriter fileWriter = new FileWriter(file);
+                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                bufferedWriter.write(userString);
+                bufferedWriter.close();
+
+                //Get CurrentPlayerData and Current Treasury
+                ExecutorService threadpool = Executors.newCachedThreadPool();
+                Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mDataViewModel.getCurrentTreasury());
+                Future<PlayerData> futureData = threadpool.submit(() -> mDataViewModel.getCurrentPlayerData());
+
+                while (!futureTreasure.isDone() && !futureData.isDone()) {
+                    Log.v("MAIN_ACTIVITY", "Retrieving data...");
+                }
+
+                List<Treasure> currentTreasure = futureTreasure.get();
+                PlayerData playerData = futureData.get();
+
+                if(futureData.isDone() && futureTreasure.isDone()){ //Wait until finish
+                    //Check if currentTreasure.size() != TreasureList.names.length() and taboo >= 4
+                    //Generate a unique treasure starting from item1, otherwise generate random based on rarity
+                    if(currentTreasure.size() != TreasureList.names.length && playerData.getTaboo() >= 4){
+                        Log.v("MAIN_ACTIVITY", "Generating unique treasure...");
+                        //Loop through all names
+                        boolean unique;
+                        for(int i = 0; i < TreasureList.names.length; i++){
+                            unique = true;
+                            //Loop through treasury
+                            for(int j = 0; j < currentTreasure.size(); j++){
+                                if(TreasureList.names[i].equals(currentTreasure.get(j).getName())){
+                                    unique = false;
+                                    break;
+                                }
+                            }
+                            if(unique){
+                                //Add treasure and stop loop
+                                Treasure treasure = new Treasure(
+                                        TreasureList.ids[i],
+                                        TreasureList.names[i],
+                                        TreasureList.images[i],
+                                        TreasureList.bonuses[i],
+                                        TreasureList.lores[i],
+                                        TreasureList.rarities[i],
+                                        1
+                                );
+                                mDataViewModel.updateTreasury(treasure, playerData);
+                                break;
+                            }
+                        }
+
+                        //Reset taboo to 0
+                        playerData.setTaboo(0);
+                        mDataViewModel.updatePlayer(playerData);
+                    }else{
+                        //Generate rarity of treasure, taboo of 4 increases totalLuck by 10
+                        int totalLuck = playerData.getLuck();
+                        if(playerData.getTaboo() >= 4)
+                            totalLuck += 10;
+                        Random rand = new Random(System.nanoTime());
+                        int rng = rand.nextInt(101) + totalLuck;
+
+                        //Select rarity based on luck
+                        String rarity = "COMMON";
+                        if(rng <= 40)
+                            rarity = TreasureList.RARITY[0];
+                        else if(rng <= 70)
+                            rarity = TreasureList.RARITY[1];
+                        else if(rng <= 90)
+                            rarity = TreasureList.RARITY[2];
+                        else if(rng > 90)
+                            rarity = TreasureList.RARITY[3];
+
+                        //Get indexes of treasures with rarities[i] == rarity
+                        ArrayList<Integer> indexes = new ArrayList<>();
+                        for(int i = 0; i < TreasureList.rarities.length; i++){
+                            if(TreasureList.rarities[i].equals(rarity))
+                                indexes.add(i);
+                        }
+                        //Select between the indexes at random
+                        int index = rand.nextInt(indexes.size());
+                        //Generate Treasure and add
+                        Treasure treasure = new Treasure(
+                                TreasureList.ids[indexes.get(index)],
+                                TreasureList.names[indexes.get(index)],
+                                TreasureList.images[indexes.get(index)],
+                                TreasureList.bonuses[indexes.get(index)],
+                                TreasureList.lores[indexes.get(index)],
+                                TreasureList.rarities[indexes.get(index)],
+                                1
+                        );
+                        mDataViewModel.updateTreasury(treasure, playerData);
+
+                        //Update taboo
+                        if(playerData.getTaboo() < 4)
+                            playerData.setTaboo(playerData.getTaboo() + 1); //Increment while below 4
+                        else //Reset to zero
+                            playerData.setTaboo(0);
+                        mDataViewModel.updatePlayer(playerData);
+                    }
+
+                    threadpool.shutdown();
+                }
             }
         }catch (Exception e){
             Log.v("MAIN_ACTIVITY", e.toString());

@@ -64,17 +64,19 @@ class DataRepository {
             try {
                 List<Treasure> currentTreasure = futureTreasure.get();
 
-                for(int i = 0; i < currentTreasure.size(); i++){
-                    if(currentTreasure.get(i).getId().equals(temp.getId())){
-                        temp = currentTreasure.get(i);
-                        temp.setCount(temp.getCount() + 1); //Increment amount
-                        mTabooDao.updateTreasury(temp);
-                        break;
+                if(currentTreasure.size() > 0){
+                    for(int i = 0; i < currentTreasure.size(); i++){
+                        if(currentTreasure.get(i).getId().equals(temp.getId())){
+                            temp = currentTreasure.get(i);
+                            temp.setCount(temp.getCount() + 1); //Increment amount
+                            mTabooDao.updateTreasury(temp);
+                            break;
+                        }
+                        else if(i == currentTreasure.size()-1){
+                            mTabooDao.updateTreasury(temp); //Add new treasure at end of loop
+                        }
                     }
-                    else if(i == currentTreasure.size()-1){
-                        mTabooDao.updateTreasury(temp); //Add new treasure at end of loop
-                    }
-                }
+                }else mTabooDao.updateTreasury(temp); //Just add if treasury is empty
             }catch (Exception e){
                 Log.v("DATA_REPOSITORY", e.toString());
             }

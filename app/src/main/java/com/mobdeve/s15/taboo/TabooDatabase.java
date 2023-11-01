@@ -38,34 +38,6 @@ public abstract class TabooDatabase extends RoomDatabase {
 
                 //Load Player Data
                 PlayerData playerData = new PlayerData(0, "", 1, 0, 0, 0, 0, 0);
-
-                //TEST: Load Treasury Data. This should be loaded only if you get the item but testing stuff for now.
-                Treasure treasure;
-                Random rand = new Random(System.nanoTime());
-                for(int i = 0; i < TreasureList.names.length; i++){
-                    treasure = new Treasure("item" + i+1, TreasureList.names[i], TreasureList.images[i],
-                            TreasureList.bonuses[i], TreasureList.lores[i], TreasureList.rarities[i], rand.nextInt(5));
-                    switch (treasure.getRarity()){
-                        case "COMMON":{
-                            playerData.setBounty(playerData.getBounty() + 5*treasure.getCount());
-                            break;
-                        }
-                        case "RARE":{
-                            playerData.setBounty(playerData.getBounty() + 10*treasure.getCount());
-                            break;
-                        }
-                        case "FORBIDDEN":{
-                            playerData.setBounty(playerData.getBounty() + 25*treasure.getCount());
-                            break;
-                        }
-                        case "BLASPHEMY":{
-                            playerData.setBounty(playerData.getBounty() + 50*treasure.getCount());
-                        }
-                    }
-                    dao.updateTreasury(treasure);
-                }
-                //Delete up to here
-
                 dao.updatePlayer(playerData);
 
                 //Initialize user table
