@@ -105,6 +105,10 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
             for(int i = 0; i < currentTreasure.size(); i++){
                 if(tag.equals(currentTreasure.get(i).getName())){
                     mDataViewModel.sellTreasure(currentTreasure.get(i), playerData);
+                    //Todo: Implement proper random treasure generation
+                    Treasure random = new Treasure("item420", "TEST", R.drawable.itembox_cheese,
+                            "Nah", "Created for Testing", "BLASPHEMY", 1);
+                    mDataViewModel.updateTreasury(random, playerData);
                     break;
                 }
             }

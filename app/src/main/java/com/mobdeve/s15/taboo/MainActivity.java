@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
             //If generateTreasure = true, send to GenerateTreasure Activity
             boolean generateTreasure = signal.getBoolean("generateTreasure");
             if(generateTreasure){
-                
+
             }
         }catch (Exception e){
             Log.v("MAIN_ACTIVITY", e.toString());
