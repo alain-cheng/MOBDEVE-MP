@@ -2,6 +2,7 @@ package com.mobdeve.s15.taboo;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
@@ -25,7 +26,27 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
 
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
-        //Todo: Add LiveData for the username and email part later
+        mDataViewModel.getUser().observe(this, user -> {
+            try {
+                if(user.getUsername().equals("") || user.getEmail().equals("")){
+                    binding.usernameTxt.setText("Name: Guest");
+                    binding.emailTxt.setText("Login");
+                    binding.nameguestView.setImageResource(R.drawable.itemboxname_guest);
+                    binding.loginbutton.setImageResource(R.drawable.group_716login_button);
+                    binding.loginbutton.setClickable(true);
+                    binding.logoutbutton.setVisibility(View.GONE);
+                }
+                else{
+                    binding.usernameTxt.setText(String.format("Name: %s", user.getUsername()));
+                    binding.emailTxt.setText(user.getEmail());
+                    binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
+                    binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
+                    binding.logoutbutton.setVisibility(View.VISIBLE);
+                }
+            }catch (Exception e){
+                Log.v("SETTINGS_ACTIVITY", e.toString());
+            }
+        });
 
         initListeners();
     }
@@ -49,14 +70,6 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
         //Login Activity, Add check for success in onResume maybe?
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-
-        //Test Only Delete later
-        binding.nameguestView.setImageResource(R.drawable.itemboxname_sample);
-        binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
-
-        binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
-        binding.logoutbutton.setVisibility(View.VISIBLE);
-
     }
     private void logoutListener(View v){
         v.startAnimation(buttonClick);
@@ -80,11 +93,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
                 break;
             }
             case "LogoutDialog":{
-                //TODO: logout should delete data in table account
-                binding.nameguestView.setImageResource(R.drawable.itemboxname_guest);
-                binding.loginbutton.setImageResource(R.drawable.group_716login_button);
-                binding.loginbutton.setClickable(true);
-                binding.logoutbutton.setVisibility(View.GONE);
+                mDataViewModel.logout();
                 break;
             }
         }

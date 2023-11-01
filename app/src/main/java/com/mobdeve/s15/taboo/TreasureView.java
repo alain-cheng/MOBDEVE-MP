@@ -14,8 +14,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mobdeve.s15.taboo.databinding.ActivityTreasureViewBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -105,12 +107,38 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
             for(int i = 0; i < currentTreasure.size(); i++){
                 if(tag.equals(currentTreasure.get(i).getName())){
                     mDataViewModel.sellTreasure(currentTreasure.get(i), playerData);
+                    
+                    Random rand = new Random(System.nanoTime());
+                    String rarity = currentTreasure.get(i).getRarity();
+                    //Get indexes of treasures with rarities[i] == rarity
+                    ArrayList<Integer> indexes = new ArrayList<>();
+                    for(int j = 0; j < TreasureList.rarities.length; j++){
+                        if(TreasureList.rarities[j].equals(rarity))
+                            indexes.add(j);
+                    }
+                    //Select between the indexes at random
+                    int index = rand.nextInt(indexes.size());
+                    //Generate Treasure and add
+                    Treasure random = new Treasure(
+                            TreasureList.ids[indexes.get(index)],
+                            TreasureList.names[indexes.get(index)],
+                            TreasureList.images[indexes.get(index)],
+                            TreasureList.bonuses[indexes.get(index)],
+                            TreasureList.lores[indexes.get(index)],
+                            TreasureList.rarities[indexes.get(index)],
+                            1
+                    );
+
+                    mDataViewModel.updateTreasury(random, playerData);
+                    Toast t = Toast.makeText(this, "Obtained " + random.getName()
+                            + "!", Toast.LENGTH_SHORT);
+                    t.show();
                     break;
                 }
             }
         }catch (Exception e){
             Log.v("TREASURE_VIEW", e.toString());
-            Toast t = Toast.makeText(this, "Could not sell item", Toast.LENGTH_LONG);
+            Toast t = Toast.makeText(this, "Could not sell item", Toast.LENGTH_SHORT);
             t.show();
         }
 

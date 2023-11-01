@@ -12,7 +12,7 @@ import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {PlayerData.class, Treasure.class}, version = 1, exportSchema = false)
+@Database(entities = {PlayerData.class, Treasure.class, User.class}, version = 1, exportSchema = false)
 public abstract class TabooDatabase extends RoomDatabase {
 
     public abstract DAO TabooDao();
@@ -37,36 +37,11 @@ public abstract class TabooDatabase extends RoomDatabase {
                 dao.deleteTreasures();
 
                 //Load Player Data
-                PlayerData playerData = new PlayerData(0, 1, 0, 1, 0, 0);
-
-                //TEST: Load Treasury Data. This should be loaded only if you get the item but testing stuff for now.
-                Treasure treasure;
-                Random rand = new Random(System.nanoTime());
-                for(int i = 0; i < TreasureList.names.length; i++){
-                    treasure = new Treasure("item" + i+1, TreasureList.names[i], TreasureList.images[0],
-                            TreasureList.bonuses[0], TreasureList.lores[i], TreasureList.rarities[i], rand.nextInt(5));
-                    switch (treasure.getRarity()){
-                        case "COMMON":{
-                            playerData.setBounty(playerData.getBounty() + 5*treasure.getCount());
-                            break;
-                        }
-                        case "RARE":{
-                            playerData.setBounty(playerData.getBounty() + 10*treasure.getCount());
-                            break;
-                        }
-                        case "FORBIDDEN":{
-                            playerData.setBounty(playerData.getBounty() + 25*treasure.getCount());
-                            break;
-                        }
-                        case "BLASPHEMY":{
-                            playerData.setBounty(playerData.getBounty() + 50*treasure.getCount());
-                        }
-                    }
-                    dao.updateTreasury(treasure);
-                }
-                //Delete up to here
-
+                PlayerData playerData = new PlayerData(0, "", 1, 0, 0, 0, 0, 0);
                 dao.updatePlayer(playerData);
+
+                //Initialize user table
+                User user = new User("", "");
             });
         }
     };

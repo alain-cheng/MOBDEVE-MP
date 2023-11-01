@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://crp7v58t3xkge"]
 
-[ext_resource type="Texture2D" uid="uid://c70qhaq5p6ibx" path="res://icon.svg" id="1_ivql6"]
+[ext_resource type="Texture2D" uid="uid://c70qhaq5p6ibx" path="res://sprites/icon.svg" id="1_ivql6"]
 [ext_resource type="Script" path="res://main.gd" id="1_ymnco"]
 [ext_resource type="Script" path="res://testCloseButton.gd" id="3_2tibe"]
 
@@ -19,5 +19,12 @@ offset_top = 374.0
 offset_right = 689.0
 offset_bottom = 414.0
 text = "Press this button to close app"
+
+[node name="TestOutputLabel" type="Label" parent="."]
+offset_left = 517.0
+offset_top = 434.0
+offset_right = 620.0
+offset_bottom = 457.0
+text = "SAMPLE TEXT"
 
 [connection signal="pressed" from="testCloseButton" to="testCloseButton" method="_on_pressed"]

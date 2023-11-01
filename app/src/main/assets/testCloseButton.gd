@@ -12,5 +12,11 @@ func _process(delta):
 
 
 func _on_pressed():
-	#Quits the game
+	#Quits the game, changes generateTreasure to true
+	var dict = {generateTreasure = true}
+	var path = "user://signal_data.json"
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.WRITE)
+		file.store_line(JSON.stringify(dict))
+		file.close()
 	get_tree().quit()

@@ -15,12 +15,14 @@ class DataRepository {
     private DAO mTabooDao;
     private LiveData<List<Treasure>> mTreasury;
     private LiveData<PlayerData> mPlayerData;
+    private LiveData<User> mUser;
 
     DataRepository(Application application) {
         TabooDatabase db = TabooDatabase.getDatabase(application);
         mTabooDao = db.TabooDao();
         mPlayerData = mTabooDao.getPlayerData();
         mTreasury = mTabooDao.getTreasury();
+        mUser = mTabooDao.getUser();
     }
 
     LiveData<List<Treasure>> getTreasury() {
@@ -37,6 +39,13 @@ class DataRepository {
         return mTabooDao.getCurrentPlayerData();
     }
 
+    LiveData<User> getUser(){
+        return mUser;
+    }
+    User getCurrentUser() {
+        return mTabooDao.getCurrentUser();
+    }
+
     void updatePlayer(PlayerData playerData) {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
             playerData.setId(); //Set id to 0
@@ -45,6 +54,35 @@ class DataRepository {
     }
     void updateTreasury(Treasure treasure, PlayerData playerData) {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
+            Treasure temp = treasure;
+            //Add random treasure to treasury but check if its already there, add 1 to count if so.
+            ExecutorService threadpool = Executors.newCachedThreadPool();
+            Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mTabooDao.getCurrentTreasury());
+            while (!futureTreasure.isDone()) {
+                Log.v("DATA_REPOSITORY", "Retrieving data...");
+            }
+            try {
+                List<Treasure> currentTreasure = futureTreasure.get();
+
+                if(currentTreasure.size() > 0){
+                    for(int i = 0; i < currentTreasure.size(); i++){
+                        if(currentTreasure.get(i).getId().equals(temp.getId())){
+                            temp = currentTreasure.get(i);
+                            temp.setCount(temp.getCount() + 1); //Increment amount
+                            mTabooDao.updateTreasury(temp);
+                            break;
+                        }
+                        else if(i == currentTreasure.size()-1){
+                            mTabooDao.updateTreasury(temp); //Add new treasure at end of loop
+                        }
+                    }
+                }else mTabooDao.updateTreasury(temp); //Just add if treasury is empty
+            }catch (Exception e){
+                Log.v("DATA_REPOSITORY", e.toString());
+            }
+
+            threadpool.shutdown();
+
             //Calculate new bounty
             playerData.setId(); //Set id to 0
             switch (treasure.getRarity()){
@@ -64,8 +102,14 @@ class DataRepository {
                     playerData.setBounty(playerData.getBounty() + 50);
                 }
             }
-            mTabooDao.updateTreasury(treasure);
             mTabooDao.updatePlayer(playerData);
+        });
+    }
+
+    void updateUser(User user) {
+        TabooDatabase.databaseWriteExecutor.execute(() -> {
+            mTabooDao.deleteUser();
+            mTabooDao.updateUser(user);
         });
     }
 
@@ -92,55 +136,13 @@ class DataRepository {
             }
             treasure.setCount(treasure.getCount() - 3);
             mTabooDao.updateTreasury(treasure);
+        });
+    }
 
-            //Todo: Implement proper random treasure generation
-            Treasure random = new Treasure("item420", "TEST", R.drawable.itembox_cheese,
-                    "Nah", "Created for Testing", "BLASPHEMY", 1);
-            //Add random treasure to treasury but check if its already there, add 1 to count if so.
-            ExecutorService threadpool = Executors.newCachedThreadPool();
-            Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mTabooDao.getCurrentTreasury());
-            while (!futureTreasure.isDone()) {
-                Log.v("DATA_REPOSITORY", "Retrieving data...");
-            }
-            try {
-                List<Treasure> currentTreasure = futureTreasure.get();
-
-                for(int i = 0; i < currentTreasure.size(); i++){
-                    if(currentTreasure.get(i).getId().equals(random.getId())){
-                        random = currentTreasure.get(i);
-                        random.setCount(random.getCount() + 1); //Increment amount
-                        mTabooDao.updateTreasury(random);
-                        break;
-                    }
-                    else if(i == currentTreasure.size()-1){
-                        mTabooDao.updateTreasury(random); //Add new treasure at end of loop
-                    }
-                }
-            }catch (Exception e){
-                Log.v("DATA_REPOSITORY", e.toString());
-            }
-
-            threadpool.shutdown();
-
-            //Update Player data
-            switch (random.getRarity()){
-                case "COMMON":{
-                    playerData.setBounty(playerData.getBounty() + 5);
-                    break;
-                }
-                case "RARE":{
-                    playerData.setBounty(playerData.getBounty() + 10);
-                    break;
-                }
-                case "FORBIDDEN":{
-                    playerData.setBounty(playerData.getBounty() + 25);
-                    break;
-                }
-                case "BLASPHEMY":{
-                    playerData.setBounty(playerData.getBounty() + 50);
-                }
-            }
-            mTabooDao.updatePlayer(playerData);
+    void deleteUser() {
+        TabooDatabase.databaseWriteExecutor.execute(() -> {
+            mTabooDao.deleteUser();
+            mTabooDao.updateUser(new User("", ""));
         });
     }
 
@@ -148,7 +150,9 @@ class DataRepository {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
-            mTabooDao.updatePlayer(new PlayerData(0, 1, 0, 1, 0, 0));
+            mTabooDao.deleteUser();
+            mTabooDao.updatePlayer(new PlayerData(0, "", 1, 0, 0, 0, 0, 0));
+            mTabooDao.updateUser(new User("", ""));
         });
     }
 }
