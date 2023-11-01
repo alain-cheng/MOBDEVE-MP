@@ -1,14 +1,33 @@
 package com.mobdeve.s15.taboo;
 
 public class TreasureList {
-    //Register new Treasures here. Use this as a data source temporally while better solution is being made.
-    //Maybe make a copy of treasury call treasure_list? Enter items in order.
+    //Register new Treasures here.
 
     private static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY"};
-    public static final String[] names = {"Black Ash", "Acacia Bark", "Giant Inhaler", "Kapre Cigar",
-    "Jamuel's Haymaker", "Alwyn's Grand Order", "Alain's Astragal", "Greedy Reign", "Last Farewell", "Untouchable"};
+    public static final String[] names = {
+            "Black Ash",
+            "Acacia Bark",
+            "Giant Inhaler",
+            "Kapre Cigar",
+            "Jamuel's Haymaker",
+            "Alwyn's Grand Order",
+            "Alain's Astragal",
+            "Greedy Reign",
+            "Last Farewell",
+            "Untouchable"
+    };
 
-    public static final String[] bonuses = {"Not Implemented"};
+    public static final String[] bonuses = {"Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented",
+            "Not Implemented"
+    };
     public static final String[] lores = {
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
             "Not Implemented",
@@ -22,8 +41,29 @@ public class TreasureList {
             "Not Implemented",
     };
 
-    public static final String[] rarities = {RARITY[0], RARITY[0], RARITY[1], RARITY[3],
-            RARITY[3], RARITY[3], RARITY[3], RARITY[2], RARITY[2], RARITY[3]};
+    public static final String[] rarities = {
+            RARITY[0],
+            RARITY[0],
+            RARITY[1],
+            RARITY[3],
+            RARITY[3],
+            RARITY[3],
+            RARITY[3],
+            RARITY[2],
+            RARITY[2],
+            RARITY[3]
+    };
 
-    public static final int[] images = {R.drawable.item_kaprecigar};
+    public static final int[] images = {
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+            R.drawable.item_kaprecigar,
+    };
 }

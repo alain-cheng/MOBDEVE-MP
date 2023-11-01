@@ -43,8 +43,8 @@ public abstract class TabooDatabase extends RoomDatabase {
                 Treasure treasure;
                 Random rand = new Random(System.nanoTime());
                 for(int i = 0; i < TreasureList.names.length; i++){
-                    treasure = new Treasure("item" + i+1, TreasureList.names[i], TreasureList.images[0],
-                            TreasureList.bonuses[0], TreasureList.lores[i], TreasureList.rarities[i], rand.nextInt(5));
+                    treasure = new Treasure("item" + i+1, TreasureList.names[i], TreasureList.images[i],
+                            TreasureList.bonuses[i], TreasureList.lores[i], TreasureList.rarities[i], rand.nextInt(5));
                     switch (treasure.getRarity()){
                         case "COMMON":{
                             playerData.setBounty(playerData.getBounty() + 5*treasure.getCount());
