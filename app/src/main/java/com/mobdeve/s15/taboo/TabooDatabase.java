@@ -8,11 +8,10 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {PlayerData.class, Treasure.class, User.class}, version = 1, exportSchema = false)
+@Database(entities = {PlayerData.class, Treasure.class, User.class}, version = 2, exportSchema = false)
 public abstract class TabooDatabase extends RoomDatabase {
 
     public abstract DAO TabooDao();
@@ -31,10 +30,10 @@ public abstract class TabooDatabase extends RoomDatabase {
             // comment out the following block
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
-                // If you want to start with more words, just add them.
                 DAO dao = INSTANCE.TabooDao();
                 dao.deletePlayer();
                 dao.deleteTreasures();
+                dao.deleteUser();
 
                 //Load Player Data
                 PlayerData playerData = new PlayerData(0, "", 1, 0, 0, 0, 0, 0);
@@ -42,6 +41,7 @@ public abstract class TabooDatabase extends RoomDatabase {
 
                 //Initialize user table
                 User user = new User("", "");
+                dao.updateUser(user);
             });
         }
     };
