@@ -1,6 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcsve4j4aqcdx"]
+[gd_scene load_steps=4 format=3 uid="uid://bcsve4j4aqcdx"]
 
 [ext_resource type="Script" path="res://floors/floorTemplate/floorTemplate.gd" id="1_6ve7a"]
+[ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="2_8kki3"]
+[ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="3_ed0r6"]
 
 [node name="FloorTemplate" type="Node2D"]
 script = ExtResource("1_6ve7a")
+
+[node name="Player" parent="." instance=ExtResource("2_8kki3")]
+position = Vector2(621, 354)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 523.0
+offset_top = 248.0
+offset_right = 707.0
+offset_bottom = 313.0
+text = "FLOOR TEMPLATE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="EndPoint" parent="." instance=ExtResource("3_ed0r6")]
+position = Vector2(722, 343)
