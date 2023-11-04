@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+var backPressed = false
+
 func _ready():
 	#Play Idle anim
 	get_node("AnimatedSprite2D").play("idle")
@@ -34,3 +36,19 @@ func _physics_process(delta):
 
 	move_and_slide()
 	#END MOVEMENT
+
+func _notification(what):
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
+		if(!backPressed):
+			backPressed = true
+			ToastParty.show({
+				"text": "PRESS BACK AGAIN TO QUIT",
+				"bgcolor": Color(1, 1, 1, 0.7), # Background Color
+				"color": Color(0, 0, 0, 1),     # Text Color
+				"gravity": "bottom",               # top or bottom
+				"direction": "center",           # left or center or right
+			})
+			await get_tree().create_timer(1.0).timeout
+			backPressed = false
+		elif backPressed:
+			get_tree().quit()
