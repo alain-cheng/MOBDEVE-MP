@@ -75,22 +75,26 @@ transform = Transform2D(2, 0, 0, 2, 0, 0)
 position = Vector2(115.834, 192)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("6_8vouy")
+passby_press = true
 action = "ui_up"
 
 [node name="DOWN" type="TouchScreenButton" parent="Camera2D/CanvasLayer"]
 position = Vector2(115.834, 385)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("6_8vouy")
+passby_press = true
 action = "ui_down"
 
 [node name="LEFT" type="TouchScreenButton" parent="Camera2D/CanvasLayer"]
 position = Vector2(13.5, 288)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("6_8vouy")
+passby_press = true
 action = "ui_left"
 
 [node name="RIGHT" type="TouchScreenButton" parent="Camera2D/CanvasLayer"]
 position = Vector2(218.5, 288)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("6_8vouy")
+passby_press = true
 action = "ui_right"
