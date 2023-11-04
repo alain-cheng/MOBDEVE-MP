@@ -19,6 +19,10 @@ config/icon="res://sprites/icon.svg"
 
 PlayerData="*res://player/PlayerData.gd"
 
+[display]
+
+window/size/resizable=false
+
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
