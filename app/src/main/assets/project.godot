@@ -18,12 +18,17 @@ config/icon="res://sprites/icon.svg"
 [autoload]
 
 PlayerData="*res://player/PlayerData.gd"
+ToastParty="*res://addons/toastparty/toast-autoload.gd"
 
 [display]
 
 window/size/viewport_width=2400
 window/size/viewport_height=1080
 window/size/resizable=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/toastparty/plugin.cfg")
 
 [input_devices]
 
