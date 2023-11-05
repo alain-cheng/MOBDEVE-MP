@@ -16,6 +16,10 @@ var tabooBonus
 var luck
 var bountyBonus
 
+#Contains other playerData that does not come from the app
+var speed = 300.0
+var lastFloor = false #Determines if the endpoint is a win. Change at last floor.
+
 func initData():
 	var file = FileAccess.get_file_as_string("user://player_data.json")
 	var player_dict = JSON.parse_string(file)

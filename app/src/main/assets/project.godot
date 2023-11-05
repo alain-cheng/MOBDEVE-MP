@@ -12,12 +12,25 @@ config_version=5
 
 config/name="Taboo(Embed)"
 run/main_scene="res://main.tscn"
+config/auto_accept_quit=false
+config/quit_on_go_back=false
 config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://sprites/icon.svg"
 
 [autoload]
 
 PlayerData="*res://player/PlayerData.gd"
+ToastParty="*res://addons/toastparty/toast-autoload.gd"
+
+[display]
+
+window/size/viewport_width=2400
+window/size/viewport_height=1080
+window/size/resizable=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/toastparty/plugin.cfg")
 
 [input_devices]
 
@@ -28,3 +41,4 @@ pointing/emulate_touch_from_mouse=true
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.141176, 0.121569, 0.121569, 1)

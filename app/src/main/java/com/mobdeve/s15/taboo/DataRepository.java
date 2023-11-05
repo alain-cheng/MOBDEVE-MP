@@ -81,6 +81,8 @@ class DataRepository {
                 Log.v("DATA_REPOSITORY", e.toString());
             }
 
+            //TODO: Add check for bonuses
+
             threadpool.shutdown();
 
             //Calculate new bounty
@@ -136,6 +138,8 @@ class DataRepository {
             }
             treasure.setCount(treasure.getCount() - 3);
             mTabooDao.updateTreasury(treasure);
+
+            //TODO: Add check for bonuses
         });
     }
 

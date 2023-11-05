@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://owiom6kwwpmy"]
+
+[ext_resource type="Script" path="res://environment/interactive/end_point/End_Point.gd" id="1_8qe24"]
+[ext_resource type="Texture2D" uid="uid://cfquvbo1a334j" path="res://sprites/environment/interactive/end_point/placeholder/end_point_placeholder.png" id="1_8ulgo"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wjwmu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8ulgo")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1w6gq"]
+size = Vector2(5, 4)
+
+[node name="EndPoint" type="Area2D"]
+z_index = -1
+script = ExtResource("1_8qe24")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wjwmu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 18)
+shape = SubResource("RectangleShape2D_1w6gq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
