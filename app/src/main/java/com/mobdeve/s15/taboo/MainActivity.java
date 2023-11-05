@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.mobdeve.s15.taboo.databinding.ActivityMainBinding;
@@ -26,7 +28,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements ConfirmationListener {
     private ActivityMainBinding binding; //viewBinding variable
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
     private DataViewModel mDataViewModel;
@@ -38,6 +40,16 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        //Dialog before closing app
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                DialogFragment dialog = new ConfirmationDialog();
+                dialog.show(getSupportFragmentManager(), "Close_Main");
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
 
         context = getApplicationContext();
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
@@ -229,6 +241,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //Shutdown app
+        android.os.Process.killProcess(android.os.Process.myPid());
+    }
+
     private void initListeners() {
         //Listeners
         binding.activityMainBtnSettings.setOnClickListener(this::settingsListener);
@@ -297,5 +316,15 @@ public class MainActivity extends AppCompatActivity {
         v.startAnimation(buttonClick);
         Intent intent = new Intent(this, Collection.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onYes(DialogFragment dialog, String tag) {
+        finish(); //Close the app if back pressed in main
+    }
+
+    @Override
+    public void onNo(DialogFragment dialog, String tag) {
+
     }
 }
