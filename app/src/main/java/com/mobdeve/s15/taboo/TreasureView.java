@@ -109,8 +109,16 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
 
             for(int i = 0; i < currentTreasure.size(); i++){
                 if(tag.equals(currentTreasure.get(i).getName())){
-                    mDataViewModel.sellTreasure(currentTreasure.get(i), playerData);
-                    
+                    int temp = i;
+                    Future<String> selling = threadpool.submit(() -> {
+                        mDataViewModel.sellTreasure(currentTreasure.get(temp), playerData);
+                        return "OK";
+                    });
+
+                    while(!selling.isDone()){
+                        Log.v("TREASURE_VIEW", "Uploading data...");
+                    }
+
                     Random rand = new Random(System.nanoTime());
                     String rarity = currentTreasure.get(i).getRarity();
                     //Get indexes of treasures with rarities[i] == rarity
@@ -132,7 +140,8 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
                             1
                     );
 
-                    mDataViewModel.updateTreasury(random, playerData);
+                    if(selling.isDone())
+                        mDataViewModel.updateTreasury(random, playerData);
 
                     //Display in TreasureView
                     Intent intent = new Intent(this, TreasureView.class);
