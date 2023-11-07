@@ -58,23 +58,23 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                 setBounty(playerData.getBounty());
                 switch (playerData.getTaboo()){
                     case 0:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge);
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_0_v2);
                         break;
                     }
                     case 1:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_1_4);
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_1_v2);
                         break;
                     }
                     case 2:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_2_4);
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_2_v2);
                         break;
                     }
                     case 3:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_3_4);
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_3_v2);
                         break;
                     }
                     case 4:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_4_4);
+                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_4_v2);
                         break;
                     }
                 }

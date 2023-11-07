@@ -20,21 +20,23 @@
 
     <ImageView
         android:id="@+id/activity_main_img_gauge"
-        android:layout_width="274dp"
-        android:layout_height="277dp"
+        android:layout_width="350dp"
+        android:layout_height="400dp"
+        android:layout_above="@+id/activity_main_btn_layout"
         android:layout_below="@+id/activity_main_img_title"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="55dp"
+        android:layout_marginBottom="35dp"
         android:contentDescription="@string/gauge_desc"
-        app:srcCompat="@drawable/taboo_gauge" />
+        app:srcCompat="@drawable/taboo_gauge_v2" />
 
     <LinearLayout
         android:id="@+id/activity_main_btn_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/activity_main_img_gauge"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginBottom="-1dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -81,7 +83,6 @@
         android:layout_above="@+id/activity_main_btn_layout"
         android:layout_alignParentEnd="true"
         android:layout_marginEnd="10dp"
-        android:layout_marginBottom="-130dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
