@@ -3,11 +3,15 @@ extends CharacterBody2D
 var backPressed = false
 
 func _ready():
-	#Play Idle anim
+	#Play Idle anim on load
 	get_node("AnimatedSprite2D").play("idle")
 
 func _physics_process(delta):	
 	#MOVEMENT
+	#If player is standing still, play idle
+	if velocity.x == 0 && velocity.y == 0:
+		get_node("AnimatedSprite2D").play("idle")
+		
 	#x-axis
 	var xDirection = Input.get_axis("ui_left", "ui_right")
 	if xDirection:
@@ -20,7 +24,7 @@ func _physics_process(delta):
 		velocity.x = xDirection * PlayerData.speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, PlayerData.speed)
-	
+		
 	#y-axis
 	var yDirection = Input.get_axis("ui_up", "ui_down")
 	if yDirection:
