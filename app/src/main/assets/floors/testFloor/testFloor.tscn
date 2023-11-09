@@ -8,16 +8,16 @@
 script = ExtResource("1_nxxbc")
 
 [node name="Player" parent="." instance=ExtResource("2_2g7rh")]
-position = Vector2(621, 354)
+position = Vector2(1203, 567)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 523.0
-offset_top = 248.0
-offset_right = 707.0
-offset_bottom = 313.0
+offset_left = 1105.0
+offset_top = 461.0
+offset_right = 1289.0
+offset_bottom = 526.0
 text = "TEST FLOOR"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EndPoint" parent="." instance=ExtResource("3_nxc6h")]
-position = Vector2(722, 343)
+position = Vector2(1554, 581)
