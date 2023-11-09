@@ -23,21 +23,23 @@ var friction = speed #At default player stops instantly, change for slippery sur
 var lastFloor = false #Determines if the endpoint is a win. Change at last floor.
 
 func initData():
-	var file = FileAccess.get_file_as_string("user://player_data.json")
-	var player_dict = JSON.parse_string(file)
-	
-	#Assign initial data
-	initHealth = player_dict.get("health")
-	initBounty = player_dict.get("bounty")
-	initTaboo = player_dict.get("taboo")
-	initTabooBonus = player_dict.get("tabooBonus")
-	initLuck = player_dict.get("luck")
-	initBountyBonus = player_dict.get("bountyBonus")
-	
-	#Copy data to manipulable variables
-	health = initHealth
-	bounty = initBounty
-	taboo = initTaboo
-	tabooBonus = initTabooBonus
-	luck = initLuck
-	bountyBonus = initBountyBonus
+	#Check if player_data.json exists
+	if(FileAccess.file_exists("user://player_data.json")):
+		var file = FileAccess.get_file_as_string("user://player_data.json")
+		var player_dict = JSON.parse_string(file)
+		
+		#Assign initial data
+		initHealth = player_dict.get("health")
+		initBounty = player_dict.get("bounty")
+		initTaboo = player_dict.get("taboo")
+		initTabooBonus = player_dict.get("tabooBonus")
+		initLuck = player_dict.get("luck")
+		initBountyBonus = player_dict.get("bountyBonus")
+		
+		#Copy data to manipulable variables
+		health = initHealth
+		bounty = initBounty
+		taboo = initTaboo
+		tabooBonus = initTabooBonus
+		luck = initLuck
+		bountyBonus = initBountyBonus

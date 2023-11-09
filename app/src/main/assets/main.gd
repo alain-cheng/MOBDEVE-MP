@@ -12,8 +12,3 @@ func _ready():
 	#Move to another scene based on taboo + tabooBonus
 	PlayerData.lastFloor = true #DEBUG
 	get_tree().change_scene_to_file("res://floors/testFloor/testFloor.tscn")#DEBUG REMOVE LATER
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
