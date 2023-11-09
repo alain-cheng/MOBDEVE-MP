@@ -7,7 +7,7 @@ func _ready():
 	#for floors like "floor_b(floor_number)_(variation)(a,b,c... for difficulty levels)"
 	
 	#Initialize data
-	PlayerData.initData()
+	#PlayerData.initData()
 	
 	#Move to another scene based on taboo + tabooBonus
 	PlayerData.lastFloor = true #DEBUG
