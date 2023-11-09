@@ -19,7 +19,7 @@ func _on_timeout():
 		animation.play("retracted")
 		isExtended = !isExtended
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if(isExtended && player_in):
 		damage_taken.emit()
 
