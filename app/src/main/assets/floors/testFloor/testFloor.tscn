@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bcsve4j4aqcdx"]
+[gd_scene load_steps=6 format=3 uid="uid://bcsve4j4aqcdx"]
 
 [ext_resource type="Script" path="res://floors/testFloor/testFloor.gd" id="1_nxxbc"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="2_2g7rh"]
 [ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="3_nxc6h"]
+[ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="4_xbvlm"]
+[ext_resource type="Script" path="res://floors/testFloor/Timer(Spikes_1).gd" id="5_lhjqw"]
 
 [node name="FloorTemplate" type="Node2D"]
 script = ExtResource("1_nxxbc")
@@ -21,3 +23,12 @@ vertical_alignment = 1
 
 [node name="EndPoint" parent="." instance=ExtResource("3_nxc6h")]
 position = Vector2(1554, 581)
+
+[node name="Spikes" parent="." instance=ExtResource("4_xbvlm")]
+position = Vector2(912, 603)
+
+[node name="Timer(Spikes_1)" type="Timer" parent="."]
+script = ExtResource("5_lhjqw")
+
+[connection signal="damage_taken" from="Spikes" to="Player" method="on_damage_taken"]
+[connection signal="timeout" from="Timer(Spikes_1)" to="Spikes" method="_on_timeout"]

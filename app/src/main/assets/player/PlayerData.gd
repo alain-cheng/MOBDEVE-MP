@@ -9,12 +9,13 @@ var initLuck
 var initBountyBonus
 
 #Contains a copy of the above information for the game to manipulate
-var health
-var bounty
-var taboo
-var tabooBonus
-var luck
-var bountyBonus
+#Default values listed
+var health = 1
+var bounty = 0
+var taboo = 0
+var tabooBonus = 0
+var luck = 0
+var bountyBonus = 0
 
 #Contains other playerData that does not come from the app
 var speed = 300.0

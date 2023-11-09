@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @onready var animation = get_node("AnimatedSprite2D")
+@onready var buttons = get_node("Camera2D/DirectionalButtons")
 var backPressed = false
 
 func _ready():
@@ -10,7 +11,7 @@ func _ready():
 func _physics_process(_delta):	
 	#MOVEMENT
 	#If player is standing still, play idle
-	if velocity.x == 0 && velocity.y == 0:
+	if velocity.x == 0 && velocity.y == 0 && PlayerData.health > 0:
 		animation.play("idle")
 	
 	#Vars for detecting movement
@@ -18,7 +19,7 @@ func _physics_process(_delta):
 	var yDirection = Input.get_axis("ui_up", "ui_down")
 	
 	#x-axis
-	if xDirection && !yDirection:
+	if xDirection && !yDirection && PlayerData.health > 0:
 		#x Directional anim
 		if xDirection > 0:
 			animation.play("right")
@@ -30,7 +31,7 @@ func _physics_process(_delta):
 		velocity.x = move_toward(velocity.x, 0, PlayerData.friction)
 		
 	#y-axis
-	if yDirection && !xDirection:
+	if yDirection && !xDirection && PlayerData.health > 0:
 		#y Directional anim
 		if yDirection > 0:
 			animation.play("down")
@@ -42,7 +43,7 @@ func _physics_process(_delta):
 		velocity.y = move_toward(velocity.y, 0, PlayerData.friction)
 		
 	#Diagonal movement
-	if yDirection && xDirection:
+	if yDirection && xDirection && PlayerData.health > 0:
 		#y Directional anim
 		if yDirection > 0:
 			animation.play("down")
@@ -70,3 +71,15 @@ func _notification(what):
 			backPressed = false
 		elif backPressed:
 			get_tree().quit()
+
+func on_damage_taken():
+	PlayerData.health = PlayerData.health - 1
+	if PlayerData.health == 0:
+		ded()
+
+func ded():
+	buttons.hide()
+	animation.play("death")
+	#TODO: Add popup for dying
+	await get_tree().create_timer(3.5).timeout
+	get_tree().quit()
