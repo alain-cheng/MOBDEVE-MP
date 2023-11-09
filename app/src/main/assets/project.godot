@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Android(Embedded)"
+config/name="Taboo(Embed)"
 run/main_scene="res://main.tscn"
 config/auto_accept_quit=false
 config/quit_on_go_back=false
