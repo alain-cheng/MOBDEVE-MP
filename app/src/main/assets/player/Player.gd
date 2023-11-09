@@ -1,38 +1,56 @@
 extends CharacterBody2D
 
+@onready var animation = get_node("AnimatedSprite2D")
 var backPressed = false
 
 func _ready():
-	#Play Idle anim
-	get_node("AnimatedSprite2D").play("idle")
+	#Play Idle anim on load
+	animation.play("idle")
 
-func _physics_process(delta):	
+func _physics_process(_delta):	
 	#MOVEMENT
-	#x-axis
+	#If player is standing still, play idle
+	if velocity.x == 0 && velocity.y == 0:
+		animation.play("idle")
+	
+	#Vars for detecting movement
 	var xDirection = Input.get_axis("ui_left", "ui_right")
-	if xDirection:
+	var yDirection = Input.get_axis("ui_up", "ui_down")
+	
+	#x-axis
+	if xDirection && !yDirection:
 		#x Directional anim
 		if xDirection > 0:
-			get_node("AnimatedSprite2D").play("right")
+			animation.play("right")
 		else:
-			get_node("AnimatedSprite2D").play("left")
+			animation.play("left")
 		
 		velocity.x = xDirection * PlayerData.speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, PlayerData.speed)
-	
+		velocity.x = move_toward(velocity.x, 0, PlayerData.friction)
+		
 	#y-axis
-	var yDirection = Input.get_axis("ui_up", "ui_down")
-	if yDirection:
+	if yDirection && !xDirection:
 		#y Directional anim
 		if yDirection > 0:
-			get_node("AnimatedSprite2D").play("down")
+			animation.play("down")
 		else:
-			get_node("AnimatedSprite2D").play("up")
+			animation.play("up")
 		
 		velocity.y = yDirection * PlayerData.speed
 	else:
-		velocity.y = move_toward(velocity.y, 0, PlayerData.speed)
+		velocity.y = move_toward(velocity.y, 0, PlayerData.friction)
+		
+	#Diagonal movement
+	if yDirection && xDirection:
+		#y Directional anim
+		if yDirection > 0:
+			animation.play("down")
+		else:
+			animation.play("up")
+		
+		velocity.x = xDirection * PlayerData.speed
+		velocity.y = yDirection * PlayerData.speed
 
 	move_and_slide()
 	#END MOVEMENT

@@ -1,33 +1,136 @@
-[gd_scene load_steps=9 format=3 uid="uid://btymg45ij342p"]
+[gd_scene load_steps=23 format=3 uid="uid://btymg45ij342p"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_q2xcu"]
-[ext_resource type="Texture2D" uid="uid://btlw6vhr8vfaq" path="res://sprites/player/placeholder/player_placeholder_left.png" id="2_wyd5s"]
-[ext_resource type="Texture2D" uid="uid://cmirf2b46ke7g" path="res://sprites/player/placeholder/player_placeholder_down.png" id="2_xucry"]
-[ext_resource type="Texture2D" uid="uid://d4nwxiab3c0nb" path="res://sprites/player/placeholder/player_placeholder_right.png" id="3_vf6dc"]
-[ext_resource type="Texture2D" uid="uid://0yowbf0gx8g4" path="res://sprites/player/placeholder/player_placeholder_up.png" id="5_ox365"]
-[ext_resource type="Texture2D" uid="uid://4y4qp32wm2j5" path="res://sprites/buttons/button_placeholder.png" id="6_8vouy"]
+[ext_resource type="Texture2D" uid="uid://cpr0jsuwiod67" path="res://sprites/player/down/down_1.png" id="2_5htem"]
+[ext_resource type="Texture2D" uid="uid://clkatei4rhtda" path="res://sprites/player/death/death_1.png" id="2_e1cwu"]
+[ext_resource type="Texture2D" uid="uid://dhn07adk7vupv" path="res://sprites/player/idle/idle_stand.png" id="3_k76o1"]
+[ext_resource type="Texture2D" uid="uid://buwmhvt75cap2" path="res://sprites/player/death/death_2.png" id="3_qdpvw"]
+[ext_resource type="Texture2D" uid="uid://ch1b4cxqv28qa" path="res://sprites/player/down/down_2.png" id="3_r5qro"]
+[ext_resource type="Texture2D" uid="uid://p665r47ihj1j" path="res://sprites/player/idle/idle_breath.png" id="4_tkvrh"]
+[ext_resource type="Texture2D" uid="uid://cfbed1yvrefsi" path="res://sprites/player/idle/idle_jump_1.png" id="5_7iwsf"]
+[ext_resource type="Texture2D" uid="uid://cbcums3dtyd0c" path="res://sprites/player/idle/idle_jump_2.png" id="6_6wvrw"]
+[ext_resource type="Texture2D" uid="uid://xsvvdgvrnhl7" path="res://sprites/player/idle/idle_jump_3.png" id="7_04ois"]
+[ext_resource type="Texture2D" uid="uid://daw4eerw1rdva" path="res://sprites/player/left/left_1.png" id="8_cuwq8"]
+[ext_resource type="Texture2D" uid="uid://s7r51snbukap" path="res://sprites/player/left/left_2.png" id="9_o6jc7"]
+[ext_resource type="Texture2D" uid="uid://cdojqf1grj0wh" path="res://sprites/player/left/left_3.png" id="10_pm0yq"]
+[ext_resource type="Texture2D" uid="uid://qenlvaw3ouox" path="res://sprites/player/right/right_1.png" id="11_o2bp0"]
+[ext_resource type="Texture2D" uid="uid://cn81khv4qtvkg" path="res://sprites/player/right/right_2.png" id="12_2ks0v"]
+[ext_resource type="Texture2D" uid="uid://cnps7q3ok5lqw" path="res://sprites/player/right/right 3.png" id="13_qyic6"]
+[ext_resource type="Texture2D" uid="uid://cgpmr7jovpwb3" path="res://sprites/player/up/up_1.png" id="15_ur6vi"]
+[ext_resource type="Texture2D" uid="uid://db5qeoi5eb78b" path="res://sprites/player/up/up_2.png" id="16_arsk4"]
+[ext_resource type="Texture2D" uid="uid://b32ygixawrsac" path="res://sprites/buttons/button_placeholder_up.png" id="19_g3l2f"]
+[ext_resource type="Texture2D" uid="uid://cub8xceqt4usg" path="res://sprites/buttons/button_placeholder_down.png" id="20_q1uxl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8r5le"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_xucry")
+"texture": ExtResource("2_e1cwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qdpvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e1cwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qdpvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_e1cwu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qdpvw")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"death",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_5htem")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_r5qro")
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 4.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_vf6dc")
+"duration": 1.5,
+"texture": ExtResource("3_k76o1")
+}, {
+"duration": 1.5,
+"texture": ExtResource("4_tkvrh")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_k76o1")
+}, {
+"duration": 1.5,
+"texture": ExtResource("4_tkvrh")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_k76o1")
+}, {
+"duration": 1.5,
+"texture": ExtResource("4_tkvrh")
+}, {
+"duration": 1.5,
+"texture": ExtResource("3_k76o1")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_7iwsf")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_6wvrw")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_04ois")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_k76o1")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_7iwsf")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_6wvrw")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_04ois")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_k76o1")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_7iwsf")
+}, {
+"duration": 0.5,
+"texture": ExtResource("6_6wvrw")
+}, {
+"duration": 0.5,
+"texture": ExtResource("7_04ois")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 5.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_wyd5s")
+"texture": ExtResource("8_cuwq8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_o6jc7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pm0yq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_o6jc7")
 }],
 "loop": true,
 "name": &"left",
@@ -35,7 +138,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vf6dc")
+"texture": ExtResource("11_o2bp0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2ks0v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_qyic6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_2ks0v")
 }],
 "loop": true,
 "name": &"right",
@@ -43,58 +155,66 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_ox365")
+"texture": ExtResource("15_ur6vi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_arsk4")
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 4.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnx4r"]
-radius = 14.0
-height = 34.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hi15"]
+size = Vector2(68, 9)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_q2xcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8r5le")
-animation = &"up"
+animation = &"idle"
+frame_progress = 0.239213
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_fnx4r")
+position = Vector2(0, 61.5)
+shape = SubResource("RectangleShape2D_6hi15")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(4, 4)
+zoom = Vector2(1.5, 1.5)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
+[node name="DirectionalButtons" type="CanvasLayer" parent="Camera2D"]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 
-[node name="UP" type="TouchScreenButton" parent="Camera2D/CanvasLayer"]
+[node name="UP" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
 position = Vector2(115.834, 192)
 scale = Vector2(2, 2)
-texture_normal = ExtResource("6_8vouy")
+texture_normal = ExtResource("19_g3l2f")
+texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_up"
 
-[node name="DOWN" type="TouchScreenButton" parent="Camera2D/CanvasLayer"]
+[node name="DOWN" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
 position = Vector2(115.834, 385)
 scale = Vector2(2, 2)
-texture_normal = ExtResource("6_8vouy")
+texture_normal = ExtResource("19_g3l2f")
+texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_down"
 
-[node name="LEFT" type="TouchScreenButton" parent="Camera2D/CanvasLayer"]
+[node name="LEFT" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
 position = Vector2(13.5, 288)
 scale = Vector2(2, 2)
-texture_normal = ExtResource("6_8vouy")
+texture_normal = ExtResource("19_g3l2f")
+texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_left"
 
-[node name="RIGHT" type="TouchScreenButton" parent="Camera2D/CanvasLayer"]
+[node name="RIGHT" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
 position = Vector2(218.5, 288)
 scale = Vector2(2, 2)
-texture_normal = ExtResource("6_8vouy")
+texture_normal = ExtResource("19_g3l2f")
+texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_right"
