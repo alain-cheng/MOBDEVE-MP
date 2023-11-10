@@ -1,6 +1,7 @@
 extends Area2D
 
 @onready var animation = get_node("AnimatedSprite2D")
+@onready var timer = get_node("Timer")
 var isExtended = false
 var player_in = false
 
