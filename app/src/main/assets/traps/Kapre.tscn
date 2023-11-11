@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://b4avbltaqwlpm"]
+
+[ext_resource type="Script" path="res://traps/Kapre.gd" id="1_hjh5v"]
+[ext_resource type="Texture2D" uid="uid://bejixiew340rh" path="res://sprites/traps/Kapre/Kapre.png" id="1_mtsfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xyyie"]
+size = Vector2(181, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jrnrn"]
+atlas = ExtResource("1_mtsfy")
+region = Rect2(7, 0, 117, 114)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7xdx"]
+atlas = ExtResource("1_mtsfy")
+region = Rect2(119, 0, 119, 114)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2fvs"]
+atlas = ExtResource("1_mtsfy")
+region = Rect2(238, 0, 119, 114)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4ohs"]
+atlas = ExtResource("1_mtsfy")
+region = Rect2(351, 0, 117, 114)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wn6wj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jrnrn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7xdx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2fvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4ohs")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cwmce"]
+radius = 82.0549
+
+[sub_resource type="Gradient" id="Gradient_hpp4s"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_q8uhg"]
+gradient = SubResource("Gradient_hpp4s")
+fill_to = Vector2(0, 1)
+
+[node name="Kapre" type="CharacterBody2D"]
+script = ExtResource("1_hjh5v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 4)
+shape = SubResource("RectangleShape2D_xyyie")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.52588e-05, -69)
+scale = Vector2(2.14912, 2.14912)
+sprite_frames = SubResource("SpriteFrames_wn6wj")
+animation = &"idle"
+frame = 1
+frame_progress = 0.176001
+
+[node name="DeathZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathZone"]
+position = Vector2(2, 119)
+shape = SubResource("CircleShape2D_cwmce")
+
+[node name="Sprite2D" type="Sprite2D" parent="DeathZone/CollisionShape2D"]
+visible = false
+texture = SubResource("GradientTexture2D_q8uhg")
+
+[connection signal="body_entered" from="DeathZone" to="." method="_on_death_zone_body_entered"]
+[connection signal="body_exited" from="DeathZone" to="." method="_on_death_zone_body_exited"]
