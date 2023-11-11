@@ -1,0 +1,76 @@
+[gd_scene load_steps=10 format=3 uid="uid://df5kyj6v1bldp"]
+
+[ext_resource type="Texture2D" uid="uid://0kkmwjqnufl" path="res://sprites/traps/Manananggal/Manananggal.png" id="1_6r7v0"]
+[ext_resource type="Script" path="res://traps/Manananggal.gd" id="1_yqhbq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvh46"]
+size = Vector2(101, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lli10"]
+atlas = ExtResource("1_6r7v0")
+region = Rect2(98, 0, 98, 131)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xcno"]
+atlas = ExtResource("1_6r7v0")
+region = Rect2(208, 0, 104, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t58kb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lli10")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2xcno")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7qv4"]
+size = Vector2(20, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv62h"]
+atlas = ExtResource("1_6r7v0")
+region = Rect2(0, 0, 62, 131)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_urldo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yv62h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Manananggal" type="CharacterBody2D"]
+script = ExtResource("1_yqhbq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 24)
+shape = SubResource("RectangleShape2D_gvh46")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t58kb")
+animation = &"attack"
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-2, 93)
+shape = SubResource("RectangleShape2D_q7qv4")
+
+[node name="Tongue" type="AnimatedSprite2D" parent="PlayerDetection/CollisionShape2D"]
+position = Vector2(0, 2.5)
+sprite_frames = SubResource("SpriteFrames_urldo")
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
