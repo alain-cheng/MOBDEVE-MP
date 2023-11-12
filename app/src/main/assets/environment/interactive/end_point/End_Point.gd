@@ -1,9 +1,16 @@
 extends Area2D
 
+@onready var flooranim = get_node("FloorSprite")
+@onready var floatanim = get_node("FloatSprite")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	if(!PlayerData.lastFloor):
+		flooranim.play("nextfloor")
+		floatanim.play("nextfloor")
+	else:
+		flooranim.play("treasure")
+		floatanim.play("treasure")
 
 func _on_body_entered(body):
 	if body.name == "Player": #Detects if Player enters the endpoint
