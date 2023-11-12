@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
-@onready var animation = get_node("AnimatedSprite2D")
-@onready var buttons = get_node("Camera2D/DirectionalButtons")
-@onready var collider = get_node("CollisionShape2D")
+@onready var animation = get_node("PlayerSprite")
+@onready var buttons = get_node("PlayerCamera/DirectionalButtons")
+@onready var collider = get_node("EnvironmentCollider")
+@onready var hurtbox = get_node("PlayerHurtbox/HurtboxColliider")
 var backPressed = false
 var isDed = false
 
@@ -81,8 +82,10 @@ func _notification(what):
 			get_tree().quit()
 
 func on_damage_taken():
+	#Toggle booleans
 	isDed = true
 	collider.disabled = true
+	hurtbox.disabled = true
 	
 	PlayerData.health = PlayerData.health - 1
 	if PlayerData.health <= 0: #Game over
