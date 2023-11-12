@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var flooranim = get_node("FloorSprite")
 @onready var floatanim = get_node("FloatSprite")
+signal changeFloor
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -26,4 +27,4 @@ func _on_body_entered(body):
 				file.close()
 			get_tree().quit()
 		else:
-			pass #TODO: Add logic for switching floors. Maybe a signal?
+			changeFloor.emit()

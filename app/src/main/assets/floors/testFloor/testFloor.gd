@@ -10,3 +10,9 @@ func _ready():
 	spikes1.timer.one_shot = false
 	spikes1.timer.start()
 	#End Spikes Timers
+
+
+func _on_end_point_change_floor():
+	#Move to another scene randomly
+	PlayerData.lastFloor = true
+	get_tree().change_scene_to_file("res://floors/testFloor/testFloor2.tscn")
