@@ -1,38 +1,46 @@
 extends CharacterBody2D
 
 @onready var animation = get_node("AnimatedSprite2D")
-@onready var timer = get_node("Timer")
-@onready var flame = $PlayerDetection/Flame
+@onready var cooldown = $AttackTimer
+@export var projectile: PackedScene = preload("res://traps/Projectiles/fire_projectile_2.tscn")
 var attack = false
+var triggers = 999 # number of times trap can shoot
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	timer.set_wait_time(1)
+	animation.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
+func _process(delta):
+	# Can only attack if player is in its kill zone and the cooldown is reached
 	if attack == true:
-		timer.start()
 		animation.play("attack")
-		flame.visible = not flame.visible
+		if cooldown.is_stopped():
+			fire()
 	else:
 		animation.play("idle")
-		flame.visible = false
 
 
+func fire():
+	if projectile && triggers > 0:
+		var p = projectile.instantiate()
+		get_tree().current_scene.add_child(p)
+		p.global_position = self.global_position
+		triggers -= 1
+		cooldown.start()
+	else:
+		print("Trap cannot be triggered")
+
+
+# When Player enters detection zone
 func _on_player_detection_body_entered(body):
-	if body.name == "Player":
+	if body.name == "Player" && triggers > 0:
 		attack = true
+		
 
 
 func _on_player_detection_body_exited(body):
 	if body.name == "Player":
 		attack = false
-
-
-func _on_timer_timeout():
-	pass # for now, since i couldnt figure out why the Timer node is not working
-	if attack == true:
-		animation.play("attack")
-		flame.visible = not flame.visible

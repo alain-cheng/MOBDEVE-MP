@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://u1ute5oe5d4n"]
+[gd_scene load_steps=8 format=3 uid="uid://u1ute5oe5d4n"]
 
 [ext_resource type="Texture2D" uid="uid://30tyyfpif5w8" path="res://sprites/traps/GoldenDragon/GoldenDragon.png" id="1_7bbq8"]
 [ext_resource type="Script" path="res://traps/GoldenDragon.gd" id="1_xygku"]
@@ -36,22 +36,7 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bdsrq"]
 size = Vector2(672, 65)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ehnth"]
-atlas = ExtResource("1_7bbq8")
-region = Rect2(234, 0, 117, 111)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_knucf"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ehnth")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[node name="GoldenDragon" type="CharacterBody2D"]
+[node name="GoldenDragon" type="CharacterBody2D" groups=["Mob"]]
 script = ExtResource("1_xygku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -69,33 +54,9 @@ animation = &"attack"
 position = Vector2(-360, -16.5)
 shape = SubResource("RectangleShape2D_bdsrq")
 
-[node name="Flame" type="AnimatedSprite2D" parent="PlayerDetection"]
-visible = false
-position = Vector2(-80, -24)
-sprite_frames = SubResource("SpriteFrames_knucf")
-
-[node name="Flame" type="AnimatedSprite2D" parent="PlayerDetection/Flame"]
-position = Vector2(-112, 0)
-sprite_frames = SubResource("SpriteFrames_knucf")
-
-[node name="Flame" type="AnimatedSprite2D" parent="PlayerDetection/Flame/Flame"]
-position = Vector2(-112, 0)
-sprite_frames = SubResource("SpriteFrames_knucf")
-
-[node name="Flame" type="AnimatedSprite2D" parent="PlayerDetection/Flame/Flame/Flame"]
-position = Vector2(-112, 0)
-sprite_frames = SubResource("SpriteFrames_knucf")
-
-[node name="Flame" type="AnimatedSprite2D" parent="PlayerDetection/Flame/Flame/Flame/Flame"]
-position = Vector2(-112, 0)
-sprite_frames = SubResource("SpriteFrames_knucf")
-
-[node name="Flame" type="AnimatedSprite2D" parent="PlayerDetection/Flame/Flame/Flame/Flame/Flame"]
-position = Vector2(-112, 0)
-sprite_frames = SubResource("SpriteFrames_knucf")
-
-[node name="Timer" type="Timer" parent="."]
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
 
 [connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
 [connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
