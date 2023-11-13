@@ -32,7 +32,7 @@ position = Vector2(730, 202)
 [node name="GoldenDragon" parent="." instance=ExtResource("5_wny18")]
 position = Vector2(708, 95)
 
-[node name="Kapre" parent="." instance=ExtResource("6_bbujj")]
+[node name="Kapre" parent="." groups=["Mob"] instance=ExtResource("6_bbujj")]
 position = Vector2(163, 353)
 
 [node name="Manananggal" parent="." instance=ExtResource("7_x32fs")]

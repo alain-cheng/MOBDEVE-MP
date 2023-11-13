@@ -1,20 +1,21 @@
 extends CharacterBody2D
 
 @onready var animation = get_node("AnimatedSprite2D")
+@onready var cooldown = $AttackTimer
+@export var projectile: PackedScene = preload("res://traps/Projectiles/smoke_projectile_1.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	animation.play("idle")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	animation.play("idle")
+	if cooldown.is_stopped():
+		fire()
 
-
-func _on_death_zone_body_entered(body):
-	print("Player in Kapre Death Zone")
-
-
-func _on_death_zone_body_exited(body):
-	print("Player exited Kapre Death Zone")
+func fire():
+	var p = projectile.instantiate()
+	get_tree().current_scene.add_child(p)
+	p.global_position = self.global_position
+	cooldown.start()
