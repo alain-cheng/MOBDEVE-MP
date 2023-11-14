@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var buttons = get_node("PlayerCamera/DirectionalButtons")
 @onready var collider = get_node("EnvironmentCollider")
 @onready var hurtbox = get_node("PlayerHurtbox/HurtboxColliider")
+@onready var hurtbox_area = get_node("PlayerHurtbox")
 var backPressed = false
 var isDed = false
 
@@ -86,6 +87,7 @@ func on_damage_taken():
 	isDed = true
 	collider.disabled = true
 	hurtbox.disabled = true
+	hurtbox_area.monitorable = false
 	
 	PlayerData.health = PlayerData.health - 1
 	if PlayerData.health <= 0: #Game over
