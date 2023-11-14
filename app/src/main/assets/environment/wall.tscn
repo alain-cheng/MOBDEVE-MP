@@ -6,6 +6,7 @@
 size = Vector2(1146, 27)
 
 [node name="Area2D" type="Area2D"]
+z_index = -1
 
 [node name="Wall" type="CharacterBody2D" parent="."]
 

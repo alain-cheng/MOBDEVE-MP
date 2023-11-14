@@ -32,19 +32,19 @@ position = Vector2(722, 343)
 position = Vector2(1190, 182)
 
 [node name="DragonGargoyle" parent="." instance=ExtResource("4_nytpu")]
-position = Vector2(699, 176)
+position = Vector2(694, 89)
 
 [node name="GoldenDragon2" parent="." instance=ExtResource("5_wny18")]
 position = Vector2(1472, 56)
 
 [node name="GoldenDragon" parent="." instance=ExtResource("5_wny18")]
-position = Vector2(672, 50)
+position = Vector2(665, -41)
 
 [node name="Kapre" parent="." groups=["Mob"] instance=ExtResource("6_bbujj")]
 position = Vector2(123, 762)
 
 [node name="Manananggal" parent="." instance=ExtResource("7_x32fs")]
-position = Vector2(457, 295)
+position = Vector2(343, 291)
 
 [node name="Area2D" parent="." instance=ExtResource("8_6r00p")]
 position = Vector2(977, -642)
