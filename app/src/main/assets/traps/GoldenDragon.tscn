@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://traps/GoldenDragon.gd" id="1_xygku"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlh1d"]
-size = Vector2(100, 20)
+size = Vector2(100, 105)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rcufh"]
 atlas = ExtResource("1_7bbq8")
@@ -40,7 +40,7 @@ size = Vector2(672, 65)
 script = ExtResource("1_xygku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(31, 26)
+position = Vector2(31, -16.5)
 shape = SubResource("RectangleShape2D_wlh1d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

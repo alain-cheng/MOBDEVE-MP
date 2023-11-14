@@ -166,9 +166,9 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hi15"]
-size = Vector2(68, 9)
+size = Vector2(68, 102)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_q2xcu")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -177,7 +177,7 @@ animation = &"idle"
 frame_progress = 0.239213
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 61.5)
+position = Vector2(0, 15)
 shape = SubResource("RectangleShape2D_6hi15")
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c7mom37ybdjqq" path="res://sprites/traps/DragonGargoyle/DragonGargoyle.png" id="2_bjwvy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_acs4f"]
-size = Vector2(96, 18)
+size = Vector2(96, 101)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_abx6v"]
 atlas = ExtResource("2_bjwvy")
@@ -40,7 +40,7 @@ size = Vector2(320, 61)
 script = ExtResource("1_teck1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 36)
+position = Vector2(-2, -5.5)
 shape = SubResource("RectangleShape2D_acs4f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
