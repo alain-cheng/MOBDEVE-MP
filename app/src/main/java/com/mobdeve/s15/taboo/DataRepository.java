@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -16,6 +17,7 @@ class DataRepository {
     private LiveData<List<Treasure>> mTreasury;
     private LiveData<PlayerData> mPlayerData;
     private LiveData<User> mUser;
+    private boolean isSelling = false;
 
     DataRepository(Application application) {
         TabooDatabase db = TabooDatabase.getDatabase(application);
@@ -55,6 +57,7 @@ class DataRepository {
     void updateTreasury(Treasure treasure, PlayerData playerData) {
         TabooDatabase.databaseWriteExecutor.execute(() -> {
             Treasure temp = treasure;
+            PlayerData tempP = playerData;
             //Add random treasure to treasury but check if its already there, add 1 to count if so.
             ExecutorService threadpool = Executors.newCachedThreadPool();
             Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mTabooDao.getCurrentTreasury());
@@ -63,6 +66,7 @@ class DataRepository {
             }
             try {
                 List<Treasure> currentTreasure = futureTreasure.get();
+                ArrayList<Treasure> cacheT = new ArrayList<>(currentTreasure);
 
                 if(currentTreasure.size() > 0){
                     for(int i = 0; i < currentTreasure.size(); i++){
@@ -70,41 +74,45 @@ class DataRepository {
                             temp = currentTreasure.get(i);
                             temp.setCount(temp.getCount() + 1); //Increment amount
                             mTabooDao.updateTreasury(temp);
+                            cacheT.set(i, temp);//Update Cached treasury
                             break;
                         }
                         else if(i == currentTreasure.size()-1){
                             mTabooDao.updateTreasury(temp); //Add new treasure at end of loop
+                            cacheT.add(temp);//Update Cached treasury
                         }
                     }
+
+                    //Check bonuses after loops
+                    tempP = checkBonuses(cacheT, playerData);
+
                 }else mTabooDao.updateTreasury(temp); //Just add if treasury is empty
             }catch (Exception e){
                 Log.v("DATA_REPOSITORY", e.toString());
             }
 
-            //TODO: Add check for bonuses
-
             threadpool.shutdown();
 
             //Calculate new bounty
-            playerData.setId(); //Set id to 0
+            tempP.setId(); //Set id to 0
             switch (treasure.getRarity()){
                 case "COMMON":{
-                    playerData.setBounty(playerData.getBounty() + 5);
+                    tempP.setBounty(tempP.getBounty() + 5);
                     break;
                 }
                 case "RARE":{
-                    playerData.setBounty(playerData.getBounty() + 10);
+                    tempP.setBounty(tempP.getBounty() + 10);
                     break;
                 }
                 case "FORBIDDEN":{
-                    playerData.setBounty(playerData.getBounty() + 25);
+                    tempP.setBounty(tempP.getBounty() + 25);
                     break;
                 }
                 case "BLASPHEMY":{
-                    playerData.setBounty(playerData.getBounty() + 50);
+                    tempP.setBounty(tempP.getBounty() + 50);
                 }
             }
-            mTabooDao.updatePlayer(playerData);
+            mTabooDao.updatePlayer(tempP);
         });
     }
 
@@ -138,9 +146,40 @@ class DataRepository {
             }
             treasure.setCount(treasure.getCount() - 3);
             mTabooDao.updateTreasury(treasure);
-
-            //TODO: Add check for bonuses
+            isSelling = true; //Activate sell mode for certain bonuses
         });
+    }
+
+    //Use to check for set bonuses upon treasure acquisition and selling
+    PlayerData checkBonuses(ArrayList<Treasure> treasures, PlayerData player){
+        //Vars for checking complete set
+        int set1TreasureCount = 0; //Needs 4
+
+        //Check inventory for set treasures
+        for(int i = 0; i < treasures.size(); i++){
+            //SET 1
+            if(treasures.get(i).getName().equals(TreasureList.names[0]) && treasures.get(i).getCount() > 0)
+                set1TreasureCount++;
+            if(treasures.get(i).getName().equals(TreasureList.names[1]) && treasures.get(i).getCount() > 0)
+                set1TreasureCount++;
+            if(treasures.get(i).getName().equals(TreasureList.names[2]) && treasures.get(i).getCount() > 0)
+                set1TreasureCount++;
+            if(treasures.get(i).getName().equals(TreasureList.names[3]) && treasures.get(i).getCount() > 0)
+                set1TreasureCount++;
+        }
+
+        //Smoking Giant Set bonus checks
+        if(player.getSetBonus1() == 0 && set1TreasureCount == 4){ //On obtaining complete set
+            player.setSetBonus1(1);
+            player.setHealth(player.getHealth()+1); //Extra health
+        }
+        else if(player.getSetBonus1() == 1 && set1TreasureCount < 4){ //On losing complete set
+            player.setSetBonus1(0);
+            player.setHealth(player.getHealth()-1); //Extra health
+        }
+
+        isSelling = false; //Deactivate sell mode
+        return player;
     }
 
     void deleteUser() {
@@ -155,7 +194,7 @@ class DataRepository {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
             mTabooDao.deleteUser();
-            mTabooDao.updatePlayer(new PlayerData(0, "", 1, 0, 0, 0, 0, 0));
+            mTabooDao.updatePlayer(new PlayerData(0, "", 1, 0, 0, 0, 0, 0, 0));
             mTabooDao.updateUser(new User("", ""));
         });
     }
