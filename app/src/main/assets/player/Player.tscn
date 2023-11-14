@@ -61,6 +61,14 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"fall",
+"speed": 5.0
+}, {
+"frames": [{
 "duration": 1.5,
 "texture": ExtResource("3_k76o1")
 }, {
@@ -176,7 +184,7 @@ script = ExtResource("1_q2xcu")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8r5le")
-animation = &"right"
+animation = &"fall"
 
 [node name="EnvironmentCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 61.5)

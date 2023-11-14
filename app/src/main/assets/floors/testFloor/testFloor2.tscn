@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://btob2luvdn28a"]
+[gd_scene load_steps=5 format=3 uid="uid://btob2luvdn28a"]
 
 [ext_resource type="Script" path="res://floors/testFloor/testFloor2.gd" id="1_5p32w"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="2_wf23c"]
 [ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="3_mhpl6"]
+[ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="4_6epcr"]
 
 [node name="TestFloor2" type="Node2D"]
 script = ExtResource("1_5p32w")
@@ -19,3 +20,6 @@ offset_top = 482.0
 offset_right = 1810.0
 offset_bottom = 505.0
 text = "2nd Floor"
+
+[node name="Pitfall" parent="." instance=ExtResource("4_6epcr")]
+position = Vector2(1765, 601)
