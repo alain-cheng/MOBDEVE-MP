@@ -37,6 +37,7 @@ animations = [{
 size = Vector2(20, 1037)
 
 [node name="Manananggal" type="CharacterBody2D" groups=["Mob"]]
+z_index = -1
 script = ExtResource("1_yqhbq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

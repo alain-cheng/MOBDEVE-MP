@@ -7,7 +7,7 @@
 size = Vector2(604.661, 41.1248)
 
 [node name="RayCast2D" type="RayCast2D"]
-z_index = -1
+z_index = -2
 position = Vector2(931, 30)
 target_position = Vector2(0, 2000)
 script = ExtResource("1_y0xxk")

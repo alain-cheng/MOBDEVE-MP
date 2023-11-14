@@ -37,6 +37,7 @@ animations = [{
 size = Vector2(672, 65)
 
 [node name="GoldenDragon" type="CharacterBody2D" groups=["Mob"]]
+z_index = -1
 script = ExtResource("1_xygku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -19,7 +19,6 @@ func _physics_process(delta):
 
 
 func destroy():
-	print(get_class() + " hit Player")
 	despawn()
 
 

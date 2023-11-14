@@ -43,6 +43,7 @@ animations = [{
 }]
 
 [node name="Kapre" type="CharacterBody2D"]
+z_index = -1
 script = ExtResource("1_hjh5v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
