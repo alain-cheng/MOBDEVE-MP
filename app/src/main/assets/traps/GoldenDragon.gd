@@ -14,7 +14,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	# Can only attack if player is in its kill zone and the cooldown is reached
 	if attack == true && !player.isDed:
 		animation.play("attack")

@@ -1,6 +1,5 @@
-extends Area2D
 # Parent Class for all child projectiles that behave like a bullet
-class_name Projectile1
+class_name Projectile1 extends Area2D
 
 @onready var duration = $Duration
 var damage: int = 1

@@ -85,9 +85,9 @@ func _notification(what):
 func on_damage_taken(damage = 1): #Default damage is 1
 	#Toggle booleans
 	isDed = true
-	collider.disabled = true
-	hurtbox.disabled = true
-	hurtbox_area.monitorable = false
+	collider.set_deferred("disabled", true)
+	hurtbox.set_deferred("disabled", true)
+	hurtbox_area.set_deferred("monitorable", false)
 	
 	PlayerData.health = PlayerData.health - damage
 	if PlayerData.health <= 0: #Game over

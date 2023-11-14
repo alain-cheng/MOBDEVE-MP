@@ -12,7 +12,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _physics_process(delta):
+func _physics_process(_delta):
 	if attack == true && !player.isDed:
 		animation.play("attack")
 		if cooldown.is_stopped():
