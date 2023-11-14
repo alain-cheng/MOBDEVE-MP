@@ -5,6 +5,7 @@ extends Node2D
 @onready var dragons = [get_node("DragonGargoyle"), get_node("DragonGargoyle2")] 
 @onready var gDragons = [get_node("GoldenDragon"), get_node("GoldenDragon2")]
 @onready var mananaggal = [get_node("Manananggal")]
+@onready var kapre = [get_node("Kapre")]
 @onready var player = get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +19,8 @@ func _ready():
 		gDragon.player = player
 	for m in mananaggal:
 		m.player = player
+	for k in kapre:
+		k.player = player
 	
 	#Declare timers here at on ready
 	#Spikes Timers
