@@ -9,10 +9,8 @@ extends Node2D
 @onready var player = get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	#Connect damage signals programatically in a loop?
-	
-	#Pass player to projectile traps in loop
+func _ready():	
+	#Init traps
 	for dragon in dragons:
 		dragon.player = player
 	for gDragon in gDragons:
@@ -21,14 +19,11 @@ func _ready():
 		m.player = player
 	for k in kapre:
 		k.player = player
-	
-	#Declare timers here at on ready
-	#Spikes Timers
 	for spike in spikes1:
+		spike.damage_taken.connect(player.on_damage_taken)
 		spike.timer.wait_time = 2.0
 		spike.timer.one_shot = false
 		spike.timer.start()
-	#End Spikes Timers
 
 
 func _on_end_point_change_floor():
