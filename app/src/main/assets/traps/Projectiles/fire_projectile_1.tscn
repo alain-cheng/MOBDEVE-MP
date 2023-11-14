@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://sftt7l058xrj"]
+
+[ext_resource type="Texture2D" uid="uid://bjjdyfl846unb" path="res://sprites/traps/DragonGargoyle/Projectile.png" id="1_6p6m8"]
+[ext_resource type="Script" path="res://traps/Projectiles/fire_projectile_1.gd" id="1_lgpf8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppxo7"]
+size = Vector2(84, 54)
+
+[node name="FireProjectile1" type="Area2D" groups=["Projectile"]]
+position = Vector2(1257, 474)
+script = ExtResource("1_lgpf8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_6p6m8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_ppxo7")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Duration" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="timeout" from="Duration" to="." method="_on_duration_timeout"]

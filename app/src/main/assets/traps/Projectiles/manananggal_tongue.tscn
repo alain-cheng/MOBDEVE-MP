@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cvnxlqt6ja2hk"]
+
+[ext_resource type="Script" path="res://traps/Projectiles/manananggal_tongue.gd" id="1_y0xxk"]
+[ext_resource type="Texture2D" uid="uid://ciet6r6a44ddr" path="res://sprites/environment/Tile.png" id="2_0o0r1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ux34v"]
+size = Vector2(604.661, 41.1248)
+
+[node name="RayCast2D" type="RayCast2D"]
+position = Vector2(931, 30)
+target_position = Vector2(0, 2000)
+script = ExtResource("1_y0xxk")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(0, 0, 0, 100)
+default_color = Color(1, 0.141176, 0.00392157, 1)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+position = Vector2(-591, 275)
+rotation = -0.892016
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1.33016, 818.774)
+shape = SubResource("RectangleShape2D_ux34v")
+disabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(11, 818)
+scale = Vector2(6.19761, 0.437607)
+texture = ExtResource("2_0o0r1")

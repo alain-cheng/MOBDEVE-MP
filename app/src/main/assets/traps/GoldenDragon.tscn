@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://u1ute5oe5d4n"]
+
+[ext_resource type="Texture2D" uid="uid://30tyyfpif5w8" path="res://sprites/traps/GoldenDragon/GoldenDragon.png" id="1_7bbq8"]
+[ext_resource type="Script" path="res://traps/GoldenDragon.gd" id="1_xygku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlh1d"]
+size = Vector2(100, 105)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcufh"]
+atlas = ExtResource("1_7bbq8")
+region = Rect2(117, 0, 117, 111)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fqnrd"]
+atlas = ExtResource("1_7bbq8")
+region = Rect2(0, 0, 117, 111)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_orwlu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcufh")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fqnrd")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdsrq"]
+size = Vector2(672, 65)
+
+[node name="GoldenDragon" type="CharacterBody2D" groups=["Mob"]]
+script = ExtResource("1_xygku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(31, -16.5)
+shape = SubResource("RectangleShape2D_wlh1d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(25, -19)
+sprite_frames = SubResource("SpriteFrames_orwlu")
+animation = &"attack"
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-360, -16.5)
+shape = SubResource("RectangleShape2D_bdsrq")
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

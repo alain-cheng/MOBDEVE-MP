@@ -166,12 +166,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hi15"]
+
 size = Vector2(49, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wscho"]
 size = Vector2(32, 98)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_q2xcu")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
@@ -180,6 +181,7 @@ animation = &"right"
 
 [node name="EnvironmentCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 61.5)
+
 shape = SubResource("RectangleShape2D_6hi15")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]
