@@ -26,7 +26,6 @@ func _physics_process(delta):
 			set_is_casting(true)
 
 
-
 func set_is_casting(cast: bool):
 	is_casting = cast
 	if is_casting == true:
@@ -42,14 +41,7 @@ func beam():
 	tween.tween_property($Line2D, "width", 0, 0.1)  #Disappearance
 	tween.finished.connect(hit)
 
+
 #Inflicts damage after tween finishes
 func hit():
 	damage_taken.emit(damage)
-
-# debug
-#func _unhandled_input(event):
-	#if event is InputEventMouseButton:
-		#self.is_casting = event.pressed
-
-
-
