@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var player
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var cooldown = $AttackTimer
 @export var beam: PackedScene = preload("res://traps/Projectiles/manananggal_tongue.tscn")
@@ -11,8 +12,8 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	if attack == true:
+func _physics_process(delta):
+	if attack == true && !player.isDed:
 		animation.play("attack")
 		if cooldown.is_stopped():
 			fire()
@@ -25,14 +26,16 @@ func fire():
 		var b = beam.instantiate()
 		get_tree().current_scene.add_child(b)
 		b.global_position = self.global_position
+		b.damage_taken.connect(player.on_damage_taken)
 		cooldown.start()
 
 
-func _on_player_detection_body_entered(body):
-	if body.name == "Player":
+# When Player enters detection zone
+func _on_player_detection_entered(area):
+	if area.name == "PlayerHurtbox":
 		attack = true
+		
 
-
-func _on_player_detection_body_exited(body):
-	if body.name == "Player":
+func _on_player_detection_exited(area):
+	if area.name == "PlayerHurtbox":
 		attack = false

@@ -3,7 +3,8 @@ extends Node2D
 #Store nodes in vars
 @onready var spikes1 = [get_node("Spikes")]
 @onready var dragons = [get_node("DragonGargoyle"), get_node("DragonGargoyle2")] 
-@onready var gDragons = [get_node("GoldenDragon"), get_node("GoldenDragon2")] 
+@onready var gDragons = [get_node("GoldenDragon"), get_node("GoldenDragon2")]
+@onready var mananaggal = [get_node("Manananggal")]
 @onready var player = get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
@@ -15,6 +16,8 @@ func _ready():
 		dragon.player = player
 	for gDragon in gDragons:
 		gDragon.player = player
+	for m in mananaggal:
+		m.player = player
 	
 	#Declare timers here at on ready
 	#Spikes Timers

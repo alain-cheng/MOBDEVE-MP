@@ -56,5 +56,5 @@ shape = SubResource("RectangleShape2D_q7qv4")
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 0.5
 
-[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
-[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_entered"]
+[connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_exited"]

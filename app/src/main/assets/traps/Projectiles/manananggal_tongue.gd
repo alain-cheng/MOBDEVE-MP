@@ -1,7 +1,8 @@
 extends RayCast2D
 
 var is_casting := false : set = set_is_casting
-
+var damage = 1
+signal damage_taken(damage)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -10,7 +11,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	var cast_point := target_position
 	force_raycast_update()
 	
@@ -39,7 +40,11 @@ func beam():
 	#Interpolate
 	tween.tween_property($Line2D, "width", 10, 0.2) #Appearance
 	tween.tween_property($Line2D, "width", 0, 0.1)  #Disappearance
+	tween.finished.connect(hit)
 
+#Inflicts damage after tween finishes
+func hit():
+	damage_taken.emit(damage)
 
 # debug
 #func _unhandled_input(event):
