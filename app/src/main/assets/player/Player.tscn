@@ -166,7 +166,6 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hi15"]
-
 size = Vector2(49, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wscho"]
@@ -181,7 +180,6 @@ animation = &"right"
 
 [node name="EnvironmentCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 61.5)
-
 shape = SubResource("RectangleShape2D_6hi15")
 
 [node name="PlayerCamera" type="Camera2D" parent="."]

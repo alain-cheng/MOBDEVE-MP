@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcsve4j4aqcdx"]
+[gd_scene load_steps=10 format=3 uid="uid://bcsve4j4aqcdx"]
 
 [ext_resource type="Script" path="res://floors/testFloor/testFloor.gd" id="1_nxxbc"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="2_2g7rh"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b4avbltaqwlpm" path="res://traps/Kapre.tscn" id="6_bbujj"]
 [ext_resource type="PackedScene" uid="uid://df5kyj6v1bldp" path="res://traps/Manananggal.tscn" id="7_x32fs"]
 [ext_resource type="PackedScene" uid="uid://cj0a6ch8jhqqt" path="res://environment/wall.tscn" id="8_6r00p"]
+[ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="9_sr1y7"]
 
 [node name="TestFloor" type="Node2D"]
 script = ExtResource("1_nxxbc")
@@ -25,7 +26,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EndPoint" parent="." instance=ExtResource("3_nxc6h")]
-
 position = Vector2(722, 343)
 
 [node name="DragonGargoyle2" parent="." instance=ExtResource("4_nytpu")]
@@ -52,3 +52,9 @@ rotation = 1.5708
 
 [node name="Area2D2" parent="." instance=ExtResource("8_6r00p")]
 position = Vector2(-390, 524)
+
+[node name="Spikes" parent="." instance=ExtResource("9_sr1y7")]
+position = Vector2(892, 495)
+
+[connection signal="changeFloor" from="EndPoint" to="." method="_on_end_point_change_floor"]
+[connection signal="damage_taken" from="Spikes" to="Player" method="on_damage_taken"]
