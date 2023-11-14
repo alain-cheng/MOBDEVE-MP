@@ -82,14 +82,14 @@ func _notification(what):
 		elif backPressed:
 			get_tree().quit()
 
-func on_damage_taken():
+func on_damage_taken(damage = 1): #Default damage is 1
 	#Toggle booleans
 	isDed = true
 	collider.disabled = true
 	hurtbox.disabled = true
 	hurtbox_area.monitorable = false
 	
-	PlayerData.health = PlayerData.health - 1
+	PlayerData.health = PlayerData.health - damage
 	if PlayerData.health <= 0: #Game over
 		ded()
 		await get_tree().create_timer(3.5).timeout #Base on anims

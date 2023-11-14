@@ -3,7 +3,7 @@ extends Area2D
 @onready var duration = $Duration
 var damage = 1
 var SPEED = 250
-signal damage_taken
+signal damage_taken(damage)
 
 
 func _ready():
@@ -22,7 +22,7 @@ func destroy():
 func _on_area_entered(area):
 	if area.name == "PlayerHurtbox":
 		print("Dragon Hit!")
-		damage_taken.emit()
+		damage_taken.emit(damage)
 		destroy()
 	#if body.is_in_group("Mob") == true:
 		#print("Collided with a Mob")
