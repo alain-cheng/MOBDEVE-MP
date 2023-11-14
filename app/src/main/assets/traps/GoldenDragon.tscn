@@ -58,5 +58,5 @@ shape = SubResource("RectangleShape2D_bdsrq")
 wait_time = 0.5
 one_shot = true
 
-[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
-[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_entered"]
+[connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_exited"]

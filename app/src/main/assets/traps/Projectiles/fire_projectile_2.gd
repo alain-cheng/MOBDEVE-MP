@@ -3,7 +3,7 @@ extends Area2D
 @onready var duration = $Duration
 var damage = 1
 var SPEED = 500
-
+signal damage_taken(damage)
 
 func _ready():
 	duration.start()
@@ -19,18 +19,12 @@ func destroy():
 
 
 func _on_area_entered(area):
-	pass
-
-
-# Projectile should be destroyed upon collision with certain objects
-func _on_body_entered(body):
-	if body.name == "Player":
-		print("Collided with Player")
+	if area.name == "PlayerHurtbox":
+		damage_taken.emit(damage)
 		destroy()
 	#if body.is_in_group("Mob") == true:
 		#print("Collided with a Mob")
 		#destroy()
-
 
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()

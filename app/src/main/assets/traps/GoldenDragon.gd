@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@onready var player
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var cooldown = $AttackTimer
 @export var projectile: PackedScene = preload("res://traps/Projectiles/fire_projectile_2.tscn")
@@ -13,9 +14,9 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
 	# Can only attack if player is in its kill zone and the cooldown is reached
-	if attack == true:
+	if attack == true && !player.isDed:
 		animation.play("attack")
 		if cooldown.is_stopped():
 			fire()
@@ -28,16 +29,17 @@ func fire():
 		var p = projectile.instantiate()
 		get_tree().current_scene.add_child(p)
 		p.global_position = self.global_position
+		p.damage_taken.connect(player.on_damage_taken)
 		cooldown.start()
 
 
 # When Player enters detection zone
-func _on_player_detection_body_entered(body):
-	if body.name == "Player":
+func _on_player_detection_entered(area):
+	if area.name == "PlayerHurtbox":
 		attack = true
 		
 
 
-func _on_player_detection_body_exited(body):
-	if body.name == "Player":
+func _on_player_detection_exited(area):
+	if area.name == "PlayerHurtbox":
 		attack = false

@@ -21,7 +21,6 @@ func destroy():
 
 func _on_area_entered(area):
 	if area.name == "PlayerHurtbox":
-		print("Dragon Hit!")
 		damage_taken.emit(damage)
 		destroy()
 	#if body.is_in_group("Mob") == true:
