@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var cooldown = $AttackTimer
 @export var projectile: PackedScene = preload("res://traps/Projectiles/fire_projectile_2.tscn")
 var attack = false
-var triggers = 999 # number of times trap can shoot
+#var triggers = 999 # number of times trap can shoot
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,19 +24,16 @@ func _process(delta):
 
 
 func fire():
-	if projectile && triggers > 0:
+	if projectile:
 		var p = projectile.instantiate()
 		get_tree().current_scene.add_child(p)
 		p.global_position = self.global_position
-		triggers -= 1
 		cooldown.start()
-	else:
-		print("Trap cannot be triggered")
 
 
 # When Player enters detection zone
 func _on_player_detection_body_entered(body):
-	if body.name == "Player" && triggers > 0:
+	if body.name == "Player":
 		attack = true
 		
 
