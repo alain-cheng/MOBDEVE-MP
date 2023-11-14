@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtn8oh314a4hk"]
+
+[ext_resource type="Script" path="res://environment/traps/spikes/Spikes.gd" id="1_5gqcc"]
+[ext_resource type="Texture2D" uid="uid://xd5poge8uf8c" path="res://sprites/environment/traps/spikes.png" id="2_jpww6"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8eeq"]
+atlas = ExtResource("2_jpww6")
+region = Rect2(226, 0, 180, 193)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkx4v"]
+atlas = ExtResource("2_jpww6")
+region = Rect2(0, 0, 180, 193)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1p28f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8eeq")
+}],
+"loop": false,
+"name": &"extended",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wkx4v")
+}],
+"loop": false,
+"name": &"retracted",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wgm7w"]
+size = Vector2(134, 120)
+
+[node name="Spikes" type="Area2D"]
+z_index = -1
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_5gqcc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1p28f")
+animation = &"retracted"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -12)
+shape = SubResource("RectangleShape2D_wgm7w")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timeout"]

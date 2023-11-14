@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://btob2luvdn28a"]
+
+[ext_resource type="Script" path="res://floors/testFloor/testFloor2.gd" id="1_5p32w"]
+[ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="2_wf23c"]
+[ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="3_mhpl6"]
+
+[node name="TestFloor2" type="Node2D"]
+script = ExtResource("1_5p32w")
+
+[node name="Player" parent="." instance=ExtResource("2_wf23c")]
+position = Vector2(1594, 585)
+
+[node name="EndPoint" parent="." instance=ExtResource("3_mhpl6")]
+position = Vector2(1977, 608)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1737.0
+offset_top = 482.0
+offset_right = 1810.0
+offset_bottom = 505.0
+text = "2nd Floor"

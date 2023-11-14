@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://btymg45ij342p"]
+[gd_scene load_steps=24 format=3 uid="uid://btymg45ij342p"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_q2xcu"]
 [ext_resource type="Texture2D" uid="uid://cpr0jsuwiod67" path="res://sprites/player/down/down_1.png" id="2_5htem"]
@@ -166,28 +166,32 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6hi15"]
-size = Vector2(68, 102)
+
+size = Vector2(49, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wscho"]
+size = Vector2(32, 98)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_q2xcu")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8r5le")
-animation = &"idle"
-frame_progress = 0.239213
+animation = &"right"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 15)
+[node name="EnvironmentCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 61.5)
+
 shape = SubResource("RectangleShape2D_6hi15")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
-[node name="DirectionalButtons" type="CanvasLayer" parent="Camera2D"]
+[node name="DirectionalButtons" type="CanvasLayer" parent="PlayerCamera"]
 scale = Vector2(2, 2)
 transform = Transform2D(2, 0, 0, 2, 0, 0)
 
-[node name="UP" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
+[node name="UP" type="TouchScreenButton" parent="PlayerCamera/DirectionalButtons"]
 position = Vector2(115.834, 192)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("19_g3l2f")
@@ -195,7 +199,7 @@ texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_up"
 
-[node name="DOWN" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
+[node name="DOWN" type="TouchScreenButton" parent="PlayerCamera/DirectionalButtons"]
 position = Vector2(115.834, 385)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("19_g3l2f")
@@ -203,7 +207,7 @@ texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_down"
 
-[node name="LEFT" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
+[node name="LEFT" type="TouchScreenButton" parent="PlayerCamera/DirectionalButtons"]
 position = Vector2(13.5, 288)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("19_g3l2f")
@@ -211,10 +215,16 @@ texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_left"
 
-[node name="RIGHT" type="TouchScreenButton" parent="Camera2D/DirectionalButtons"]
+[node name="RIGHT" type="TouchScreenButton" parent="PlayerCamera/DirectionalButtons"]
 position = Vector2(218.5, 288)
 scale = Vector2(2, 2)
 texture_normal = ExtResource("19_g3l2f")
 texture_pressed = ExtResource("20_q1uxl")
 passby_press = true
 action = "ui_right"
+
+[node name="PlayerHurtbox" type="Area2D" parent="."]
+
+[node name="HurtboxColliider" type="CollisionShape2D" parent="PlayerHurtbox"]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_wscho")

@@ -1,31 +1,67 @@
-[gd_scene load_steps=5 format=3 uid="uid://owiom6kwwpmy"]
+[gd_scene load_steps=8 format=3 uid="uid://owiom6kwwpmy"]
 
 [ext_resource type="Script" path="res://environment/interactive/end_point/End_Point.gd" id="1_8qe24"]
-[ext_resource type="Texture2D" uid="uid://cfquvbo1a334j" path="res://sprites/environment/interactive/end_point/placeholder/end_point_placeholder.png" id="1_8ulgo"]
+[ext_resource type="Texture2D" uid="uid://cdsj0y1h5kadf" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="2_bk05t"]
+[ext_resource type="Texture2D" uid="uid://dady6wbunm6k8" path="res://sprites/environment/interactive/end_point/actual/Endcircle.png" id="2_s1fjj"]
+[ext_resource type="Texture2D" uid="uid://cwup3vicp7ay3" path="res://sprites/environment/interactive/end_point/actual/Endpoint.png" id="4_wb3bo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wjwmu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_8ulgo")
+"texture": ExtResource("2_s1fjj")
 }],
-"loop": true,
-"name": &"default",
+"loop": false,
+"name": &"nextfloor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_bk05t")
+}],
+"loop": false,
+"name": &"treasure",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1w6gq"]
-size = Vector2(5, 4)
+size = Vector2(6, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vn65a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_wb3bo")
+}],
+"loop": false,
+"name": &"nextfloor",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"treasure",
+"speed": 5.0
+}]
 
 [node name="EndPoint" type="Area2D"]
-z_index = -1
 script = ExtResource("1_8qe24")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="FloorSprite" type="AnimatedSprite2D" parent="."]
+z_index = -1
 sprite_frames = SubResource("SpriteFrames_wjwmu")
+animation = &"nextfloor"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 18)
+position = Vector2(0, 32.5)
 shape = SubResource("RectangleShape2D_1w6gq")
+
+[node name="FloatSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(0, -20)
+sprite_frames = SubResource("SpriteFrames_vn65a")
+animation = &"nextfloor"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
