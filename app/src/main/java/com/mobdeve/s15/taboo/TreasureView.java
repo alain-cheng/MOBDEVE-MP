@@ -112,7 +112,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
                     Treasure tempT = currentTreasure.get(temp);
 
                     //Generate random treasure
-                    TreasureList.genRandomTreasure("SELL", tempT.getRarity());
+                    TreasureList.genRandomTreasure("SELL", tempT.getRarity(), playerData);
                     Treasure random = TreasureList.lastRandom;
 
                     //Sell Treasure using updateTreasury with count = -3

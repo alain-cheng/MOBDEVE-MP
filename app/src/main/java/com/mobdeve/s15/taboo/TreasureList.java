@@ -7,9 +7,11 @@ public class TreasureList {
     //Register new Treasures here. Note: Keep the Creators set at the end so that they are rarer than others
     //This is due to how the full taboo gauge unique item drop works.
 
-    public static Treasure lastRandom;
+    public static Treasure lastRandom = new Treasure("0ERROR", "ERROR, BUG!", R.drawable.item_kaprecigar,
+            "000000",
+            "THIS IS NOT SUPPOSE TO BE HERE!", "LOST", 1);
 
-    public static void genRandomTreasure(String mode, String rarity){
+    public static void genRandomTreasure(String mode, String rarity, PlayerData playerData){
         switch(mode){
             case "SELL":{
                 Random rand = new Random(System.nanoTime());
@@ -22,6 +24,42 @@ public class TreasureList {
                 //Select between the indexes at random
                 int index = rand.nextInt(indexes.size());
                 //Generate Treasure and add
+                lastRandom = new Treasure(
+                        TreasureList.ids[indexes.get(index)],
+                        TreasureList.names[indexes.get(index)],
+                        TreasureList.images[indexes.get(index)],
+                        TreasureList.bonuses[indexes.get(index)],
+                        TreasureList.lores[indexes.get(index)],
+                        TreasureList.rarities[indexes.get(index)],
+                        1
+                );
+                break;
+            }
+            case "REWARD":{
+                int totalLuck = playerData.getLuck();
+                if(playerData.getTaboo() >= 4)
+                    totalLuck += 10;
+                Random rand = new Random(System.nanoTime());
+                int rng = rand.nextInt(100) + totalLuck + 1; //The one is a correction factor
+
+                //Select rarity based on luck
+                if(rng <= 40)
+                    rarity = TreasureList.RARITY[0];
+                else if(rng <= 70)
+                    rarity = TreasureList.RARITY[1];
+                else if(rng <= 90)
+                    rarity = TreasureList.RARITY[2];
+                else if(rng > 90)
+                    rarity = TreasureList.RARITY[3];
+
+                //Get indexes of treasures with rarities[i] == rarity
+                ArrayList<Integer> indexes = new ArrayList<>();
+                for(int i = 0; i < TreasureList.rarities.length; i++){
+                    if(TreasureList.rarities[i].equals(rarity))
+                        indexes.add(i);
+                }
+                //Select between the indexes at random
+                int index = rand.nextInt(indexes.size());
                 lastRandom = new Treasure(
                         TreasureList.ids[indexes.get(index)],
                         TreasureList.names[indexes.get(index)],
