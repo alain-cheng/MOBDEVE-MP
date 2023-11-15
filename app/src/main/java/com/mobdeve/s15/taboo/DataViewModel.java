@@ -49,10 +49,6 @@ public class DataViewModel extends AndroidViewModel {
         mDataRepository.updateTreasury(treasure, playerData);
     }
 
-    public void sellTreasure(Treasure treasure, PlayerData playerData){
-        mDataRepository.sellTreasure(treasure, playerData);
-    }
-
     public void login(User user) {
         mDataRepository.updateUser(user);
     }

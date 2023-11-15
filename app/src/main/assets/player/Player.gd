@@ -7,13 +7,15 @@ extends CharacterBody2D
 @onready var hurtbox_area = get_node("PlayerHurtbox")
 var backPressed = false
 var isDed = false
+var falling = false
+signal fall_to_next
 
 func _ready():
 	#Play Idle anim on load
 	animation.play("idle")
 
 func _physics_process(_delta):
-	if(!isDed):
+	if(!isDed && !falling):
 		#MOVEMENT
 		#If player is standing still, play idle
 		if velocity.x == 0 && velocity.y == 0 && PlayerData.health > 0:
@@ -60,7 +62,7 @@ func _physics_process(_delta):
 
 		move_and_slide()
 		#END MOVEMENT
-	elif(isDed):
+	elif(isDed && !falling):
 		#Animation for floating ghost
 		velocity.x = 0
 		velocity.y = -25
@@ -83,23 +85,45 @@ func _notification(what):
 			get_tree().quit()
 
 func on_damage_taken(damage = 1): #Default damage is 1
-	#Toggle booleans
-	isDed = true
-	collider.set_deferred("disabled", true)
-	hurtbox.set_deferred("disabled", true)
-	hurtbox_area.set_deferred("monitorable", false)
-	
 	PlayerData.health = PlayerData.health - damage
+	isDed = true
+	ui_off()
+	ded()
+	await get_tree().create_timer(3.5).timeout #Base on anims
+	
 	if PlayerData.health <= 0: #Game over
+		get_tree().quit()
+	elif PlayerData.health > 0: #-1 Life
+		get_tree().reload_current_scene()
+		
+func ive_fallen():
+	#Animation
+	falling = true
+	ui_off()
+	animation.stop()
+	await get_tree().create_timer(0.5).timeout #Base on anims
+	animation.play("fall")
+	await get_tree().create_timer(1.0).timeout #Base on anims
+	falling = false
+	
+	 #take damage
+	PlayerData.health = PlayerData.health - 1
+	isDed = true
+	#Check if is health <= 0 and !finalFloor
+	if(PlayerData.health > 0 && !PlayerData.lastFloor): #fall to next floor
+		fall_to_next.emit()
+	elif(PlayerData.health <= 0 || PlayerData.lastFloor): #Die
 		ded()
 		await get_tree().create_timer(3.5).timeout #Base on anims
 		get_tree().quit()
-	elif PlayerData.health > 0: #-1 Life
-		ded()
-		await get_tree().create_timer(3.5).timeout #Base on anims
-		get_tree().reload_current_scene()
+	
+func ui_off():
+	#Toggle booleans
+	collider.set_deferred("disabled", true)
+	hurtbox.set_deferred("disabled", true)
+	hurtbox_area.set_deferred("monitorable", false)
+	buttons.hide()
 
 func ded():
-	buttons.hide()
 	animation.play("death")
 	#TODO: Add popup for dying

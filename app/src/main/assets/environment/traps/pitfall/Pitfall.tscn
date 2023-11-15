@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://bqwdf8n5jlliu"]
+
+[ext_resource type="Script" path="res://environment/traps/pitfall/Pitfall.gd" id="1_uw0m1"]
+[ext_resource type="Texture2D" uid="uid://b883b33b4aits" path="res://sprites/environment/traps/pitfall.png" id="2_mj306"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysmb8"]
+atlas = ExtResource("2_mj306")
+region = Rect2(2, 0, 90, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_js4r2"]
+atlas = ExtResource("2_mj306")
+region = Rect2(344, 0, 90, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f5b7b"]
+atlas = ExtResource("2_mj306")
+region = Rect2(230, 0, 90, 94)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbwdl"]
+atlas = ExtResource("2_mj306")
+region = Rect2(116, 0, 90, 94)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ymq45"]
+animations = [{
+"frames": [{
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_ysmb8")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_js4r2")
+}, {
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_ysmb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f5b7b")
+}, {
+"duration": 30.0,
+"texture": SubResource("AtlasTexture_ysmb8")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_bbwdl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwqf6"]
+size = Vector2(43.8406, 38.8909)
+
+[node name="Pitfall" type="Area2D"]
+z_index = -1
+script = ExtResource("1_uw0m1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ymq45")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.25, 0.25)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_uwqf6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

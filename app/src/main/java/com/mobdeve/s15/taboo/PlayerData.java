@@ -17,9 +17,10 @@ public class PlayerData {
     @ColumnInfo(name = "tabooBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int tabooBonus;
     @ColumnInfo(name = "luck", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int luck;
     @ColumnInfo(name = "bountyBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int bountyBonus;
+    @ColumnInfo(name = "setBonus1", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int setBonus1;
 
     //Constructor. Tip: Delete constructor and use Alt+Insert when updating to avoid insanity
-    public PlayerData(int id, String username, int health, int bounty, int taboo, int tabooBonus, int luck, int bountyBonus) {
+    public PlayerData(int id, String username, int health, int bounty, int taboo, int tabooBonus, int luck, int bountyBonus, int setBonus1) {
         this.id = id;
         this.username = username;
         this.health = health;
@@ -28,6 +29,7 @@ public class PlayerData {
         this.tabooBonus = tabooBonus;
         this.luck = luck;
         this.bountyBonus = bountyBonus;
+        this.setBonus1 = setBonus1;
     }
 
     //Methods
@@ -56,4 +58,10 @@ public class PlayerData {
     public void setTaboo(int value){this.taboo = value;}
     public void setTabooBonus(int value){this.tabooBonus = value;}
     public void setBountyBonus(int value){this.bountyBonus = value;}
+    public int getSetBonus1() {
+        return setBonus1;
+    }
+    public void setSetBonus1(int setBonus1) {
+        this.setBonus1 = setBonus1;
+    }
 }

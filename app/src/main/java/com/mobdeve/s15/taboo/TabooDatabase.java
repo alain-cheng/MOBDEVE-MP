@@ -36,7 +36,7 @@ public abstract class TabooDatabase extends RoomDatabase {
                 dao.deleteUser();
 
                 //Load Player Data
-                PlayerData playerData = new PlayerData(0, "", 1, 0, 0, 0, 0, 0);
+                PlayerData playerData = new PlayerData(0, "", 1, 0, 0, 0, 0, 0, 0);
                 dao.updatePlayer(playerData);
 
                 //Initialize user table

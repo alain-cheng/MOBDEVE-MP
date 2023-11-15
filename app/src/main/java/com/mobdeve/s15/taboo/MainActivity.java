@@ -179,41 +179,9 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                         mDataViewModel.updatePlayer(playerData);
                     }else{
                         //Generate rarity of treasure, taboo of 4 increases totalLuck by 10
-                        int totalLuck = playerData.getLuck();
-                        if(playerData.getTaboo() >= 4)
-                            totalLuck += 10;
-                        Random rand = new Random(System.nanoTime());
-                        int rng = rand.nextInt(101) + totalLuck;
-
-                        //Select rarity based on luck
-                        String rarity = "COMMON";
-                        if(rng <= 40)
-                            rarity = TreasureList.RARITY[0];
-                        else if(rng <= 70)
-                            rarity = TreasureList.RARITY[1];
-                        else if(rng <= 90)
-                            rarity = TreasureList.RARITY[2];
-                        else if(rng > 90)
-                            rarity = TreasureList.RARITY[3];
-
-                        //Get indexes of treasures with rarities[i] == rarity
-                        ArrayList<Integer> indexes = new ArrayList<>();
-                        for(int i = 0; i < TreasureList.rarities.length; i++){
-                            if(TreasureList.rarities[i].equals(rarity))
-                                indexes.add(i);
-                        }
-                        //Select between the indexes at random
-                        int index = rand.nextInt(indexes.size());
                         //Generate Treasure and add
-                        Treasure treasure = new Treasure(
-                                TreasureList.ids[indexes.get(index)],
-                                TreasureList.names[indexes.get(index)],
-                                TreasureList.images[indexes.get(index)],
-                                TreasureList.bonuses[indexes.get(index)],
-                                TreasureList.lores[indexes.get(index)],
-                                TreasureList.rarities[indexes.get(index)],
-                                1
-                        );
+                        TreasureList.genRandomTreasure("REWARD", "COMMON", playerData);
+                        Treasure treasure = TreasureList.lastRandom;
                         mDataViewModel.updateTreasury(treasure, playerData);
 
                         //Display in TreasureView

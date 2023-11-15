@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcsve4j4aqcdx"]
+[gd_scene load_steps=11 format=3 uid="uid://bcsve4j4aqcdx"]
 
 [ext_resource type="Script" path="res://floors/testFloor/testFloor.gd" id="1_nxxbc"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="2_2g7rh"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://df5kyj6v1bldp" path="res://traps/Manananggal.tscn" id="7_x32fs"]
 [ext_resource type="PackedScene" uid="uid://cj0a6ch8jhqqt" path="res://environment/wall.tscn" id="8_6r00p"]
 [ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="9_sr1y7"]
+[ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="10_0sdvc"]
 
 [node name="TestFloor" type="Node2D"]
 script = ExtResource("1_nxxbc")
@@ -56,5 +57,8 @@ position = Vector2(-390, 524)
 [node name="Spikes" parent="." instance=ExtResource("9_sr1y7")]
 position = Vector2(892, 495)
 
-[connection signal="changeFloor" from="EndPoint" to="." method="_on_end_point_change_floor"]
-[connection signal="damage_taken" from="Spikes" to="Player" method="on_damage_taken"]
+[node name="Pitfall" parent="." instance=ExtResource("10_0sdvc")]
+position = Vector2(792, 495)
+
+[connection signal="fall_to_next" from="Player" to="." method="_on_change_floor"]
+[connection signal="changeFloor" from="EndPoint" to="." method="_on_change_floor"]
