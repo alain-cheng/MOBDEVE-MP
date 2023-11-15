@@ -109,38 +109,15 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
             for(int i = 0; i < currentTreasure.size(); i++){
                 if(tag.equals(currentTreasure.get(i).getName())){
                     int temp = i;
-                    Future<String> selling = threadpool.submit(() -> {
-                        mDataViewModel.sellTreasure(currentTreasure.get(temp), playerData);
-                        return "OK";
-                    });
+                    Treasure tempT = currentTreasure.get(temp);
 
-                    while(!selling.isDone()){
-                        Log.v("TREASURE_VIEW", "Uploading data...");
-                    }
+                    //Generate random treasure
+                    TreasureList.genRandomTreasure("SELL", tempT.getRarity());
+                    Treasure random = TreasureList.lastRandom;
 
-                    Random rand = new Random(System.nanoTime());
-                    String rarity = currentTreasure.get(i).getRarity();
-                    //Get indexes of treasures with rarities[i] == rarity
-                    ArrayList<Integer> indexes = new ArrayList<>();
-                    for(int j = 0; j < TreasureList.rarities.length; j++){
-                        if(TreasureList.rarities[j].equals(rarity))
-                            indexes.add(j);
-                    }
-                    //Select between the indexes at random
-                    int index = rand.nextInt(indexes.size());
-                    //Generate Treasure and add
-                    Treasure random = new Treasure(
-                            TreasureList.ids[indexes.get(index)],
-                            TreasureList.names[indexes.get(index)],
-                            TreasureList.images[indexes.get(index)],
-                            TreasureList.bonuses[indexes.get(index)],
-                            TreasureList.lores[indexes.get(index)],
-                            TreasureList.rarities[indexes.get(index)],
-                            1
-                    );
-
-                    if(selling.isDone())
-                        mDataViewModel.updateTreasury(random, playerData);
+                    //Sell Treasure using updateTreasury with count = -3
+                    tempT.setCount(-3);
+                    mDataViewModel.updateTreasury(tempT, playerData);
 
                     //Display in TreasureView
                     Intent intent = new Intent(this, TreasureView.class);
