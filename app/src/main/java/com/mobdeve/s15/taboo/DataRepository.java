@@ -142,6 +142,11 @@ class DataRepository {
             }
             case "BLASPHEMY":{
                 tempP.setBounty(tempP.getBounty() + (50 * count));
+                break;
+            }
+            case "LOST":{
+                tempP.setBounty(tempP.getBounty() + (100 * count));
+                break;
             }
         }
         return tempP;

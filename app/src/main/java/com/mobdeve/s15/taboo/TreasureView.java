@@ -77,6 +77,11 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
             }
             case "BLASPHEMY":{
                 color = "#B200FF";
+                break;
+            }
+            case "LOST":{
+                color = "#FFD700";
+                break;
             }
         }
         binding.treasureNameTv.setTextColor(Color.parseColor(color));

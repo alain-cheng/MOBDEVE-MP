@@ -14,25 +14,31 @@ public class TreasureList {
     public static void genRandomTreasure(String mode, String rarity, PlayerData playerData){
         switch(mode){
             case "SELL":{
-                Random rand = new Random(System.nanoTime());
-                //Get indexes of treasures with rarities[i] == rarity
-                ArrayList<Integer> indexes = new ArrayList<>();
-                for(int j = 0; j < TreasureList.rarities.length; j++){
-                    if(TreasureList.rarities[j].equals(rarity))
-                        indexes.add(j);
+                if(!rarity.equals("LOST")){
+                    Random rand = new Random(System.nanoTime());
+                    //Get indexes of treasures with rarities[i] == rarity
+                    ArrayList<Integer> indexes = new ArrayList<>();
+                    for(int j = 0; j < TreasureList.rarities.length; j++){
+                        if(TreasureList.rarities[j].equals(rarity))
+                            indexes.add(j);
+                    }
+                    //Select between the indexes at random
+                    int index = rand.nextInt(indexes.size());
+                    //Generate Treasure and add
+                    lastRandom = new Treasure(
+                            TreasureList.ids[indexes.get(index)],
+                            TreasureList.names[indexes.get(index)],
+                            TreasureList.images[indexes.get(index)],
+                            TreasureList.bonuses[indexes.get(index)],
+                            TreasureList.lores[indexes.get(index)],
+                            TreasureList.rarities[indexes.get(index)],
+                            1
+                    );
                 }
-                //Select between the indexes at random
-                int index = rand.nextInt(indexes.size());
-                //Generate Treasure and add
-                lastRandom = new Treasure(
-                        TreasureList.ids[indexes.get(index)],
-                        TreasureList.names[indexes.get(index)],
-                        TreasureList.images[indexes.get(index)],
-                        TreasureList.bonuses[indexes.get(index)],
-                        TreasureList.lores[indexes.get(index)],
-                        TreasureList.rarities[indexes.get(index)],
-                        1
-                );
+                else{ //Generate lost items
+                    Random rand = new Random(System.nanoTime());
+                    lastRandom = lostTreasures[rand.nextInt(lostTreasures.length)];
+                }
                 break;
             }
             case "REWARD":{
@@ -49,8 +55,17 @@ public class TreasureList {
                     rarity = TreasureList.RARITY[1];
                 else if(rng <= 90)
                     rarity = TreasureList.RARITY[2];
-                else if(rng > 90)
+                else if(rng <= 99)
                     rarity = TreasureList.RARITY[3];
+                else if(rng > 99){ //Check for generating lost treasures
+                    int lostRNG = rand.nextInt(100) + totalLuck + 1;
+                    if(lostRNG > 66){
+                        lastRandom = lostTreasures[rand.nextInt(lostTreasures.length)];
+                        break;
+                    }
+                    else //Couldn't get Lost treasure
+                        rarity = TreasureList.RARITY[3];
+                }
 
                 //Get indexes of treasures with rarities[i] == rarity
                 ArrayList<Integer> indexes = new ArrayList<>();
@@ -74,7 +89,7 @@ public class TreasureList {
         }
     }
 
-    public static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY"};
+    public static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY", "LOST"};
 
     public static final String[] ids = {
             "item01",
@@ -156,5 +171,9 @@ public class TreasureList {
             R.drawable.item_kaprecigar, //Creators 1
             R.drawable.item_kaprecigar, //Creators 2
             R.drawable.item_kaprecigar, //Creators 3
+    };
+
+    public static Treasure[] lostTreasures = {
+            new Treasure("lost01", "One Piece", R.drawable.item_kaprecigar, "", "", RARITY[4], 1),
     };
 }
