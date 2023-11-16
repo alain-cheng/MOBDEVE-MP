@@ -111,9 +111,12 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
             PlayerData playerData = futureData.get();
 
             if(futureData.isDone() && futureTreasure.isDone()){
-                //An if statement that subtracts taboo on loss
-                if(loss){
+                //An if statement that subtracts taboo on loss if taboo > 0
+                if(loss && playerData.getTaboo() > 0){
                     playerData.setTaboo(playerData.getTaboo() + TreasureList.LOSS_ADD);
+                    if(playerData.getTaboo() < 0) //Prevent negative taboo value
+                        playerData.setTaboo(0);
+                    mDataViewModel.updatePlayer(playerData);
                 }
 
                 //If generateTreasure = true, send to GenerateTreasure Activity

@@ -19,7 +19,7 @@ func _on_body_entered(body):
 			#TODO: Popup informing the player of win
 			
 			#Quits the game, changes generateTreasure to true
-			var dict = {generateTreasure = true}
+			var dict = {generateTreasure = true, loss = false}
 			var path = "user://signal_data.json"
 			if FileAccess.file_exists(path):
 				var file = FileAccess.open(path, FileAccess.WRITE)
