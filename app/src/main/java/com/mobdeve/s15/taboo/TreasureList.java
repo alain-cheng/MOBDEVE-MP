@@ -7,6 +7,9 @@ public class TreasureList {
     //Register new Treasures here. Note: Keep the Creators set at the end so that they are rarer than others
     //This is due to how the full taboo gauge unique item drop works.
 
+    // CONSTANTS FOR TABOO GAUGE LEVEL
+    public static final int WIN_ADD = 3, LOSS_ADD = -1, PHASE_1 = 6, PHASE_2 = 24, PHASE_3 = 36, PHASE_4 = 51;
+
     public static Treasure lastRandom = new Treasure("0ERROR", "ERROR, BUG!", R.drawable.item_kaprecigar,
             "000000",
             "THIS IS NOT SUPPOSE TO BE HERE!", "LOST", 1);
@@ -43,7 +46,7 @@ public class TreasureList {
             }
             case "REWARD":{
                 int totalLuck = playerData.getLuck();
-                if(playerData.getTaboo() >= 4)
+                if(playerData.getTaboo() >= PHASE_4)
                     totalLuck += 10;
                 Random rand = new Random(System.nanoTime());
                 int rng = rand.nextInt(100) + totalLuck + 1; //The one is a correction factor
