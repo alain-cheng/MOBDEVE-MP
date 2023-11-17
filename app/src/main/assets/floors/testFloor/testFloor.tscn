@@ -31,12 +31,14 @@ position = Vector2(722, 343)
 
 [node name="DragonGargoyle2" parent="." instance=ExtResource("4_nytpu")]
 position = Vector2(1190, 182)
+scale = Vector2(-1, 1)
 
 [node name="DragonGargoyle" parent="." instance=ExtResource("4_nytpu")]
 position = Vector2(694, 89)
 
 [node name="GoldenDragon2" parent="." instance=ExtResource("5_wny18")]
-position = Vector2(1472, 56)
+position = Vector2(1164, 64)
+scale = Vector2(-1, 1)
 
 [node name="GoldenDragon" parent="." instance=ExtResource("5_wny18")]
 position = Vector2(665, -41)
