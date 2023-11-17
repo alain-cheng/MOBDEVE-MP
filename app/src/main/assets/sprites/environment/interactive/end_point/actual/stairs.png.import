@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://duxcjdu0cgmbp"
-path="res://.godot/imported/TreasureChest.png-168bca0c04fac79a1fa0fe0c6e0450ac.ctex"
+uid="uid://c4dhf7fbwb4up"
+path="res://.godot/imported/stairs.png-ea526f98097728d91e628d147e1da162.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/environment/interactive/end_point/TreasureChest.png"
-dest_files=["res://.godot/imported/TreasureChest.png-168bca0c04fac79a1fa0fe0c6e0450ac.ctex"]
+source_file="res://sprites/environment/interactive/end_point/actual/stairs.png"
+dest_files=["res://.godot/imported/stairs.png-ea526f98097728d91e628d147e1da162.ctex"]
 
 [params]
 
