@@ -21,6 +21,7 @@ var bountyBonus = 0
 var speed = 300.0
 var friction = speed #At default player stops instantly, change for slippery surfaces
 var lastFloor = false #Determines if the endpoint is a win. Change at last floor.
+var floorsOnRun = [] #Array that contains what floors the player will go through
 
 func initData():
 	#Check if player_data.json exists
