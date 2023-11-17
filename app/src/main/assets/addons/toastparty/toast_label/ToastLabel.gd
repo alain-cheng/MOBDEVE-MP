@@ -53,7 +53,7 @@ func init(config: Dictionary) -> void:
 	direction = config_cleaned.direction
 	gravity = config_cleaned.gravity
 
-	position.y = get_y_pos(-100, gravity)
+	position.y = get_y_pos(-250, gravity)
 	
 	_set_margins()
 	_set_shadow_direction()
@@ -125,7 +125,7 @@ func get_y_pos(offset = 0, _gravity = "top") -> float:
 	if _gravity == "top":
 		_y_pos = margins.top + offset_position.y + offset
 	else:
-		_y_pos = resolution.y - margins.top - button_size.y - offset_position.y - offset
+		_y_pos = resolution.y - margins.top - button_size.y - offset_position.y - offset - 100
 	return _y_pos
 
 
@@ -135,7 +135,7 @@ func update_x_position() -> void:
 	if direction == "left":
 		position.x = margins.left + offset_position.x
 	elif direction == "center":
-		position.x = (resolution.x / 2) - (size.x / 2)
+		position.x = (resolution.x / 2) - (size.x / 2) - 150
 	else: 
 		position.x = resolution.x - margins.left - size.x - offset_position.x
 
