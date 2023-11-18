@@ -17,7 +17,7 @@ func _ready():
 	PlayerData.initData()
 	
 	#Move to another scene based on taboo
-	if(true): #true is DEBUG. PHASE 0, Taboo < 6
+	if(true): #TODO: true is DEBUG. PHASE 0, Taboo < 6
 		#Append int for all floors that will be randomized
 		for i in range(DUNGEON_A_NUM_FLOORS):
 			PlayerData.floorsOnRun.append(i+1)

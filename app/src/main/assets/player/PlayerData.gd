@@ -26,6 +26,20 @@ var floorsOnRun = [] #Array that contains what floors the player will go through
 func checkLastFloor():
 	if floorsOnRun.size() <= 0:
 		lastFloor = true
+		
+func dungeonAFloorMovement():
+	#Move to another scene based on floorsOnRun array
+	PlayerData.checkLastFloor() #Check if lastfloor next
+	
+	if lastFloor: #If so, move to last floor
+		pass #TODO: Fill this in later
+	
+	#Else, match case for next floor
+	match floorsOnRun[0]:
+		1:
+			floorsOnRun.pop_front()
+			checkLastFloor() #TODO: DEBUG REMOVE
+			get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")
 
 func initData():
 	#Check if player_data.json exists

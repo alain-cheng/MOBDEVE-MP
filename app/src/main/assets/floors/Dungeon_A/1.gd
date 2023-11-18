@@ -8,7 +8,7 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#Connect endpoint to change floor
-	endpoint.changeFloor.connect(_on_change_floor)
+	endpoint.changeFloor.connect(PlayerData.dungeonAFloorMovement)
 	
 	#Init Traps
 	for spike in spikes:
@@ -18,17 +18,3 @@ func _ready():
 	for k in kapre:
 		k.player = player
 		k.cooldown.wait_time = 2.8
-
-func _on_change_floor():
-	#Move to another scene based on floorsOnRun array
-	PlayerData.checkLastFloor() #Check if lastfloor next
-	
-	if PlayerData.lastFloor: #If so, move to last floor
-		pass #TODO: Fill this in later
-	
-	#Else, match case for next floor
-	match PlayerData.floorsOnRun[0]:
-		1:
-			PlayerData.floorsOnRun.pop_front()
-			PlayerData.checkLastFloor() #TODO: DEBUG REMOVE
-			get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")
