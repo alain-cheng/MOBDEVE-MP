@@ -12,7 +12,7 @@
 size = Vector2(1117, 120.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioqaa"]
-size = Vector2(95, 762)
+size = Vector2(95, 791)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjw7e"]
 size = Vector2(101, 777.5)
@@ -34,6 +34,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_i8u5d")
 
 [node name="Foreground" type="TextureRect" parent="."]
+visible = false
 z_index = 1
 offset_right = 40.0
 offset_bottom = 40.0
@@ -53,7 +54,7 @@ position = Vector2(559.5, 109.75)
 shape = SubResource("RectangleShape2D_vvber")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-26.5, 371)
+position = Vector2(-26.5, 385.5)
 shape = SubResource("RectangleShape2D_ioqaa")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
@@ -85,10 +86,10 @@ position = Vector2(710, 390)
 scale = Vector2(0.6, 0.6)
 
 [node name="Kapre" parent="." instance=ExtResource("7_ceng6")]
-position = Vector2(586, 965)
+position = Vector2(586, 970)
 
 [node name="Kapre2" parent="." instance=ExtResource("7_ceng6")]
-position = Vector2(265, 965)
+position = Vector2(265, 970)
 
 [node name="Kapre3" parent="." instance=ExtResource("7_ceng6")]
-position = Vector2(921, 965)
+position = Vector2(921, 970)
