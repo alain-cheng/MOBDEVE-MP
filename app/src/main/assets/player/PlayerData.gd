@@ -40,6 +40,10 @@ func dungeonAFloorMovement():
 			floorsOnRun.pop_front()
 			checkLastFloor() #TODO: DEBUG REMOVE
 			get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")
+		2:
+			floorsOnRun.pop_front()
+			checkLastFloor() #TODO: DEBUG REMOVE
+			get_tree().change_scene_to_file("res://floors/Dungeon_A/2.tscn")
 
 func initData():
 	#Check if player_data.json exists

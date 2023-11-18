@@ -4,7 +4,7 @@ const PHASE_1 = 6
 const PHASE_2 = 24
 const PHASE_3 = 36
 const PHASE_4 = 51
-const DUNGEON_A_NUM_FLOORS = 1
+const DUNGEON_A_NUM_FLOORS = 2 #Number of "Tutorial" Floors
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -35,3 +35,7 @@ func _ready():
 				PlayerData.floorsOnRun.pop_front()
 				PlayerData.checkLastFloor()
 				get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")
+			2:
+				PlayerData.floorsOnRun.pop_front()
+				PlayerData.checkLastFloor()
+				get_tree().change_scene_to_file("res://floors/Dungeon_A/2.tscn")
