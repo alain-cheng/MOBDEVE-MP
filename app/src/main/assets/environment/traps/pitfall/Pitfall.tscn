@@ -45,8 +45,8 @@ animations = [{
 "speed": 1.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uwqf6"]
-size = Vector2(43.8406, 38.8909)
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0v2x"]
+radius = 29.0172
 
 [node name="Pitfall" type="Area2D"]
 z_index = -1
@@ -56,9 +56,6 @@ script = ExtResource("1_uw0m1")
 sprite_frames = SubResource("SpriteFrames_ymq45")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.25, 0.25)
-rotation = 0.785398
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_uwqf6")
+shape = SubResource("CircleShape2D_q0v2x")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

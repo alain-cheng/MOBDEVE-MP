@@ -30,7 +30,7 @@ window/size/resizable=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/toastparty/plugin.cfg")
+enabled=PackedStringArray("res://addons/Todo_Manager/plugin.cfg", "res://addons/toastparty/plugin.cfg")
 
 [input_devices]
 
@@ -41,4 +41,4 @@ pointing/emulate_touch_from_mouse=true
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
-environment/defaults/default_clear_color=Color(0.141176, 0.121569, 0.121569, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

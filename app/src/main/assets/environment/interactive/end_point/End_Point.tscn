@@ -1,15 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://owiom6kwwpmy"]
+[gd_scene load_steps=6 format=3 uid="uid://owiom6kwwpmy"]
 
 [ext_resource type="Script" path="res://environment/interactive/end_point/End_Point.gd" id="1_8qe24"]
-[ext_resource type="Texture2D" uid="uid://cdsj0y1h5kadf" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="2_bk05t"]
-[ext_resource type="Texture2D" uid="uid://dady6wbunm6k8" path="res://sprites/environment/interactive/end_point/actual/Endcircle.png" id="2_s1fjj"]
-[ext_resource type="Texture2D" uid="uid://cwup3vicp7ay3" path="res://sprites/environment/interactive/end_point/actual/Endpoint.png" id="4_wb3bo"]
+[ext_resource type="Texture2D" uid="uid://duxcjdu0cgmbp" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="2_bk05t"]
+[ext_resource type="Texture2D" uid="uid://c4dhf7fbwb4up" path="res://sprites/environment/interactive/end_point/actual/stairs.png" id="2_xyifa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wjwmu"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_s1fjj")
+"texture": ExtResource("2_xyifa")
 }],
 "loop": false,
 "name": &"nextfloor",
@@ -25,43 +24,20 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1w6gq"]
-size = Vector2(6, 13)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_vn65a"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_wb3bo")
-}],
-"loop": false,
-"name": &"nextfloor",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": null
-}],
-"loop": false,
-"name": &"treasure",
-"speed": 5.0
-}]
+size = Vector2(82, 71)
 
 [node name="EndPoint" type="Area2D"]
 script = ExtResource("1_8qe24")
 
 [node name="FloorSprite" type="AnimatedSprite2D" parent="."]
 z_index = -1
+position = Vector2(0, -5)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_wjwmu")
 animation = &"nextfloor"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 32.5)
+position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_1w6gq")
-
-[node name="FloatSprite" type="AnimatedSprite2D" parent="."]
-z_index = 1
-position = Vector2(0, -20)
-sprite_frames = SubResource("SpriteFrames_vn65a")
-animation = &"nextfloor"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

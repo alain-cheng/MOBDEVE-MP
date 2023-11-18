@@ -82,6 +82,7 @@ func _notification(what):
 			await get_tree().create_timer(1.0).timeout
 			backPressed = false
 		elif backPressed:
+			#No need to update json, default is no loss and no treasure
 			get_tree().quit()
 
 func on_damage_taken(damage = 1): #Default damage is 1
@@ -92,6 +93,8 @@ func on_damage_taken(damage = 1): #Default damage is 1
 	await get_tree().create_timer(3.5).timeout #Base on anims
 	
 	if PlayerData.health <= 0: #Game over
+		#Update signal_data.json
+		update_json(false, true)
 		get_tree().quit()
 	elif PlayerData.health > 0: #-1 Life
 		get_tree().reload_current_scene()
@@ -115,6 +118,8 @@ func ive_fallen():
 	elif(PlayerData.health <= 0 || PlayerData.lastFloor): #Die
 		ded()
 		await get_tree().create_timer(3.5).timeout #Base on anims
+		#Update signal_data.json
+		update_json(false, true)
 		get_tree().quit()
 	
 func ui_off():
@@ -127,3 +132,11 @@ func ui_off():
 func ded():
 	animation.play("death")
 	#TODO: Add popup for dying
+	
+func update_json(t, l):
+	var dict = {generateTreasure = t, loss = l}
+	var path = "user://signal_data.json"
+	if FileAccess.file_exists(path):
+		var file = FileAccess.open(path, FileAccess.WRITE)
+		file.store_line(JSON.stringify(dict))
+		file.close()

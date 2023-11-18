@@ -5,7 +5,7 @@ class_name Projectile1 extends Area2D
 var damage: int = 1
 var SPEED: int = 100
 signal damage_taken(damage)
-
+var parent_scale: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +15,10 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
 	var direction = Vector2.LEFT.rotated(rotation)
-	global_position += SPEED * direction * delta
+	if parent_scale.x < 0.0: #If parent is flipped in x axis
+		global_position -= SPEED * direction * delta
+	else:
+		global_position += SPEED * direction * delta
 
 
 func destroy():
@@ -31,6 +34,8 @@ func despawn():
 func _on_area_entered(area):
 	if area.name == "PlayerHurtbox":
 		damage_taken.emit(damage)
+		destroy()
+	if area.name == "Solids" || area.is_in_group("Solids"):
 		destroy()
 
 

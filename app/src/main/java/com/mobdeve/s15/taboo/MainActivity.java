@@ -56,28 +56,17 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         mDataViewModel.getPlayer().observe(this, playerData -> {
             try {
                 setBounty(playerData.getBounty());
-                switch (playerData.getTaboo()){
-                    case 0:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_0_v2);
-                        break;
-                    }
-                    case 1:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_1_v2);
-                        break;
-                    }
-                    case 2:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_2_v2);
-                        break;
-                    }
-                    case 3:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_3_v2);
-                        break;
-                    }
-                    case 4:{
-                        binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_4_v2);
-                        break;
-                    }
-                }
+                int CASE = playerData.getTaboo();
+                if(CASE < TreasureList.PHASE_1)
+                    binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_0_v2);
+                else if(CASE < TreasureList.PHASE_2)
+                    binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_1_v2);
+                else if(CASE < TreasureList.PHASE_3)
+                    binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_2_v2);
+                else if(CASE < TreasureList.PHASE_4)
+                    binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_3_v2);
+                else if(CASE >= TreasureList.PHASE_4)
+                    binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_4_v2);
             }catch (Exception e){
                 Log.v("MAIN_ACTIVITY", e.toString());
             }
@@ -106,36 +95,48 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
             String response = stringBuilder.toString();
             JSONObject signal  = new JSONObject(response);
 
-            //If generateTreasure = true, send to GenerateTreasure Activity
             boolean generateTreasure = signal.getBoolean("generateTreasure");
-            if(generateTreasure){
-                Log.v("MAIN_ACTIVITY", "Generating treasure...");
+            boolean loss = signal.getBoolean("loss");//Get boolean loss
 
-                //Set signal to false
-                JSONObject signalBack = new JSONObject();
-                signalBack.put("generateTreasure", false);
-                String userString = signalBack.toString();
-                FileWriter fileWriter = new FileWriter(file);
-                BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-                bufferedWriter.write(userString);
-                bufferedWriter.close();
+            //Get CurrentPlayerData and Current Treasury
+            ExecutorService threadpool = Executors.newCachedThreadPool();
+            Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mDataViewModel.getCurrentTreasury());
+            Future<PlayerData> futureData = threadpool.submit(() -> mDataViewModel.getCurrentPlayerData());
 
-                //Get CurrentPlayerData and Current Treasury
-                ExecutorService threadpool = Executors.newCachedThreadPool();
-                Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mDataViewModel.getCurrentTreasury());
-                Future<PlayerData> futureData = threadpool.submit(() -> mDataViewModel.getCurrentPlayerData());
+            while (!futureTreasure.isDone() && !futureData.isDone()) {
+                Log.v("MAIN_ACTIVITY", "Retrieving data...");
+            }
 
-                while (!futureTreasure.isDone() && !futureData.isDone()) {
-                    Log.v("MAIN_ACTIVITY", "Retrieving data...");
+            List<Treasure> currentTreasure = futureTreasure.get();
+            PlayerData playerData = futureData.get();
+
+            if(futureData.isDone() && futureTreasure.isDone()){
+                //An if statement that subtracts taboo on loss if taboo > 0
+                if(loss && playerData.getTaboo() > 0){
+                    playerData.setTaboo(playerData.getTaboo() + TreasureList.LOSS_ADD);
+                    if(playerData.getTaboo() < 0) //Prevent negative taboo value
+                        playerData.setTaboo(0);
+                    mDataViewModel.updatePlayer(playerData);
                 }
 
-                List<Treasure> currentTreasure = futureTreasure.get();
-                PlayerData playerData = futureData.get();
+                //If generateTreasure = true, send to GenerateTreasure Activity
+                else if(generateTreasure){
+                    Log.v("MAIN_ACTIVITY", "Generating treasure...");
 
-                if(futureData.isDone() && futureTreasure.isDone()){ //Wait until finish
-                    //Check if currentTreasure.size() != TreasureList.names.length() and taboo >= 4
+                    //Set signals to false
+                    JSONObject signalBack = new JSONObject();
+                    signalBack.put("generateTreasure", false);
+                    signalBack.put("loss", false);//Add signal for player loss
+                    String userString = signalBack.toString();
+                    FileWriter fileWriter = new FileWriter(file);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    bufferedWriter.write(userString);
+                    bufferedWriter.close();
+
+                    //Wait until finish
+                    //Check if currentTreasure.size() != TreasureList.names.length() and taboo >= PHASE_4
                     //Generate a unique treasure starting from item1, otherwise generate random based on rarity
-                    if(currentTreasure.size() != TreasureList.names.length && playerData.getTaboo() >= 4){
+                    if(currentTreasure.size() != TreasureList.names.length && playerData.getTaboo() >= TreasureList.PHASE_4){
                         Log.v("MAIN_ACTIVITY", "Generating unique treasure...");
                         //Loop through all names
                         boolean unique;
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                         playerData.setTaboo(0);
                         mDataViewModel.updatePlayer(playerData);
                     }else{
-                        //Generate rarity of treasure, taboo of 4 increases totalLuck by 10
+                        //Generate rarity of treasure, taboo of PHASE_4 increases totalLuck by 10
                         //Generate Treasure and add
                         TreasureList.genRandomTreasure("REWARD", "COMMON", playerData);
                         Treasure treasure = TreasureList.lastRandom;
@@ -194,8 +195,8 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                         startActivity(intent);
 
                         //Update taboo
-                        if(playerData.getTaboo() < 4)
-                            playerData.setTaboo(playerData.getTaboo() + 1); //Increment while below 4
+                        if(playerData.getTaboo() < TreasureList.PHASE_4) //ADD constant plus bonus while below PHASE_4
+                            playerData.setTaboo(playerData.getTaboo() + TreasureList.WIN_ADD + playerData.getTabooBonus());
                         else //Reset to zero
                             playerData.setTaboo(0);
                         mDataViewModel.updatePlayer(playerData);
@@ -257,6 +258,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
 
                 JSONObject signal = new JSONObject();
                 signal.put("generateTreasure", false);
+                signal.put("loss", false);//Add signal for player loss
 
                 String userString = player.toString();
                 File file = new File(context.getFilesDir(),"player_data.json");

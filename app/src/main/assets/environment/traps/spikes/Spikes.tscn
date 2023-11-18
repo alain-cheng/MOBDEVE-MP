@@ -31,7 +31,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wgm7w"]
-size = Vector2(134, 120)
+size = Vector2(154, 142)
 
 [node name="Spikes" type="Area2D"]
 z_index = -1
@@ -40,10 +40,10 @@ script = ExtResource("1_5gqcc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1p28f")
-animation = &"retracted"
+animation = &"extended"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -12)
+position = Vector2(-1, -13)
 shape = SubResource("RectangleShape2D_wgm7w")
 
 [node name="Timer" type="Timer" parent="."]
