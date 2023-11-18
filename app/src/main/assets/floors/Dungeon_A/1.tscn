@@ -34,7 +34,6 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_i8u5d")
 
 [node name="Foreground" type="TextureRect" parent="."]
-visible = false
 z_index = 1
 offset_right = 40.0
 offset_bottom = 40.0
