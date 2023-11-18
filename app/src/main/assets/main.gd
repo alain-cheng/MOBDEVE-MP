@@ -17,7 +17,7 @@ func _ready():
 	PlayerData.initData()
 	
 	#Move to another scene based on taboo
-	if(true): #rue is DEBUG. PHASE 0, Taboo < 6
+	if(true): #true is DEBUG. PHASE 0, Taboo < 6
 		#Append int for all floors that will be randomized
 		for i in range(DUNGEON_A_NUM_FLOORS):
 			PlayerData.floorsOnRun.append(i+1)
@@ -33,6 +33,5 @@ func _ready():
 		match PlayerData.floorsOnRun[0]:
 			1:
 				PlayerData.floorsOnRun.pop_front()
-				if PlayerData.floorsOnRun.size() <= 0:
-					PlayerData.lastFloor = true #DEBUG
+				PlayerData.checkLastFloor()
 				get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")

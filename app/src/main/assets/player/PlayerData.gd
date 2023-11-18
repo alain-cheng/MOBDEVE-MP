@@ -23,6 +23,10 @@ var friction = speed #At default player stops instantly, change for slippery sur
 var lastFloor = false #Determines if the endpoint is a win. Change at last floor.
 var floorsOnRun = [] #Array that contains what floors the player will go through
 
+func checkLastFloor():
+	if floorsOnRun.size() <= 0:
+		lastFloor = true
+
 func initData():
 	#Check if player_data.json exists
 	if(FileAccess.file_exists("user://player_data.json")):
