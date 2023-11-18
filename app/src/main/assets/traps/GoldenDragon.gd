@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var player
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var cooldown = $AttackTimer
+@onready var detection = $PlayerDetection/CollisionShape2D
 @export var projectile: PackedScene = preload("res://traps/Projectiles/fire_projectile_2.tscn")
 var attack = false
 var speed = 500
