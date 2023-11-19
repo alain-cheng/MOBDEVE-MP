@@ -9,6 +9,8 @@ extends Node2D
 func _ready():
 	#Connect endpoint to change floor
 	endpoint.changeFloor.connect(PlayerData.dungeonAFloorMovement)
+	#Connect player to change floor
+	player.fall_to_next.connect(PlayerData.dungeonAFloorMovement)
 	
 	#Init Traps
 	for spike in spikes:
