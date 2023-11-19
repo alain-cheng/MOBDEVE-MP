@@ -22,6 +22,8 @@ func _ready():
 		#Append int for all floors that will be randomized
 		for i in range(DUNGEON_A_NUM_FLOORS):
 			PlayerData.floorsOnRun.append(i+1)
+			
+		#TODO: Add code for dungeon shortening set bonus, maybe pop the first floor?
 		
 		#Shuffle all floors
 		for i in range(DUNGEON_A_NUM_FLOORS):
