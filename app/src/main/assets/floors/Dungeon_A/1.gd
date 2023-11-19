@@ -9,6 +9,7 @@ extends Node2D
 func _ready():
 	#Connect endpoint to change floor
 	endpoint.changeFloor.connect(PlayerData.dungeonAFloorMovement)
+	endpoint.player = player
 	#Connect player to change floor
 	player.fall_to_next.connect(PlayerData.dungeonAFloorMovement)
 	
