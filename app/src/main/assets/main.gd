@@ -15,10 +15,10 @@ func _ready():
 	
 	#Initialize data
 	PlayerData.initData()
-	#get_tree().change_scene_to_file("res://environment/interactive/win_popup/Win_Popup.tscn") #Debug
+	#get_tree().change_scene_to_file("res://floors/Dungeon_A/9_1.tscn") #Debug
 	
 	#Move to another scene based on taboo
-	if(true): #TODO: true is DEBUG. PHASE 0, Taboo < 6
+	if(true): #TODO: true/false is DEBUG. PHASE 0, Taboo < 6, Maybe move this to PlayerData?
 		#Append int for all floors that will be randomized
 		for i in range(DUNGEON_A_NUM_FLOORS):
 			PlayerData.floorsOnRun.append(i+1)
