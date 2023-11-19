@@ -10,19 +10,14 @@ var speed = 250
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	animation.play("idle")
+	animation.play("attack")
+	cooldown.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	# Can only attack if player is in its kill zone, player is not dead
-	#and the cooldown is reached
-	if attack == true && !player.isDed:
-		animation.play("attack")
 		if cooldown.is_stopped():
 			fire()
-	else:
-		animation.play("idle")
 
 
 func fire():
