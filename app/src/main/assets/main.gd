@@ -15,6 +15,7 @@ func _ready():
 	
 	#Initialize data
 	PlayerData.initData()
+	#get_tree().change_scene_to_file("res://environment/interactive/win_popup/Win_Popup.tscn") #Debug
 	
 	#Move to another scene based on taboo
 	if(true): #TODO: true is DEBUG. PHASE 0, Taboo < 6
