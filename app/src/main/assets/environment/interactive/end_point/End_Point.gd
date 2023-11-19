@@ -21,6 +21,11 @@ func _physics_process(_delta):
 func _on_body_entered(body):
 	if body.name == "Player": #Detects if Player enters the endpoint
 		if(PlayerData.lastFloor):
+			player.transitions.play("Fade out")
+			player.animation.play("treasureGet")
+			player.falling = true
+			player.ui_off()
+			await get_tree().create_timer(1.1).timeout #Base on anims
 			isWin = true
 			#Quits the game, changes generateTreasure to true
 			#var dict = {generateTreasure = true, loss = false}
@@ -31,4 +36,8 @@ func _on_body_entered(body):
 				#file.close()
 			#get_tree().quit()
 		else:
+			player.transitions.play("Fade out")
+			player.falling = true
+			player.ui_off()
+			await get_tree().create_timer(0.9).timeout #Base on anims
 			changeFloor.emit()

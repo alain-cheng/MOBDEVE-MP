@@ -5,14 +5,22 @@ extends CharacterBody2D
 @onready var collider = get_node("EnvironmentCollider")
 @onready var hurtbox = get_node("PlayerHurtbox/HurtboxColliider")
 @onready var hurtbox_area = get_node("PlayerHurtbox")
+@onready var transitions = $PlayerCamera/Transitions/TransitionsPlayer
 var backPressed = false
 var isDed = false
 var falling = false
 signal fall_to_next
 
 func _ready():
+	falling = true
 	#Play Idle anim on load
 	animation.play("idle")
+	#Play Fade in Transition
+	transitions.play("Fade in")
+	await get_tree().create_timer(0.4).timeout #Base on anims
+	#Enable GUI
+	buttons.show()
+	falling = false
 
 func _physics_process(_delta):
 	if(!isDed && !falling):
@@ -89,10 +97,14 @@ func on_damage_taken(damage = 1): #Default damage is 1
 	PlayerData.health = PlayerData.health - damage
 	isDed = true
 	ui_off()
-	ded()
+	animation.play("death")
 	await get_tree().create_timer(3.5).timeout #Base on anims
 	
 	if PlayerData.health <= 0: #Game over
+		transitions.play("Fade out")
+		await get_tree().create_timer(0.9).timeout #Base on anims
+		#TODO: Add popup for dying
+		
 		#Update signal_data.json
 		update_json(false, true)
 		get_tree().quit()
@@ -116,8 +128,12 @@ func ive_fallen():
 	if(PlayerData.health > 0 && !PlayerData.lastFloor): #fall to next floor
 		fall_to_next.emit()
 	elif(PlayerData.health <= 0 || PlayerData.lastFloor): #Die
-		ded()
+		animation.play("death")
 		await get_tree().create_timer(3.5).timeout #Base on anims
+		transitions.play("Fade out")
+		await get_tree().create_timer(0.9).timeout #Base on anims
+		#TODO: Add popup for dying
+		
 		#Update signal_data.json
 		update_json(false, true)
 		get_tree().quit()
@@ -128,10 +144,6 @@ func ui_off():
 	hurtbox.set_deferred("disabled", true)
 	hurtbox_area.set_deferred("monitorable", false)
 	buttons.hide()
-
-func ded():
-	animation.play("death")
-	#TODO: Add popup for dying
 	
 func update_json(t, l):
 	var dict = {generateTreasure = t, loss = l}
