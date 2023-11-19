@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://btymg45ij342p"]
+[gd_scene load_steps=29 format=3 uid="uid://btymg45ij342p"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_q2xcu"]
 [ext_resource type="Texture2D" uid="uid://cpr0jsuwiod67" path="res://sprites/player/down/down_1.png" id="2_5htem"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://db5qeoi5eb78b" path="res://sprites/player/up/up_2.png" id="16_arsk4"]
 [ext_resource type="Texture2D" uid="uid://b32ygixawrsac" path="res://sprites/buttons/button_placeholder_up.png" id="19_g3l2f"]
 [ext_resource type="Texture2D" uid="uid://cub8xceqt4usg" path="res://sprites/buttons/button_placeholder_down.png" id="20_q1uxl"]
+[ext_resource type="Texture2D" uid="uid://bi4hnmyn7dl1y" path="res://sprites/player/player_icon.png" id="21_lieit"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8r5le"]
 animations = [{
@@ -315,6 +316,29 @@ color = Color(0, 0, 0, 1)
 libraries = {
 "": SubResource("AnimationLibrary_ycbx5")
 }
+
+[node name="LifeCounter" type="CanvasLayer" parent="PlayerCamera"]
+layer = 2
+visible = false
+scale = Vector2(1.5, 1.5)
+transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
+
+[node name="PlayerIcon" type="TextureRect" parent="PlayerCamera/LifeCounter"]
+offset_left = 107.0
+offset_top = 72.0
+offset_right = 165.0
+offset_bottom = 130.0
+texture = ExtResource("21_lieit")
+
+[node name="Lives" type="RichTextLabel" parent="PlayerCamera/LifeCounter"]
+offset_left = 168.0
+offset_top = 72.0
+offset_right = 248.0
+offset_bottom = 141.0
+theme_override_font_sizes/normal_font_size = 50
+text = "× 0"
+fit_content = true
+autowrap_mode = 0
 
 [node name="PlayerHurtbox" type="Area2D" parent="." groups=["Player"]]
 

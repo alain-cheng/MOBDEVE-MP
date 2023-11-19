@@ -6,13 +6,15 @@ extends CharacterBody2D
 @onready var hurtbox = get_node("PlayerHurtbox/HurtboxColliider")
 @onready var hurtbox_area = get_node("PlayerHurtbox")
 @onready var transitions = $PlayerCamera/Transitions/TransitionsPlayer
+@onready var healthCounter = $PlayerCamera/LifeCounter/Lives
 var backPressed = false
 var isDed = false
 var falling = false
 signal fall_to_next
 
 func _ready():
-	falling = true
+	falling = true #Prevent movement
+	healthCounter.text = "× " + str(PlayerData.health) #Load health
 	#Play Idle anim on load
 	animation.play("idle")
 	#Play Fade in Transition
@@ -20,6 +22,7 @@ func _ready():
 	await get_tree().create_timer(0.4).timeout #Base on anims
 	#Enable GUI
 	buttons.show()
+	$PlayerCamera/LifeCounter.show()
 	falling = false
 
 func _physics_process(_delta):
@@ -144,6 +147,7 @@ func ui_off():
 	hurtbox.set_deferred("disabled", true)
 	hurtbox_area.set_deferred("monitorable", false)
 	buttons.hide()
+	$PlayerCamera/LifeCounter.hide()
 	
 func update_json(t, l):
 	var dict = {generateTreasure = t, loss = l}
