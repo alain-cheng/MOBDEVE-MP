@@ -1,0 +1,220 @@
+[gd_scene load_steps=26 format=3 uid="uid://cfxqnvbryju1e"]
+
+[ext_resource type="Script" path="res://floors/Dungeon_A/9_1.gd" id="1_lr2sr"]
+[ext_resource type="Texture2D" uid="uid://b55t8kktppbjt" path="res://sprites/floors/A/9_1.png" id="2_ead4w"]
+[ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_6a6xk"]
+[ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_82tlx"]
+[ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="5_64fah"]
+[ext_resource type="PackedScene" uid="uid://u1ute5oe5d4n" path="res://traps/GoldenDragon.tscn" id="6_w6yk3"]
+[ext_resource type="PackedScene" uid="uid://42v35pmaar3w" path="res://traps/DragonGargoyle.tscn" id="7_bb630"]
+[ext_resource type="PackedScene" uid="uid://b4avbltaqwlpm" path="res://traps/Kapre.tscn" id="8_dmnq5"]
+[ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="9_u0i1e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_to0gw"]
+size = Vector2(55, 984)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecl80"]
+size = Vector2(2261, 135)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sl0ym"]
+size = Vector2(464.5, 177)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvch6"]
+size = Vector2(275, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2dn4"]
+size = Vector2(148.5, 110)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_020va"]
+size = Vector2(237.702, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6hkma"]
+size = Vector2(150, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ls1gu"]
+size = Vector2(825, 92)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vx31"]
+size = Vector2(20, 398.869)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l6r5e"]
+size = Vector2(38, 468)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1edke"]
+size = Vector2(58, 562.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kq7dk"]
+size = Vector2(71, 202)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isgws"]
+size = Vector2(255, 64.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5wxv"]
+size = Vector2(151, 46)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_keb6w"]
+size = Vector2(772, 144)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jf4j0"]
+size = Vector2(46, 449)
+
+[node name="91" type="Node2D"]
+script = ExtResource("1_lr2sr")
+
+[node name="Background" type="TextureRect" parent="."]
+z_index = -2
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_ead4w")
+
+[node name="Player" parent="." instance=ExtResource("3_6a6xk")]
+position = Vector2(288, 229)
+
+[node name="EndPoint" parent="." instance=ExtResource("4_82tlx")]
+position = Vector2(1334, 169)
+
+[node name="EndPoint2" parent="." instance=ExtResource("4_82tlx")]
+position = Vector2(1994, 737)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(103.5, 482)
+shape = SubResource("RectangleShape2D_to0gw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2188, 486)
+shape = SubResource("RectangleShape2D_to0gw")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1120.5, 57.5)
+shape = SubResource("RectangleShape2D_ecl80")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1130, 1030)
+shape = SubResource("RectangleShape2D_ecl80")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+position = Vector2(362.75, 402.5)
+shape = SubResource("RectangleShape2D_sl0ym")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
+position = Vector2(733.5, 386)
+shape = SubResource("RectangleShape2D_lvch6")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
+position = Vector2(767.75, 436)
+shape = SubResource("RectangleShape2D_k2dn4")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
+position = Vector2(920, 402)
+rotation = -0.715585
+shape = SubResource("RectangleShape2D_020va")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Walls"]
+position = Vector2(928, 324)
+shape = SubResource("RectangleShape2D_6hkma")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Walls"]
+position = Vector2(870.5, 642)
+shape = SubResource("RectangleShape2D_ls1gu")
+
+[node name="CollisionShape2D11" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1089.48, 462.521)
+rotation = 0.785398
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_1vx31")
+
+[node name="CollisionShape2D12" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1264, 360)
+shape = SubResource("RectangleShape2D_l6r5e")
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1417, 407.25)
+shape = SubResource("RectangleShape2D_1edke")
+
+[node name="CollisionShape2D14" type="CollisionShape2D" parent="Walls"]
+position = Vector2(317.5, 697)
+shape = SubResource("RectangleShape2D_kq7dk")
+
+[node name="CollisionShape2D15" type="CollisionShape2D" parent="Walls"]
+position = Vector2(481.5, 766.75)
+shape = SubResource("RectangleShape2D_isgws")
+
+[node name="CollisionShape2D16" type="CollisionShape2D" parent="Walls"]
+position = Vector2(533.5, 711)
+shape = SubResource("RectangleShape2D_x5wxv")
+
+[node name="CollisionShape2D17" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1774, 890)
+shape = SubResource("RectangleShape2D_keb6w")
+
+[node name="CollisionShape2D18" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1810, 591.5)
+shape = SubResource("RectangleShape2D_jf4j0")
+
+[node name="Pitfall" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(656, 176)
+
+[node name="Pitfall2" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(874, 177)
+
+[node name="Pitfall3" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1076, 834)
+
+[node name="Pitfall4" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1492, 645)
+
+[node name="Pitfall5" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1737, 410)
+
+[node name="Pitfall6" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1769, 324)
+
+[node name="Kapre" parent="." instance=ExtResource("8_dmnq5")]
+position = Vector2(658, 784)
+
+[node name="GoldenDragon" parent="." instance=ExtResource("6_w6yk3")]
+position = Vector2(61, 526)
+scale = Vector2(-1, 1)
+
+[node name="GoldenDragon2" parent="." instance=ExtResource("6_w6yk3")]
+position = Vector2(2246, 525)
+
+[node name="GoldenDragon3" parent="." instance=ExtResource("6_w6yk3")]
+position = Vector2(61, 565)
+scale = Vector2(-1, 1)
+
+[node name="DragonGargoyle" parent="." instance=ExtResource("7_bb630")]
+position = Vector2(561, 816)
+
+[node name="DragonGargoyle2" parent="." instance=ExtResource("7_bb630")]
+position = Vector2(808, 922)
+
+[node name="DragonGargoyle3" parent="." instance=ExtResource("7_bb630")]
+position = Vector2(2266, 184)
+
+[node name="DragonGargoyle4" parent="." instance=ExtResource("7_bb630")]
+position = Vector2(2266, 266)
+
+[node name="DragonGargoyle5" parent="." instance=ExtResource("7_bb630")]
+position = Vector2(2266, 352)
+
+[node name="Kapre2" parent="." instance=ExtResource("8_dmnq5")]
+position = Vector2(1633, 982)
+
+[node name="Spikes" parent="." instance=ExtResource("9_u0i1e")]
+position = Vector2(1335, 622)
+
+[node name="Spikes2" parent="." instance=ExtResource("9_u0i1e")]
+position = Vector2(1335, 532)
+
+[node name="Spikes3" parent="." instance=ExtResource("9_u0i1e")]
+position = Vector2(1335, 442)
+
+[node name="Spikes4" parent="." instance=ExtResource("9_u0i1e")]
+position = Vector2(1335, 352)
+
+[node name="Spikes5" parent="." instance=ExtResource("9_u0i1e")]
+position = Vector2(1335, 262)

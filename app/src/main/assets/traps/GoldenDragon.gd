@@ -6,13 +6,15 @@ extends CharacterBody2D
 @onready var detection = $PlayerDetection/CollisionShape2D
 @export var projectile: PackedScene = preload("res://traps/Projectiles/fire_projectile_2.tscn")
 var attack = false
+var delay = 1.0
+var cool_time = 0.05 #Shoots a stream of fire
 var speed = 500
-#var triggers = 999 # number of times trap can shoot
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	animation.play("idle")
+	cooldown.wait_time = cool_time
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -20,6 +22,7 @@ func _physics_process(_delta):
 	# Can only attack if player is in its kill zone and the cooldown is reached
 	if attack == true && !player.isDed:
 		animation.play("attack")
+		await get_tree().create_timer(delay).timeout #Firing delay
 		if cooldown.is_stopped():
 			fire()
 	else:

@@ -10,15 +10,17 @@ extends Node2D
 func _ready():
 	#Connect endpoint to change floor
 	endpoint.changeFloor.connect(PlayerData.dungeonAFloorMovement)
+	endpoint.player = player
+	#Connect player to change floor
+	player.fall_to_next.connect(PlayerData.dungeonAFloorMovement)
 	
 	#Init traps
 	for d in dragons1: #Dragons on Bottom
 		d.player = player
 		d.speed = 350
-		d.detection.apply_scale(Vector2(1, 4))
+		d.cooldown.wait_time = 1.0
 	for d in dragons2: #Dragons on top route
 		d.player = player
-		d.detection.apply_scale(Vector2(2, 2))
 		d.cooldown.wait_time = 2.5
 	for p in pitfalls:
 		p.fallen_down.connect(player.ive_fallen)

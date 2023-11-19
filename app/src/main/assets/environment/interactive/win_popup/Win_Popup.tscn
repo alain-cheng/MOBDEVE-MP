@@ -1,6 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://lcx1058otq1p"]
+[gd_scene load_steps=15 format=3 uid="uid://lcx1058otq1p"]
 
 [ext_resource type="Script" path="res://environment/interactive/win_popup/Win_Popup.gd" id="1_xreuc"]
+[ext_resource type="Texture2D" uid="uid://dhn07adk7vupv" path="res://sprites/player/idle/idle_stand.png" id="2_7eew5"]
+[ext_resource type="Texture2D" uid="uid://cfbed1yvrefsi" path="res://sprites/player/idle/idle_jump_1.png" id="3_vo78p"]
+[ext_resource type="Texture2D" uid="uid://cbcums3dtyd0c" path="res://sprites/player/idle/idle_jump_2.png" id="4_st4gr"]
+[ext_resource type="Texture2D" uid="uid://xsvvdgvrnhl7" path="res://sprites/player/idle/idle_jump_3.png" id="5_5dc8d"]
+[ext_resource type="Texture2D" uid="uid://duxcjdu0cgmbp" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="6_khjw1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrg0k"]
 
@@ -42,25 +47,80 @@ _data = {
 "popup_end": SubResource("Animation_gg2qm")
 }
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_wdtkd"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("2_7eew5")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_vo78p")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_st4gr")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_5dc8d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 3.0
+}]
+
+[sub_resource type="Animation" id="Animation_mt3i2"]
+resource_name = "Blinking text"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.392157), Color(1, 1, 1, 1), Color(1, 1, 1, 0.392157)]
+}
+
+[sub_resource type="Animation" id="Animation_l5a0q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RichTextLabel2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0yh63"]
+_data = {
+"Blinking text": SubResource("Animation_mt3i2"),
+"RESET": SubResource("Animation_l5a0q")
+}
+
 [node name="Control" type="Control"]
 layout_mode = 3
-anchor_left = 0.267
-anchor_top = 0.296
-anchor_right = 0.72
-anchor_bottom = 0.711
-offset_left = -640.8
-offset_top = -319.68
-offset_right = -1688.0
-offset_bottom = -727.88
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_xreuc")
 
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(0.243137, 0.172549, 0.0705882, 1)
-layout_mode = 0
-offset_left = 640.0
-offset_top = 320.0
-offset_right = 1728.0
-offset_bottom = 768.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 pivot_offset = Vector2(544, 224)
 theme_override_styles/panel = SubResource("StyleBoxFlat_jrg0k")
 
@@ -71,13 +131,14 @@ anchor_left = 0.007
 anchor_top = 0.268
 anchor_right = 0.993
 anchor_bottom = 0.518
-offset_left = -7.616
+offset_left = -16.8
 offset_top = -16.064
-offset_right = 7.61597
-offset_bottom = 8.936
+offset_right = 16.8
+offset_bottom = -149.064
+mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "[center]Winner![/center]"
+text = "[center]Treasure Found![/center]"
 fit_content = true
 scroll_active = false
 
@@ -87,13 +148,48 @@ libraries = {
 }
 
 [node name="ButtonClosePopup" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 440.0
-offset_top = 280.0
-offset_right = 648.0
-offset_bottom = 357.0
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_font_sizes/font_size = 50
-text = "Confirm"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -1200.0
+offset_top = 60.0
+offset_right = 1200.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(1200, 14.5)
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center]Tap to continue...[/center]"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
+position = Vector2(1025, 500)
+sprite_frames = SubResource("SpriteFrames_wdtkd")
+
+[node name="Sprite2D" type="Sprite2D" parent="Panel"]
+position = Vector2(1125, 525)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_khjw1")
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="Panel"]
+libraries = {
+"": SubResource("AnimationLibrary_0yh63")
+}
 
 [node name="ButtonOpenPopup" type="Button" parent="."]
 visible = false

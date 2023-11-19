@@ -32,18 +32,18 @@ func dungeonAFloorMovement():
 	PlayerData.checkLastFloor() #Check if lastfloor next
 	
 	if lastFloor: #If so, move to last floor
-		pass #TODO: Fill this in later
+		#TODO: Match case based on taboo maybe?
+		get_tree().change_scene_to_file("res://floors/Dungeon_A/9_1.tscn")
 	
 	#Else, match case for next floor
-	match floorsOnRun[0]:
-		1:
-			floorsOnRun.pop_front()
-			checkLastFloor() #TODO: DEBUG REMOVE
-			get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")
-		2:
-			floorsOnRun.pop_front()
-			checkLastFloor() #TODO: DEBUG REMOVE
-			get_tree().change_scene_to_file("res://floors/Dungeon_A/2.tscn")
+	else:
+		match floorsOnRun[0]:
+			1:
+				floorsOnRun.pop_front()
+				get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")
+			2:
+				floorsOnRun.pop_front()
+				get_tree().change_scene_to_file("res://floors/Dungeon_A/2.tscn")
 
 func initData():
 	#Check if player_data.json exists

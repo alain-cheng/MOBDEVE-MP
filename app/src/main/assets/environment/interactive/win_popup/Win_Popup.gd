@@ -1,10 +1,14 @@
 extends Control
 #TODO: Make win popup prettier
 @onready var animation = $Panel/AnimationPlayer
+@onready var player = $Panel/AnimatedSprite2D
+@onready var animation2 = $Panel/AnimationPlayer2
 signal confirm
 
 func _ready():
 	animation.play("popup")
+	animation2.play("Blinking text")
+	player.play("default")
 
 
 func _on_button_close_popup_pressed():

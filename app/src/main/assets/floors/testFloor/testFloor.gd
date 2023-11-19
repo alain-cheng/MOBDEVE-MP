@@ -8,9 +8,11 @@ extends Node2D
 @onready var kapre = [get_node("Kapre")]
 @onready var pitfalls = [get_node("Pitfall")]
 @onready var player = get_node("Player")
+@onready var endpoint = get_node("EndPoint")
 
 # Called when the node enters the scene tree for the first time.
-func _ready():	
+func _ready():
+	endpoint.player = player
 	#Init traps
 	for dragon in dragons:
 		dragon.player = player
