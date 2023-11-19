@@ -10,7 +10,7 @@ var initBountyBonus
 
 #Contains a copy of the above information for the game to manipulate
 #Default values listed
-var health = 1
+var health = 5
 var bounty = 0
 var taboo = 0
 var tabooBonus = 0
