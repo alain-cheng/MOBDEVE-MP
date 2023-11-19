@@ -178,11 +178,11 @@ bbcode_enabled = true
 text = "[center]Tap to continue...[/center]"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
-position = Vector2(920, 500)
+position = Vector2(1025, 500)
 sprite_frames = SubResource("SpriteFrames_wdtkd")
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]
-position = Vector2(1020, 525)
+position = Vector2(1125, 525)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_khjw1")
 

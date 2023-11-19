@@ -85,10 +85,13 @@ position = Vector2(710, 390)
 scale = Vector2(0.6, 0.6)
 
 [node name="Kapre" parent="." instance=ExtResource("7_ceng6")]
-position = Vector2(586, 970)
+z_index = 1
+position = Vector2(586, 961)
 
 [node name="Kapre2" parent="." instance=ExtResource("7_ceng6")]
-position = Vector2(265, 970)
+z_index = 1
+position = Vector2(265, 961)
 
 [node name="Kapre3" parent="." instance=ExtResource("7_ceng6")]
-position = Vector2(921, 970)
+z_index = 1
+position = Vector2(921, 961)

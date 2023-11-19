@@ -13,6 +13,7 @@ var falling = false
 signal fall_to_next
 
 func _ready():
+	$PlayerCamera/Transitions.show() #Activate transitions
 	falling = true #Prevent movement
 	healthCounter.text = "× " + str(PlayerData.health) #Load health
 	#Play Idle anim on load

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bejixiew340rh" path="res://sprites/traps/Kapre/Kapre.png" id="1_mtsfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyyie"]
-size = Vector2(181, 216)
+size = Vector2(181, 180)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jrnrn"]
 atlas = ExtResource("1_mtsfy")
@@ -47,7 +47,7 @@ z_index = -1
 script = ExtResource("1_hjh5v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, -80)
+position = Vector2(-2.5, -69)
 shape = SubResource("RectangleShape2D_xyyie")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
