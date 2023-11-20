@@ -31,6 +31,7 @@ position = Vector2(84, 186)
 
 [node name="EndPoint" parent="." instance=ExtResource("4_47t7d")]
 position = Vector2(748, 869)
+scale = Vector2(-1, 1)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 scale = Vector2(0.5, 0.5)

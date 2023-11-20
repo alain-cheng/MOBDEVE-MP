@@ -12,7 +12,7 @@ var initBountyBonus
 #Default values listed
 var health = 5
 var bounty = 0
-var taboo = 0
+var taboo = 36
 var tabooBonus = 0
 var luck = 0
 var bountyBonus = 0
@@ -30,6 +30,8 @@ var group1 = ["res://floors/Dungeon_A/1.tscn"]
 var group2 = ["res://floors/Dungeon_A/2.tscn"]
 #The Furnace
 var group3 = ["res://floors/Dungeon_A/3.tscn"]
+#Spiral Ruins
+var group4 = ["res://floors/Dungeon_A/4.tscn"]
 #Crimson Manor
 var final1 = ["res://floors/Dungeon_A/9_1.tscn"]
 
@@ -64,6 +66,9 @@ func dungeonFloorMovement():
 			3:
 				floorsOnRun.pop_front()
 				get_tree().change_scene_to_file(group3[rng.randi_range(0,group3.size()-1)])
+			4:
+				floorsOnRun.pop_front()
+				get_tree().change_scene_to_file(group4[rng.randi_range(0,group4.size()-1)])
 
 func initData():
 	#Check if player_data.json exists

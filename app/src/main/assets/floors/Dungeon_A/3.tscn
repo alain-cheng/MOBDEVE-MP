@@ -52,6 +52,7 @@ texture = ExtResource("2_a3xia")
 position = Vector2(917, 118)
 
 [node name="EndPoint" parent="." instance=ExtResource("4_1hqia")]
+modulate = Color(0.678431, 0.396078, 0.396078, 1)
 position = Vector2(310, 871)
 
 [node name="Walls" type="StaticBody2D" parent="."]
