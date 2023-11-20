@@ -22,28 +22,42 @@ var speed = 300.0
 var friction = speed #At default player stops instantly, change for slippery surfaces
 var lastFloor = false #Determines if the endpoint is a win. Change at last floor.
 var floorsOnRun = [] #Array that contains what floors the player will go through
+var kapreForest = ["res://floors/Dungeon_A/1.tscn"]
+var dragonTower = ["res://floors/Dungeon_A/2.tscn"]
+var crimsonManor = ["res://floors/Dungeon_A/9_1.tscn"]
+var theFurnace = ["res://floors/Dungeon_A/3.tscn"]
+
+var rng = RandomNumberGenerator.new()
+const PHASE_1 = 6
+const PHASE_2 = 24
+const PHASE_3 = 36
+const PHASE_4 = 51
 
 func checkLastFloor():
 	if floorsOnRun.size() <= 0:
 		lastFloor = true
 		
-func dungeonAFloorMovement():
+func dungeonFloorMovement():
 	#Move to another scene based on floorsOnRun array
+	rng.randomize()
 	PlayerData.checkLastFloor() #Check if lastfloor next
 	
 	if lastFloor: #If so, move to last floor
-		#TODO: Match case based on taboo maybe?
-		get_tree().change_scene_to_file("res://floors/Dungeon_A/9_1.tscn")
+		#TODO: If-else based on taboo, starting from the top e.g. taboo >= PHASE_4
+		get_tree().change_scene_to_file(crimsonManor[rng.randi_range(0, crimsonManor.size()-1)])
 	
 	#Else, match case for next floor
 	else:
 		match floorsOnRun[0]:
 			1:
 				floorsOnRun.pop_front()
-				get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")
+				get_tree().change_scene_to_file(kapreForest[rng.randi_range(0,kapreForest.size()-1)])
 			2:
 				floorsOnRun.pop_front()
-				get_tree().change_scene_to_file("res://floors/Dungeon_A/2.tscn")
+				get_tree().change_scene_to_file(dragonTower[rng.randi_range(0,dragonTower.size()-1)])
+			3:
+				floorsOnRun.pop_front()
+				get_tree().change_scene_to_file(theFurnace[rng.randi_range(0,theFurnace.size()-1)])
 
 func initData():
 	#Check if player_data.json exists

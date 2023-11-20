@@ -19,13 +19,13 @@ func _ready():
 	rng.randomize()
 	#Connect endpoint to change floor
 	for e in endpoints:
-		e.changeFloor.connect(PlayerData.dungeonAFloorMovement)
+		e.changeFloor.connect(PlayerData.dungeonFloorMovement)
 		e.player = player
 	#Remove one endpoint
 	var index = rng.randi_range(0, 1)
 	endpoints[index].call_deferred("queue_free")
 	#Connect player to change floor
-	player.fall_to_next.connect(PlayerData.dungeonAFloorMovement)
+	player.fall_to_next.connect(PlayerData.dungeonFloorMovement)
 	
 	#Init traps
 	for gDragon in gDragons:
@@ -45,5 +45,5 @@ func _ready():
 		k.cooldown.wait_time = 8.0
 	for spike in spikes:
 		spike.damage_taken.connect(player.on_damage_taken)
-		spike.timer.wait_time = 2.5
+		spike.timer.wait_time = 2.0
 		spike.timer.start()
