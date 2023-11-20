@@ -43,7 +43,7 @@ shape = SubResource("RectangleShape2D_gvh46")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t58kb")
 animation = &"idle"
-frame_progress = 0.659621
+frame_progress = 0.266812
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 
