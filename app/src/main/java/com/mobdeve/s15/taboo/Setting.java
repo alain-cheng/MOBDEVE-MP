@@ -57,6 +57,20 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
         binding.erasebutton.setOnClickListener(this::eraseListener);
         binding.loginbutton.setOnClickListener(this::loginListener);
         binding.logoutbutton.setOnClickListener(this::logoutListener);
+        binding.taboopediabutton.setOnClickListener(this::taboopediaListener);
+        binding.tutorialbutton.setOnClickListener(this::tutorialListener);
+    }
+
+    private void tutorialListener(View v) {
+        v.startAnimation(buttonClick);
+        Intent intent = new Intent(this, Tutorial.class);
+        startActivity(intent);
+    }
+
+    private void taboopediaListener(View v) {
+        v.startAnimation(buttonClick);
+        Intent intent = new Intent(this, Taboopedia.class);
+        startActivity(intent);
     }
 
     private void backListener(View v){
