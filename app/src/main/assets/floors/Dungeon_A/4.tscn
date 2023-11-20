@@ -1,10 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://ddnbs7rhmy3hl"]
+[gd_scene load_steps=16 format=3 uid="uid://ddnbs7rhmy3hl"]
 
 [ext_resource type="Script" path="res://floors/Dungeon_A/4.gd" id="1_pknyh"]
 [ext_resource type="Texture2D" uid="uid://cadh3vxcywrar" path="res://sprites/floors/A/4.png" id="2_mt6b3"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_gsmxh"]
 [ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_qm1pn"]
-[ext_resource type="PackedScene" uid="uid://df5kyj6v1bldp" path="res://traps/Manananggal.tscn" id="5_yn321"]
 [ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="6_a43dm"]
 [ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="7_10sym"]
 [ext_resource type="PackedScene" uid="uid://u1ute5oe5d4n" path="res://traps/GoldenDragon.tscn" id="8_j2sgw"]
@@ -82,12 +81,6 @@ shape = SubResource("RectangleShape2D_raayd")
 [node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
 position = Vector2(672.5, 711.5)
 shape = SubResource("RectangleShape2D_jhx3w")
-
-[node name="Manananggal" parent="." instance=ExtResource("5_yn321")]
-position = Vector2(539, 365)
-
-[node name="Manananggal2" parent="." instance=ExtResource("5_yn321")]
-position = Vector2(401, 365)
 
 [node name="Spikes" parent="." instance=ExtResource("6_a43dm")]
 position = Vector2(157, 469)
