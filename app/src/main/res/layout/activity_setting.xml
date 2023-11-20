@@ -122,6 +122,20 @@
             android:layout_marginTop="50dp"
             app:srcCompat="@drawable/group_723game_heading" />
 
+        <ImageView
+            android:id="@+id/tutorialbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            app:srcCompat="@drawable/itemboxtutorial_heading" />
+
+        <ImageView
+            android:id="@+id/taboopediabutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            app:srcCompat="@drawable/itemboxtaboopedia_heading" />
+
         <ImageButton
             android:id="@+id/erasebutton"
             android:layout_width="wrap_content"

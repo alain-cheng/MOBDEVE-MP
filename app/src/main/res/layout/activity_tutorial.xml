@@ -6,7 +6,7 @@
     android:background="@drawable/backdrop1">
 
     <ImageView
-        android:id="@+id/collection_text_iv"
+        android:id="@+id/tutorial_text_iv"
         android:layout_width="254dp"
         android:layout_height="40dp"
         android:layout_alignParentTop="true"
@@ -14,12 +14,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="60dp"
-        android:layout_toEndOf="@+id/collection_back_ibtn"
-        android:contentDescription="@string/text_collection"
-        app:srcCompat="@drawable/text_collection" />
+        android:layout_toEndOf="@+id/tutorial_back_ibtn"
+        android:contentDescription="@string/text_tutorial"
+        app:srcCompat="@drawable/text_tutorial" />
 
     <ImageButton
-        android:id="@+id/collection_back_ibtn"
+        android:id="@+id/tutorial_back_ibtn"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_alignParentStart="true"
@@ -33,7 +33,7 @@
     <ScrollView
         android:layout_width="wrap_content"
         android:layout_height="600dp"
-        android:layout_below="@+id/collection_text_iv"
+        android:layout_below="@+id/tutorial_text_iv"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="20dp"
@@ -45,14 +45,33 @@
         android:paddingBottom="5dp"
         android:scrollbars="none">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/item_recyclerView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
             android:layout_marginRight="5dp"
-            android:layout_marginBottom="5dp" />
-    </ScrollView>
+            android:layout_marginBottom="5dp">
 
+            <ImageView
+                android:id="@+id/tutorial_contents_1_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tutorial_contents_1" />
+
+            <ImageView
+                android:id="@+id/tutorial_contents_2_iv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/tutorial_contents_2" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@android:color/transparent"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:cardElevation="0dp" />
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
