@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0kkmwjqnufl"
-path="res://.godot/imported/Manananggal.png-fdbf82a0c36261a8e2f20fbd1616de87.ctex"
+uid="uid://bmur1t1qoy0hd"
+path="res://.godot/imported/m_idle.png-72a9be762ad5fcbc18df9d6e9eed5589.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/traps/Manananggal/Manananggal.png"
-dest_files=["res://.godot/imported/Manananggal.png-fdbf82a0c36261a8e2f20fbd1616de87.ctex"]
+source_file="res://sprites/traps/Manananggal/m_idle.png"
+dest_files=["res://.godot/imported/m_idle.png-72a9be762ad5fcbc18df9d6e9eed5589.ctex"]
 
 [params]
 

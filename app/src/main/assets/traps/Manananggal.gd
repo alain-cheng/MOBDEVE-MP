@@ -3,8 +3,10 @@ extends CharacterBody2D
 @onready var player
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var cooldown = $AttackTimer
+@onready var detection = $PlayerDetection/CollisionShape2D
 @export var beam: PackedScene = preload("res://traps/Projectiles/manananggal_tongue.tscn")
 var attack = false
+var delay = 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -15,7 +17,8 @@ func _ready():
 func _physics_process(_delta):
 	if attack == true && !player.isDed:
 		animation.play("attack")
-		if cooldown.is_stopped():
+		await get_tree().create_timer(delay).timeout #Firing delay
+		if cooldown.is_stopped() &&  attack == true && !player.isDed: #Dont fire if player leaves
 			fire()
 	else:
 		animation.play("idle")
