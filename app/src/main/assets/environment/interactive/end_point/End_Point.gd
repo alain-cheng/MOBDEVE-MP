@@ -1,7 +1,7 @@
 extends Area2D
 
 @onready var flooranim = get_node("FloorSprite")
-@onready var player = get_node("Player")
+@onready var player
 signal changeFloor
 var isWin = false
 

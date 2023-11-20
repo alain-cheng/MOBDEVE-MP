@@ -27,7 +27,7 @@ func checkLastFloor():
 	if floorsOnRun.size() <= 0:
 		lastFloor = true
 		
-func dungeonAFloorMovement():
+func dungeonFloorMovement():
 	#Move to another scene based on floorsOnRun array
 	PlayerData.checkLastFloor() #Check if lastfloor next
 	
@@ -37,7 +37,7 @@ func dungeonAFloorMovement():
 	
 	#Else, match case for next floor
 	else:
-		match floorsOnRun[0]:
+		match floorsOnRun[0]: #TODO: Put paths in arrays for variants
 			1:
 				floorsOnRun.pop_front()
 				get_tree().change_scene_to_file("res://floors/Dungeon_A/1.tscn")

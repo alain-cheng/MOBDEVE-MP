@@ -19,13 +19,13 @@ func _ready():
 	rng.randomize()
 	#Connect endpoint to change floor
 	for e in endpoints:
-		e.changeFloor.connect(PlayerData.dungeonAFloorMovement)
+		e.changeFloor.connect(PlayerData.dungeonFloorMovement)
 		e.player = player
 	#Remove one endpoint
 	var index = rng.randi_range(0, 1)
 	endpoints[index].call_deferred("queue_free")
 	#Connect player to change floor
-	player.fall_to_next.connect(PlayerData.dungeonAFloorMovement)
+	player.fall_to_next.connect(PlayerData.dungeonFloorMovement)
 	
 	#Init traps
 	for gDragon in gDragons:
