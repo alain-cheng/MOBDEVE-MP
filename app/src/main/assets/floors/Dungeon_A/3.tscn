@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://cdbxt0pufld44"]
+
+[ext_resource type="Script" path="res://floors/Dungeon_A/3.gd" id="1_c6j2x"]
+[ext_resource type="Texture2D" uid="uid://7qp4m8w6q0l6" path="res://sprites/floors/A/3.png" id="2_a3xia"]
+[ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_2415q"]
+[ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_1hqia"]
+[ext_resource type="PackedScene" uid="uid://u1ute5oe5d4n" path="res://traps/GoldenDragon.tscn" id="5_kba0d"]
+[ext_resource type="PackedScene" uid="uid://42v35pmaar3w" path="res://traps/DragonGargoyle.tscn" id="6_ekvyx"]
+[ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="7_dwvc7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hf7ul"]
+size = Vector2(122, 925)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwepy"]
+size = Vector2(865, 195)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gsdab"]
+size = Vector2(118, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mxmg4"]
+size = Vector2(250, 784)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa8wq"]
+size = Vector2(872.5, 56)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_13kdn"]
+size = Vector2(133, 624)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_67xie"]
+size = Vector2(144, 623)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpydm"]
+size = Vector2(79, 256)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lmm14"]
+size = Vector2(39, 39)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fvp8"]
+size = Vector2(20, 23)
+
+[node name="3" type="Node2D"]
+script = ExtResource("1_c6j2x")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_a3xia")
+
+[node name="Player" parent="." instance=ExtResource("3_2415q")]
+position = Vector2(917, 118)
+
+[node name="EndPoint" parent="." instance=ExtResource("4_1hqia")]
+position = Vector2(310, 871)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1039, 462.5)
+shape = SubResource("RectangleShape2D_hf7ul")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(432.5, 98.5)
+shape = SubResource("RectangleShape2D_nwepy")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
+position = Vector2(922, 39)
+shape = SubResource("RectangleShape2D_gsdab")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
+position = Vector2(124, 590)
+shape = SubResource("RectangleShape2D_mxmg4")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
+position = Vector2(683.75, 953)
+shape = SubResource("RectangleShape2D_oa8wq")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
+position = Vector2(702.5, 508)
+shape = SubResource("RectangleShape2D_13kdn")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
+position = Vector2(446, 612.5)
+shape = SubResource("RectangleShape2D_67xie")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
+position = Vector2(938.5, 797)
+shape = SubResource("RectangleShape2D_xpydm")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="Walls"]
+position = Vector2(957.5, 649.5)
+shape = SubResource("RectangleShape2D_lmm14")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="Walls"]
+position = Vector2(928, 660.5)
+shape = SubResource("RectangleShape2D_7fvp8")
+
+[node name="GoldenDragon" parent="." instance=ExtResource("5_kba0d")]
+position = Vector2(200, 389)
+scale = Vector2(-1, 1)
+
+[node name="GoldenDragon2" parent="." instance=ExtResource("5_kba0d")]
+position = Vector2(200, 504)
+scale = Vector2(-1, 1)
+
+[node name="GoldenDragon3" parent="." instance=ExtResource("5_kba0d")]
+position = Vector2(200, 619)
+scale = Vector2(-1, 1)
+
+[node name="GoldenDragon4" parent="." instance=ExtResource("5_kba0d")]
+position = Vector2(200, 734)
+scale = Vector2(-1, 1)
+
+[node name="DragonGargoyle" parent="." instance=ExtResource("6_ekvyx")]
+position = Vector2(1034, 380)
+
+[node name="DragonGargoyle2" parent="." instance=ExtResource("6_ekvyx")]
+position = Vector2(1035, 609)
+
+[node name="Spikes" parent="." instance=ExtResource("7_dwvc7")]
+position = Vector2(580, 877)
+scale = Vector2(0.7, 0.7)
+
+[node name="Spikes2" parent="." instance=ExtResource("7_dwvc7")]
+position = Vector2(311, 265)
+scale = Vector2(0.7, 0.7)

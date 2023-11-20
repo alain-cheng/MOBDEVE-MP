@@ -45,5 +45,5 @@ func _ready():
 		k.cooldown.wait_time = 8.0
 	for spike in spikes:
 		spike.damage_taken.connect(player.on_damage_taken)
-		spike.timer.wait_time = 2.5
+		spike.timer.wait_time = 2.0
 		spike.timer.start()

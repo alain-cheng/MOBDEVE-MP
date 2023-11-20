@@ -25,6 +25,7 @@ var floorsOnRun = [] #Array that contains what floors the player will go through
 var kapreForest = ["res://floors/Dungeon_A/1.tscn"]
 var dragonTower = ["res://floors/Dungeon_A/2.tscn"]
 var crimsonManor = ["res://floors/Dungeon_A/9_1.tscn"]
+var theFurnace = ["res://floors/Dungeon_A/3.tscn"]
 
 var rng = RandomNumberGenerator.new()
 const PHASE_1 = 6
@@ -54,6 +55,9 @@ func dungeonFloorMovement():
 			2:
 				floorsOnRun.pop_front()
 				get_tree().change_scene_to_file(dragonTower[rng.randi_range(0,dragonTower.size()-1)])
+			3:
+				floorsOnRun.pop_front()
+				get_tree().change_scene_to_file(theFurnace[rng.randi_range(0,theFurnace.size()-1)])
 
 func initData():
 	#Check if player_data.json exists
