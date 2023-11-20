@@ -12,7 +12,7 @@ var initBountyBonus
 #Default values listed
 var health = 5
 var bounty = 0
-var taboo = 0
+var taboo = 36
 var tabooBonus = 0
 var luck = 0
 var bountyBonus = 0
@@ -22,10 +22,18 @@ var speed = 300.0
 var friction = speed #At default player stops instantly, change for slippery surfaces
 var lastFloor = false #Determines if the endpoint is a win. Change at last floor.
 var floorsOnRun = [] #Array that contains what floors the player will go through
-var kapreForest = ["res://floors/Dungeon_A/1.tscn"]
-var dragonTower = ["res://floors/Dungeon_A/2.tscn"]
-var crimsonManor = ["res://floors/Dungeon_A/9_1.tscn"]
-var theFurnace = ["res://floors/Dungeon_A/3.tscn"]
+
+#Floor arrays
+#Kapre Forest
+var group1 = ["res://floors/Dungeon_A/1.tscn"]
+#Dragon Tower
+var group2 = ["res://floors/Dungeon_A/2.tscn"]
+#The Furnace
+var group3 = ["res://floors/Dungeon_A/3.tscn"]
+#Spiral Ruins
+var group4 = ["res://floors/Dungeon_A/4.tscn"]
+#Crimson Manor
+var final1 = ["res://floors/Dungeon_A/9_1.tscn"]
 
 var rng = RandomNumberGenerator.new()
 const PHASE_1 = 6
@@ -44,20 +52,23 @@ func dungeonFloorMovement():
 	
 	if lastFloor: #If so, move to last floor
 		#TODO: If-else based on taboo, starting from the top e.g. taboo >= PHASE_4
-		get_tree().change_scene_to_file(crimsonManor[rng.randi_range(0, crimsonManor.size()-1)])
+		get_tree().change_scene_to_file(final1[rng.randi_range(0, final1.size()-1)])
 	
 	#Else, match case for next floor
 	else:
 		match floorsOnRun[0]:
 			1:
 				floorsOnRun.pop_front()
-				get_tree().change_scene_to_file(kapreForest[rng.randi_range(0,kapreForest.size()-1)])
+				get_tree().change_scene_to_file(group1[rng.randi_range(0,group1.size()-1)])
 			2:
 				floorsOnRun.pop_front()
-				get_tree().change_scene_to_file(dragonTower[rng.randi_range(0,dragonTower.size()-1)])
+				get_tree().change_scene_to_file(group2[rng.randi_range(0,group2.size()-1)])
 			3:
 				floorsOnRun.pop_front()
-				get_tree().change_scene_to_file(theFurnace[rng.randi_range(0,theFurnace.size()-1)])
+				get_tree().change_scene_to_file(group3[rng.randi_range(0,group3.size()-1)])
+			4:
+				floorsOnRun.pop_front()
+				get_tree().change_scene_to_file(group4[rng.randi_range(0,group4.size()-1)])
 
 func initData():
 	#Check if player_data.json exists

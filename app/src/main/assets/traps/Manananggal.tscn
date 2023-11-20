@@ -1,24 +1,17 @@
-[gd_scene load_steps=8 format=3 uid="uid://df5kyj6v1bldp"]
+[gd_scene load_steps=7 format=3 uid="uid://df5kyj6v1bldp"]
 
-[ext_resource type="Texture2D" uid="uid://0kkmwjqnufl" path="res://sprites/traps/Manananggal/Manananggal.png" id="1_6r7v0"]
 [ext_resource type="Script" path="res://traps/Manananggal.gd" id="1_yqhbq"]
+[ext_resource type="Texture2D" uid="uid://d6x4dn3ix7je" path="res://sprites/traps/Manananggal/m_attack.png" id="2_wl3qq"]
+[ext_resource type="Texture2D" uid="uid://bmur1t1qoy0hd" path="res://sprites/traps/Manananggal/m_idle.png" id="3_ugpuf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gvh46"]
 size = Vector2(101, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_lli10"]
-atlas = ExtResource("1_6r7v0")
-region = Rect2(98, 0, 98, 131)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2xcno"]
-atlas = ExtResource("1_6r7v0")
-region = Rect2(208, 0, 104, 131)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_t58kb"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lli10")
+"texture": ExtResource("2_wl3qq")
 }],
 "loop": true,
 "name": &"attack",
@@ -26,7 +19,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2xcno")
+"texture": ExtResource("3_ugpuf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wl3qq")
 }],
 "loop": true,
 "name": &"idle",
@@ -46,7 +42,8 @@ shape = SubResource("RectangleShape2D_gvh46")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_t58kb")
-animation = &"attack"
+animation = &"idle"
+frame_progress = 0.266812
 
 [node name="PlayerDetection" type="Area2D" parent="."]
 
