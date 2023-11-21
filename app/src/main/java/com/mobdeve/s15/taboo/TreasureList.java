@@ -21,7 +21,7 @@ public class TreasureList {
                     Random rand = new Random(System.nanoTime());
                     //Get indexes of treasures with rarities[i] == rarity
                     ArrayList<Integer> indexes = new ArrayList<>();
-                    for(int j = 0; j < TreasureList.rarities.length; j++){
+                    for(int j = 0; j < TreasureList.fullTreasury.length; j++){
                         if(TreasureList.rarities[j].equals(rarity))
                             indexes.add(j);
                     }
@@ -72,7 +72,7 @@ public class TreasureList {
 
                 //Get indexes of treasures with rarities[i] == rarity
                 ArrayList<Integer> indexes = new ArrayList<>();
-                for(int i = 0; i < TreasureList.rarities.length; i++){
+                for(int i = 0; i < TreasureList.fullTreasury.length; i++){
                     if(TreasureList.rarities[i].equals(rarity))
                         indexes.add(i);
                 }
