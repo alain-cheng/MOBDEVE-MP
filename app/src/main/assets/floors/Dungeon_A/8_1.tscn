@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4evtaglrpm6f"]
+
+[ext_resource type="Script" path="res://floors/Dungeon_A/8_1.gd" id="1_nali1"]
+[ext_resource type="Texture2D" uid="uid://bidw5ypcxt04n" path="res://sprites/floors/A/8_1.png" id="2_nd7qb"]
+[ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_w7ci1"]
+[ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_ipva0"]
+
+[node name="81" type="Node2D"]
+script = ExtResource("1_nali1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_nd7qb")
+
+[node name="Player" parent="." instance=ExtResource("3_w7ci1")]
+position = Vector2(132, 745)
+
+[node name="EndPoint" parent="." instance=ExtResource("4_ipva0")]
+position = Vector2(2213, 777)
+
+[node name="Walls" type="StaticBody2D" parent="."]

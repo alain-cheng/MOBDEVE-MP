@@ -34,6 +34,8 @@ var group3 = ["res://floors/Dungeon_A/3.tscn"]
 var group4 = ["res://floors/Dungeon_A/4.tscn"]
 #Colosseum
 var final1 = ["res://floors/Dungeon_A/7_1.tscn"]
+#Lich Throne
+var final2 = ["res://floors/Dungeon_A/8_1.tscn"]
 #Crimson Manor
 var final3 = ["res://floors/Dungeon_A/9_1.tscn"]
 
@@ -55,8 +57,8 @@ func dungeonFloorMovement():
 	if lastFloor: #If so, move to last floor
 		if taboo >= PHASE_4: #Crimson Manor
 			get_tree().change_scene_to_file(final3[rng.randi_range(0, final3.size()-1)])
-		#TODO: IMPLEMENT THIS
-		#elif taboo >= PHASE_2:
+		elif taboo >= PHASE_2:
+			get_tree().change_scene_to_file(final2[rng.randi_range(0, final2.size()-1)])
 		else: #Colosseum
 			get_tree().change_scene_to_file(final1[rng.randi_range(0, final1.size()-1)])
 	
