@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://vtpnsr3artnh"]
+
+[ext_resource type="Script" path="res://floors/Dungeon_A/7_1.gd" id="1_a6thq"]
+[ext_resource type="Texture2D" uid="uid://2bq6o0jkgd08" path="res://sprites/floors/A/7_1.png" id="2_6123j"]
+[ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_ofx8s"]
+[ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_qkw2l"]
+
+[node name="71" type="Node2D"]
+script = ExtResource("1_a6thq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6123j")
+
+[node name="Player" parent="." instance=ExtResource("3_ofx8s")]
+position = Vector2(117, 573)
+
+[node name="EndPoint" parent="." instance=ExtResource("4_qkw2l")]
+position = Vector2(2169, 623)

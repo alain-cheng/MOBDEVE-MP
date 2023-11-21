@@ -12,7 +12,7 @@ var initBountyBonus
 #Default values listed
 var health = 5
 var bounty = 0
-var taboo = 36
+var taboo = 6
 var tabooBonus = 0
 var luck = 0
 var bountyBonus = 0
@@ -32,8 +32,10 @@ var group2 = ["res://floors/Dungeon_A/2.tscn"]
 var group3 = ["res://floors/Dungeon_A/3.tscn"]
 #Spiral Ruins
 var group4 = ["res://floors/Dungeon_A/4.tscn"]
+#Colosseum
+var final1 = ["res://floors/Dungeon_A/7_1.tscn"]
 #Crimson Manor
-var final1 = ["res://floors/Dungeon_A/9_1.tscn"]
+var final3 = ["res://floors/Dungeon_A/9_1.tscn"]
 
 var rng = RandomNumberGenerator.new()
 const PHASE_1 = 6
@@ -51,8 +53,12 @@ func dungeonFloorMovement():
 	PlayerData.checkLastFloor() #Check if lastfloor next
 	
 	if lastFloor: #If so, move to last floor
-		#TODO: If-else based on taboo, starting from the top e.g. taboo >= PHASE_4
-		get_tree().change_scene_to_file(final1[rng.randi_range(0, final1.size()-1)])
+		if taboo >= PHASE_4: #Crimson Manor
+			get_tree().change_scene_to_file(final3[rng.randi_range(0, final3.size()-1)])
+		#TODO: IMPLEMENT THIS
+		#elif taboo >= PHASE_2:
+		else: #Colosseum
+			get_tree().change_scene_to_file(final1[rng.randi_range(0, final1.size()-1)])
 	
 	#Else, match case for next floor
 	else:
