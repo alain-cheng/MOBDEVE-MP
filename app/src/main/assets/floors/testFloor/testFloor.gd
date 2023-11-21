@@ -5,6 +5,7 @@ extends Node2D
 @onready var dragons = [get_node("DragonGargoyle"), get_node("DragonGargoyle2")] 
 @onready var gDragons = [get_node("GoldenDragon"), get_node("GoldenDragon2")]
 @onready var mananaggal = [get_node("Manananggal")]
+@onready var mananaggal2 = [get_node("Manananggal_v2")]
 @onready var kapre = [get_node("Kapre")]
 @onready var pitfalls = [get_node("Pitfall")]
 @onready var player = get_node("Player")
@@ -20,6 +21,8 @@ func _ready():
 		gDragon.player = player
 	for m in mananaggal:
 		m.player = player
+	for m2 in mananaggal2:
+		m2.damage_taken.connect(player.on_damage_taken)
 	for k in kapre:
 		k.player = player
 	for p in pitfalls:

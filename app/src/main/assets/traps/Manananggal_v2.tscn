@@ -1,0 +1,67 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2rvlx78sd2ff"]
+
+[ext_resource type="Script" path="res://traps/Manananggal_v2.gd" id="1_duqqi"]
+[ext_resource type="Texture2D" uid="uid://d6x4dn3ix7je" path="res://sprites/traps/Manananggal/m_attack.png" id="2_gcquw"]
+[ext_resource type="Texture2D" uid="uid://bmur1t1qoy0hd" path="res://sprites/traps/Manananggal/m_idle.png" id="3_pn6hd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t58kb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gcquw")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_pn6hd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_gcquw")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gvh46"]
+size = Vector2(101, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q7qv4"]
+size = Vector2(86, 1033)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q76j3"]
+radius = 50.1597
+
+[node name="Manananggal_v2" type="CharacterBody2D" groups=["Mob"]]
+z_index = -1
+script = ExtResource("1_duqqi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_t58kb")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 40)
+shape = SubResource("RectangleShape2D_gvh46")
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+position = Vector2(-1, 565.5)
+shape = SubResource("RectangleShape2D_q7qv4")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="Killzone" type="Area2D" parent="."]
+position = Vector2(2, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_q76j3")
+
+[connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="area_entered" from="Killzone" to="." method="_on_killzone_area_entered"]
