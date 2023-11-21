@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         View view = binding.getRoot();
         setContentView(view);
 
+        //Initialize Treasure Data
+        TreasureList.initData();
+
         //Dialog before closing app
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -134,14 +137,14 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                     bufferedWriter.close();
 
                     //Wait until finish
-                    //Check if currentTreasure.size() != TreasureList.names.length() and taboo >= PHASE_4
+                    //Check if currentTreasure.size() != TreasureList.fullTreasury.length() and taboo >= PHASE_4
                     //Generate a unique treasure starting from item1, otherwise generate random based on rarity
-                    if(currentTreasure.size() != TreasureList.names.length && playerData.getTaboo() >= TreasureList.PHASE_4){
+                    if(currentTreasure.size() != TreasureList.fullTreasury.length && playerData.getTaboo() >= TreasureList.PHASE_4){
                         Log.v("MAIN_ACTIVITY", "Generating unique treasure...");
                         //Loop through all names
                         boolean unique;
                         Treasure treasure = new Treasure("","",0,"","","",0);
-                        for(int i = 0; i < TreasureList.names.length; i++){
+                        for(int i = 0; i < TreasureList.fullTreasury.length; i++){
                             unique = true;
                             //Loop through treasury
                             for(int j = 0; j < currentTreasure.size(); j++){
@@ -173,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                         intent.putExtra("ITEM_DESC", treasure.getLore());
                         intent.putExtra("ITEM_RAR", treasure.getRarity());
                         intent.putExtra("ITEM_CNT", -1);
+                        intent.putExtra("ITEM_BON", treasure.getItemBonus());
                         startActivity(intent);
 
                         //Reset taboo to 0
@@ -192,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                         intent.putExtra("ITEM_DESC", treasure.getLore());
                         intent.putExtra("ITEM_RAR", treasure.getRarity());
                         intent.putExtra("ITEM_CNT", -1);
+                        intent.putExtra("ITEM_BON", treasure.getItemBonus());
                         startActivity(intent);
 
                         //Update taboo

@@ -50,6 +50,7 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
             intent.putExtra("ITEM_CNT", treasures.get(index).getCount());
             intent.putExtra("ITEM_DESC", treasures.get(index).getLore());
             intent.putExtra("ITEM_RAR", treasures.get(index).getRarity());
+            intent.putExtra("ITEM_BON", treasures.get(index).getItemBonus());
             context.startActivity(intent);
         });
 

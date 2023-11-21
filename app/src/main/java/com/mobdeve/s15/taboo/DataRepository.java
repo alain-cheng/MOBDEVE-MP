@@ -203,7 +203,7 @@ class DataRepository {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
             mTabooDao.deleteUser();
-            mTabooDao.updatePlayer(new PlayerData(0, "", 1, 0, 0, 0, 0, 0, 0));
+            mTabooDao.updatePlayer(new PlayerData(0, "", 3, 0, 0, 0, 0, 0, 0));
             mTabooDao.updateUser(new User("", ""));
         });
     }

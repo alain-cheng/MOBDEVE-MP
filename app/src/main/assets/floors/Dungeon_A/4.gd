@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var player = get_node("Player")
 @onready var endpoint = get_node("EndPoint")
-@onready var mananaggal = [get_node("Manananggal"), get_node("Manananggal2")]
 @onready var spikes = [get_node("Spikes"), get_node("Spikes2")]
 @onready var pitfalls = [get_node("Pitfall")]
 @onready var gDragons = [get_node("GoldenDragon"), get_node("GoldenDragon2"),
@@ -18,9 +17,6 @@ func _ready():
 	player.fall_to_next.connect(PlayerData.dungeonFloorMovement)
 	
 	#Init Traps
-	for m in mananaggal:
-		m.player = player
-		m.delay = 0.2
 	for spike in spikes:
 		spike.damage_taken.connect(player.on_damage_taken)
 		spike.timer.wait_time = 1.0

@@ -21,7 +21,7 @@ public class TreasureList {
                     Random rand = new Random(System.nanoTime());
                     //Get indexes of treasures with rarities[i] == rarity
                     ArrayList<Integer> indexes = new ArrayList<>();
-                    for(int j = 0; j < TreasureList.rarities.length; j++){
+                    for(int j = 0; j < TreasureList.fullTreasury.length; j++){
                         if(TreasureList.rarities[j].equals(rarity))
                             indexes.add(j);
                     }
@@ -72,7 +72,7 @@ public class TreasureList {
 
                 //Get indexes of treasures with rarities[i] == rarity
                 ArrayList<Integer> indexes = new ArrayList<>();
-                for(int i = 0; i < TreasureList.rarities.length; i++){
+                for(int i = 0; i < TreasureList.fullTreasury.length; i++){
                     if(TreasureList.rarities[i].equals(rarity))
                         indexes.add(i);
                 }
@@ -94,89 +94,357 @@ public class TreasureList {
 
     public static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY", "LOST"};
 
-    public static final String[] ids = {
-            "item01",
-            "item02",
-            "item03",
-            "item04",
-            "item05",
-            "item06",
-            "item07",
-            "item08",
-            "item09",
-            "item10",
-    };
-    public static final String[] names = {
-            "Black Ash", //01
-            "Acacia Bark", //02
-            "Giant Inhaler", //03
-            "Kapre Cigar", //04
-            "Greedy Reign", //05
-            "Last Farewell", //06
-            "Untouchable", //07
-            "Jamuel's Haymaker", //Creators 1
-            "Alwyn's Grand Order", //Creators 2
-            "Alain's Astragal", //Creators 3
-    };
+    public static String[] ids = new String[50];
+    public static String[] names = new String[50];
 
-    public static final String[] bonuses = {
-            "Not Implemented", //01
-            "Not Implemented", //02
-            "Not Implemented", //03
-            "Not Implemented", //04
-            "Not Implemented", //05
-            "Not Implemented", //06
-            "Not Implemented", //07
-            "Not Implemented", //Creators 1
-            "Not Implemented", //Creators 2
-            "Not Implemented",  //Creators 3
-    };
-    public static final String[] lores = {
-            //01
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-                    " Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat." +
-                    " Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." +
-                    " Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-            "Not Implemented", //02
-            "Not Implemented", //03
-            "Not Implemented", //04
-            "Not Implemented", //05
-            "Not Implemented", //06
-            "Not Implemented", //07
-            "Not Implemented", //Creators 1
-            //Creators 2
-            "A meal consisting of a quarter-pounder burger with a side of fries and some soft drinks." +
-                    " Seems to contain an insane amount of magical energy. You will probably die trying to eat this...",
-            "Not Implemented", //Creators 3
-    };
+    public static String[] bonuses = new String[50];
+    public static String[] lores = new String[50];
 
-    public static final String[] rarities = {
-            RARITY[0], //01
-            RARITY[0], //02
-            RARITY[1], //03
-            RARITY[3], //04
-            RARITY[2], //05
-            RARITY[2], //06
-            RARITY[3], //07
-            RARITY[3], //Creators 1
-            RARITY[3], //Creators 2
-            RARITY[3], //Creators 3
-    };
+    public static String[] rarities = new String[50];
 
-    public static final int[] images = {
-            R.drawable.item_kaprecigar, //01
-            R.drawable.item_kaprecigar, //02
-            R.drawable.item_kaprecigar, //03
-            R.drawable.item_kaprecigar, //04
-            R.drawable.item_kaprecigar, //05
-            R.drawable.item_kaprecigar, //06
-            R.drawable.item_kaprecigar, //07
-            R.drawable.item_kaprecigar, //Creators 1
-            R.drawable.item_kaprecigar, //Creators 2
-            R.drawable.item_kaprecigar, //Creators 3
+    public static int[] images = new int[50];
+
+    //TODO: ADD New treasures in this array. initData will automatically load them into the other arrays
+    public static final Treasure[] fullTreasury = {
+            new Treasure(
+                    "item01",
+                    "Black Ash",
+                    R.drawable.item01,
+                    "+1 Life",
+                    "“Isn’t all ash colored black?”" + System.lineSeparator() + System.lineSeparator() + "“I think ash is usually gray in color, so I guess this is kinda special.”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item02",
+                    "Ancient Bark",
+                    R.drawable.item02,
+                    "+1 Life",
+                    "Bark from an ancient Acacia tree that has stood for 30 years. Often home to a 9-foot-tall smoking addict.",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item03",
+                    "Kapre’s Inhaler",
+                    R.drawable.item03,
+                    "+1 Life",
+                    "“Did you know Tobacco smoke is a common trigger for asthma? Didn’t stop this fella though, and I’m not going to be the one to tell him.”",
+                    RARITY[1],
+                    1
+            ),
+            new Treasure(
+                    "item04",
+                    "Kapre’s Cigar",
+                    R.drawable.item04,
+                    "+1 Life",
+                    "While the Kapre Cigar provides magical benefits, be cautious when using it in the presence of mischievous forest spirits. The Kapre's favor is a gift, but it demands respect.",
+                    RARITY[3],
+                    1
+            ),
+            new Treasure(
+                    "item05",
+                    "Magellan’s Cheese",
+                    R.drawable.item05,
+                    "Shorter dungeon lengths",
+                    "Funky cheese that was once aboard Magellan’s ship. The first dairy product to sail the Seven Seas. It is emanating some sort of pitiful aura, as if it's saying it wants to be eaten. Poor thing has been sitting in the dark for god knows how long.",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item06",
+                    "Conquistador Compass",
+                    R.drawable.item06,
+                    "Shorter dungeon lengths",
+                    "A special compass of a centuries-old design. It is specially made to navigate the Seven Seas and to find the tastiest spices ever.",
+                    RARITY[1],
+                    1
+            ),
+            new Treasure(
+                    "item07",
+                    "Chief’s Sampilan",
+                    R.drawable.item07,
+                    "Shorter dungeon lengths",
+                    "A fierce Datu used to wield this sword. Rumor has it he was not human at all as he stood at 7ft tall and has lived to defend Mactan for centuries. Survivors of the Victoria ship described a half-human half-horse being leading the warriors which made them retreat.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item08",
+                    "Lost Spices",
+                    R.drawable.item08,
+                    "Shorter dungeon lengths",
+                    "The ultimate reward for navigating the world. Unfortunately, these spices remain unfound.",
+                    RARITY[3],
+                    1
+            ),
+            new Treasure(
+                    "item09",
+                    "Elder Wand",
+                    R.drawable.item09,
+                    "+100 bounty upon set completion",
+                    "“I don’t know man, this just seems like a stick to me and it ain’t even straight.”",
+                    RARITY[1],
+                    1
+            ),
+            new Treasure(
+                    "item10",
+                    "Excalibur",
+                    R.drawable.item10,
+                    "+100 bounty upon set completion",
+                    "The power of Excalibur's Legacy demands a heart untainted by greed and a spirit steadfast in justice. Wield with honor, for the sword knows the true character of its master.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item11",
+                    "Mjolnir",
+                    R.drawable.item11,
+                    "+100 bounty upon set completion",
+                    "This war hammer carries the legacy of the God of Thunder, summoning lightning to smite foes and bring justice to the realms. There’s nothing it can’t do except pull nails out from wood",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item12",
+                    "Iron Slippers",
+                    R.drawable.item12,
+                    "+100 bounty upon set completion",
+                    "“Years later, I can still feel the pain when mom hit me with one of these.”",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item13",
+                    "Mom’s Spaghetti",
+                    R.drawable.item13,
+                    "+1 Life",
+                    "“I vomited this on my sweater one time, gross.”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item14",
+                    "Billy’s Jeans",
+                    R.drawable.item14,
+                    "+1 Life",
+                    "“It dances on its own when everyone’s asleep at 3 am.”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item15",
+                    "Dragon Imagination",
+                    R.drawable.item15,
+                    "+1 Life",
+                    "Imagination so powerful you’ll feel on top of the world.",
+                    RARITY[1],
+                    1
+            ),
+            new Treasure(
+                    "item16",
+                    "Bruno’s Grenade",
+                    R.drawable.item16,
+                    "+1 Life",
+                    "Thrown all the way from planet Mars. Absolute banger.",
+                    RARITY[1],
+                    1
+            ),
+            new Treasure(
+                    "item17",
+                    "Stalker Fang (Aswang)",
+                    R.drawable.item17,
+                    "Gain more taboo from completed runs",
+                    "The fang of the famous Manananggal, everybody has one these days.",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item18",
+                    "Mananggal Wing",
+                    R.drawable.item18,
+                    "Gain more taboo from completed runs",
+                    "Even when severed, this thing still flaps on its own as if trying to get back to its owner.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item19",
+                    "Broken Toy Rattle (Tyanak)",
+                    R.drawable.item19,
+                    "Gain more taboo from completed runs",
+                    "Not only broken but also cursed. The Tyanak does not like other people playing with its toys. They can’t stand the germs.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item20",
+                    "Bakunawa Egg",
+                    R.drawable.item20,
+                    "Gain more taboo from completed runs",
+                    "Keep it long enough in temperatures over 1000°C and you might hatch yourself a moon eater",
+                    RARITY[3],
+                    1
+            ),
+            new Treasure(
+                    "item21",
+                    "Duwende Hat",
+                    R.drawable.item21,
+                    "+50 bounty upon set completion",
+                    "A humble hat, not much to say about that, probably owned by a little rat.",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item22",
+                    "Siyokoy Fin",
+                    R.drawable.item22,
+                    "+50 bounty upon set completion",
+                    "These could have been from a fish for all I know.",
+                    RARITY[1],
+                    1
+            ),
+            new Treasure(
+                    "item23",
+                    "Tikbalang Mane",
+                    R.drawable.item23,
+                    "+50 bounty upon set completion",
+                    "A glorious and majestic silver mane from the Tikbalang. Smooth and silky on every strand.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item24",
+                    "Bathala’s Tears",
+                    R.drawable.item24,
+                    "+50 bounty upon set completion",
+                    "Tears of the transcendent supreme god",
+                    RARITY[3],
+                    1
+            ),
+            new Treasure(
+                    "item25",
+                    "Diaryong Tagalog",
+                    R.drawable.item25,
+                    "+50 bounty upon set completion",
+                    "The latest issue was years ago.",
+                    RARITY[0],
+                    1
+            ),
+            //This is a sample treasure, delete before launch
+            new Treasure(
+                    "item26",
+                    "Torn Cedula",
+                    R.drawable.item26,
+                    "+50 bounty upon set completion",
+                    "The spark of the Philippine revolution",
+                    RARITY[1],
+                    1
+            ),
+            new Treasure(
+                    "item27",
+                    "Shades of Simoun",
+                    R.drawable.item27,
+                    "+50 bounty upon set completion",
+                    "Black, circular shades. A perfect disguise.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item28",
+                    "Spoliarium",
+                    R.drawable.item28,
+                    "+50 bounty upon set completion",
+                    "A painter spent 8 months to complete this painting. It depicts dying gladiators in the basement of the Roman Colosseum.",
+                    RARITY[3],
+                    1
+            ),
+            new Treasure(
+                    "item29",
+                    "Queen Universe Crown",
+                    R.drawable.item29,
+                    "+1 Life",
+                    "“A future forged by women who push the limits of what's possible”. As well as a tribute to the four Ms. Universe winners from the Philippines.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item30",
+                    "Magician’s Cue Ball",
+                    R.drawable.item30,
+                    "+1 Life",
+                    "This cue ball is embedded with spells by the Pool Magician, allowing him to make impossible shots. He is arguably the greatest billiards player of all ",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item31",
+                    "Pacman Boxers",
+                    R.drawable.item31,
+                    "+1 Life",
+                    "Comfortable and nostalgic, a perfect fit for Sundays. A tribute to the one and only 8-Division Boxing Champion.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item32",
+                    "127kg Gold Medal",
+                    R.drawable.item32,
+                    "+1 Life",
+                    "The first-ever Olympic gold medal for the Philippines, won by Hidilyn Diaz. The medal weighs 127 kg. Only the strongest are given this award.",
+                    RARITY[2],
+                    1
+            ),
+            new Treasure(
+                    "item45",
+                    "Jamuel’s Haymaker",
+                    R.drawable.creators1,
+                    "x2 total bounty upon set completion",
+                    "“Crafted from the hides of legendary beasts, these gloves amplify the force behind every punch, turning a mere brawl into a spectacle of might. They carry the echoes of countless victories and the resilience of those who refuse to yield. Just kidding, I like boxing, and my favorite color is purple.“ - Jamuel, 2023",
+                    RARITY[3],
+                    1
+            ),
+            new Treasure(
+                    "item46",
+                    "Alwyn’s Grand Order",
+                    R.drawable.creators2,
+                    "x2 total bounty upon set completion",
+                    "A meal consisting of a quarter-pounder burger with a side of fries. Seems to contain an absolutely insane amount of magical energy. You will probably die trying to eat this...",
+                    RARITY[3],
+                    1
+            ),
+            new Treasure(
+                    "item47",
+                    "Alain’s Astragal",
+                    R.drawable.creators3,
+                    "x2 total bounty upon set completion",
+                    "“A manifestation of one's crippling gambling addiction. This piece of ancient tech is the gateway to RNGesus' palace. Being in possession of this astragal is a sign one needs to touch grass or scratch a lottery card immediately. Anyways, I'm not liable for whatever happens afterwards.”",
+                    RARITY[3],
+                    1
+            ),
     };
 
     public static Treasure[] lostTreasures = {
-            new Treasure("lost01", "One Piece", R.drawable.item_kaprecigar, "", "", RARITY[4], 1),
+            new Treasure(
+                    "lost01",
+                    "One Piece",
+                    R.drawable.lost01,
+                    "",
+                    "You finally found it after years of searching, and the crowd goes... mild.",
+                    RARITY[4],
+                    1
+            ),
     };
+
+    public static void initData(){
+        //Initialize fullTreasury by for loop during main onCreate here
+        for(int i = 0; i < fullTreasury.length; i++){
+            ids[i] = fullTreasury[i].getId();
+            names[i] = fullTreasury[i].getName();
+            bonuses[i] = fullTreasury[i].getItemBonus();
+            lores[i] = fullTreasury[i].getLore();
+            rarities[i] = fullTreasury[i].getRarity();
+            images[i] = fullTreasury[i].getImageid();
+        }
+    }
 }
