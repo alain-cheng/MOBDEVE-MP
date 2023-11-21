@@ -7,6 +7,7 @@ extends Node2D
 @onready var gDragons = [get_node("GoldenDragon"), get_node("GoldenDragon2"),
  get_node("GoldenDragon3")]
 @onready var dragons = [get_node("DragonGargoyle")]
+@onready var mananaggal2 = [get_node("Manananggal_v2")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,3 +33,6 @@ func _ready():
 		d.player = player
 		d.speed = 300
 		d.cooldown.wait_time = 1.5
+	for m2 in mananaggal2:
+		m2.damage_taken.connect(player.on_damage_taken)
+		m2.delay = 0.3
