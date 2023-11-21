@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         View view = binding.getRoot();
         setContentView(view);
 
+        //Initialize Treasure Data
+        TreasureList.initData();
+
         //Dialog before closing app
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
@@ -173,6 +176,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                         intent.putExtra("ITEM_DESC", treasure.getLore());
                         intent.putExtra("ITEM_RAR", treasure.getRarity());
                         intent.putExtra("ITEM_CNT", -1);
+                        intent.putExtra("ITEM_BON", treasure.getItemBonus());
                         startActivity(intent);
 
                         //Reset taboo to 0
@@ -192,6 +196,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                         intent.putExtra("ITEM_DESC", treasure.getLore());
                         intent.putExtra("ITEM_RAR", treasure.getRarity());
                         intent.putExtra("ITEM_CNT", -1);
+                        intent.putExtra("ITEM_BON", treasure.getItemBonus());
                         startActivity(intent);
 
                         //Update taboo

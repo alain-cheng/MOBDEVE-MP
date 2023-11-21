@@ -26,7 +26,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
     private DataViewModel mDataViewModel;
     private int img, cnt;
-    private String name, desc, rar;
+    private String name, desc, rar, bon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +42,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
         name = intent.getStringExtra("ITEM_NAME");
         desc = intent.getStringExtra("ITEM_DESC");
         rar = intent.getStringExtra("ITEM_RAR");
+        bon = intent.getStringExtra("ITEM_BON");
 
         initListeners();
         initData(intent);
@@ -54,7 +55,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
     private void initData(Intent intent) {
         binding.treasureIv.setImageResource(img);
         binding.treasureNameTv.setText(name);
-        binding.treasureDescriptionTv.setText(desc);
+        binding.treasureDescriptionTv.setText("Set Bonus: " + bon + System.lineSeparator() + System.lineSeparator() + desc);
         if(cnt >= 3){
             binding.sellBtn.setVisibility(View.VISIBLE);
         }
