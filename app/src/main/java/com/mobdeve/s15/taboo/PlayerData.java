@@ -11,7 +11,7 @@ public class PlayerData {
     @ColumnInfo(name = "username", defaultValue = "")private String username;
 
     //Player Stats
-    @ColumnInfo(name = "health", typeAffinity = ColumnInfo.INTEGER, defaultValue = "1") private int health;
+    @ColumnInfo(name = "health", typeAffinity = ColumnInfo.INTEGER, defaultValue = "3") private int health;
     @ColumnInfo(name = "bounty", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int bounty;
     @ColumnInfo(name = "taboo", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int taboo;
     @ColumnInfo(name = "tabooBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int tabooBonus;
