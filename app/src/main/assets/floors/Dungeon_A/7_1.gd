@@ -10,3 +10,13 @@ func _ready():
 	endpoint.player = player
 	#Connect player to change floor
 	player.fall_to_next.connect(PlayerData.dungeonFloorMovement)
+	
+	#Dev Note: Man, I wish I learned this earlier...
+	#Init traps
+	for n in self.get_children():
+		if n is Pitfall:
+			n.fallen_down.connect(player.ive_fallen)
+		if n is Spikes:
+			n.damage_taken.connect(player.on_damage_taken)
+			n.timer.wait_time = 1.05
+			n.timer.start()
