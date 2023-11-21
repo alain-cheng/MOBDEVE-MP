@@ -1,4 +1,5 @@
 extends Area2D
+class_name Pitfall
 
 @onready var animation = get_node("AnimatedSprite2D")
 var coveredTrap = false
