@@ -26,7 +26,7 @@ func _ready():
 	for gDragon in gDragons:
 		gDragon.player = player
 		gDragon.delay = 0.5
-		gDragon.speed = 600
+		gDragon.speed = 750
 	gDragons[2].delay = 1.0
 	for d in dragons:
 		d.player = player

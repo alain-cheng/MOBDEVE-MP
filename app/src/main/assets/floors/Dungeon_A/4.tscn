@@ -104,7 +104,7 @@ position = Vector2(288, 614)
 shape = SubResource("RectangleShape2D_sokru")
 
 [node name="GoldenDragon" parent="." instance=ExtResource("8_j2sgw")]
-position = Vector2(488, 278)
+position = Vector2(508, 278)
 
 [node name="GoldenDragon2" parent="." instance=ExtResource("8_j2sgw")]
 position = Vector2(1070, 173)

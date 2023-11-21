@@ -217,3 +217,9 @@ position = Vector2(1335, 352)
 
 [node name="Spikes5" parent="." instance=ExtResource("9_u0i1e")]
 position = Vector2(1335, 262)
+
+[node name="Solids" type="Area2D" parent="."]
+
+[node name="CollisionShape2D13" type="CollisionShape2D" parent="Solids"]
+position = Vector2(1417, 407.25)
+shape = SubResource("RectangleShape2D_1edke")

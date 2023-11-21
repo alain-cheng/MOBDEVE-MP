@@ -45,7 +45,7 @@ func _physics_process(_delta):
 			else:
 				animation.play("left")
 			
-			velocity.x = xDirection * PlayerData.speed
+			velocity.x = xDirection
 		else:
 			velocity.x = move_toward(velocity.x, 0, PlayerData.friction)
 			
@@ -57,7 +57,7 @@ func _physics_process(_delta):
 			else:
 				animation.play("up")
 			
-			velocity.y = yDirection * PlayerData.speed
+			velocity.y = yDirection
 		else:
 			velocity.y = move_toward(velocity.y, 0, PlayerData.friction)
 			
@@ -69,9 +69,11 @@ func _physics_process(_delta):
 			else:
 				animation.play("up")
 			
-			velocity.x = xDirection * PlayerData.speed
-			velocity.y = yDirection * PlayerData.speed
-
+			velocity.x = xDirection
+			velocity.y = yDirection
+		
+		#Normalize Velocity
+		velocity = velocity.normalized()*PlayerData.speed
 		move_and_slide()
 		#END MOVEMENT
 	elif(isDed && !falling):

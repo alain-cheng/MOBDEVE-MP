@@ -24,7 +24,7 @@ func fire():
 	if projectile:
 		var p = projectile.instantiate()
 		get_tree().current_scene.add_child(p)
-		p.global_position = self.global_position
+		p.global_position = self.global_position + Vector2(-60*self.scale.x, 5*self.scale.y)
 		p.parent_scale = self.scale
 		p.apply_scale(self.scale)
 		p.SPEED = speed
