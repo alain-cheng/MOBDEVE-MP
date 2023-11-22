@@ -35,4 +35,4 @@ func _ready():
 		d.cooldown.wait_time = 1.5
 	for m2 in mananaggal2:
 		m2.damage_taken.connect(player.on_damage_taken)
-		m2.delay = 0.3
+		m2.delay = 0.2

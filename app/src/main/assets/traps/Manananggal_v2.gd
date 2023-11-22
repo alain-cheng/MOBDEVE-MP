@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Manananggal
 
 @onready var player
 @onready var animation = get_node("AnimatedSprite2D")

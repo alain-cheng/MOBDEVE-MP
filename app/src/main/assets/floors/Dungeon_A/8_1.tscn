@@ -98,7 +98,7 @@ position = Vector2(2205, 364)
 scale = Vector2(0.7, 0.7)
 
 [node name="Manananggal_v2" parent="." instance=ExtResource("9_cljyk")]
-position = Vector2(2043, 387)
+position = Vector2(2043, 340)
 
 [node name="Manananggal_v3" parent="." instance=ExtResource("9_cljyk")]
-position = Vector2(1765, 425)
+position = Vector2(1765, 340)

@@ -5,7 +5,7 @@ extends Node2D
 @onready var gDragons = [get_node("GoldenDragon"), get_node("GoldenDragon2"),
  get_node("GoldenDragon3"), get_node("GoldenDragon4"), get_node("GoldenDragon5")]
 @onready var kapre = [get_node("Kapre"), get_node("Kapre2"), get_node("Kapre3")]
-@onready var mananaggal2 = [get_node("Manananggal_v2")]
+@onready var mananaggal2 = [get_node("Manananggal_v2"), get_node("Manananggal_v3")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
