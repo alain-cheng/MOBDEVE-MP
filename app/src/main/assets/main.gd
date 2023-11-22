@@ -4,7 +4,7 @@ const PHASE_1 = 6
 const PHASE_2 = 24
 const PHASE_3 = 36
 const PHASE_4 = 51
-var DUNGEON_NUM_FLOORS = 2 #Number of Non-Final Floors. Test only
+var DUNGEON_NUM_FLOORS = 2 #Number of Non-Final Floors.
 var rng = RandomNumberGenerator.new()
 
 # Called when the node enters the scene tree for the first time.
@@ -18,15 +18,16 @@ func _ready():
 	
 	#TODO: Remove this debugging tool later
 	#PlayerData.lastFloor = true
-	#get_tree().change_scene_to_file("res://floors/Dungeon_A/4.tscn")
+	#get_tree().change_scene_to_file("res://floors/Dungeon_A/8_1.tscn")
 	#return
 	#---------------------------------------
 	
-	#TODO: Set num floors based on taboo gauge
 	if(PlayerData.taboo >= PHASE_3):
 		DUNGEON_NUM_FLOORS = 4
 	elif(PlayerData.taboo >= PHASE_1):
 		DUNGEON_NUM_FLOORS = 3
+	else:
+		DUNGEON_NUM_FLOORS = 2
 
 	#Append int for all floors that will be randomized
 	for i in range(DUNGEON_NUM_FLOORS):

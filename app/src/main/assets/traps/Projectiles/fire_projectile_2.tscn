@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bqe00ucd3lda3" path="res://sprites/traps/GoldenDragon/Projectile.png" id="2_3y3hu"]
 [ext_resource type="Script" path="res://traps/Projectiles/fire_projectile_2.gd" id="2_qla82"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppxo7"]
-size = Vector2(84, 54)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nh2w1"]
+radius = 12.0
+height = 58.0
 
 [node name="FireProjectile2" type="Area2D" groups=["Projectile"]]
 position = Vector2(1257, 474)
@@ -15,8 +16,9 @@ position = Vector2(-1, -10)
 texture = ExtResource("2_3y3hu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
-shape = SubResource("RectangleShape2D_ppxo7")
+position = Vector2(8, -5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_nh2w1")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 

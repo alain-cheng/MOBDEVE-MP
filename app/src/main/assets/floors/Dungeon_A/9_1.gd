@@ -30,8 +30,9 @@ func _ready():
 	#Init traps
 	for gDragon in gDragons:
 		gDragon.player = player
-		gDragon.delay = 0.9
+		gDragon.delay = 0.7
 	gDragons[1].delay = 0.1 #Shorter for this one
+	gDragons[1].speed = 700
 	for p in pitfalls:
 		p.fallen_down.connect(player.ive_fallen)
 	for d in dragons1:

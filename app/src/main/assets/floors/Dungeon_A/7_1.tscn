@@ -1,0 +1,261 @@
+[gd_scene load_steps=8 format=3 uid="uid://vtpnsr3artnh"]
+
+[ext_resource type="Script" path="res://floors/Dungeon_A/7_1.gd" id="1_a6thq"]
+[ext_resource type="Texture2D" uid="uid://2bq6o0jkgd08" path="res://sprites/floors/A/7_1.png" id="2_6123j"]
+[ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_ofx8s"]
+[ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_qkw2l"]
+[ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="5_2mn42"]
+[ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="6_rby81"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ido2"]
+size = Vector2(53, 462)
+
+[node name="71" type="Node2D"]
+script = ExtResource("1_a6thq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -2
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6123j")
+
+[node name="Player" parent="." instance=ExtResource("3_ofx8s")]
+position = Vector2(117, 573)
+
+[node name="EndPoint" parent="." instance=ExtResource("4_qkw2l")]
+position = Vector2(2174, 631)
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(13.5, 620)
+shape = SubResource("RectangleShape2D_2ido2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(2283, 620)
+shape = SubResource("RectangleShape2D_2ido2")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(-1, 14, -1, 387, 40, 413, 105, 413, 105, 393, 414, 394, 414, 374, 689, 374, 689, 355, 1463, 354, 1463, 374, 1863, 374, 1863, 393, 2211, 393, 2211, 413, 2256, 413, 2307, 326, 2304, -3, 1, -2)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(0, 980)
+polygon = PackedVector2Array(-1, -13, -1, -159, 249, -160, 249, -140, 426, -140, 426, -121, 734, -121, 734, -101, 886, -101, 886, -82, 1279, -82, 1279, -101, 1450, -101, 1450, -121, 1804, -122, 1804, -141, 2008, -141, 2008, -160, 2256, -160, 2297, 1, 1, 3)
+
+[node name="Pitfall" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(238, 693)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall2" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(489, 708)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall3" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(566, 712)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall4" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(633, 713)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall5" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(701, 709)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall6" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(362, 457)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall7" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(432, 501)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall8" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(513, 498)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall9" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(592, 495)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall10" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(742, 814)
+scale = Vector2(1.5, 1.5)
+
+[node name="Spikes" parent="." instance=ExtResource("6_rby81")]
+position = Vector2(549, 611)
+scale = Vector2(0.55, 0.55)
+
+[node name="Pitfall11" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(764, 645)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall12" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(809, 591)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall13" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(813, 514)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall14" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1049, 518)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall15" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1062, 580)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall16" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1033, 631)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall17" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(995, 690)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall18" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(956, 741)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall19" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1028, 753)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall20" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1093, 753)
+scale = Vector2(1.5, 1.5)
+
+[node name="Spikes2" parent="." instance=ExtResource("6_rby81")]
+position = Vector2(1100, 860)
+scale = Vector2(0.6, 0.6)
+
+[node name="Pitfall22" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1502, 442)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall23" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1323, 540)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall24" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1354, 590)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall25" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1365, 648)
+scale = Vector2(1.5, 1.5)
+
+[node name="Spikes3" parent="." instance=ExtResource("6_rby81")]
+position = Vector2(1317, 418)
+scale = Vector2(0.6, 0.6)
+
+[node name="Spikes4" parent="." instance=ExtResource("6_rby81")]
+position = Vector2(1388, 417)
+scale = Vector2(0.6, 0.6)
+
+[node name="Pitfall21" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1314, 473)
+rotation = -0.760964
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall26" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1367, 717)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall27" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1377, 771)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall28" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1381, 799)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall29" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1435, 635)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall30" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1493, 642)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall31" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1552, 654)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall32" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1603, 665)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall33" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1664, 690)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall34" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1706, 734)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall35" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1750, 771)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall36" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1583, 813)
+rotation = -0.507891
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall37" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1535, 815)
+rotation = -0.888373
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall38" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1718, 431)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall39" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1801, 464)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall40" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1909, 794)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall41" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1906, 754)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall42" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1901, 703)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall43" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(1954, 469)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall44" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(2018, 472)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall45" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(2058, 514)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall46" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(2050, 579)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall47" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(2054, 641)
+scale = Vector2(1.5, 1.5)
+
+[node name="Spikes5" parent="." instance=ExtResource("6_rby81")]
+position = Vector2(2073, 790)
+
+[node name="Pitfall48" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(2072, 729)
+scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall49" parent="." instance=ExtResource("5_2mn42")]
+position = Vector2(555, 526)

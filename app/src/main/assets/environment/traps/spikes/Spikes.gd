@@ -1,4 +1,5 @@
 extends Area2D
+class_name Spikes
 
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var timer = get_node("Timer")

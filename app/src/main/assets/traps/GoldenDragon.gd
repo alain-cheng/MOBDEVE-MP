@@ -16,40 +16,38 @@ var speed = 500
 func _ready():
 	animation.play("idle")
 	cooldown.wait_time = cool_time
+	cooldown.one_shot = false
+	cooldown.timeout.connect(fire)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(_delta):
-	# Can only attack if player is in its kill zone and the cooldown is reached
-	if attack == true && !player.isDed:
-		animation.play("attack")
-		await get_tree().create_timer(delay).timeout #Firing delay
-		if cooldown.is_stopped():
-			fire()
-	else:
+	if !attack:
 		animation.play("idle")
-
 
 func fire():
 	if projectile:
 		var p = projectile.instantiate()
 		get_tree().current_scene.add_child(p)
-		p.global_position = self.global_position
+		p.global_position = self.global_position + Vector2(-40*self.scale.x, -10*self.scale.y)
 		p.parent_scale = self.scale
 		p.apply_scale(self.scale)
 		p.SPEED = speed
 		p.damage_taken.connect(player.on_damage_taken)
-		soundFire.play()
-		cooldown.start()
 
 
 # When Player enters detection zone
 func _on_player_detection_entered(area):
 	if area.name == "PlayerHurtbox":
 		attack = true
+		animation.play("attack")
+		await get_tree().create_timer(delay).timeout #Firing delay
+		cooldown.start()
+		soundFire.play()
 		
 
 
 func _on_player_detection_exited(area):
 	if area.name == "PlayerHurtbox":
+		await get_tree().create_timer(delay*2).timeout #Firing delay
 		attack = false
+		cooldown.stop()

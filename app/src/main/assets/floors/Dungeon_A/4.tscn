@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ddnbs7rhmy3hl"]
+[gd_scene load_steps=17 format=3 uid="uid://ddnbs7rhmy3hl"]
 
 [ext_resource type="Script" path="res://floors/Dungeon_A/4.gd" id="1_pknyh"]
 [ext_resource type="Texture2D" uid="uid://cadh3vxcywrar" path="res://sprites/floors/A/4.png" id="2_mt6b3"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="6_a43dm"]
 [ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="7_10sym"]
 [ext_resource type="PackedScene" uid="uid://u1ute5oe5d4n" path="res://traps/GoldenDragon.tscn" id="8_j2sgw"]
+[ext_resource type="PackedScene" uid="uid://c2rvlx78sd2ff" path="res://traps/Manananggal_v2.tscn" id="9_2duwr"]
 [ext_resource type="PackedScene" uid="uid://42v35pmaar3w" path="res://traps/DragonGargoyle.tscn" id="9_u7kgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_un11v"]
@@ -104,7 +105,7 @@ position = Vector2(288, 614)
 shape = SubResource("RectangleShape2D_sokru")
 
 [node name="GoldenDragon" parent="." instance=ExtResource("8_j2sgw")]
-position = Vector2(488, 278)
+position = Vector2(498, 278)
 
 [node name="GoldenDragon2" parent="." instance=ExtResource("8_j2sgw")]
 position = Vector2(1070, 173)
@@ -113,5 +114,8 @@ position = Vector2(1070, 173)
 position = Vector2(1070, 859)
 
 [node name="DragonGargoyle" parent="." instance=ExtResource("9_u7kgm")]
-position = Vector2(394, 788)
+position = Vector2(394, 768)
 scale = Vector2(-1, 1)
+
+[node name="Manananggal_v2" parent="." instance=ExtResource("9_2duwr")]
+position = Vector2(462, 377)
