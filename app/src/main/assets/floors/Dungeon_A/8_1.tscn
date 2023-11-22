@@ -1,9 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4evtaglrpm6f"]
+[gd_scene load_steps=11 format=3 uid="uid://c4evtaglrpm6f"]
 
 [ext_resource type="Script" path="res://floors/Dungeon_A/8_1.gd" id="1_nali1"]
 [ext_resource type="Texture2D" uid="uid://bidw5ypcxt04n" path="res://sprites/floors/A/8_1.png" id="2_nd7qb"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_w7ci1"]
 [ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_ipva0"]
+[ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="5_wuxy2"]
+[ext_resource type="PackedScene" uid="uid://u1ute5oe5d4n" path="res://traps/GoldenDragon.tscn" id="6_xjde3"]
+[ext_resource type="PackedScene" uid="uid://b4avbltaqwlpm" path="res://traps/Kapre.tscn" id="7_vrkwf"]
+[ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="8_bjqsb"]
+[ext_resource type="PackedScene" uid="uid://c2rvlx78sd2ff" path="res://traps/Manananggal_v2.tscn" id="9_cljyk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r8ia0"]
+size = Vector2(770, 59)
 
 [node name="81" type="Node2D"]
 script = ExtResource("1_nali1")
@@ -22,3 +30,75 @@ position = Vector2(132, 745)
 position = Vector2(2213, 777)
 
 [node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(0, 982)
+polygon = PackedVector2Array(-2, 1, 2290, 3, 2272, -150, 2035, -150, 1349, -263, 1349, -361, 2141, -546, 2141, -700, 1855, -700, 1734, -824, 1120, -824, 1008, -707, 203, -707, 203, -648, 1015, -648, 1015, -288, 884, -288, 884, -139, 635, -140, 635, -288, 490, -288, 490, -139, 46, -139, 46, -374, -6, -376)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1392, 28.5)
+shape = SubResource("RectangleShape2D_r8ia0")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
+polygon = PackedVector2Array(-4, 0, 0, 609, 936, 609, 936, 504, 111, 504, 111, 150, 941, 151, 1061, 32, 1060, -1)
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Walls"]
+position = Vector2(2400, 0)
+polygon = PackedVector2Array(0, 1, -649, -1, -649, 49, -518, 177, -128, 177, -128, 521, -868, 649, -868, 668, -364, 720, -128, 720, -128, 832, 0, 832)
+
+[node name="Pitfall" parent="." instance=ExtResource("5_wuxy2")]
+position = Vector2(849, 450)
+rotation = 3.14159
+scale = Vector2(1.2, 1.2)
+
+[node name="Pitfall2" parent="." instance=ExtResource("5_wuxy2")]
+position = Vector2(560, 450)
+rotation = 3.14159
+scale = Vector2(1.2, 1.2)
+
+[node name="Pitfall3" parent="." instance=ExtResource("5_wuxy2")]
+position = Vector2(251, 450)
+rotation = 3.14159
+scale = Vector2(1.2, 1.2)
+
+[node name="GoldenDragon" parent="." instance=ExtResource("6_xjde3")]
+position = Vector2(1035, 644)
+
+[node name="GoldenDragon2" parent="." instance=ExtResource("6_xjde3")]
+position = Vector2(83, 363)
+scale = Vector2(-1, 1)
+
+[node name="GoldenDragon3" parent="." instance=ExtResource("6_xjde3")]
+position = Vector2(1900, 138)
+
+[node name="Pitfall4" parent="." instance=ExtResource("5_wuxy2")]
+position = Vector2(1515, 85)
+
+[node name="GoldenDragon4" parent="." instance=ExtResource("6_xjde3")]
+position = Vector2(1035, 667)
+
+[node name="GoldenDragon5" parent="." instance=ExtResource("6_xjde3")]
+position = Vector2(83, 381)
+scale = Vector2(-1, 1)
+
+[node name="Kapre" parent="." instance=ExtResource("7_vrkwf")]
+position = Vector2(565, 964)
+scale = Vector2(0.82, 0.82)
+
+[node name="Kapre2" parent="." instance=ExtResource("7_vrkwf")]
+position = Vector2(1571, 964)
+scale = Vector2(0.82, 0.82)
+
+[node name="Kapre3" parent="." instance=ExtResource("7_vrkwf")]
+position = Vector2(1909, 964)
+scale = Vector2(0.82, 0.82)
+
+[node name="Spikes" parent="." instance=ExtResource("8_bjqsb")]
+position = Vector2(2205, 364)
+scale = Vector2(0.7, 0.7)
+
+[node name="Manananggal_v2" parent="." instance=ExtResource("9_cljyk")]
+position = Vector2(2043, 387)
+
+[node name="Manananggal_v3" parent="." instance=ExtResource("9_cljyk")]
+position = Vector2(1765, 425)

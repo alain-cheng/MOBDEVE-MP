@@ -12,7 +12,7 @@ var initBountyBonus
 #Default values listed
 var health = 5
 var bounty = 0
-var taboo = 6
+var taboo = PHASE_2
 var tabooBonus = 0
 var luck = 0
 var bountyBonus = 0
