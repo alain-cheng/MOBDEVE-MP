@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://owiom6kwwpmy"]
+[gd_scene load_steps=7 format=3 uid="uid://owiom6kwwpmy"]
 
 [ext_resource type="Script" path="res://environment/interactive/end_point/End_Point.gd" id="1_8qe24"]
 [ext_resource type="Texture2D" uid="uid://duxcjdu0cgmbp" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="2_bk05t"]
 [ext_resource type="Texture2D" uid="uid://c4dhf7fbwb4up" path="res://sprites/environment/interactive/end_point/actual/stairs.png" id="2_xyifa"]
+[ext_resource type="AudioStream" uid="uid://d1s4wqti72jkd" path="res://audio/enter_sound.mp3" id="4_hvlf5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_wjwmu"]
 animations = [{
@@ -39,5 +40,8 @@ animation = &"nextfloor"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)
 shape = SubResource("RectangleShape2D_1w6gq")
+
+[node name="EnterSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_hvlf5")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dtn8oh314a4hk"]
+[gd_scene load_steps=8 format=3 uid="uid://dtn8oh314a4hk"]
 
 [ext_resource type="Script" path="res://environment/traps/spikes/Spikes.gd" id="1_5gqcc"]
 [ext_resource type="Texture2D" uid="uid://xd5poge8uf8c" path="res://sprites/environment/traps/spikes.png" id="2_jpww6"]
+[ext_resource type="AudioStream" uid="uid://vddwd7h2i42h" path="res://audio/spike_sound.mp3" id="3_mpehj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c8eeq"]
 atlas = ExtResource("2_jpww6")
@@ -47,6 +48,10 @@ position = Vector2(-1, -13)
 shape = SubResource("RectangleShape2D_wgm7w")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="SpikeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_mpehj")
+attenuation = 9.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var flooranim = get_node("FloorSprite")
 @onready var player
+@onready var soundEnter = $EnterSound
 signal changeFloor
 var isWin = false
 
@@ -39,5 +40,6 @@ func _on_body_entered(body):
 			player.transitions.play("Fade out")
 			player.falling = true
 			player.ui_off()
+			soundEnter.play()
 			await get_tree().create_timer(0.9).timeout #Base on anims
 			changeFloor.emit()

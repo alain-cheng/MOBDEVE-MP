@@ -4,6 +4,7 @@ extends CharacterBody2D
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var cooldown = $AttackTimer
 @onready var detection = $PlayerDetection/CollisionShape2D
+@onready var soundFire = $FireSound
 @export var projectile: PackedScene = preload("res://traps/Projectiles/fire_projectile_2.tscn")
 var attack = false
 var delay = 1.0
@@ -32,6 +33,7 @@ func fire():
 		p.apply_scale(self.scale)
 		p.SPEED = speed
 		p.damage_taken.connect(player.on_damage_taken)
+		soundFire.play()
 
 
 # When Player enters detection zone
