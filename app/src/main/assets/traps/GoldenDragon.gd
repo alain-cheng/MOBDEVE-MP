@@ -33,7 +33,6 @@ func fire():
 		p.apply_scale(self.scale)
 		p.SPEED = speed
 		p.damage_taken.connect(player.on_damage_taken)
-		soundFire.play()
 
 
 # When Player enters detection zone
@@ -43,6 +42,7 @@ func _on_player_detection_entered(area):
 		animation.play("attack")
 		await get_tree().create_timer(delay).timeout #Firing delay
 		cooldown.start()
+		soundFire.play()
 		
 
 
