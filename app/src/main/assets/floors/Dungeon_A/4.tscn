@@ -118,4 +118,4 @@ position = Vector2(394, 768)
 scale = Vector2(-1, 1)
 
 [node name="Manananggal_v2" parent="." instance=ExtResource("9_2duwr")]
-position = Vector2(462, 377)
+position = Vector2(462, 280)
