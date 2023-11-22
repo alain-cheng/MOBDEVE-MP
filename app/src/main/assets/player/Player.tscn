@@ -328,17 +328,17 @@ scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
 [node name="PlayerIcon" type="TextureRect" parent="PlayerCamera/LifeCounter"]
-offset_left = 107.0
-offset_top = 72.0
-offset_right = 165.0
-offset_bottom = 130.0
+offset_left = 62.0
+offset_top = 92.0
+offset_right = 120.0
+offset_bottom = 150.0
 texture = ExtResource("21_lieit")
 
 [node name="Lives" type="RichTextLabel" parent="PlayerCamera/LifeCounter"]
-offset_left = 168.0
-offset_top = 72.0
-offset_right = 248.0
-offset_bottom = 141.0
+offset_left = 125.0
+offset_top = 92.0
+offset_right = 205.0
+offset_bottom = 161.0
 theme_override_font_sizes/normal_font_size = 50
 text = "× 0"
 fit_content = true
