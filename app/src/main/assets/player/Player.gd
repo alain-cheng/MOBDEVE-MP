@@ -10,6 +10,8 @@ extends CharacterBody2D
 @onready var soundDeath =  $DeathSound
 @onready var soundFalling = $FallingSound
 @onready var bgm = $BGM
+@onready var camera = $PlayerCamera
+var zoom = false
 var backPressed = false
 var isDed = false
 var falling = false
@@ -85,6 +87,8 @@ func _physics_process(_delta):
 		velocity.x = 0
 		velocity.y = -25
 		move_and_slide()
+	if zoom:
+		camera.zoom += Vector2(0.5, 0.5)
 
 func _notification(what):
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST:
@@ -124,7 +128,7 @@ func on_damage_taken(damage = 1): #Default damage is 1
 		elif PlayerData.health > 0: #-1 Life
 			get_tree().reload_current_scene()
 		
-func ive_fallen():
+func ive_fallen(fallPos: Vector2):
 	#Animation
 	falling = true
 	ui_off()
@@ -140,10 +144,21 @@ func ive_fallen():
 	isDed = true
 	#Check if is health <= 0 and !finalFloor
 	if(PlayerData.health > 0 && !PlayerData.lastFloor): #fall to next floor
+		camera.position_smoothing_enabled = true
+		camera.position_smoothing_speed = 7.0
+		global_position = fallPos + Vector2(0, 55)
+		zoom = true
+		await get_tree().create_timer(1.0).timeout #Base on anims
+		
+		zoom = false
 		fall_to_next.emit()
 	elif(PlayerData.health <= 0 || PlayerData.lastFloor): #Die
 		bgm.stop()
 		soundDeath.play()
+		
+		camera.position_smoothing_enabled = true
+		global_position = fallPos
+		
 		animation.play("death")
 		await get_tree().create_timer(3.5).timeout #Base on anims
 		transitions.play("Fade out")
