@@ -12,7 +12,7 @@ var initBountyBonus
 #Default values listed
 var health = 5
 var bounty = 0
-var taboo = PHASE_2
+var taboo = PHASE_1
 var tabooBonus = 0
 var luck = 0
 var bountyBonus = 0
@@ -33,7 +33,7 @@ var group3 = ["res://floors/Dungeon_A/3.tscn"]
 #Spiral Ruins
 var group4 = ["res://floors/Dungeon_A/4.tscn"]
 #Colosseum
-var final1 = ["res://floors/Dungeon_A/7_1.tscn"]
+var final1 = ["res://floors/Dungeon_A/7_1.tscn", "res://floors/Dungeon_A/7_2.tscn"]
 #Lich Throne
 var final2 = ["res://floors/Dungeon_A/8_1.tscn"]
 #Crimson Manor
