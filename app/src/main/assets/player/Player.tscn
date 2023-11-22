@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://btymg45ij342p"]
+[gd_scene load_steps=32 format=3 uid="uid://btymg45ij342p"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_q2xcu"]
 [ext_resource type="Texture2D" uid="uid://cpr0jsuwiod67" path="res://sprites/player/down/down_1.png" id="2_5htem"]
@@ -21,6 +21,9 @@
 [ext_resource type="Texture2D" uid="uid://b32ygixawrsac" path="res://sprites/buttons/button_placeholder_up.png" id="19_g3l2f"]
 [ext_resource type="Texture2D" uid="uid://cub8xceqt4usg" path="res://sprites/buttons/button_placeholder_down.png" id="20_q1uxl"]
 [ext_resource type="Texture2D" uid="uid://bi4hnmyn7dl1y" path="res://sprites/player/player_icon.png" id="21_lieit"]
+[ext_resource type="AudioStream" uid="uid://bmbkbhg80khr4" path="res://audio/player_death.mp3" id="22_vy8f6"]
+[ext_resource type="AudioStream" uid="uid://baosxho65mem5" path="res://audio/game_bgm.mp3" id="23_eww6y"]
+[ext_resource type="AudioStream" uid="uid://dkthkrrggah5f" path="res://audio/fall_sound.mp3" id="24_haxk6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8r5le"]
 animations = [{
@@ -346,3 +349,15 @@ autowrap_mode = 0
 [node name="HurtboxColliider" type="CollisionShape2D" parent="PlayerHurtbox"]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_wscho")
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("22_vy8f6")
+volume_db = 7.5
+pitch_scale = 0.75
+
+[node name="BGM" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("23_eww6y")
+volume_db = 7.5
+
+[node name="FallingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_haxk6")

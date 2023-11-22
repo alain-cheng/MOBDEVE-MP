@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://42v35pmaar3w"]
+[gd_scene load_steps=9 format=3 uid="uid://42v35pmaar3w"]
 
 [ext_resource type="Script" path="res://traps/DragonGargoyle.gd" id="1_teck1"]
 [ext_resource type="Texture2D" uid="uid://c7mom37ybdjqq" path="res://sprites/traps/DragonGargoyle/DragonGargoyle.png" id="2_bjwvy"]
+[ext_resource type="AudioStream" uid="uid://d27ydwr0d08j2" path="res://audio/gargoyle_1_fireball.mp3" id="3_e0c3e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_acs4f"]
 size = Vector2(96, 101)
@@ -58,6 +59,12 @@ shape = SubResource("RectangleShape2D_g5iku")
 
 [node name="AttackTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="FireSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_e0c3e")
+volume_db = -7.0
+pitch_scale = 0.96
+attenuation = 9.0
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_entered"]
 [connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_exited"]

@@ -7,6 +7,9 @@ extends CharacterBody2D
 @onready var hurtbox_area = get_node("PlayerHurtbox")
 @onready var transitions = $PlayerCamera/Transitions/TransitionsPlayer
 @onready var healthCounter = $PlayerCamera/LifeCounter/Lives
+@onready var soundDeath =  $DeathSound
+@onready var soundFalling = $FallingSound
+@onready var bgm = $BGM
 var backPressed = false
 var isDed = false
 var falling = false
@@ -25,6 +28,7 @@ func _ready():
 	buttons.show()
 	$PlayerCamera/LifeCounter.show()
 	falling = false
+	bgm.play()
 
 func _physics_process(_delta):
 	if(!isDed && !falling):
@@ -102,6 +106,8 @@ func on_damage_taken(damage = 1): #Default damage is 1
 		isDed = true
 		ui_off()
 		animation.play("death")
+		bgm.stop()
+		soundDeath.play()
 		await get_tree().create_timer(3.5).timeout #Base on anims
 		PlayerData.health = PlayerData.health - damage
 		
@@ -123,6 +129,7 @@ func ive_fallen():
 	animation.stop()
 	await get_tree().create_timer(0.5).timeout #Base on anims
 	animation.play("fall")
+	soundFalling.play()
 	await get_tree().create_timer(1.0).timeout #Base on anims
 	falling = false
 	
@@ -133,6 +140,8 @@ func ive_fallen():
 	if(PlayerData.health > 0 && !PlayerData.lastFloor): #fall to next floor
 		fall_to_next.emit()
 	elif(PlayerData.health <= 0 || PlayerData.lastFloor): #Die
+		bgm.stop()
+		soundDeath.play()
 		animation.play("death")
 		await get_tree().create_timer(3.5).timeout #Base on anims
 		transitions.play("Fade out")
