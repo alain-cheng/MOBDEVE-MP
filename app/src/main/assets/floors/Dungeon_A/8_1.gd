@@ -9,6 +9,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Player/FloorNamePanel.show()
+	$Player/FloorNamePanel/LabelAnim.play("FloorName_FadeInOut")
+	
 	#Connect endpoint to change floor
 	endpoint.changeFloor.connect(PlayerData.dungeonFloorMovement)
 	endpoint.player = player

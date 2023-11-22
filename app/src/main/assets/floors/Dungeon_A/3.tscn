@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cdbxt0pufld44"]
+[gd_scene load_steps=22 format=3 uid="uid://cdbxt0pufld44"]
 
 [ext_resource type="Script" path="res://floors/Dungeon_A/3.gd" id="1_c6j2x"]
 [ext_resource type="Texture2D" uid="uid://7qp4m8w6q0l6" path="res://sprites/floors/A/3.png" id="2_a3xia"]
@@ -7,6 +7,46 @@
 [ext_resource type="PackedScene" uid="uid://u1ute5oe5d4n" path="res://traps/GoldenDragon.tscn" id="5_kba0d"]
 [ext_resource type="PackedScene" uid="uid://42v35pmaar3w" path="res://traps/DragonGargoyle.tscn" id="6_ekvyx"]
 [ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="7_dwvc7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k5rgk"]
+bg_color = Color(0.866667, 0.196078, 0.141176, 1)
+
+[sub_resource type="Animation" id="Animation_13j0h"]
+resource_name = "FloorName_FadeInOut"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FloorName:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k8hxh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("FloorName:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iwyey"]
+_data = {
+"FloorName_FadeInOut": SubResource("Animation_13j0h"),
+"RESET": SubResource("Animation_k8hxh")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hf7ul"]
 size = Vector2(122, 925)
@@ -50,6 +90,39 @@ texture = ExtResource("2_a3xia")
 
 [node name="Player" parent="." instance=ExtResource("3_2415q")]
 position = Vector2(917, 118)
+
+[node name="FloorNamePanel" type="Panel" parent="Player"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+z_index = 4
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FloorName" type="RichTextLabel" parent="Player/FloorNamePanel"]
+modulate = Color(1, 1, 1, 0)
+z_index = 5
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -1200.0
+offset_top = -300.0
+offset_right = 1200.0
+offset_bottom = -163.0
+grow_horizontal = 2
+theme_override_font_sizes/normal_font_size = 100
+theme_override_styles/normal = SubResource("StyleBoxFlat_k5rgk")
+bbcode_enabled = true
+text = "[center]THE FURNACE[/center]"
+fit_content = true
+
+[node name="LabelAnim" type="AnimationPlayer" parent="Player/FloorNamePanel"]
+libraries = {
+"": SubResource("AnimationLibrary_iwyey")
+}
 
 [node name="EndPoint" parent="." instance=ExtResource("4_1hqia")]
 modulate = Color(0.678431, 0.396078, 0.396078, 1)

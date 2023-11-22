@@ -16,6 +16,9 @@ get_node("DragonGargoyle4"), get_node("DragonGargoyle5")]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	$Player/FloorNamePanel.show()
+	$Player/FloorNamePanel/LabelAnim.play("FloorName_FadeInOut")
+	
 	rng.randomize()
 	#Connect endpoint to change floor
 	for e in endpoints:
@@ -30,21 +33,21 @@ func _ready():
 	#Init traps
 	for gDragon in gDragons:
 		gDragon.player = player
-		gDragon.delay = 0.7
+		gDragon.delay = 0.675
 	gDragons[1].delay = 0.1 #Shorter for this one
 	gDragons[1].speed = 700
 	for p in pitfalls:
 		p.fallen_down.connect(player.ive_fallen)
 	for d in dragons1:
 		d.player = player
-		d.cooldown.wait_time = 2.0
-	for d in dragons2: #Dragons on top route
+		d.cooldown.wait_time = 1.75
+	for d in dragons2:
 		d.player = player
-		d.cooldown.wait_time = 4.0
+		d.cooldown.wait_time = 3.25
 	for k in kapre:
 		k.player = player
-		k.cooldown.wait_time = 8.0
-	kapre[1].cooldown.wait_time = 2.8
+		k.cooldown.wait_time = 6.5
+	kapre[1].cooldown.wait_time = 2.5
 	for spike in spikes:
 		spike.damage_taken.connect(player.on_damage_taken)
 		spike.timer.wait_time = 2.0
