@@ -3,15 +3,25 @@ extends Control
 @onready var animation = $Panel/AnimationPlayer
 @onready var player = $Panel/AnimatedSprite2D
 @onready var animation2 = $Panel/AnimationPlayer2
+@onready var bgm = $BGM
+@onready var soundIdle = $IdleSound
+@onready var soundConfirm = $ConfirmSound
 signal confirm
 
 func _ready():
 	animation.play("popup")
 	animation2.play("Blinking text")
 	player.play("default")
+	bgm.play()
+	await get_tree().create_timer(3).timeout
+	soundIdle.play()
 
 
 func _on_button_close_popup_pressed():
+	bgm.stop()
+	soundIdle.stop()
+	soundConfirm.play()
+	await get_tree().create_timer(0.5).timeout
 	emit_signal("confirm")
 
 

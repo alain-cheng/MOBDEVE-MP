@@ -2,6 +2,7 @@ extends Area2D
 
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var timer = get_node("Timer")
+@onready var soundSpike = $SpikeSound
 var damage = 1
 var isExtended = false
 var player_in = false
@@ -17,6 +18,7 @@ func _on_timeout():
 	if(!isExtended):
 		animation.play("extended")
 		isExtended = !isExtended
+		soundSpike.play()
 	else:
 		animation.play("retracted")
 		isExtended = !isExtended

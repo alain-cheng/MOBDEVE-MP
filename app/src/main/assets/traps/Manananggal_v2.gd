@@ -3,12 +3,13 @@ extends CharacterBody2D
 @onready var player
 @onready var animation = get_node("AnimatedSprite2D")
 @onready var detection = $PlayerDetection/CollisionShape2D
+@onready var soundScream = $ScreamSound
 signal damage_taken(damage)
 var attack = false
 var damage: int = 1
-@onready var delay = 1.0
-@onready var despawn = 3.0
-@onready var SPEED = 1000
+var delay = 1.0
+var despawn = 3.0
+var SPEED = 1000
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -33,6 +34,7 @@ func _on_player_detection_area_entered(area):
 		tween.tween_property($AnimatedSprite2D, "modulate:b", 0, 0.2)
 		attack = true
 		animation.play("attack")
+		soundScream.play()
 		
 
 
@@ -43,6 +45,5 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 
 
 func _on_killzone_area_entered(area):
-	print(area.name)
 	if area.name == "PlayerHurtbox" && attack == true:
 		emit_signal("damage_taken", damage)

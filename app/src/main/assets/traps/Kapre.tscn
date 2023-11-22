@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4avbltaqwlpm"]
+[gd_scene load_steps=10 format=3 uid="uid://b4avbltaqwlpm"]
 
 [ext_resource type="Script" path="res://traps/Kapre.gd" id="1_hjh5v"]
 [ext_resource type="Texture2D" uid="uid://bejixiew340rh" path="res://sprites/traps/Kapre/Kapre.png" id="1_mtsfy"]
+[ext_resource type="AudioStream" uid="uid://cysqp0pbt4g28" path="res://audio/smokepuff_sound.mp3" id="3_csccp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyyie"]
 size = Vector2(181, 180)
@@ -61,3 +62,6 @@ frame_progress = 0.176001
 [node name="AttackTimer" type="Timer" parent="."]
 wait_time = 7.5
 one_shot = true
+
+[node name="SmokeSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_csccp")
