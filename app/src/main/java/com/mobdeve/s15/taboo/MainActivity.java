@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
         mDataViewModel.getPlayer().observe(this, playerData -> {
             try {
-                setBounty(playerData.getBounty());
+                setBounty(playerData.getBounty() + playerData.getBountyBonus());
                 int CASE = playerData.getTaboo();
                 if(CASE < TreasureList.PHASE_1)
                     binding.activityMainImgGauge.setImageResource(R.drawable.taboo_gauge_0_v2);

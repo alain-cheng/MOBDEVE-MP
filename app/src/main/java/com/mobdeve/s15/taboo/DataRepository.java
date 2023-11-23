@@ -187,6 +187,36 @@ class DataRepository {
                 setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[7]) && treasures.get(i).getCount() > 0)
                 setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 3: Legendary Arms
+            if(treasures.get(i).getName().equals(TreasureList.names[8]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[9]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[10]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[11]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 4: Not a Reference
+            if(treasures.get(i).getName().equals(TreasureList.names[12]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[13]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[14]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[15]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 5: Blood Moon
+            if(treasures.get(i).getName().equals(TreasureList.names[16]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[17]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[18]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[19]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
         }
 
         int b = 0; //Index for setBonus chars
@@ -215,6 +245,30 @@ class DataRepository {
             char[] temp = player.getSetBonus().toCharArray();
             temp[b] = '1';
             player.setSetBonus(String.valueOf(temp)); //Signals Godot to reduce amount of floors
+        } b++; //Increment index
+
+        //Legendary Arms Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 100); //Get 100 extra bounty
+        } b++; //Increment index
+
+        //Not a Reference Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setHealth(player.getHealth()+1); //Extra health
+        } b++; //Increment index
+
+        //Blood moon bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setTabooBonus(player.getTabooBonus() + 2); //Faster taboo gauge
         } b++; //Increment index
 
         isSelling = false; //Deactivate sell mode
