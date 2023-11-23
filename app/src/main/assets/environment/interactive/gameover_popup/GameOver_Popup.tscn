@@ -195,10 +195,10 @@ pivot_offset = Vector2(1200, 14.5)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
-text = "[center]Tap to continue...[/center]"
+text = "[center]  Tap to continue...[/center]"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
-position = Vector2(1139, 503)
+position = Vector2(1110, 500)
 sprite_frames = SubResource("SpriteFrames_wdtkd")
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]

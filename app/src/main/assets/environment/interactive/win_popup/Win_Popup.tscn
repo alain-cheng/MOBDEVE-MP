@@ -158,7 +158,7 @@ offset_bottom = -149.064
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "[center]Treasure Found![/center]"
+text = "[center]  Treasure Found![/center]"
 fit_content = true
 scroll_active = false
 
@@ -195,14 +195,14 @@ pivot_offset = Vector2(1200, 14.5)
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
-text = "[center]Tap to continue...[/center]"
+text = "[center]    Tap to continue...[/center]"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
-position = Vector2(1025, 500)
+position = Vector2(1075, 500)
 sprite_frames = SubResource("SpriteFrames_wdtkd")
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]
-position = Vector2(1125, 525)
+position = Vector2(1175, 525)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_khjw1")
 

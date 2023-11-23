@@ -135,11 +135,9 @@ func on_damage_taken(damage = 1): #Default damage is 1
 		if PlayerData.health <= 0: #Game over
 			transitions.play("Fade out")
 			await get_tree().create_timer(0.9).timeout #Base on anims
-			#TODO: Add popup for dying
+			
 			get_tree().change_scene_to_file("res://environment/interactive/gameover_popup/GameOver_Popup.tscn")
-			#Update signal_data.json
-			#update_json(false, true)
-			#get_tree().quit()
+
 		elif PlayerData.health > 0: #-1 Life
 			get_tree().reload_current_scene()
 		
@@ -178,11 +176,8 @@ func ive_fallen(fallPos: Vector2):
 		await get_tree().create_timer(3.5).timeout #Base on anims
 		transitions.play("Fade out")
 		await get_tree().create_timer(0.9).timeout #Base on anims
-		#TODO: Add popup for dying
 		
-		#Update signal_data.json
-		update_json(false, true)
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://environment/interactive/gameover_popup/GameOver_Popup.tscn")
 	
 func ui_off():
 	#Toggle booleans
