@@ -237,19 +237,19 @@ position = Vector2(656, 176)
 position = Vector2(874, 177)
 
 [node name="Pitfall3" parent="." instance=ExtResource("5_64fah")]
-position = Vector2(1076, 834)
+position = Vector2(1082, 864)
 
 [node name="Pitfall4" parent="." instance=ExtResource("5_64fah")]
 position = Vector2(1492, 645)
 
 [node name="Pitfall5" parent="." instance=ExtResource("5_64fah")]
-position = Vector2(1737, 410)
+position = Vector2(1753, 463)
 
 [node name="Pitfall6" parent="." instance=ExtResource("5_64fah")]
-position = Vector2(1769, 324)
+position = Vector2(1805, 335)
 
 [node name="Kapre" parent="." instance=ExtResource("8_dmnq5")]
-position = Vector2(658, 784)
+position = Vector2(647, 784)
 
 [node name="GoldenDragon" parent="." instance=ExtResource("6_w6yk3")]
 position = Vector2(61, 526)
@@ -278,25 +278,57 @@ position = Vector2(2266, 266)
 position = Vector2(2266, 352)
 
 [node name="Kapre2" parent="." instance=ExtResource("8_dmnq5")]
-position = Vector2(1588, 982)
+position = Vector2(1588, 941)
 
 [node name="Spikes" parent="." instance=ExtResource("9_u0i1e")]
-position = Vector2(1335, 622)
+position = Vector2(1335, 629)
+scale = Vector2(0.6, 0.6)
 
 [node name="Spikes2" parent="." instance=ExtResource("9_u0i1e")]
-position = Vector2(1335, 532)
+position = Vector2(1335, 539)
+scale = Vector2(0.6, 0.6)
 
 [node name="Spikes3" parent="." instance=ExtResource("9_u0i1e")]
-position = Vector2(1335, 442)
+position = Vector2(1335, 449)
+scale = Vector2(0.6, 0.6)
 
 [node name="Spikes4" parent="." instance=ExtResource("9_u0i1e")]
-position = Vector2(1335, 352)
+position = Vector2(1335, 359)
+scale = Vector2(0.6, 0.6)
 
 [node name="Spikes5" parent="." instance=ExtResource("9_u0i1e")]
-position = Vector2(1335, 262)
+position = Vector2(1335, 269)
+scale = Vector2(0.6, 0.6)
 
 [node name="Solids" type="Area2D" parent="."]
 
 [node name="CollisionShape2D13" type="CollisionShape2D" parent="Solids"]
 position = Vector2(1417, 407.25)
 shape = SubResource("RectangleShape2D_1edke")
+
+[node name="Pitfall7" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1705, 467)
+
+[node name="Pitfall8" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1655, 462)
+
+[node name="Pitfall9" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1770, 326)
+
+[node name="Pitfall10" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1530, 642)
+
+[node name="Pitfall11" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1534, 609)
+
+[node name="Pitfall12" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1488, 604)
+
+[node name="Pitfall13" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1530, 583)
+
+[node name="Pitfall14" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1832, 331)
+
+[node name="Pitfall15" parent="." instance=ExtResource("5_64fah")]
+position = Vector2(1887, 162)
