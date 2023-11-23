@@ -21,6 +21,12 @@ func _ready():
 
 
 func _physics_process(_delta):
+	#Auto z_index
+	if player.collider.global_position.y < global_position.y:
+		z_index = 1
+	else:
+		z_index = -1
+	
 	if !attack:
 		animation.play("idle")
 
