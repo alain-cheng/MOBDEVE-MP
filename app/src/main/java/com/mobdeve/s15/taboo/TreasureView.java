@@ -136,6 +136,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
                     intent.putExtra("ITEM_DESC", random.getLore());
                     intent.putExtra("ITEM_RAR", random.getRarity());
                     intent.putExtra("ITEM_CNT", -1);
+                    intent.putExtra("ITEM_BON", random.getItemBonus());
                     startActivity(intent);
                     break;
                 }
