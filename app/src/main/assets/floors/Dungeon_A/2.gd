@@ -20,7 +20,7 @@ func _ready():
 	#Init traps
 	for d in dragons1: #Dragons on Bottom
 		d.player = player
-		d.speed = 350
+		d.speed = 400
 		d.cooldown.wait_time = 1.0
 	for d in dragons2: #Dragons on top route
 		d.player = player
