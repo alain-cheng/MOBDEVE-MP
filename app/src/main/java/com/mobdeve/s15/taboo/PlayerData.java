@@ -17,10 +17,10 @@ public class PlayerData {
     @ColumnInfo(name = "tabooBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int tabooBonus;
     @ColumnInfo(name = "luck", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int luck;
     @ColumnInfo(name = "bountyBonus", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int bountyBonus;
-    @ColumnInfo(name = "setBonus1", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0") private int setBonus1;
+    @ColumnInfo(name = "setBonus", defaultValue = TreasureList.EMPTY_SET_BONUS) private String setBonus;
 
     //Constructor. Tip: Delete constructor and use Alt+Insert when updating to avoid insanity
-    public PlayerData(int id, String username, int health, int bounty, int taboo, int tabooBonus, int luck, int bountyBonus, int setBonus1) {
+    public PlayerData(int id, String username, int health, int bounty, int taboo, int tabooBonus, int luck, int bountyBonus, String setBonus) {
         this.id = id;
         this.username = username;
         this.health = health;
@@ -29,7 +29,7 @@ public class PlayerData {
         this.tabooBonus = tabooBonus;
         this.luck = luck;
         this.bountyBonus = bountyBonus;
-        this.setBonus1 = setBonus1;
+        this.setBonus = setBonus;
     }
 
     //Methods
@@ -58,10 +58,12 @@ public class PlayerData {
     public void setTaboo(int value){this.taboo = value;}
     public void setTabooBonus(int value){this.tabooBonus = value;}
     public void setBountyBonus(int value){this.bountyBonus = value;}
-    public int getSetBonus1() {
-        return setBonus1;
+
+    public String getSetBonus() {
+        return setBonus;
     }
-    public void setSetBonus1(int setBonus1) {
-        this.setBonus1 = setBonus1;
+
+    public void setSetBonus(String setBonus) {
+        this.setBonus = setBonus;
     }
 }

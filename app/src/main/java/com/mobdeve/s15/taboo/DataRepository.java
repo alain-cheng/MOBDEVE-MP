@@ -109,7 +109,7 @@ class DataRepository {
                     }
 
                     //Check bonuses after loops and selling
-                    tempP = checkBonuses(cacheT, tempP);
+                    tempP = checkBonuses(cacheT, tempP, treasure.getRarity());
 
                 }else mTabooDao.updateTreasury(temp); //Just add if treasury is empty
             }catch (Exception e){
@@ -160,32 +160,235 @@ class DataRepository {
     }
 
     //Use to check for set bonuses upon treasure acquisition and selling
-    PlayerData checkBonuses(ArrayList<Treasure> treasures, PlayerData player){
+    PlayerData checkBonuses(ArrayList<Treasure> treasures, PlayerData player, String rarity){
+        //NOTE: To add new set bonuses, just copy until you hit j++ in the loop and b++ outside
+
         //Vars for checking complete set
-        int set1TreasureCount = 0; //Needs 4
+        int[] setTreasureCount = new int[TreasureList.EMPTY_SET_BONUS.length()]; //Checks if setBonus complete
 
         //Check inventory for set treasures
         for(int i = 0; i < treasures.size(); i++){
-            //SET 1
+            int j = 0; //Index of set Complete
+
+            //SET 1: Kapre
             if(treasures.get(i).getName().equals(TreasureList.names[0]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[1]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[2]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[3]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 2: Conquest
+            if(treasures.get(i).getName().equals(TreasureList.names[4]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[5]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[6]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[7]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 3: Legendary Arms
+            if(treasures.get(i).getName().equals(TreasureList.names[8]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[9]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[10]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[11]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 4: Not a Reference
+            if(treasures.get(i).getName().equals(TreasureList.names[12]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[13]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[14]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[15]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 5: Blood Moon
+            if(treasures.get(i).getName().equals(TreasureList.names[16]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[17]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[18]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[19]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 6: Mythical Four
+            if(treasures.get(i).getName().equals(TreasureList.names[20]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[21]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[22]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[23]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 7: It's a Revolution
+            if(treasures.get(i).getName().equals(TreasureList.names[24]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[25]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[26]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[27]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 8: Nation Pride
+            if(treasures.get(i).getName().equals(TreasureList.names[28]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[29]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[30]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[31]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 9: Fruities
+            if(treasures.get(i).getName().equals(TreasureList.names[32]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[33]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[34]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[35]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET Final: The Creators
+            if(treasures.get(i).getName().equals(TreasureList.names[TreasureList.fullTreasury.length - 3]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[TreasureList.fullTreasury.length - 2]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[TreasureList.fullTreasury.length - 1]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
         }
 
+        int b = 0; //Index for setBonus chars
+
         //Smoking Giant Set bonus checks
-        if(player.getSetBonus1() == 0 && set1TreasureCount == 4){ //On obtaining complete set
-            player.setSetBonus1(1);
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
             player.setHealth(player.getHealth()+1); //Extra health
-        }
-        else if(player.getSetBonus1() == 1 && set1TreasureCount < 4){ //On losing complete set
-            player.setSetBonus1(0);
+        } b++; //Increment index
+
+        /*
+        else if(player.getSetBonus().charAt(b) == '1' && setTreasureCount[b] < 4){ //On losing complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '0';
+            player.setSetBonus(String.valueOf(temp));
             player.setHealth(player.getHealth()-1); //Extra health
-        }
+        } b++; //Increment index
+
+         The above is unused code for deactivating bonuses
+         */
+
+        //Conquest Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp)); //Signals Godot to reduce amount of floors
+        } b++; //Increment index
+
+        //Legendary Arms Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 100); //Get 100 extra bounty
+        } b++; //Increment index
+
+        //Not a Reference Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setHealth(player.getHealth()+1); //Extra health
+        } b++; //Increment index
+
+        //Blood moon bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setTabooBonus(player.getTabooBonus() + 2); //Faster taboo gauge
+        } b++; //Increment index
+
+        //Mythical Four Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 50); //Get 50 extra bounty
+        } b++; //Increment index
+
+        //Revolution Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 50); //Get 50 extra bounty
+        } b++; //Increment index
+
+        //Nation Pride Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setHealth(player.getHealth()+1); //Extra health
+        } b++; //Increment index
+
+        //Fruities Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 50); //Get 50 extra bounty
+        } b++; //Increment index
+
+        //Creator Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 3){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+
+            int correction = 0;
+            if(isSelling){
+                switch (rarity){
+                    case "COMMON":{
+                        correction = -15;
+                        break;
+                    }
+                    case "RARE":{
+                        correction = -30;
+                        break;
+                    }
+                    case "FORBIDDEN":{
+                        correction = -75;
+                        break;
+                    }
+                    case "BLASPHEMY":{
+                        correction = -150;
+                        break;
+                    }
+                    case "LOST":{
+                        correction = -300;
+                        break;
+                    }
+                }
+            }
+
+            int altTimelineBounty = player.getBounty() + correction;
+            //Get Double Total Bounty
+            player.setBountyBonus((player.getBountyBonus()*2 + altTimelineBounty)*2 - altTimelineBounty);
+        } b++; //Increment index
 
         isSelling = false; //Deactivate sell mode
         return player;
@@ -203,7 +406,7 @@ class DataRepository {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
             mTabooDao.deleteUser();
-            mTabooDao.updatePlayer(new PlayerData(0, "", 3, 0, 0, 0, 0, 0, 0));
+            mTabooDao.updatePlayer(new PlayerData(0, "", 3, 0, 0, 0, 0, 0, TreasureList.EMPTY_SET_BONUS));
             mTabooDao.updateUser(new User("", ""));
         });
     }

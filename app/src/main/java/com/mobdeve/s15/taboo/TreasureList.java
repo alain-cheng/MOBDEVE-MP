@@ -10,6 +10,8 @@ public class TreasureList {
     // CONSTANTS FOR TABOO GAUGE LEVEL
     public static final int WIN_ADD = 3, LOSS_ADD = -1, PHASE_1 = 6, PHASE_2 = 24, PHASE_3 = 36, PHASE_4 = 51;
 
+    public static final String EMPTY_SET_BONUS = "0000000000";
+
     public static Treasure lastRandom = new Treasure("0ERROR", "ERROR, BUG!", R.drawable.item_kaprecigar,
             "000000",
             "THIS IS NOT SUPPOSE TO BE HERE!", "LOST", 1);
@@ -93,16 +95,6 @@ public class TreasureList {
     }
 
     public static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY", "LOST"};
-
-    public static String[] ids = new String[50];
-    public static String[] names = new String[50];
-
-    public static String[] bonuses = new String[50];
-    public static String[] lores = new String[50];
-
-    public static String[] rarities = new String[50];
-
-    public static int[] images = new int[50];
 
     //TODO: ADD New treasures in this array. initData will automatically load them into the other arrays
     public static final Treasure[] fullTreasury = {
@@ -396,6 +388,42 @@ public class TreasureList {
                     1
             ),
             new Treasure(
+                    "item33",
+                    "Cherrita",
+                    R.drawable.item33,
+                    "+50 bounty upon set completion",
+                    "“This thing doesn’t look valuable but it's cute, ama keep it anyway”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item34",
+                    "Lemono",
+                    R.drawable.item34,
+                    "+50 bounty upon set completion",
+                    "“Too cool and too sour for you”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item35",
+                    "Brorange",
+                    R.drawable.item35,
+                    "+50 bounty upon set completion",
+                    "“Which came first, Orange the color or Orange the fruit?”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item36",
+                    "Melonica",
+                    R.drawable.item36,
+                    "+50 bounty upon set completion",
+                    "“Absolutely adorable and delicious.”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
                     "item45",
                     "Jamuel’s Haymaker",
                     R.drawable.creators1,
@@ -435,6 +463,16 @@ public class TreasureList {
                     1
             ),
     };
+
+    public static String[] ids = new String[fullTreasury.length];
+    public static String[] names = new String[fullTreasury.length];
+
+    public static String[] bonuses = new String[fullTreasury.length];
+    public static String[] lores = new String[fullTreasury.length];
+
+    public static String[] rarities = new String[fullTreasury.length];
+
+    public static int[] images = new int[fullTreasury.length];
 
     public static void initData(){
         //Initialize fullTreasury by for loop during main onCreate here
