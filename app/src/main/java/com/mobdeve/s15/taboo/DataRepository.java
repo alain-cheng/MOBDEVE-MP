@@ -109,7 +109,7 @@ class DataRepository {
                     }
 
                     //Check bonuses after loops and selling
-                    tempP = checkBonuses(cacheT, tempP);
+                    tempP = checkBonuses(cacheT, tempP, treasure.getRarity());
 
                 }else mTabooDao.updateTreasury(temp); //Just add if treasury is empty
             }catch (Exception e){
@@ -160,7 +160,9 @@ class DataRepository {
     }
 
     //Use to check for set bonuses upon treasure acquisition and selling
-    PlayerData checkBonuses(ArrayList<Treasure> treasures, PlayerData player){
+    PlayerData checkBonuses(ArrayList<Treasure> treasures, PlayerData player, String rarity){
+        //NOTE: To add new set bonuses, just copy until you hit j++ in the loop and b++ outside
+
         //Vars for checking complete set
         int[] setTreasureCount = new int[TreasureList.EMPTY_SET_BONUS.length()]; //Checks if setBonus complete
 
@@ -217,6 +219,44 @@ class DataRepository {
                 setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[19]) && treasures.get(i).getCount() > 0)
                 setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 6: Mythical Four
+            if(treasures.get(i).getName().equals(TreasureList.names[20]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[21]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[22]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[23]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 7: It's a Revolution
+            if(treasures.get(i).getName().equals(TreasureList.names[24]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[25]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[26]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[27]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 8: Nation Pride
+            if(treasures.get(i).getName().equals(TreasureList.names[28]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[29]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[30]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[31]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET Final: The Creators
+            if(treasures.get(i).getName().equals(TreasureList.names[TreasureList.fullTreasury.length - 3]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[TreasureList.fullTreasury.length - 2]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[TreasureList.fullTreasury.length - 1]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
         }
 
         int b = 0; //Index for setBonus chars
@@ -269,6 +309,65 @@ class DataRepository {
             temp[b] = '1';
             player.setSetBonus(String.valueOf(temp));
             player.setTabooBonus(player.getTabooBonus() + 2); //Faster taboo gauge
+        } b++; //Increment index
+
+        //Mythical Four Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 50); //Get 50 extra bounty
+        } b++; //Increment index
+
+        //Revolution Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 50); //Get 50 extra bounty
+        } b++; //Increment index
+
+        //Nation Pride Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setHealth(player.getHealth()+1); //Extra health
+        } b++; //Increment index
+
+        //Creator Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 3){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+
+            int correction = 0;
+            if(isSelling){
+                switch (rarity){
+                    case "COMMON":{
+                        correction = -10;
+                        break;
+                    }
+                    case "RARE":{
+                        correction = -20;
+                        break;
+                    }
+                    case "FORBIDDEN":{
+                        correction = -50;
+                        break;
+                    }
+                    case "BLASPHEMY":{
+                        correction = -100;
+                        break;
+                    }
+                    case "LOST":{
+                        correction = -200;
+                        break;
+                    }
+                }
+            }
+
+            player.setBountyBonus(player.getBountyBonus()*2 + player.getBounty() + correction); //Get Double Total Bounty
         } b++; //Increment index
 
         isSelling = false; //Deactivate sell mode
