@@ -2,6 +2,7 @@ package com.mobdeve.s15.taboo;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,13 +28,15 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
     private DataViewModel mDataViewModel;
     private int img, cnt;
     private String name, desc, rar, bon;
+    private MediaPlayer buttonSfx;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityTreasureViewBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
+        buttonSfx = MediaPlayer.create(this.getBaseContext(), R.raw.button_press_1);
         Intent intent = getIntent();
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
@@ -94,6 +97,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
     }
     private void sellListener(View v){
         v.startAnimation(buttonClick);
+        buttonSfx.start();
         DialogFragment dialog = new ConfirmationDialog();
         dialog.show(getSupportFragmentManager(), name);
     }

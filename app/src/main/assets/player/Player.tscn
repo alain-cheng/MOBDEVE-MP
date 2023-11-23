@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://btymg45ij342p"]
+[gd_scene load_steps=34 format=3 uid="uid://btymg45ij342p"]
 
 [ext_resource type="Script" path="res://player/Player.gd" id="1_q2xcu"]
 [ext_resource type="Texture2D" uid="uid://cpr0jsuwiod67" path="res://sprites/player/down/down_1.png" id="2_5htem"]
@@ -22,6 +22,8 @@
 [ext_resource type="Texture2D" uid="uid://cub8xceqt4usg" path="res://sprites/buttons/button_placeholder_down.png" id="20_q1uxl"]
 [ext_resource type="Texture2D" uid="uid://bi4hnmyn7dl1y" path="res://sprites/player/player_icon.png" id="21_lieit"]
 [ext_resource type="AudioStream" uid="uid://bmbkbhg80khr4" path="res://audio/player_death.mp3" id="22_vy8f6"]
+[ext_resource type="Texture2D" uid="uid://cp4qdq7vl5kg3" path="res://sprites/buttons/unmute.png" id="22_xtmto"]
+[ext_resource type="Texture2D" uid="uid://miov2b8x3h5" path="res://sprites/buttons/muted.png" id="23_a3fyw"]
 [ext_resource type="AudioStream" uid="uid://baosxho65mem5" path="res://audio/game_bgm.mp3" id="23_eww6y"]
 [ext_resource type="AudioStream" uid="uid://dkthkrrggah5f" path="res://audio/fall_sound.mp3" id="24_haxk6"]
 
@@ -323,7 +325,6 @@ libraries = {
 
 [node name="LifeCounter" type="CanvasLayer" parent="PlayerCamera"]
 layer = 2
-visible = false
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
@@ -344,6 +345,14 @@ text = "× 0"
 fit_content = true
 autowrap_mode = 0
 
+[node name="MuteButton" type="CanvasLayer" parent="PlayerCamera"]
+
+[node name="Mute" type="TouchScreenButton" parent="PlayerCamera/MuteButton"]
+position = Vector2(102, 12)
+scale = Vector2(0.213413, 0.213413)
+texture_normal = ExtResource("22_xtmto")
+texture_pressed = ExtResource("23_a3fyw")
+
 [node name="PlayerHurtbox" type="Area2D" parent="." groups=["Player"]]
 
 [node name="HurtboxColliider" type="CollisionShape2D" parent="PlayerHurtbox"]
@@ -361,3 +370,5 @@ volume_db = 7.5
 
 [node name="FallingSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_haxk6")
+
+[connection signal="pressed" from="PlayerCamera/MuteButton/Mute" to="." method="_on_mute_pressed"]

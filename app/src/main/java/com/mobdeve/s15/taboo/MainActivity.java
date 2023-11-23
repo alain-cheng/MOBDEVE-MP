@@ -2,6 +2,7 @@ package com.mobdeve.s15.taboo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,9 +22,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -33,6 +32,8 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
     private DataViewModel mDataViewModel;
     private Context context;
+    private MediaPlayer buttonSfx;
+    private MediaPlayer playSfx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +56,8 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         getOnBackPressedDispatcher().addCallback(this, callback);
 
         context = getApplicationContext();
+        buttonSfx = MediaPlayer.create(context, R.raw.button_press_1);
+        playSfx = MediaPlayer.create(context, R.raw.button_press_2);
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
         mDataViewModel.getPlayer().observe(this, playerData -> {
             try {
@@ -235,12 +238,13 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
 
     private void settingsListener(View v){
         v.startAnimation(buttonClick);
+        buttonSfx.start();
         Intent intent = new Intent(this, Setting.class);
         startActivity(intent);
     }
     private void playListener(View v){
         v.startAnimation(buttonClick);
-
+        playSfx.start();
         //Retrieve currentPlayerData
         ExecutorService threadpool = Executors.newCachedThreadPool();
         Future<PlayerData> futureData = threadpool.submit(() -> mDataViewModel.getCurrentPlayerData());
@@ -289,6 +293,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
     }
     private void treasureListener(View v){
         v.startAnimation(buttonClick);
+        buttonSfx.start();
         Intent intent = new Intent(this, Collection.class);
         startActivity(intent);
     }
