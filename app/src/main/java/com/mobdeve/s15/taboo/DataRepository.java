@@ -162,34 +162,42 @@ class DataRepository {
     //Use to check for set bonuses upon treasure acquisition and selling
     PlayerData checkBonuses(ArrayList<Treasure> treasures, PlayerData player){
         //Vars for checking complete set
-        int set1TreasureCount = 0; //Needs 4
+        int[] setTreasureCount = new int[TreasureList.EMPTY_SET_BONUS.length()]; //Checks if setBonus complete
 
         //Check inventory for set treasures
         for(int i = 0; i < treasures.size(); i++){
-            //SET 1
+            int j = 0; //Index of set Complete
+
+            //SET 1: Kapre
             if(treasures.get(i).getName().equals(TreasureList.names[0]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[1]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[2]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[3]) && treasures.get(i).getCount() > 0)
-                set1TreasureCount++;
+                setTreasureCount[j]++; j++; //Increment to next set
         }
 
+        int b = 0; //Index for setBonus chars
+
         //Smoking Giant Set bonus checks
-        if(player.getSetBonus().charAt(0) == '0' && set1TreasureCount == 4){ //On obtaining complete set
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
             char[] temp = player.getSetBonus().toCharArray();
-            temp[0] = '1';
+            temp[b] = '1';
             player.setSetBonus(String.valueOf(temp));
             player.setHealth(player.getHealth()+1); //Extra health
-        }
-        else if(player.getSetBonus().charAt(0) == '1' && set1TreasureCount < 4){ //On losing complete set
+        } b++; //Increment index
+        /*
+        else if(player.getSetBonus().charAt(b) == '1' && setTreasureCount[b] < 4){ //On losing complete set
             char[] temp = player.getSetBonus().toCharArray();
-            temp[0] = '0';
+            temp[b] = '0';
             player.setSetBonus(String.valueOf(temp));
             player.setHealth(player.getHealth()-1); //Extra health
-        }
+        } b++; //Increment index
+
+         The above is unused code for deactivating bonuses
+         */
 
         isSelling = false; //Deactivate sell mode
         return player;

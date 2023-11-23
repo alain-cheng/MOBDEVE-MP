@@ -29,6 +29,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
     private int img, cnt;
     private String name, desc, rar, bon;
     private MediaPlayer buttonSfx;
+    private final int MIN_SELL = 4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +60,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
         binding.treasureIv.setImageResource(img);
         binding.treasureNameTv.setText(name);
         binding.treasureDescriptionTv.setText("Set Bonus: " + bon + System.lineSeparator() + System.lineSeparator() + desc);
-        if(cnt >= 3){
+        if(cnt >= MIN_SELL){
             binding.sellBtn.setVisibility(View.VISIBLE);
         }
         if(cnt == -1)

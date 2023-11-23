@@ -96,16 +96,6 @@ public class TreasureList {
 
     public static final String[] RARITY = {"COMMON", "RARE", "FORBIDDEN", "BLASPHEMY", "LOST"};
 
-    public static String[] ids = new String[50];
-    public static String[] names = new String[50];
-
-    public static String[] bonuses = new String[50];
-    public static String[] lores = new String[50];
-
-    public static String[] rarities = new String[50];
-
-    public static int[] images = new int[50];
-
     //TODO: ADD New treasures in this array. initData will automatically load them into the other arrays
     public static final Treasure[] fullTreasury = {
             new Treasure(
@@ -437,6 +427,16 @@ public class TreasureList {
                     1
             ),
     };
+
+    public static String[] ids = new String[fullTreasury.length];
+    public static String[] names = new String[fullTreasury.length];
+
+    public static String[] bonuses = new String[fullTreasury.length];
+    public static String[] lores = new String[fullTreasury.length];
+
+    public static String[] rarities = new String[fullTreasury.length];
+
+    public static int[] images = new int[fullTreasury.length];
 
     public static void initData(){
         //Initialize fullTreasury by for loop during main onCreate here
