@@ -264,6 +264,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                 player.put("tabooBonus", playerData.getTabooBonus());
                 player.put("luck", playerData.getLuck());
                 player.put("bountyBonus", playerData.getBountyBonus());
+                player.put("setBonus", playerData.getSetBonus());
 
                 JSONObject signal = new JSONObject();
                 signal.put("generateTreasure", false);

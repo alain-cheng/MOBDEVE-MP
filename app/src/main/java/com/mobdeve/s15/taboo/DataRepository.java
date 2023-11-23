@@ -177,6 +177,16 @@ class DataRepository {
                 setTreasureCount[j]++;
             if(treasures.get(i).getName().equals(TreasureList.names[3]) && treasures.get(i).getCount() > 0)
                 setTreasureCount[j]++; j++; //Increment to next set
+
+            //SET 2: Conquest
+            if(treasures.get(i).getName().equals(TreasureList.names[4]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[5]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[6]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[7]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
         }
 
         int b = 0; //Index for setBonus chars
@@ -188,6 +198,7 @@ class DataRepository {
             player.setSetBonus(String.valueOf(temp));
             player.setHealth(player.getHealth()+1); //Extra health
         } b++; //Increment index
+
         /*
         else if(player.getSetBonus().charAt(b) == '1' && setTreasureCount[b] < 4){ //On losing complete set
             char[] temp = player.getSetBonus().toCharArray();
@@ -198,6 +209,13 @@ class DataRepository {
 
          The above is unused code for deactivating bonuses
          */
+
+        //Conquest Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp)); //Signals Godot to reduce amount of floors
+        } b++; //Increment index
 
         isSelling = false; //Deactivate sell mode
         return player;

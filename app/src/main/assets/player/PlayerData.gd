@@ -7,15 +7,16 @@ var initTaboo
 var initTabooBonus
 var initLuck
 var initBountyBonus
+var initSetBonus
 
 #Contains a copy of the above information for the game to manipulate
-#Default values listed
-var health = 5
+var health = 3
 var bounty = 0
-var taboo = PHASE_4
+var taboo = 0
 var tabooBonus = 0
 var luck = 0
 var bountyBonus = 0
+var setBonus = "0000000000" #THIS MUST MATCH THE LENGTH OF TreasureList.java EMPTY_SET_BONUS
 
 #Contains other playerData that does not come from the app
 var speed = 300.0
@@ -92,6 +93,7 @@ func initData():
 		initTabooBonus = player_dict.get("tabooBonus")
 		initLuck = player_dict.get("luck")
 		initBountyBonus = player_dict.get("bountyBonus")
+		initSetBonus = player_dict.get("setBonus")
 		
 		#Copy data to manipulable variables
 		health = initHealth
@@ -100,3 +102,4 @@ func initData():
 		tabooBonus = initTabooBonus
 		luck = initLuck
 		bountyBonus = initBountyBonus
+		setBonus = initSetBonus

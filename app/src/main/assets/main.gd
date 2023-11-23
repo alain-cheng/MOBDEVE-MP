@@ -33,7 +33,10 @@ func _ready():
 	for i in range(DUNGEON_NUM_FLOORS):
 		PlayerData.floorsOnRun.append(i+1)
 		
-	#TODO: Add code for dungeon shortening set bonus, maybe pop the first floor?
+	#Dungeon shortening set bonus
+	if PlayerData.setBonus[1] == '1':
+		PlayerData.floorsOnRun.pop_front()
+		DUNGEON_NUM_FLOORS -= 1
 		
 	#Shuffle all floors
 	for i in range(DUNGEON_NUM_FLOORS):
