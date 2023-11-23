@@ -160,15 +160,12 @@ scale = Vector2(-1, 1)
 
 [node name="Kapre" parent="." instance=ExtResource("7_vrkwf")]
 position = Vector2(565, 964)
-scale = Vector2(0.82, 0.82)
 
 [node name="Kapre2" parent="." instance=ExtResource("7_vrkwf")]
 position = Vector2(1571, 964)
-scale = Vector2(0.82, 0.82)
 
 [node name="Kapre3" parent="." instance=ExtResource("7_vrkwf")]
 position = Vector2(1909, 964)
-scale = Vector2(0.82, 0.82)
 
 [node name="Spikes" parent="." instance=ExtResource("8_bjqsb")]
 position = Vector2(2205, 364)
