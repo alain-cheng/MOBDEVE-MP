@@ -30,7 +30,7 @@ func _ready():
 			n.timer.start()
 	for gDragon in gDragons:
 		gDragon.player = player
-		gDragon.delay = 0.9
+		gDragon.delay = 0.95
 	for k in kapre:
 		k.player = player
 		k.cooldown.wait_time = 4.0

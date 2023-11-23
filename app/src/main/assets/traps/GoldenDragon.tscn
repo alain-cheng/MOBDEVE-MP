@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://d27ydwr0d08j2" path="res://audio/gargoyle_1_fireball.mp3" id="3_1xmxo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlh1d"]
-size = Vector2(100, 105)
+size = Vector2(69, 45)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rcufh"]
 atlas = ExtResource("1_7bbq8")
@@ -42,7 +42,7 @@ z_index = -1
 script = ExtResource("1_xygku")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(31, -16.5)
+position = Vector2(24, 2)
 shape = SubResource("RectangleShape2D_wlh1d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
