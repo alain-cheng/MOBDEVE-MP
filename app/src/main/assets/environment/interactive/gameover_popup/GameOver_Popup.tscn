@@ -1,8 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://fisg1hwgabtx"]
+[gd_scene load_steps=18 format=3 uid="uid://fisg1hwgabtx"]
 
 [ext_resource type="Script" path="res://environment/interactive/gameover_popup/GameOver_Popup.gd" id="1_f7inn"]
 [ext_resource type="Texture2D" uid="uid://clkatei4rhtda" path="res://sprites/player/death/death_1.png" id="2_5fvip"]
 [ext_resource type="Texture2D" uid="uid://buwmhvt75cap2" path="res://sprites/player/death/death_2.png" id="3_0mb60"]
+[ext_resource type="Texture2D" uid="uid://cfbed1yvrefsi" path="res://sprites/player/idle/idle_jump_1.png" id="3_053q2"]
+[ext_resource type="Texture2D" uid="uid://cbcums3dtyd0c" path="res://sprites/player/idle/idle_jump_2.png" id="4_kafda"]
 [ext_resource type="Texture2D" uid="uid://duxcjdu0cgmbp" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="6_hsbpd"]
 [ext_resource type="AudioStream" uid="uid://bprrvlayi6jmo" path="res://audio/gameover_bgm.mp3" id="6_wksdi"]
 [ext_resource type="AudioStream" uid="uid://dtbn3lkvlunqv" path="res://audio/win_beep.mp3" id="8_dygi8"]
@@ -52,6 +54,23 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 0.5,
+"texture": ExtResource("4_kafda")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_053q2")
+}, {
+"duration": 0.5,
+"texture": ExtResource("4_kafda")
+}, {
+"duration": 0.5,
+"texture": ExtResource("3_053q2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
 "texture": ExtResource("2_5fvip")
 }, {
 "duration": 0.5,
@@ -64,7 +83,7 @@ animations = [{
 "texture": ExtResource("3_0mb60")
 }],
 "loop": true,
-"name": &"default",
+"name": &"gameover",
 "speed": 3.0
 }]
 
