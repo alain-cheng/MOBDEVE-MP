@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id ("io.realm.kotlin")
 }
 
 android {
@@ -62,4 +63,7 @@ dependencies {
 
     //Godot
     implementation("org.godotengine:godot:4.2.0.beta-SNAPSHOT")
+
+    //MongoDB Realm
+    implementation ("io.realm.kotlin:library-sync:1.11.0")
 }
