@@ -325,6 +325,7 @@ libraries = {
 
 [node name="LifeCounter" type="CanvasLayer" parent="PlayerCamera"]
 layer = 2
+visible = false
 scale = Vector2(1.5, 1.5)
 transform = Transform2D(1.5, 0, 0, 1.5, 0, 0)
 
@@ -346,6 +347,7 @@ fit_content = true
 autowrap_mode = 0
 
 [node name="MuteButton" type="CanvasLayer" parent="PlayerCamera"]
+visible = false
 
 [node name="Mute" type="TouchScreenButton" parent="PlayerCamera/MuteButton"]
 position = Vector2(102, 12)

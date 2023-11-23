@@ -15,7 +15,7 @@ extends CharacterBody2D
 @onready var mute = $PlayerCamera/MuteButton/Mute
 var _textureMuted = load("res://sprites/buttons/muted.png")
 var _textureUnmuted = load("res://sprites/buttons/unmute.png")
-var muted = false
+var muted = PlayerData.muted
 var zoom = false
 var backPressed = false
 var isDed = false
@@ -215,3 +215,4 @@ func _on_mute_pressed():
 		mute.texture_normal = _textureMuted
 		
 	muted = !muted
+	PlayerData.muted = muted

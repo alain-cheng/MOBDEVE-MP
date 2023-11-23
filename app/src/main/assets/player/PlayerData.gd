@@ -44,6 +44,7 @@ const PHASE_1 = 6
 const PHASE_2 = 24
 const PHASE_3 = 36
 const PHASE_4 = 51
+var muted = false
 
 func checkLastFloor():
 	if floorsOnRun.size() <= 0:
