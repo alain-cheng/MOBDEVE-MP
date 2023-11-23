@@ -11,6 +11,11 @@ extends CharacterBody2D
 @onready var soundFalling = $FallingSound
 @onready var bgm = $BGM
 @onready var camera = $PlayerCamera
+@onready var mutebutton = $PlayerCamera/MuteButton 
+@onready var mute = $PlayerCamera/MuteButton/Mute
+var _textureMuted = load("res://sprites/buttons/muted.png")
+var _textureUnmuted = load("res://sprites/buttons/unmute.png")
+var muted = false
 var zoom = false
 var backPressed = false
 var isDed = false
@@ -28,11 +33,21 @@ func _ready():
 	await get_tree().create_timer(0.4).timeout #Base on anims
 	#Enable GUI
 	buttons.show()
+	# init mute button
+	mutebutton.show()
+	print(muted)
+	if muted:
+		mute.texture_normal = _textureMuted
+		mute.texture_pressed = _textureUnmuted
+	else:
+		mute.texture_normal = _textureUnmuted
+		mute.texture_pressed = _textureMuted
 	$PlayerCamera/LifeCounter.show()
 	falling = false
 	bgm.play()
 
 func _physics_process(_delta):
+	
 	if(!isDed && !falling):
 		#MOVEMENT
 		#If player is standing still, play idle
@@ -121,10 +136,10 @@ func on_damage_taken(damage = 1): #Default damage is 1
 			transitions.play("Fade out")
 			await get_tree().create_timer(0.9).timeout #Base on anims
 			#TODO: Add popup for dying
-			
+			get_tree().change_scene_to_file("res://environment/interactive/gameover_popup/GameOver_Popup.tscn")
 			#Update signal_data.json
-			update_json(false, true)
-			get_tree().quit()
+			#update_json(false, true)
+			#get_tree().quit()
 		elif PlayerData.health > 0: #-1 Life
 			get_tree().reload_current_scene()
 		
@@ -175,6 +190,7 @@ func ui_off():
 	hurtbox.set_deferred("disabled", true)
 	hurtbox_area.set_deferred("monitorable", false)
 	buttons.hide()
+	mutebutton.hide()
 	$PlayerCamera/LifeCounter.hide()
 	
 func update_json(t, l):
@@ -184,3 +200,18 @@ func update_json(t, l):
 		var file = FileAccess.open(path, FileAccess.WRITE)
 		file.store_line(JSON.stringify(dict))
 		file.close()
+
+
+func _on_mute_pressed():
+	var bus_idx = AudioServer.get_bus_index("Master")
+	
+	if muted:
+		AudioServer.set_bus_mute(bus_idx, !muted)
+		mute.texture_pressed = _textureMuted
+		mute.texture_normal = _textureUnmuted
+	else:
+		AudioServer.set_bus_mute(bus_idx, !muted)
+		mute.texture_pressed = _textureUnmuted
+		mute.texture_normal = _textureMuted
+		
+	muted = !muted

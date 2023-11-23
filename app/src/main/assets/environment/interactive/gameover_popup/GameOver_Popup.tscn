@@ -1,12 +1,12 @@
-[gd_scene load_steps=16 format=3 uid="uid://lcx1058otq1p"]
+[gd_scene load_steps=16 format=3 uid="uid://fisg1hwgabtx"]
 
-[ext_resource type="Script" path="res://environment/interactive/win_popup/Win_Popup.gd" id="1_xreuc"]
-[ext_resource type="Texture2D" uid="uid://clkatei4rhtda" path="res://sprites/player/death/death_1.png" id="2_gopvc"]
-[ext_resource type="Texture2D" uid="uid://buwmhvt75cap2" path="res://sprites/player/death/death_2.png" id="3_mcu3n"]
-[ext_resource type="Texture2D" uid="uid://duxcjdu0cgmbp" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="6_khjw1"]
-[ext_resource type="AudioStream" uid="uid://bl45ndh52k5sa" path="res://audio/win_sound.mp3" id="7_4ba8h"]
-[ext_resource type="AudioStream" uid="uid://dtbn3lkvlunqv" path="res://audio/win_beep.mp3" id="8_1c1wa"]
-[ext_resource type="AudioStream" uid="uid://ds3aljxary0xm" path="res://audio/confirm_sound_pack.mp3" id="9_xejcn"]
+[ext_resource type="Script" path="res://environment/interactive/gameover_popup/GameOver_Popup.gd" id="1_f7inn"]
+[ext_resource type="Texture2D" uid="uid://clkatei4rhtda" path="res://sprites/player/death/death_1.png" id="2_5fvip"]
+[ext_resource type="Texture2D" uid="uid://buwmhvt75cap2" path="res://sprites/player/death/death_2.png" id="3_0mb60"]
+[ext_resource type="Texture2D" uid="uid://duxcjdu0cgmbp" path="res://sprites/environment/interactive/end_point/TreasureChest.png" id="6_hsbpd"]
+[ext_resource type="AudioStream" uid="uid://bprrvlayi6jmo" path="res://audio/gameover_bgm.mp3" id="6_wksdi"]
+[ext_resource type="AudioStream" uid="uid://dtbn3lkvlunqv" path="res://audio/win_beep.mp3" id="8_dygi8"]
+[ext_resource type="AudioStream" uid="uid://ds3aljxary0xm" path="res://audio/confirm_sound_pack.mp3" id="9_d5fb6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jrg0k"]
 
@@ -52,16 +52,16 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 0.5,
-"texture": ExtResource("2_gopvc")
+"texture": ExtResource("2_5fvip")
 }, {
 "duration": 0.5,
-"texture": ExtResource("3_mcu3n")
+"texture": ExtResource("3_0mb60")
 }, {
 "duration": 0.5,
-"texture": ExtResource("2_gopvc")
+"texture": ExtResource("2_5fvip")
 }, {
 "duration": 0.5,
-"texture": ExtResource("3_mcu3n")
+"texture": ExtResource("3_0mb60")
 }],
 "loop": true,
 "name": &"default",
@@ -112,7 +112,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_xreuc")
+script = ExtResource("1_f7inn")
 
 [node name="Panel" type="Panel" parent="."]
 self_modulate = Color(0.243137, 0.172549, 0.0705882, 1)
@@ -139,7 +139,7 @@ offset_bottom = -149.064
 mouse_filter = 2
 theme_override_font_sizes/normal_font_size = 100
 bbcode_enabled = true
-text = "[center]Treasure Found![/center]"
+text = "[center]Game Over![/center]"
 fit_content = true
 scroll_active = false
 
@@ -179,13 +179,14 @@ bbcode_enabled = true
 text = "[center]Tap to continue...[/center]"
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Panel"]
-position = Vector2(1025, 500)
+position = Vector2(1139, 503)
 sprite_frames = SubResource("SpriteFrames_wdtkd")
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]
+visible = false
 position = Vector2(1125, 525)
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("6_khjw1")
+texture = ExtResource("6_hsbpd")
 
 [node name="AnimationPlayer2" type="AnimationPlayer" parent="Panel"]
 libraries = {
@@ -203,15 +204,15 @@ theme_override_font_sizes/font_size = 30
 text = "Open Test"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_4ba8h")
-volume_db = 14.0
+stream = ExtResource("6_wksdi")
+volume_db = 10.0
 
 [node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("8_1c1wa")
+stream = ExtResource("8_dygi8")
 volume_db = 14.0
 
 [node name="ConfirmSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("9_xejcn")
+stream = ExtResource("9_d5fb6")
 volume_db = 7.5
 
 [connection signal="confirm" from="." to="." method="_on_confirm"]
