@@ -250,6 +250,16 @@ class DataRepository {
             if(treasures.get(i).getName().equals(TreasureList.names[31]) && treasures.get(i).getCount() > 0)
                 setTreasureCount[j]++; j++; //Increment to next set
 
+            //SET 9: Fruities
+            if(treasures.get(i).getName().equals(TreasureList.names[32]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[33]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[34]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++;
+            if(treasures.get(i).getName().equals(TreasureList.names[35]) && treasures.get(i).getCount() > 0)
+                setTreasureCount[j]++; j++; //Increment to next set
+
             //SET Final: The Creators
             if(treasures.get(i).getName().equals(TreasureList.names[TreasureList.fullTreasury.length - 3]) && treasures.get(i).getCount() > 0)
                 setTreasureCount[j]++;
@@ -335,6 +345,14 @@ class DataRepository {
             player.setHealth(player.getHealth()+1); //Extra health
         } b++; //Increment index
 
+        //Fruities Set bonus checks
+        if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[b] = '1';
+            player.setSetBonus(String.valueOf(temp));
+            player.setBountyBonus(player.getBountyBonus() + 50); //Get 50 extra bounty
+        } b++; //Increment index
+
         //Creator Set bonus checks
         if(player.getSetBonus().charAt(b) == '0' && setTreasureCount[b] >= 3){ //On obtaining complete set
             char[] temp = player.getSetBonus().toCharArray();
@@ -345,29 +363,31 @@ class DataRepository {
             if(isSelling){
                 switch (rarity){
                     case "COMMON":{
-                        correction = -10;
+                        correction = -15;
                         break;
                     }
                     case "RARE":{
-                        correction = -20;
+                        correction = -30;
                         break;
                     }
                     case "FORBIDDEN":{
-                        correction = -50;
+                        correction = -75;
                         break;
                     }
                     case "BLASPHEMY":{
-                        correction = -100;
+                        correction = -150;
                         break;
                     }
                     case "LOST":{
-                        correction = -200;
+                        correction = -300;
                         break;
                     }
                 }
             }
 
-            player.setBountyBonus(player.getBountyBonus()*2 + player.getBounty() + correction); //Get Double Total Bounty
+            int altTimelineBounty = player.getBounty() + correction;
+            //Get Double Total Bounty
+            player.setBountyBonus((player.getBountyBonus()*2 + altTimelineBounty)*2 - altTimelineBounty);
         } b++; //Increment index
 
         isSelling = false; //Deactivate sell mode

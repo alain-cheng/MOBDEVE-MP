@@ -388,6 +388,42 @@ public class TreasureList {
                     1
             ),
             new Treasure(
+                    "item33",
+                    "Cherrita",
+                    R.drawable.item33,
+                    "+50 bounty upon set completion",
+                    "“This thing doesn’t look valuable but it's cute, ama keep it anyway”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item34",
+                    "Lemono",
+                    R.drawable.item34,
+                    "+50 bounty upon set completion",
+                    "“Too cool and too sour for you”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item35",
+                    "Brorange",
+                    R.drawable.item35,
+                    "+50 bounty upon set completion",
+                    "“Which came first, Orange the color or Orange the fruit?”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
+                    "item36",
+                    "Melonica",
+                    R.drawable.item36,
+                    "+50 bounty upon set completion",
+                    "“Absolutely adorable and delicious.”",
+                    RARITY[0],
+                    1
+            ),
+            new Treasure(
                     "item45",
                     "Jamuel’s Haymaker",
                     R.drawable.creators1,
