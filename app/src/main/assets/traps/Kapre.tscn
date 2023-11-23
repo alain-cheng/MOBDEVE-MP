@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://cysqp0pbt4g28" path="res://audio/smokepuff_sound.mp3" id="3_csccp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xyyie"]
-size = Vector2(181, 180)
+size = Vector2(164, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jrnrn"]
 atlas = ExtResource("1_mtsfy")
@@ -48,7 +48,7 @@ z_index = -1
 script = ExtResource("1_hjh5v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.5, -69)
+position = Vector2(-3, 3)
 shape = SubResource("RectangleShape2D_xyyie")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

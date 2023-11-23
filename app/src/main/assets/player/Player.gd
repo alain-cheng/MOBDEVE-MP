@@ -140,7 +140,7 @@ func ive_fallen(fallPos: Vector2):
 	falling = false
 	
 	 #take damage
-	PlayerData.health = PlayerData.health - 1
+	PlayerData.health = PlayerData.health - 3
 	isDed = true
 	#Check if is health <= 0 and !finalFloor
 	if(PlayerData.health > 0 && !PlayerData.lastFloor): #fall to next floor

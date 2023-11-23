@@ -34,7 +34,7 @@ size = Vector2(86, 1033)
 radius = 50.1597
 
 [node name="Manananggal_v2" type="CharacterBody2D" groups=["Mob"]]
-z_index = -1
+z_index = 1
 script = ExtResource("1_duqqi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
