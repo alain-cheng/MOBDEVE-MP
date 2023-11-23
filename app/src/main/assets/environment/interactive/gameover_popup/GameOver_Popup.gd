@@ -11,7 +11,7 @@ signal confirm
 func _ready():
 	animation.play("popup")
 	animation2.play("Blinking text")
-	player.play("default")
+	player.play("gameover")
 	bgm.play()
 	await get_tree().create_timer(4).timeout
 	soundIdle.play()
