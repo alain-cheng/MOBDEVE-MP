@@ -10,6 +10,8 @@ public class TreasureList {
     // CONSTANTS FOR TABOO GAUGE LEVEL
     public static final int WIN_ADD = 3, LOSS_ADD = -1, PHASE_1 = 6, PHASE_2 = 24, PHASE_3 = 36, PHASE_4 = 51;
 
+    public static final String EMPTY_SET_BONUS = "0000000000";
+
     public static Treasure lastRandom = new Treasure("0ERROR", "ERROR, BUG!", R.drawable.item_kaprecigar,
             "000000",
             "THIS IS NOT SUPPOSE TO BE HERE!", "LOST", 1);

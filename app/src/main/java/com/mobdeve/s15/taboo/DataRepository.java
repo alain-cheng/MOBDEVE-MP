@@ -178,12 +178,16 @@ class DataRepository {
         }
 
         //Smoking Giant Set bonus checks
-        if(player.getSetBonus1() == 0 && set1TreasureCount == 4){ //On obtaining complete set
-            player.setSetBonus1(1);
+        if(player.getSetBonus().charAt(0) == '0' && set1TreasureCount == 4){ //On obtaining complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[0] = '1';
+            player.setSetBonus(String.valueOf(temp));
             player.setHealth(player.getHealth()+1); //Extra health
         }
-        else if(player.getSetBonus1() == 1 && set1TreasureCount < 4){ //On losing complete set
-            player.setSetBonus1(0);
+        else if(player.getSetBonus().charAt(0) == '1' && set1TreasureCount < 4){ //On losing complete set
+            char[] temp = player.getSetBonus().toCharArray();
+            temp[0] = '0';
+            player.setSetBonus(String.valueOf(temp));
             player.setHealth(player.getHealth()-1); //Extra health
         }
 
@@ -203,7 +207,7 @@ class DataRepository {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
             mTabooDao.deleteUser();
-            mTabooDao.updatePlayer(new PlayerData(0, "", 3, 0, 0, 0, 0, 0, 0));
+            mTabooDao.updatePlayer(new PlayerData(0, "", 3, 0, 0, 0, 0, 0, TreasureList.EMPTY_SET_BONUS));
             mTabooDao.updateUser(new User("", ""));
         });
     }
