@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
 android {
@@ -42,7 +43,7 @@ android {
 dependencies {
 
     implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("androidx.activity:activity-ktx:1.8.0")
+    implementation("androidx.activity:activity-ktx:1.8.1")
 
     //Room
     implementation("androidx.room:room-runtime:2.6.0")
@@ -57,7 +58,7 @@ dependencies {
     //UI
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.10.0")
-    implementation("androidx.fragment:fragment:1.6.1")
+    implementation("androidx.fragment:fragment:1.6.2")
 
     //Godot
     implementation("org.godotengine:godot:4.2.0.beta-SNAPSHOT")
