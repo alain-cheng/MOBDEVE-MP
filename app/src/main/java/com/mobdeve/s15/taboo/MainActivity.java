@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
             @Override
             public void handleOnBackPressed() {
                 DialogFragment dialog = new ConfirmationDialog();
-                dialog.show(getSupportFragmentManager(), "Close_Main");
+                dialog.show(getSupportFragmentManager(), "CloseMain");
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
