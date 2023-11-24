@@ -33,11 +33,6 @@ func _ready():
 	for i in range(DUNGEON_NUM_FLOORS):
 		PlayerData.floorsOnRun.append(i+1)
 		
-	#Dungeon shortening set bonus
-	if PlayerData.setBonus[1] == '1':
-		PlayerData.floorsOnRun.pop_front()
-		DUNGEON_NUM_FLOORS -= 1
-		
 	#Shuffle all floors
 	for i in range(DUNGEON_NUM_FLOORS):
 		var swap_val = PlayerData.floorsOnRun[i]
@@ -45,5 +40,9 @@ func _ready():
 
 		PlayerData.floorsOnRun[i] = PlayerData.floorsOnRun[swap_idx]
 		PlayerData.floorsOnRun[swap_idx] = swap_val
+		
+	#Dungeon shortening set bonus
+	if PlayerData.setBonus[1] == '1':
+		PlayerData.floorsOnRun.pop_front()
 		
 	PlayerData.dungeonFloorMovement()

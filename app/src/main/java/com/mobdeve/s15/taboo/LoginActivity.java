@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mobdeve.s15.taboo.databinding.ActivityLoginBinding;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -37,75 +39,99 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void confirmListener(View view){
-        //TODO: FIX THIS BUGGY MESS
-        boolean checks = true; //Enable if all checks passed
-
-        if(mode.equals("Register"))
-            if(binding.username.getText().toString().isBlank())
-                checks = false;
+        //checks for all fields
+        boolean checks = true;
+        if(binding.username.getText().toString().isBlank())
+            checks = false;
         if(binding.email.getText().toString().isBlank())
             checks = false;
         if(binding.password.getText().toString().isBlank())
             checks = false;
-
-        if(checks){
-            //TODO: Connect to cloud later. Add password checking and account searching
-            ExecutorService threadpool = Executors.newCachedThreadPool();
-            if(mode.equals("Register")){
-                //TODO: Add logic here for inserting userdata and gamedata into cloud.
-                Future<String> futureConfirmation = threadpool.submit(() -> {
-                    mDataViewModel.login(new User(binding.username.getText().toString(), binding.email.getText().toString()));
-                    return "OK!";
-                });
-                while (!futureConfirmation.isDone()) {
-                    Log.v("LOGIN_ACTIVITY", "Uploading data...");
-                }
-            }
-            Future<User> futureUser = threadpool.submit(() -> {
-                return mDataViewModel.getCurrentUser(); //TODO: Replace this with pulling from cloud
-            });
-            while (!futureUser.isDone()) {
-                Log.v("LOGIN_ACTIVITY", "Retrieving data...");
-            }
-
-            try {
-                if(futureUser.isDone()){
-                    User result = futureUser.get();
-                    if(result.getUsername().isBlank() && mode.equals("Login")) {
-                        throw new Exception("Account could not be found");
-                    }
-                    mDataViewModel.login(result);
-                    threadpool.shutdown();
-                    finish();
-                }
-            }
-            catch (Exception e){
-                if(futureUser.isDone()){
-                    Log.v("LOGIN_ACTIVITY", e.toString());
-                    threadpool.shutdown();
-                    finish();
-                }
-            }
-        }
-        else{
-            Toast t = Toast.makeText(this, "Error on login info", Toast.LENGTH_SHORT);
+        if(!checks){
+            Toast t = Toast.makeText(this, "Missing user information!", Toast.LENGTH_SHORT);
             t.show();
         }
+
+        else if(checks) //Only Run if all checks pass
+            switch (mode){
+                case "Login":{
+                    //Check user details on online DB
+                    boolean correctDetails = RealmHandler.checkUserInfo(
+                            binding.username.getText().toString(),
+                            binding.email.getText().toString(),
+                            binding.password.getText().toString()
+                    );
+                    if(correctDetails){
+                        //Load data from RealmHandler to replace device data
+                        mDataViewModel.loadData(RealmHandler.getUserPlayer(), RealmHandler.getUserTreasury());
+
+                        //Clear data after use
+                        RealmHandler.setUserPlayer(null);
+                        RealmHandler.setUserTreasury(new ArrayList<>());
+
+                        //Load userdata to user table
+                        mDataViewModel.login(new User(binding.username.getText().toString(),
+                                binding.email.getText().toString()));
+                        finish(); //Return to settings
+                    }
+                    else{
+                        Toast t = Toast.makeText(this, "Incorrect user information or account does not exist!", Toast.LENGTH_SHORT);
+                        t.show();
+                    }
+                    break;
+                }
+                case "Register":{
+                    //Check if username already exists!
+                    boolean userExists = true;
+                    userExists = RealmHandler.checkExistingUser(binding.username.getText().toString());
+
+                    if(!userExists){
+                        //Upload to Online Database
+                        ExecutorService threadpool = Executors.newCachedThreadPool();
+                        Future<List<Treasure>> futureTreasury = threadpool.submit(() -> mDataViewModel.getCurrentTreasury());
+                        Future<PlayerData> futurePlayer = threadpool.submit(() -> mDataViewModel.getCurrentPlayerData());
+                        while (!futureTreasury.isDone() && !futurePlayer.isDone()) {
+                            Log.v("LOGIN_ACTIVITY", "Retrieving data...");
+                        }
+                        try {
+                            RealmHandler.registerAccount(
+                                    futurePlayer.get(),
+                                    futureTreasury.get(),
+                                    binding.username.getText().toString(),
+                                    binding.email.getText().toString(),
+                                    binding.password.getText().toString()
+                            );
+                        }catch (Exception e){
+                            Log.v("LOGIN_ACTIVITY", e.toString());
+                        }
+
+                        //Load userdata to user table
+                        mDataViewModel.login(new User(binding.username.getText().toString(),
+                                binding.email.getText().toString()));
+                        finish(); //Return to settings
+                    }
+                    else{
+                        Toast t = Toast.makeText(this, "Username already exists!", Toast.LENGTH_SHORT);
+                        t.show();
+                    }
+                    break;
+                }
+            }
     }
     private void modeListener(View view){
         switch (mode){
             case "Login":{
                 binding.mode.setText(mode);
                 mode = "Register";
-                binding.username.setVisibility(View.VISIBLE);
                 binding.loginTitle.setText(mode);
+                binding.loginWarning.setVisibility(View.GONE);
                 break;
             }
             case "Register":{
                 binding.mode.setText(mode);
                 mode = "Login";
-                binding.username.setVisibility(View.GONE);
                 binding.loginTitle.setText(mode);
+                binding.loginWarning.setVisibility(View.VISIBLE);
                 break;
             }
         }

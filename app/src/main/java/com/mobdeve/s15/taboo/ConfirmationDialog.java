@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.Objects;
+
 public class ConfirmationDialog extends DialogFragment {
     ConfirmationListener listener;
 
@@ -19,7 +21,33 @@ public class ConfirmationDialog extends DialogFragment {
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(requireActivity());
-        builder.setMessage(Html.fromHtml("<font color='#FFFFFF'>Are you sure?</font>"))
+
+        //Set Dialog Title
+        builder.setTitle(Html.fromHtml("<font color='#FFFFFF'>Are you sure?</font>"));
+        //Set Dialog message based on tag
+        String message = "";
+        switch(Objects.requireNonNull(this.getTag())){
+            case "EraseDialog":{
+                message = "This will delete all player data on the device.";
+                break;
+            }
+            case "WipeDialog":{
+                message = "This will delete your account.";
+                break;
+            }
+            case "LogoutDialog":{
+                message = "This will delete current player data from the device.";
+                break;
+            }
+            case "CloseMain":{
+                message = "Quit the game?";
+                break;
+            }
+            default: //THIS IS SELL
+                message = "This will trade 3 copies for 1 random treasure of the same rarity.";
+        }
+
+        builder.setMessage(Html.fromHtml("<font color='#FFFFFF'>" + message + "</font>"))
                 .setPositiveButton("Yes", (dialog, id) ->
                         listener.onYes(ConfirmationDialog.this, getTag()))
                 .setNegativeButton("Cancel", (dialog, id) ->

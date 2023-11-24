@@ -1,6 +1,5 @@
 package com.mobdeve.s15.taboo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -20,6 +19,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
     private DataViewModel mDataViewModel;
     private MediaPlayer buttonSfx;
     private MediaPlayer backSfx;
+    private boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +48,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
                     binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
                     binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
                     binding.logoutbutton.setVisibility(View.VISIBLE);
+                    loggedIn = true;
                 }
             }catch (Exception e){
                 Log.v("SETTINGS_ACTIVITY", e.toString());
@@ -89,8 +90,6 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
     private void loginListener(View v){
         v.startAnimation(buttonClick);
         buttonSfx.start();
-        //TODO: Add a function in DataViewModel that will contact server to check or add login info
-        //TODO: Connect to db to store login details in a table if data matches the server, logout empties the table.
         //Login Activity, Add check for success in onResume maybe?
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
@@ -106,7 +105,8 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
         v.startAnimation(buttonClick);
         buttonSfx.start();
         DialogFragment dialog = new ConfirmationDialog();
-        dialog.show(getSupportFragmentManager(), "EraseDialog");
+        String tag = loggedIn ? "WipeDialog" : "EraseDialog";
+        dialog.show(getSupportFragmentManager(), tag);
     }
 
     //Erase button confirmation
@@ -118,8 +118,28 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
                 finish();
                 break;
             }
+            case "WipeDialog":{
+                //If loggedIn, logout and delete data from server
+                if(loggedIn){
+                    loggedIn = false;
+                    mDataViewModel.logout();
+
+                    RealmHandler.deleteAccount(
+                            binding.usernameTxt.getText().toString().replace("Name: ", ""),
+                            binding.emailTxt.getText().toString()
+                    );
+                }
+                //Always delete data
+                mDataViewModel.deleteData();
+                finish();
+                break;
+            }
             case "LogoutDialog":{
+                //LOGOUT
+                loggedIn = false;
                 mDataViewModel.logout();
+                mDataViewModel.deleteData();//DELETE DATA ON LOGOUT
+                finish();
                 break;
             }
         }

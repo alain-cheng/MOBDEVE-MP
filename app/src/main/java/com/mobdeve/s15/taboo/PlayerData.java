@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "player_data")
 public class PlayerData {
     @PrimaryKey @NonNull @ColumnInfo(name = "playerid", typeAffinity = ColumnInfo.INTEGER, defaultValue = "0")private int id;
-    @ColumnInfo(name = "username", defaultValue = "")private String username;
 
     //Player Stats
     @ColumnInfo(name = "health", typeAffinity = ColumnInfo.INTEGER, defaultValue = "3") private int health;
@@ -20,9 +19,8 @@ public class PlayerData {
     @ColumnInfo(name = "setBonus", defaultValue = TreasureList.EMPTY_SET_BONUS) private String setBonus;
 
     //Constructor. Tip: Delete constructor and use Alt+Insert when updating to avoid insanity
-    public PlayerData(int id, String username, int health, int bounty, int taboo, int tabooBonus, int luck, int bountyBonus, String setBonus) {
+    public PlayerData(int id, int health, int bounty, int taboo, int tabooBonus, int luck, int bountyBonus, String setBonus) {
         this.id = id;
-        this.username = username;
         this.health = health;
         this.bounty = bounty;
         this.taboo = taboo;
@@ -36,10 +34,6 @@ public class PlayerData {
     public int getHealth(){return this.health;}
     public int getId(){return this.id;}
 
-    public String getUsername() {
-        return username;
-    }
-
     public int getBounty(){return this.bounty;}
     public int getTaboo(){return this.taboo;}
     public int getTabooBonus(){return this.tabooBonus;}
@@ -47,10 +41,6 @@ public class PlayerData {
     public int getBountyBonus(){return this.bountyBonus;}
 
     public void setId(){this.id = 0;}
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 
     public void setHealth(int value){this.health = value;}
     public void setBounty(int value){this.bounty = value;}
