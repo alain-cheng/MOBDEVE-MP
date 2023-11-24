@@ -89,8 +89,6 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
     private void loginListener(View v){
         v.startAnimation(buttonClick);
         buttonSfx.start();
-        //TODO: Add a function in DataViewModel that will contact server to check or add login info
-        //TODO: Connect to db to store login details in a table if data matches the server, logout empties the table.
         //Login Activity, Add check for success in onResume maybe?
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
