@@ -101,12 +101,14 @@ public class LoginActivity extends AppCompatActivity {
                 binding.mode.setText(mode);
                 mode = "Register";
                 binding.loginTitle.setText(mode);
+                binding.loginWarning.setVisibility(View.VISIBLE);
                 break;
             }
             case "Register":{
                 binding.mode.setText(mode);
                 mode = "Login";
                 binding.loginTitle.setText(mode);
+                binding.loginWarning.setVisibility(View.GONE);
                 break;
             }
         }
