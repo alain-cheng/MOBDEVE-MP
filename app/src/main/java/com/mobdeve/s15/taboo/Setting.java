@@ -19,6 +19,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
     private DataViewModel mDataViewModel;
     private MediaPlayer buttonSfx;
     private MediaPlayer backSfx;
+    private boolean loggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
                     binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
                     binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
                     binding.logoutbutton.setVisibility(View.VISIBLE);
+                    loggedIn = true;
                 }
             }catch (Exception e){
                 Log.v("SETTINGS_ACTIVITY", e.toString());
@@ -102,8 +104,9 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
     private void eraseListener(View v){
         v.startAnimation(buttonClick);
         buttonSfx.start();
-        DialogFragment dialog = new ConfirmationDialog(); //TODO: USE A DATA EREASE DIALOG SINCE THIS ERASES YOUR ACCOUNT
-        dialog.show(getSupportFragmentManager(), "EraseDialog");
+        DialogFragment dialog = new ConfirmationDialog();
+        String tag = loggedIn ? "WipeDialog" : "EraseDialog";
+        dialog.show(getSupportFragmentManager(), tag);
     }
 
     //Erase button confirmation
@@ -112,14 +115,31 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
         switch (tag){
             case "EraseDialog":{
                 mDataViewModel.deleteData();
-                //TODO: DELETE DATA FROM SERVER
-                //TODO: LOGOUT
+                finish();
+                break;
+            }
+            case "WipeDialog":{
+                //TODO: If loggedIn, logout and delete data from server
+                if(loggedIn){
+                    loggedIn = false;
+                    mDataViewModel.logout();
+
+                    RealmHandler.deleteAccount(
+                            binding.usernameTxt.getText().toString().replace("Name: ", ""),
+                            binding.emailTxt.getText().toString()
+                    );
+                }
+                //Always delete data
+                mDataViewModel.deleteData();
                 finish();
                 break;
             }
             case "LogoutDialog":{
+                //LOGOUT
+                loggedIn = false;
                 mDataViewModel.logout();
-                //TODO: DELETE DATA ON LOGOUT
+                mDataViewModel.deleteData();//DELETE DATA ON LOGOUT
+                finish();
                 break;
             }
         }

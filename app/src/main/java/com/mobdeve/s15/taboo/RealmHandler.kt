@@ -93,7 +93,7 @@ class RealmHandler {
                 username, email, password).find()
             //If there is a result, store data as userPlayer and userTreasury
             if(result.size == 1){
-                val tempP = result.get(0).playerData
+                val tempP = result.first().playerData
                 val tempT = tempP?.treasury
                 if (tempP != null) {
                     userPlayer = PlayerData(
@@ -125,6 +125,17 @@ class RealmHandler {
             }
 
             return result.size == 1
+        }
+
+        @JvmStatic
+        fun deleteAccount(username: String, email: String) {
+            realm.writeBlocking {
+                val result = realm.query<RealmUser>(query = "username == $0 AND email == $1",
+                    username, email).find()
+                if(result != null){
+                    findLatest(result.first())?.also { delete(it) }
+                }
+            }
         }
 
         @JvmStatic

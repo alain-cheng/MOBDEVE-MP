@@ -28,11 +28,15 @@ public class ConfirmationDialog extends DialogFragment {
         String message = "";
         switch(Objects.requireNonNull(this.getTag())){
             case "EraseDialog":{
-                message = "This will also delete player data from the server if you are logged in.";
+                message = "This will delete all player data on the device.";
+                break;
+            }
+            case "WipeDialog":{
+                message = "This will delete your account.";
                 break;
             }
             case "LogoutDialog":{
-                message = "This will delete current player data from device.";
+                message = "This will delete current player data from the device.";
                 break;
             }
             case "SellTreasure":{
