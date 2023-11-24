@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.mobdeve.s15.taboo.databinding.ActivityLoginBinding;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -38,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void confirmListener(View view){
-        //TODO: Add checks for all fields
+        //checks for all fields
         boolean checks = true;
         if(binding.username.getText().toString().isBlank())
             checks = false;
@@ -54,7 +55,29 @@ public class LoginActivity extends AppCompatActivity {
         else if(checks) //Only Run if all checks pass
             switch (mode){
                 case "Login":{
-                    System.out.println("Login!");
+                    //Check user details on online DB
+                    boolean correctDetails = RealmHandler.checkUserInfo(
+                            binding.username.getText().toString(),
+                            binding.email.getText().toString(),
+                            binding.password.getText().toString()
+                    );
+                    if(correctDetails){
+                        //Load data from RealmHandler to replace device data
+                        mDataViewModel.loadData(RealmHandler.getUserPlayer(), RealmHandler.getUserTreasury());
+
+                        //Clear data after use
+                        RealmHandler.setUserPlayer(null);
+                        RealmHandler.setUserTreasury(new ArrayList<>());
+
+                        //Load userdata to user table
+                        mDataViewModel.login(new User(binding.username.getText().toString(),
+                                binding.email.getText().toString()));
+                        finish(); //Return to settings
+                    }
+                    else{
+                        Toast t = Toast.makeText(this, "Incorrect user information or account does not exist!", Toast.LENGTH_SHORT);
+                        t.show();
+                    }
                     break;
                 }
                 case "Register":{
@@ -82,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.v("LOGIN_ACTIVITY", e.toString());
                         }
 
-                        //Set load userdata to user table
+                        //Load userdata to user table
                         mDataViewModel.login(new User(binding.username.getText().toString(),
                                 binding.email.getText().toString()));
                         finish(); //Return to settings
@@ -101,14 +124,14 @@ public class LoginActivity extends AppCompatActivity {
                 binding.mode.setText(mode);
                 mode = "Register";
                 binding.loginTitle.setText(mode);
-                binding.loginWarning.setVisibility(View.VISIBLE);
+                binding.loginWarning.setVisibility(View.GONE);
                 break;
             }
             case "Register":{
                 binding.mode.setText(mode);
                 mode = "Login";
                 binding.loginTitle.setText(mode);
-                binding.loginWarning.setVisibility(View.GONE);
+                binding.loginWarning.setVisibility(View.VISIBLE);
                 break;
             }
         }

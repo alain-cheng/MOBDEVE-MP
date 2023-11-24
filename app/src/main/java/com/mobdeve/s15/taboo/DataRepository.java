@@ -411,4 +411,20 @@ class DataRepository {
             mTabooDao.updateUser(new User("", ""));
         });
     }
+
+    void loadData(PlayerData playerData, List<Treasure> treasury) {
+        TabooDatabase.databaseWriteExecutor.execute(() -> {
+            //Delete all device data
+            mTabooDao.deletePlayer();
+            mTabooDao.deleteTreasures();
+
+            //Load PlayerData from server
+            mTabooDao.updatePlayer(playerData);
+
+            //Load Treasury Data from server
+            for(int i = 0; i < treasury.size(); i++){
+                mTabooDao.updateTreasury(treasury.get(i));
+            }
+        });
+    }
 }

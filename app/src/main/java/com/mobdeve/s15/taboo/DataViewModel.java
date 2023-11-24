@@ -60,4 +60,6 @@ public class DataViewModel extends AndroidViewModel {
     public void deleteData(){
         mDataRepository.deleteData();
     }
+
+    public void loadData(PlayerData playerData, List<Treasure> treasury) { mDataRepository.loadData(playerData, treasury); }
 }

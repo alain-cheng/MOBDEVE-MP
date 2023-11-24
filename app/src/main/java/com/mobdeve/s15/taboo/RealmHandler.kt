@@ -24,6 +24,12 @@ class RealmHandler {
         private lateinit var user: User
 
         @JvmStatic
+        var userPlayer: PlayerData? = null
+
+        @JvmStatic
+        var userTreasury: ArrayList<Treasure> = ArrayList()
+
+        @JvmStatic
         fun startInit() : Future<Unit> {
             return GlobalScope.future { initRealm() }
         }
@@ -79,6 +85,46 @@ class RealmHandler {
                 this.password = password
                 this.playerData = playerUpload
             }) }
+        }
+
+        @JvmStatic
+        fun checkUserInfo(username: String, email: String, password: String) : Boolean {
+            val result = realm.query<RealmUser>(query = "username == $0 AND email == $1 AND password == $2",
+                username, email, password).find()
+            //If there is a result, store data as userPlayer and userTreasury
+            if(result.size == 1){
+                val tempP = result.get(0).playerData
+                val tempT = tempP?.treasury
+                if (tempP != null) {
+                    userPlayer = PlayerData(
+                        0,
+                        tempP.health,
+                        tempP.bounty,
+                        tempP.taboo,
+                        tempP.tabooBonus,
+                        tempP.luck,
+                        tempP.bountyBonus,
+                        tempP.setBonus
+                    )
+                }
+                if(tempT != null){
+                    var convT: Treasure
+                    for(t in tempT){
+                        convT = Treasure(
+                            t.itemid,
+                            t.name,
+                            t.imageid,
+                            t.itemBonus,
+                            t.lore,
+                            t.rarity,
+                            t.count
+                        )
+                        userTreasury.add(convT)
+                    }
+                }
+            }
+
+            return result.size == 1
         }
 
         @JvmStatic
