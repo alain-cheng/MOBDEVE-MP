@@ -65,6 +65,7 @@ stream = ExtResource("3_e0c3e")
 volume_db = -7.0
 pitch_scale = 0.96
 attenuation = 9.0
+bus = &"DragonGargoyle"
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_entered"]
 [connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_exited"]

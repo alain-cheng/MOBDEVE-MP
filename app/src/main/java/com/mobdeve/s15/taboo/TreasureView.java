@@ -37,7 +37,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
         binding = ActivityTreasureViewBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-        buttonSfx = MediaPlayer.create(this.getBaseContext(), R.raw.button_press_1);
+        buttonSfx = MediaPlayer.create(this.getBaseContext(), R.raw.button_press_2);
         Intent intent = getIntent();
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
@@ -94,6 +94,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
 
     private void backListener(View v){
         v.startAnimation(buttonClick);
+        buttonSfx.start();
         finish();
     }
     private void sellListener(View v){

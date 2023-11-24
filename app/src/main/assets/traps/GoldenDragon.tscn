@@ -65,6 +65,7 @@ stream = ExtResource("3_1xmxo")
 volume_db = -3.0
 pitch_scale = 0.57
 attenuation = 2.0
+bus = &"GoldenDragon"
 
 [connection signal="area_entered" from="PlayerDetection" to="." method="_on_player_detection_entered"]
 [connection signal="area_exited" from="PlayerDetection" to="." method="_on_player_detection_exited"]

@@ -224,7 +224,7 @@ text = "Open Test"
 
 [node name="BGM" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_wksdi")
-volume_db = 10.0
+volume_db = 12.0
 
 [node name="IdleSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_dygi8")

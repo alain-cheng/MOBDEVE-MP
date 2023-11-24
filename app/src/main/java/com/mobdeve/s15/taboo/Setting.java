@@ -29,7 +29,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
         setContentView(view);
 
         buttonSfx = MediaPlayer.create(this.getBaseContext(), R.raw.button_press_3);
-        backSfx = MediaPlayer.create(this.getBaseContext(), R.raw.button_press_4);
+        backSfx = MediaPlayer.create(this.getBaseContext(), R.raw.button_press_2);
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         mDataViewModel.getUser().observe(this, user -> {
