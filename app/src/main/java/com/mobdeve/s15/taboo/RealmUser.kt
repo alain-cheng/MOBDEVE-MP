@@ -11,7 +11,6 @@ import org.mongodb.kbson.ObjectId
 class RealmUser : RealmObject {
     @PrimaryKey
     var _id : ObjectId = ObjectId()
-    var owner_id : String = ""
     @Index
     var username: String = ""
     @Index
@@ -36,7 +35,7 @@ class RealmUserTreasure : EmbeddedRealmObject {
     var itemid : String = ""
     var name : String = ""
     var imageid : Int = R.drawable.item_kaprecigar
-    var itembonus : String = ""
+    var itemBonus : String = ""
     var lore : String = ""
     var rarity : String = "LOST"
     var count : Int = 1

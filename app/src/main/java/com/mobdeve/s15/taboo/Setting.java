@@ -1,6 +1,5 @@
 package com.mobdeve.s15.taboo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
