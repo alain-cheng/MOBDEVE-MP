@@ -3,6 +3,7 @@ package com.mobdeve.s15.taboo;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +21,12 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     Context context;
     List<Treasure> treasures;
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
+    private MediaPlayer buttonSfx;
 
     public TreasureRVAdapter(Context context, List<Treasure> treasures) {
         this.context = context;
         this.treasures = treasures;
+        this.buttonSfx = MediaPlayer.create(context, R.raw.button_press_3);
     }
 
     @NonNull
@@ -44,6 +47,7 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
 
         holder.itemCard.setOnClickListener(v -> {
             v.startAnimation(buttonClick);
+            buttonSfx.start();
             Intent intent = new Intent(context, TreasureView.class);
             intent.putExtra("ITEM_NAME", treasures.get(index).getName());
             intent.putExtra("ITEM_IMG", treasures.get(index).getImageid());

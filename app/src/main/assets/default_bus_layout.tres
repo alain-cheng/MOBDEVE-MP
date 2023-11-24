@@ -1,0 +1,77 @@
+[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://knb8b16cmn8"]
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_3vuck"]
+resource_name = "Compressor"
+threshold = -10.0
+mix = 0.91
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_o4gqh"]
+resource_name = "Reverb"
+room_size = 0.1
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_hy67c"]
+resource_name = "PitchShift"
+pitch_scale = 3.0
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_158dp"]
+resource_name = "Distortion"
+pre_gain = -1.0
+drive = 0.4
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_4hcvo"]
+resource_name = "Compressor"
+threshold = -10.0
+ratio = 40.0
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_4gsun"]
+resource_name = "Compressor"
+threshold = -10.0
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_v75ch"]
+resource_name = "PitchShift"
+pitch_scale = 0.8
+
+[resource]
+bus/0/volume_db = 0.0672607
+bus/1/name = &"Spikes"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0694828
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectCompressor_3vuck")
+bus/1/effect/0/enabled = true
+bus/1/effect/1/effect = SubResource("AudioEffectReverb_o4gqh")
+bus/1/effect/1/enabled = true
+bus/2/name = &"DragonGargoyle"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectPitchShift_hy67c")
+bus/2/effect/0/enabled = true
+bus/2/effect/1/effect = SubResource("AudioEffectDistortion_158dp")
+bus/2/effect/1/enabled = true
+bus/2/effect/2/effect = SubResource("AudioEffectCompressor_4hcvo")
+bus/2/effect/2/enabled = true
+bus/3/name = &"GoldenDragon"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectPitchShift_hy67c")
+bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectDistortion_158dp")
+bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectCompressor_4gsun")
+bus/3/effect/2/enabled = true
+bus/4/name = &"Manananggal"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"Master"
+bus/4/effect/0/effect = SubResource("AudioEffectPitchShift_v75ch")
+bus/4/effect/0/enabled = true

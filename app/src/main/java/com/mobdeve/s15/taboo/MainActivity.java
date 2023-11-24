@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
 
         context = getApplicationContext();
         buttonSfx = MediaPlayer.create(context, R.raw.button_press_1);
-        playSfx = MediaPlayer.create(context, R.raw.button_press_2);
+        playSfx = MediaPlayer.create(context, R.raw.button_press_3);
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
         mDataViewModel.getPlayer().observe(this, playerData -> {
             try {
