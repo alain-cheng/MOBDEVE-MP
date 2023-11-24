@@ -45,6 +45,9 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         //Initialize Treasure Data
         TreasureList.initData();
 
+        //Init MongoDB Realm
+        RealmHandler.startInit();
+
         //Dialog before closing app
         OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
