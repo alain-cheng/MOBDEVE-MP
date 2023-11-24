@@ -61,6 +61,7 @@ class DataRepository {
             //Add random treasure to treasury but check if its already there, add 1 to count if so.
             ExecutorService threadpool = Executors.newCachedThreadPool();
             Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mTabooDao.getCurrentTreasury());
+            //TODO: Get futureUser using Threadpool, use this to check for login
             while (!futureTreasure.isDone()) {
                 Log.v("DATA_REPOSITORY", "Retrieving data...");
             }
@@ -112,15 +113,15 @@ class DataRepository {
                     tempP = checkBonuses(cacheT, tempP, treasure.getRarity());
 
                 }else mTabooDao.updateTreasury(temp); //Just add if treasury is empty
+
+                //Calculate new bounty added/sold treasure
+                tempP = calcBounty(tempP, treasure.getRarity(), treasure.getCount());
+                mTabooDao.updatePlayer(tempP);
+                //TODO: Upload Treasury and PlayerData to server if logged in
             }catch (Exception e){
                 Log.v("DATA_REPOSITORY", e.toString());
             }
-
             threadpool.shutdown();
-
-            //Calculate new bounty added/sold treasure
-            tempP = calcBounty(tempP, treasure.getRarity(), treasure.getCount());
-            mTabooDao.updatePlayer(tempP);
         });
     }
 

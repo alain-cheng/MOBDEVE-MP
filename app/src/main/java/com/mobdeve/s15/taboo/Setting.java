@@ -105,7 +105,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
     private void eraseListener(View v){
         v.startAnimation(buttonClick);
         buttonSfx.start();
-        DialogFragment dialog = new ConfirmationDialog();
+        DialogFragment dialog = new ConfirmationDialog(); //TODO: USE A DATA EREASE DIALOG SINCE THIS ERASES YOUR ACCOUNT
         dialog.show(getSupportFragmentManager(), "EraseDialog");
     }
 
@@ -115,11 +115,14 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
         switch (tag){
             case "EraseDialog":{
                 mDataViewModel.deleteData();
+                //TODO: DELETE DATA FROM SERVER
+                //TODO: LOGOUT
                 finish();
                 break;
             }
             case "LogoutDialog":{
                 mDataViewModel.logout();
+                //TODO: DELETE DATA ON LOGOUT
                 break;
             }
         }
