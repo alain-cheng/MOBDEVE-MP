@@ -406,7 +406,7 @@ class DataRepository {
             mTabooDao.deletePlayer();
             mTabooDao.deleteTreasures();
             mTabooDao.deleteUser();
-            mTabooDao.updatePlayer(new PlayerData(0, "", 3, 0, 0, 0, 0, 0, TreasureList.EMPTY_SET_BONUS));
+            mTabooDao.updatePlayer(new PlayerData(0, 3, 0, 0, 0, 0, 0, TreasureList.EMPTY_SET_BONUS));
             mTabooDao.updateUser(new User("", ""));
         });
     }
