@@ -39,16 +39,12 @@ public class ConfirmationDialog extends DialogFragment {
                 message = "This will delete current player data from the device.";
                 break;
             }
-            case "SellTreasure":{
-                message = "This will trade 3 copies for 1 random treasure of the same rarity.";
-                break;
-            }
             case "CloseMain":{
                 message = "Quit the game?";
                 break;
             }
-            default:
-                message = "Really?";
+            default: //THIS IS SELL
+                message = "This will trade 3 copies for 1 random treasure of the same rarity.";
         }
 
         builder.setMessage(Html.fromHtml("<font color='#FFFFFF'>" + message + "</font>"))

@@ -119,7 +119,7 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
                 break;
             }
             case "WipeDialog":{
-                //TODO: If loggedIn, logout and delete data from server
+                //If loggedIn, logout and delete data from server
                 if(loggedIn){
                     loggedIn = false;
                     mDataViewModel.logout();

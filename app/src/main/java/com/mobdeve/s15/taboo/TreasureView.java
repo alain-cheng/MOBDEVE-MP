@@ -98,7 +98,7 @@ public class TreasureView extends AppCompatActivity implements ConfirmationListe
         v.startAnimation(buttonClick);
         buttonSfx.start();
         DialogFragment dialog = new ConfirmationDialog();
-        dialog.show(getSupportFragmentManager(), "SellTreasure");
+        dialog.show(getSupportFragmentManager(), name);
     }
 
     @Override

@@ -139,6 +139,44 @@ class RealmHandler {
         }
 
         @JvmStatic
+        fun updatePlayerData(playerData: PlayerData, treasury : List<Treasure>, username: String, email: String){
+            //Convert Inputs to RealmUser Objects
+            var tempTreasure : RealmUserTreasure
+            var playerUpload = RealmUserPlayerData()
+
+            //Converting Treasury
+            for (treasure in treasury){
+                tempTreasure = RealmUserTreasure() //Create new object
+                tempTreasure.itemid = treasure.id
+                tempTreasure.count = treasure.count
+                tempTreasure.imageid = treasure.imageid
+                tempTreasure.lore = treasure.lore
+                tempTreasure.name = treasure.name
+                tempTreasure.itemBonus = treasure.itemBonus
+                tempTreasure.rarity = treasure.rarity
+                playerUpload.treasury.add(tempTreasure)
+            }
+
+            //Converting PlayerData
+            playerUpload.bounty = playerData.bounty
+            playerUpload.bountyBonus = playerData.bountyBonus
+            playerUpload.taboo = playerData.taboo
+            playerUpload.tabooBonus = playerData.tabooBonus
+            playerUpload.health = playerData.health
+            playerUpload.luck = playerData.luck
+            playerUpload.setBonus = playerData.setBonus
+
+            //Writing to Online Database
+            realm.writeBlocking {
+                val result = realm.query<RealmUser>(query = "username == $0 AND email == $1",
+                    username, email).find()
+                if(result != null){
+                    findLatest(result.first())?.also { copyToRealm(it.apply { this.playerData = playerUpload }) }
+                }
+            }
+        }
+
+        @JvmStatic
         fun checkExistingUser(username: String) : Boolean {
             val result = realm.query<RealmUser>(query = "username == $0", username).find()
             return result.size != 0

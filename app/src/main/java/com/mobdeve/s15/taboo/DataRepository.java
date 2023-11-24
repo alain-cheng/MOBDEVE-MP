@@ -61,12 +61,14 @@ class DataRepository {
             //Add random treasure to treasury but check if its already there, add 1 to count if so.
             ExecutorService threadpool = Executors.newCachedThreadPool();
             Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mTabooDao.getCurrentTreasury());
-            //TODO: Get futureUser using Threadpool, use this to check for login
-            while (!futureTreasure.isDone()) {
+            //Get futureUser using Threadpool, use this to check for login
+            Future<User> futureUser = threadpool.submit(() -> mTabooDao.getCurrentUser());
+            while (!futureTreasure.isDone() && !futureUser.isDone()) {
                 Log.v("DATA_REPOSITORY", "Retrieving data...");
             }
             try {
                 List<Treasure> currentTreasure = futureTreasure.get();
+                User currentUser = futureUser.get();
                 ArrayList<Treasure> cacheT = new ArrayList<>(currentTreasure);
 
                 if(currentTreasure.size() > 0){
@@ -117,7 +119,10 @@ class DataRepository {
                 //Calculate new bounty added/sold treasure
                 tempP = calcBounty(tempP, treasure.getRarity(), treasure.getCount());
                 mTabooDao.updatePlayer(tempP);
-                //TODO: Upload Treasury and PlayerData to server if logged in
+                //Upload Treasury and PlayerData to server if logged in
+                if(!currentUser.getUsername().isBlank()){
+                    RealmHandler.updatePlayerData(tempP, cacheT, currentUser.getUsername(), currentUser.getEmail());
+                }
             }catch (Exception e){
                 Log.v("DATA_REPOSITORY", e.toString());
             }

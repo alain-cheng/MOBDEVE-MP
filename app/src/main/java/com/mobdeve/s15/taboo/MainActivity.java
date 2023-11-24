@@ -84,6 +84,35 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         initListeners();
     }
 
+    private void sendToServer(){
+        System.out.println("Syncing with Realm...");
+        //Upload Player Data if Logged in
+        ExecutorService threadpool = Executors.newCachedThreadPool();
+        Future<PlayerData> futurePlayer = threadpool.submit(() -> mDataViewModel.getCurrentPlayerData());
+        Future<List<Treasure>> futureTreasure = threadpool.submit(() -> mDataViewModel.getCurrentTreasury());
+        //Get futureUser using Threadpool, use this to check for login
+        Future<User> futureUser = threadpool.submit(() -> mDataViewModel.getCurrentUser());
+        while (!futureTreasure.isDone() && !futureUser.isDone() && !futurePlayer.isDone()) {
+            Log.v("MAIN_ACTIVITY", "Retrieving data...");
+        }
+        try {
+            List<Treasure> currentTreasure = futureTreasure.get();
+            User currentUser = futureUser.get();
+            PlayerData currentPlayer = futurePlayer.get();
+            if(!currentUser.getUsername().isBlank()){
+                RealmHandler.updatePlayerData(currentPlayer, currentTreasure, currentUser.getUsername(), currentUser.getEmail());
+            }
+        }catch(Exception e){
+            Log.v("MAIN_ACTIVITY", e.toString());
+        }
+    }
+
+    @Override //DEV NOTE: WHY!?!??!?! WHY IS THIS THE ONE THAT WORKS!??!?!?!? IT MAKES NO SENSE!>>!>!>!>!>!>:?ed'wdLQ,
+    protected void onStop() {
+        super.onStop();
+        sendToServer();
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -126,6 +155,16 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
                     if(playerData.getTaboo() < 0) //Prevent negative taboo value
                         playerData.setTaboo(0);
                     mDataViewModel.updatePlayer(playerData);
+
+                    //Set signals to false
+                    JSONObject signalBack = new JSONObject();
+                    signalBack.put("generateTreasure", false);
+                    signalBack.put("loss", false);//Add signal for player loss
+                    String userString = signalBack.toString();
+                    FileWriter fileWriter = new FileWriter(file);
+                    BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+                    bufferedWriter.write(userString);
+                    bufferedWriter.close();
                 }
 
                 //If generateTreasure = true, send to GenerateTreasure Activity
@@ -224,6 +263,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        sendToServer();
         //Shutdown app
         android.os.Process.killProcess(android.os.Process.myPid());
     }
