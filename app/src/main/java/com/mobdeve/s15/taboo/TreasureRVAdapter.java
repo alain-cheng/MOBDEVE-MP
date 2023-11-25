@@ -57,15 +57,6 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
             intent.putExtra("ITEM_BON", treasures.get(index).getItemBonus());
             context.startActivity(intent);
         });
-
-        // Animate
-        /*
-        holder.itemCard.setAlpha(0f);
-        holder.itemCard.animate()
-                .setStartDelay(position*20)
-                .alpha(1f)
-                .setDuration(500);
-         */
     }
 
     @Override
