@@ -16,7 +16,7 @@
         android:layout_marginEnd="60dp"
         android:layout_toEndOf="@+id/taboopedia_back_ibtn"
         android:contentDescription="@string/text_taboopedia"
-        app:srcCompat="@drawable/text_taboopedia" />
+        app:srcCompat="@drawable/taboopedia_text" />
 
     <ImageButton
         android:id="@+id/taboopedia_back_ibtn"
@@ -26,9 +26,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="18dp"
-        android:background="@drawable/btn_top_arrow"
-        android:contentDescription="@string/btn_top_arrow"
-        android:rotation="-90" />
+        android:background="@drawable/back_button"
+        android:contentDescription="@string/btn_top_arrow" />
 
     <ImageView
         android:id="@+id/taboopedia_container_iv"
@@ -42,7 +41,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:contentDescription="@string/treasure_container"
-        app:srcCompat="@drawable/treasure_container" />
+        app:srcCompat="@drawable/container" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -59,10 +58,8 @@
 
         <ImageView
             android:id="@+id/taboopedia_contents_iv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
+            android:layout_width="match_parent"
+            android:layout_height="600dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="70dp"
             android:src="@drawable/taboopedia_contents_1" />

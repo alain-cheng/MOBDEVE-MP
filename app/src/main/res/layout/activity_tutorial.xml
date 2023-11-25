@@ -16,7 +16,7 @@
         android:layout_marginEnd="60dp"
         android:layout_toEndOf="@+id/tutorial_back_ibtn"
         android:contentDescription="@string/text_tutorial"
-        app:srcCompat="@drawable/text_tutorial" />
+        app:srcCompat="@drawable/tutorial_text" />
 
     <ImageButton
         android:id="@+id/tutorial_back_ibtn"
@@ -26,9 +26,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="18dp"
-        android:background="@drawable/btn_top_arrow"
-        android:contentDescription="@string/btn_top_arrow"
-        android:rotation="-90" />
+        android:background="@drawable/back_button"
+        android:contentDescription="@string/btn_top_arrow"/>
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -39,7 +38,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/treasure_container"
+        android:background="@drawable/container"
         android:contentDescription="@string/scroll_view"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
@@ -57,13 +56,13 @@
             <ImageView
                 android:id="@+id/tutorial_contents_1_iv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="600dp"
                 android:src="@drawable/tutorial_contents_1" />
 
             <ImageView
                 android:id="@+id/tutorial_contents_2_iv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="600dp"
                 android:src="@drawable/tutorial_contents_2" />
 
             <androidx.cardview.widget.CardView
@@ -74,4 +73,5 @@
                 app:cardElevation="0dp" />
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>

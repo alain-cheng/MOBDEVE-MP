@@ -49,7 +49,7 @@
             android:background="@color/clear"
             android:contentDescription="@string/settings_desc"
             android:scaleType="fitCenter"
-            android:src="@drawable/settings" />
+            android:src="@drawable/settings_button" />
 
         <ImageButton
             android:id="@+id/activity_main_btn_play"
@@ -61,7 +61,7 @@
             android:background="@color/clear"
             android:contentDescription="@string/play_desc"
             android:scaleType="fitCenter"
-            android:src="@drawable/play" />
+            android:src="@drawable/play_button" />
 
         <ImageButton
             android:id="@+id/activity_main_btn_treasure"
@@ -73,7 +73,7 @@
             android:background="@color/clear"
             android:contentDescription="@string/treasure_desc"
             android:scaleType="fitCenter"
-            android:src="@drawable/treasures" />
+            android:src="@drawable/treasure_button" />
     </LinearLayout>
 
     <LinearLayout

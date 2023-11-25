@@ -26,7 +26,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="18dp"
-        android:background="@drawable/placeholderbtnbackbutton"
+        android:background="@drawable/back_button"
         android:contentDescription="@string/btn_top_arrow" />
 
     <ImageView
@@ -41,7 +41,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:contentDescription="@string/treasure_container"
-        app:srcCompat="@drawable/treasure_container" />
+        app:srcCompat="@drawable/container" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -54,7 +54,7 @@
             android:id="@+id/accountheadView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/group_725accountheading1" />
+            app:srcCompat="@drawable/setting_account_heading" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                 android:id="@+id/nameguestView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/itemboxname_guest" />
+                app:srcCompat="@drawable/setting_name_container" />
 
             <TextView
                 android:id="@+id/username_txt"
@@ -122,21 +122,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/group_723game_heading" />
+            app:srcCompat="@drawable/setting_game_heading" />
 
         <ImageView
             android:id="@+id/tutorialbutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
-            app:srcCompat="@drawable/itemboxtutorial_heading" />
+            app:srcCompat="@drawable/setting_tutorial_item" />
 
         <ImageView
             android:id="@+id/taboopediabutton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="11dp"
-            app:srcCompat="@drawable/itemboxtaboopedia_heading" />
+            app:srcCompat="@drawable/setting_taboopedia_item" />
 
         <ImageButton
             android:id="@+id/erasebutton"
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="#2D2727"
-            android:src="@drawable/group_724erase_button" />
+            android:src="@drawable/setting_erase_button" />
 
     </LinearLayout>
 
