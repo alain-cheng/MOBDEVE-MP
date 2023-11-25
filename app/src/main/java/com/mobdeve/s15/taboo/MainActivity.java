@@ -396,14 +396,5 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
         binding.activityMainImgGauge.animate()
                 .alpha(1f)
                 .setDuration(1000);
-
-        // Floating Animation
-        /*
-        Animator set = (AnimatorSet) AnimatorInflater
-                .loadAnimator(context,R.animator.float_animation);
-        set.setTarget(binding.activityMainImgGauge);
-        set.start();
-
-         */
     }
 }
