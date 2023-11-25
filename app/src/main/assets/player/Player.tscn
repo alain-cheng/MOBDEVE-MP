@@ -134,16 +134,16 @@ animations = [{
 "speed": 3.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("8_cuwq8")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("9_o6jc7")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("10_pm0yq")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("9_o6jc7")
 }],
 "loop": true,
@@ -151,16 +151,16 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("11_o2bp0")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("12_2ks0v")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("13_qyic6")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": ExtResource("12_2ks0v")
 }],
 "loop": true,
@@ -259,7 +259,7 @@ script = ExtResource("1_q2xcu")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8r5le")
-animation = &"idle"
+animation = &"right"
 
 [node name="EnvironmentCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 61.5)

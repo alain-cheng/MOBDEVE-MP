@@ -26,7 +26,7 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
     public TreasureRVAdapter(Context context, List<Treasure> treasures) {
         this.context = context;
         this.treasures = treasures;
-        this.buttonSfx = MediaPlayer.create(context, R.raw.button_press_3);
+        this.buttonSfx = MediaPlayer.create(context, R.raw.item_sound);
     }
 
     @NonNull
@@ -58,6 +58,14 @@ public class TreasureRVAdapter extends RecyclerView.Adapter<TreasureRVAdapter.My
             context.startActivity(intent);
         });
 
+        // Animate
+        /*
+        holder.itemCard.setAlpha(0f);
+        holder.itemCard.animate()
+                .setStartDelay(position*20)
+                .alpha(1f)
+                .setDuration(500);
+         */
     }
 
     @Override

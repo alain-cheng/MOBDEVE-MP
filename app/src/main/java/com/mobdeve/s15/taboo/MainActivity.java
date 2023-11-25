@@ -32,8 +32,7 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
     private final AlphaAnimation buttonClick = new AlphaAnimation(1F, 0.7F); //For button effects, should probably be replaced by something else
     private DataViewModel mDataViewModel;
     private Context context;
-    private MediaPlayer buttonSfx;
-    private MediaPlayer playSfx;
+    private MediaPlayer buttonSfx, playSfx;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -116,6 +115,8 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
     @Override
     protected void onResume() {
         super.onResume();
+
+        animateUI();
 
         //Get data from signal_data.json
         File file = new File(context.getFilesDir(),"signal_data.json");
@@ -350,5 +351,59 @@ public class MainActivity extends AppCompatActivity implements ConfirmationListe
     @Override
     public void onNo(DialogFragment dialog, String tag) {
 
+    }
+
+    // UI Animations
+    private void animateUI() {
+        binding.activityMainBtnSettings.setAlpha(0f);
+        binding.activityMainBtnSettings.setTranslationY(250);
+        binding.activityMainBtnSettings.animate()
+                .alpha(1f)
+                .translationYBy(-250)
+                .setDuration(500);
+        binding.activityMainBtnPlay.setAlpha(0f);
+        binding.activityMainBtnPlay.setTranslationY(250);
+        binding.activityMainBtnPlay.animate()
+                .alpha(1f)
+                .translationYBy(-250)
+                .setDuration(500);
+        binding.activityMainBtnTreasure.setAlpha(0f);
+        binding.activityMainBtnTreasure.setTranslationY(250);
+        binding.activityMainBtnTreasure.animate()
+                .alpha(1f)
+                .translationYBy(-250)
+                .setDuration(500);
+        binding.activityMainTxtBounty.setAlpha(0f);
+        binding.activityMainTxtBounty.setTranslationY(250);
+        binding.activityMainTxtBounty.animate()
+                .alpha(1f)
+                .translationYBy(-250)
+                .setDuration(500);
+        binding.activityMainImgTarget.setAlpha(0f);
+        binding.activityMainImgTarget.setTranslationY(250);
+        binding.activityMainImgTarget.animate()
+                .alpha(1f)
+                .translationYBy(-250)
+                .setDuration(500);
+        binding.activityMainImgTitle.setAlpha(0f);
+        binding.activityMainImgTitle.setTranslationY(-250);
+        binding.activityMainImgTitle.animate()
+                .setStartDelay(500)
+                .alpha(1f)
+                .translationYBy(250)
+                .setDuration(500);
+        binding.activityMainImgGauge.setAlpha(0f);
+        binding.activityMainImgGauge.animate()
+                .alpha(1f)
+                .setDuration(1000);
+
+        // Floating Animation
+        /*
+        Animator set = (AnimatorSet) AnimatorInflater
+                .loadAnimator(context,R.animator.float_animation);
+        set.setTarget(binding.activityMainImgGauge);
+        set.start();
+
+         */
     }
 }
