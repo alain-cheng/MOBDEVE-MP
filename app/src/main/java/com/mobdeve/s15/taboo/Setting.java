@@ -37,15 +37,16 @@ public class Setting extends AppCompatActivity implements ConfirmationListener {
                 if(user.getUsername().equals("") || user.getEmail().equals("")){
                     binding.usernameTxt.setText("Name: Guest");
                     binding.emailTxt.setText("Login");
-                    binding.nameguestView.setImageResource(R.drawable.itemboxname_guest);
-                    binding.loginbutton.setImageResource(R.drawable.group_716login_button);
+                    binding.nameguestView.setImageResource(R.drawable.setting_name_container);
+                    binding.loginbutton.setImageResource(R.drawable.setting_login_button);
                     binding.loginbutton.setClickable(true);
                     binding.logoutbutton.setVisibility(View.GONE);
                 }
                 else{
                     binding.usernameTxt.setText(String.format("Name: %s", user.getUsername()));
                     binding.emailTxt.setText(user.getEmail());
-                    binding.loginbutton.setImageResource(R.drawable.group_718email_sample);
+                    binding.loginbutton.setImageResource(R.drawable.setting_email_container);
+                    binding.logoutbutton.setImageResource(R.drawable.setting_logout_button);
                     binding.loginbutton.setClickable(false); //To prevent animation from playing or logging in twice
                     binding.logoutbutton.setVisibility(View.VISIBLE);
                     loggedIn = true;

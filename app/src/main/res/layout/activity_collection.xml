@@ -16,7 +16,7 @@
         android:layout_marginEnd="60dp"
         android:layout_toEndOf="@+id/collection_back_ibtn"
         android:contentDescription="@string/text_collection"
-        app:srcCompat="@drawable/text_collection" />
+        app:srcCompat="@drawable/collection_text" />
 
     <ImageButton
         android:id="@+id/collection_back_ibtn"
@@ -26,9 +26,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="12dp"
         android:layout_marginTop="18dp"
-        android:background="@drawable/btn_top_arrow"
-        android:contentDescription="@string/btn_top_arrow"
-        android:rotation="-90" />
+        android:background="@drawable/back_button"
+        android:contentDescription="@string/btn_top_arrow" />
 
     <ScrollView
         android:layout_width="wrap_content"
@@ -39,7 +38,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="20dp"
-        android:background="@drawable/treasure_container"
+        android:background="@drawable/container"
         android:contentDescription="@string/scroll_view"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"

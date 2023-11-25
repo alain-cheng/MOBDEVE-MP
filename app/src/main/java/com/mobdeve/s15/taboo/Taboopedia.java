@@ -1,5 +1,8 @@
 package com.mobdeve.s15.taboo;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -28,6 +31,11 @@ public class Taboopedia extends AppCompatActivity {
         mDataViewModel = new ViewModelProvider(this).get(DataViewModel.class);
 
         initListeners();
+
+        binding.taboopediaContentsIv.setImageBitmap(getBitmapFromResources(
+                getResources(),
+                R.drawable.taboopedia_contents_1
+        ));
     }
 
     private void initListeners() {
@@ -38,5 +46,16 @@ public class Taboopedia extends AppCompatActivity {
         v.startAnimation(buttonClick);
         backSfx.start();
         finish();
+    }
+
+    private Bitmap getBitmapFromResources(Resources res, int resImage) {
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = false;
+        options.inDither = false;
+        options.inSampleSize = 1;
+        options.inScaled = false;
+        options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+
+        return BitmapFactory.decodeResource(res, resImage, options);
     }
 }
