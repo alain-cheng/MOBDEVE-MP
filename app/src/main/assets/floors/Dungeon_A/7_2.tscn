@@ -225,7 +225,7 @@ position = Vector2(1131, 392)
 position = Vector2(1129, 440)
 
 [node name="Pitfall6" parent="." instance=ExtResource("5_fg31s")]
-position = Vector2(1109, 469)
+position = Vector2(1113, 481)
 
 [node name="Pitfall7" parent="." instance=ExtResource("5_fg31s")]
 position = Vector2(1129, 514)
@@ -258,7 +258,7 @@ position = Vector2(1188, 873)
 position = Vector2(693, 546)
 
 [node name="Pitfall17" parent="." instance=ExtResource("5_fg31s")]
-position = Vector2(727, 506)
+position = Vector2(690, 482)
 
 [node name="Pitfall19" parent="." instance=ExtResource("5_fg31s")]
 position = Vector2(1211, 672)
@@ -312,7 +312,7 @@ position = Vector2(1855, 679)
 position = Vector2(1879, 487)
 
 [node name="Manananggal_v2" parent="." instance=ExtResource("7_dwvyt")]
-position = Vector2(546, 235)
+position = Vector2(494, 232)
 
 [node name="Manananggal_v3" parent="." instance=ExtResource("7_dwvyt")]
 position = Vector2(818, 218)
