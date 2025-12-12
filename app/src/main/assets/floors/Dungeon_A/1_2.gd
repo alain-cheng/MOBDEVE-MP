@@ -21,7 +21,15 @@ func _ready():
 		spike.damage_taken.connect(player.on_damage_taken)
 		spike.timer.wait_time = 1.25
 		spike.timer.start()
-	for k in kapre:
-		k.player = player
-		k.cooldown.wait_time = 1
+
+	# Assign different intervals
+	kapre[0].cooldown.wait_time = 3.5
+	kapre[1].cooldown.wait_time = 2.0
+	kapre[2].cooldown.wait_time = 2.0
+
+	# Start timers with DIFFERENT OFFSETS
+	kapre[0].cooldown.start( randf_range(0.0, 3.5) )
+	kapre[1].cooldown.start( randf_range(0.0, 2.0) )
+	kapre[2].cooldown.start( randf_range(0.0, 2.0) )
+
 
