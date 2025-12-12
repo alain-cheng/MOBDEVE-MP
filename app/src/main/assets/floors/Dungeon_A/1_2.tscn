@@ -52,19 +52,19 @@ _data = {
 size = Vector2(781, 174)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioqaa"]
-size = Vector2(260, 891)
+size = Vector2(262, 845)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wjw7e"]
-size = Vector2(71.5, 1061)
+size = Vector2(71.5, 1072)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8eq6b"]
 size = Vector2(1019.75, 83.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8da63"]
-size = Vector2(995, 52)
+size = Vector2(995, 102)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vh7dr"]
-size = Vector2(73.5229, 165.664)
+size = Vector2(73.5229, 304.832)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nr7q6"]
 size = Vector2(1150.75, 29.9878)
@@ -140,11 +140,11 @@ rotation = 1.5708
 shape = SubResource("RectangleShape2D_vvber")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-68, 508.5)
+position = Vector2(-67, 531.5)
 shape = SubResource("RectangleShape2D_ioqaa")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
-position = Vector2(989.75, 440.5)
+position = Vector2(989.75, 435)
 shape = SubResource("RectangleShape2D_wjw7e")
 
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
@@ -152,11 +152,11 @@ position = Vector2(510.125, 989.75)
 shape = SubResource("RectangleShape2D_8eq6b")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
-position = Vector2(383.5, 9)
+position = Vector2(383.5, 41)
 shape = SubResource("RectangleShape2D_8da63")
 
 [node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-216, -17)
+position = Vector2(-216, 52.584)
 shape = SubResource("RectangleShape2D_vh7dr")
 
 [node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
@@ -164,33 +164,33 @@ position = Vector2(393.625, -83.9939)
 shape = SubResource("RectangleShape2D_nr7q6")
 
 [node name="Spikes" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(268, 377)
+position = Vector2(142, 379)
 scale = Vector2(0.6, 0.6)
 
 [node name="Spikes2" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(269, 652)
+position = Vector2(142, 698)
 scale = Vector2(0.6, 0.6)
 
 [node name="Spikes3" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(269, 559)
+position = Vector2(142, 610)
 scale = Vector2(0.6, 0.6)
 
 [node name="Spikes4" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(268, 466)
+position = Vector2(141, 470)
 scale = Vector2(0.6, 0.6)
 
 [node name="Spikes5" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(268, 743)
+position = Vector2(142, 835)
 scale = Vector2(0.6, 0.6)
 
 [node name="Kapre" parent="." instance=ExtResource("7_q3efx")]
 z_index = 1
-position = Vector2(165, 1052)
+position = Vector2(253, 1051)
 
 [node name="Kapre2" parent="." instance=ExtResource("7_q3efx")]
 z_index = 1
-position = Vector2(369, 1052)
+position = Vector2(358, 1051)
 
 [node name="Kapre3" parent="." instance=ExtResource("7_q3efx")]
 z_index = 1
-position = Vector2(769, 1056)
+position = Vector2(664, 1056)
