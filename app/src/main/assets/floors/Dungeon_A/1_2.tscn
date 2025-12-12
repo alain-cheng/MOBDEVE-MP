@@ -164,19 +164,23 @@ position = Vector2(393.625, -83.9939)
 shape = SubResource("RectangleShape2D_nr7q6")
 
 [node name="Spikes" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(269, 356)
+position = Vector2(268, 377)
 scale = Vector2(0.6, 0.6)
 
 [node name="Spikes2" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(266, 787)
+position = Vector2(269, 652)
 scale = Vector2(0.6, 0.6)
 
 [node name="Spikes3" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(269, 682)
+position = Vector2(269, 559)
 scale = Vector2(0.6, 0.6)
 
 [node name="Spikes4" parent="." instance=ExtResource("6_7yg5g")]
-position = Vector2(268, 459)
+position = Vector2(268, 466)
+scale = Vector2(0.6, 0.6)
+
+[node name="Spikes5" parent="." instance=ExtResource("6_7yg5g")]
+position = Vector2(268, 743)
 scale = Vector2(0.6, 0.6)
 
 [node name="Kapre" parent="." instance=ExtResource("7_q3efx")]
@@ -185,8 +189,8 @@ position = Vector2(165, 1052)
 
 [node name="Kapre2" parent="." instance=ExtResource("7_q3efx")]
 z_index = 1
-position = Vector2(365, 1044)
+position = Vector2(369, 1052)
 
 [node name="Kapre3" parent="." instance=ExtResource("7_q3efx")]
 z_index = 1
-position = Vector2(787, 1046)
+position = Vector2(769, 1056)

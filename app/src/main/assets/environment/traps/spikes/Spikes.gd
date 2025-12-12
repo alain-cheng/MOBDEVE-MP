@@ -16,6 +16,7 @@ func _ready():
 	animation.play("retracted")
 
 func _on_timeout():
+	print(name, " timeout!")  # Debug
 	if(!isExtended):
 		animation.play("extended")
 		isExtended = !isExtended
