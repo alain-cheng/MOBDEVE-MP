@@ -63,6 +63,7 @@ _data = {
 }
 
 [node name="2" type="Node2D"]
+z_as_relative = false
 script = ExtResource("1_wdpqe")
 
 [node name="DragonGargoyle" parent="." instance=ExtResource("5_27f65")]
@@ -71,7 +72,6 @@ z_index = 2
 position = Vector2(1141, 375)
 
 [node name="DragonGargoyle2" parent="." instance=ExtResource("5_27f65")]
-top_level = false
 z_index = 2
 position = Vector2(461, 525)
 
@@ -81,7 +81,6 @@ z_index = 2
 position = Vector2(1148, 612)
 
 [node name="DragonGargoyle4" parent="." instance=ExtResource("5_27f65")]
-top_level = false
 z_index = 2
 position = Vector2(461, 751)
 
@@ -189,7 +188,7 @@ rotation = -0.846485
 scale = Vector2(1.5, 1.5)
 
 [node name="Pitfall2" parent="." instance=ExtResource("6_bldxx")]
-position = Vector2(752, 447)
+position = Vector2(745, 360)
 rotation = -0.837758
 scale = Vector2(1.5, 1.5)
 
@@ -225,4 +224,4 @@ position = Vector2(311, 112)
 position = Vector2(312, 190)
 
 [node name="Spikes5" parent="." instance=ExtResource("9_jldd8")]
-position = Vector2(808, 805)
+position = Vector2(293, 598)

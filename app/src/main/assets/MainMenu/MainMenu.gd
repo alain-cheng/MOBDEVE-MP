@@ -10,7 +10,8 @@ func _ready():
 
 
 func _on_enter_dungeon():
-	get_tree().change_scene_to_file("res://floors/Dungeon_A/4.tscn")
+	#get_tree().change_scene_to_file("res://Scenes/EnterDungeon.tscn")
+	get_tree().change_scene_to_file("res://floors/Dungeon_A/2_2.tscn")
 
 
 func _on_collection():

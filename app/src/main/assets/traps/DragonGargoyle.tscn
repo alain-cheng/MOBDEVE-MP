@@ -39,7 +39,7 @@ size = Vector2(320, 61)
 
 [node name="DragonGargoyle" type="CharacterBody2D" groups=["Mob"]]
 top_level = true
-z_index = 1
+z_index = 3
 script = ExtResource("1_teck1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
