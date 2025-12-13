@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bar47j4dss4ob"
-path="res://.godot/imported/2_2 fore.png-4b5da9be06c2bb1a53c52b754f15d967.ctex"
+uid="uid://b3shmao57uy6l"
+path="res://.godot/imported/2_2 fore2.png-e3e68adfef0e2e661b11c3da5f71b229.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sprites/floors/A/2_2 fore.png"
-dest_files=["res://.godot/imported/2_2 fore.png-4b5da9be06c2bb1a53c52b754f15d967.ctex"]
+source_file="res://sprites/floors/A/2_2 fore2.png"
+dest_files=["res://.godot/imported/2_2 fore2.png-e3e68adfef0e2e661b11c3da5f71b229.ctex"]
 
 [params]
 

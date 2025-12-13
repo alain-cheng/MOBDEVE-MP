@@ -22,7 +22,7 @@ func _physics_process(_delta):
 		z_index = 1
 	else:
 		z_index = -1
-	
+	#
 	if cooldown.is_stopped():
 		fire()
 

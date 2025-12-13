@@ -194,3 +194,6 @@ position = Vector2(358, 1051)
 [node name="Kapre3" parent="." instance=ExtResource("7_q3efx")]
 z_index = 1
 position = Vector2(664, 1056)
+
+[node name="Kapre4" parent="." instance=ExtResource("7_q3efx")]
+position = Vector2(797, 1061)

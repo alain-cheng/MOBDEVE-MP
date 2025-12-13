@@ -8,6 +8,8 @@ radius = 12.0
 height = 58.0
 
 [node name="FireProjectile1" type="Area2D" groups=["Projectile"]]
+top_level = true
+z_index = 2
 position = Vector2(1257, 474)
 script = ExtResource("1_lgpf8")
 

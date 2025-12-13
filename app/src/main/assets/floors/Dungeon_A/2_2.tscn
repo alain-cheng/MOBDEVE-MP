@@ -1,36 +1,26 @@
-[gd_scene load_steps=20 format=3 uid="uid://dyru4fhgdjmk1"]
+[gd_scene load_steps=18 format=3 uid="uid://dyru4fhgdjmk1"]
 
 [ext_resource type="Script" path="res://floors/Dungeon_A/2.gd" id="1_k0hgj"]
-[ext_resource type="Texture2D" uid="uid://v8ubvhes0ink" path="res://sprites/floors/A/2_2 fore.png" id="2_gdlk8"]
-[ext_resource type="Texture2D" uid="uid://d2wrddg06r721" path="res://sprites/floors/A/2_2 back.png" id="2_hf2j6"]
+[ext_resource type="Texture2D" uid="uid://bar47j4dss4ob" path="res://sprites/floors/A/2_2 fore.png" id="2_gdlk8"]
+[ext_resource type="Texture2D" uid="uid://dued6d1wca0vf" path="res://sprites/floors/A/2_2 back.png" id="2_hf2j6"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="3_mwm0j"]
+[ext_resource type="Texture2D" uid="uid://b3shmao57uy6l" path="res://sprites/floors/A/2_2 fore2.png" id="4_dcsqe"]
 [ext_resource type="PackedScene" uid="uid://owiom6kwwpmy" path="res://environment/interactive/end_point/End_Point.tscn" id="4_qpvep"]
 [ext_resource type="PackedScene" uid="uid://42v35pmaar3w" path="res://traps/DragonGargoyle.tscn" id="5_27f65"]
 [ext_resource type="PackedScene" uid="uid://bqwdf8n5jlliu" path="res://environment/traps/pitfall/Pitfall.tscn" id="6_bldxx"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7xbm"]
-size = Vector2(84, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ppk12"]
-size = Vector2(342, 204)
+[ext_resource type="PackedScene" uid="uid://dtn8oh314a4hk" path="res://environment/traps/spikes/Spikes.tscn" id="9_jldd8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hqebx"]
-size = Vector2(582, 1604)
+size = Vector2(526, 1586)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wyrmg"]
-size = Vector2(96, 2040)
+size = Vector2(96, 1974)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyoax"]
-size = Vector2(1973.5, 78)
+size = Vector2(2076.38, 108)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2cqn6"]
-size = Vector2(165, 189)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_aqusx"]
-size = Vector2(176.5, 176)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1dw1"]
-size = Vector2(253, 186.442)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2fy4"]
+size = Vector2(184.713, 220)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtxl5"]
 bg_color = Color(0.219608, 0.211765, 0.188235, 1)
@@ -75,90 +65,86 @@ _data = {
 [node name="2" type="Node2D"]
 script = ExtResource("1_k0hgj")
 
+[node name="DragonGargoyle" parent="." instance=ExtResource("5_27f65")]
+top_level = false
+z_index = 2
+position = Vector2(1141, 375)
+
+[node name="DragonGargoyle2" parent="." instance=ExtResource("5_27f65")]
+top_level = false
+z_index = 2
+position = Vector2(461, 525)
+
+[node name="DragonGargoyle3" parent="." instance=ExtResource("5_27f65")]
+top_level = false
+z_index = 2
+position = Vector2(1148, 612)
+
+[node name="DragonGargoyle4" parent="." instance=ExtResource("5_27f65")]
+top_level = false
+z_index = 2
+position = Vector2(461, 751)
+
 [node name="Foreground" type="TextureRect" parent="."]
 top_level = true
-offset_left = -1011.0
-offset_top = 34.0
-offset_right = 991.0
-offset_bottom = 1035.0
+z_index = 1
+offset_left = 4.0
+offset_top = -21.0
+offset_right = 997.0
+offset_bottom = 972.0
 texture = ExtResource("2_gdlk8")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -2
-offset_left = -1014.0
-offset_top = 46.0
-offset_right = 3008.0
-offset_bottom = 2050.0
+offset_left = 6.0
+offset_top = 5.0
+offset_right = 2006.0
+offset_bottom = 1957.0
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_hf2j6")
+expand_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+z_as_relative = false
+position = Vector2(424, 508)
+scale = Vector2(3.37739, 3.37739)
+texture = ExtResource("4_dcsqe")
 
 [node name="EndPoint" parent="." instance=ExtResource("4_qpvep")]
-position = Vector2(810, 936)
+position = Vector2(902, 843)
 scale = Vector2(-1, 1)
 
 [node name="Walls" type="StaticBody2D" parent="."]
 scale = Vector2(0.5, 0.5)
 
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Walls"]
-position = Vector2(-232, 514)
-polygon = PackedVector2Array(485.83, 87.3149, 483.83, -2.68506, 397.83, -2.68506, 401.83, 107.315, 345.83, 99.3149, 297.83, 11.3149, 259.83, 9.31494, 259.83, 99.3149, 215.83, 95.3149, 219.83, 5.31494, 181.83, 5.31494, 183.83, 159.315, 539.83, 153.315)
-
-[node name="CollisionShape2D9" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1396, 1836)
-shape = SubResource("RectangleShape2D_n7xbm")
-
-[node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
-z_index = 1
-position = Vector2(311, 1258)
-shape = SubResource("RectangleShape2D_ppk12")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
-position = Vector2(990, 1252)
+z_index = 1
+position = Vector2(1007, 1153)
 shape = SubResource("RectangleShape2D_hqebx")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
-position = Vector2(-52, 1080)
+position = Vector2(-32, 1000)
 shape = SubResource("RectangleShape2D_wyrmg")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="Walls"]
-position = Vector2(1942, 1074)
+position = Vector2(2046, 989)
 shape = SubResource("RectangleShape2D_wyrmg")
 
 [node name="CollisionShape2D5" type="CollisionShape2D" parent="Walls"]
-position = Vector2(950, 2050)
+position = Vector2(1010, 1982)
 shape = SubResource("RectangleShape2D_hyoax")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Walls"]
-z_index = 1
-position = Vector2(133, 1829)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_2cqn6")
-
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Walls"]
-z_index = 1
-position = Vector2(140, 784)
-scale = Vector2(2, 2)
-shape = SubResource("RectangleShape2D_aqusx")
-
-[node name="CollisionShape2D7" type="CollisionShape2D" parent="Walls"]
-position = Vector2(111.5, 1562.78)
-shape = SubResource("RectangleShape2D_w1dw1")
 
 [node name="CollisionShape2D10" type="CollisionShape2D" parent="Walls"]
-position = Vector2(948, 92)
+position = Vector2(989.625, 62)
 shape = SubResource("RectangleShape2D_hyoax")
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Walls"]
-position = Vector2(201.262, 252.127)
-scale = Vector2(2, 2)
-polygon = PackedVector2Array(90.369, -10.0633, 111.369, -35.0633, 157.369, -34.0633, 181.369, -6.06329, 321.369, -4.06329, 338.369, 16.9367, 338.369, 101.937, 172.369, 104.937, 171.369, 118.937, 86.369, 115.937)
-
-[node name="DragonGargoyle" parent="." instance=ExtResource("5_27f65")]
-z_index = 1
-position = Vector2(406, 274)
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1360.36, 1820)
+shape = SubResource("RectangleShape2D_g2fy4")
 
 [node name="Player" parent="." instance=ExtResource("3_mwm0j")]
-position = Vector2(239, 919)
+position = Vector2(65, 869)
 
 [node name="FloorNamePanel" type="Panel" parent="Player"]
 visible = false
@@ -197,23 +183,46 @@ libraries = {
 "": SubResource("AnimationLibrary_iwyey")
 }
 
-[node name="DragonGargoyle2" parent="." instance=ExtResource("5_27f65")]
-z_index = 1
-position = Vector2(409, 721)
-
-[node name="DragonGargoyle3" parent="." instance=ExtResource("5_27f65")]
-z_index = 1
-position = Vector2(415, 528)
-
-[node name="DragonGargoyle4" parent="." instance=ExtResource("5_27f65")]
-z_index = 1
-position = Vector2(691, 109)
-
 [node name="Pitfall" parent="." instance=ExtResource("6_bldxx")]
-position = Vector2(305, 634)
+position = Vector2(913, 703)
 rotation = -0.846485
 scale = Vector2(1.5, 1.5)
 
 [node name="Pitfall2" parent="." instance=ExtResource("6_bldxx")]
-position = Vector2(748, 573)
+position = Vector2(752, 447)
+rotation = -0.837758
 scale = Vector2(1.5, 1.5)
+
+[node name="Pitfall3" parent="." instance=ExtResource("6_bldxx")]
+position = Vector2(304, 746)
+rotation = 2.39285
+scale = Vector2(1.6, 1.6)
+
+[node name="Pitfall4" parent="." instance=ExtResource("6_bldxx")]
+position = Vector2(54, 709)
+rotation = -2.39285
+scale = Vector2(1.4, 1.4)
+
+[node name="Pitfall5" parent="." instance=ExtResource("6_bldxx")]
+position = Vector2(95, 376)
+rotation = -0.837758
+scale = Vector2(2, 2)
+
+[node name="Pitfall6" parent="." instance=ExtResource("6_bldxx")]
+position = Vector2(189, 589)
+rotation = -3.35103
+
+[node name="Spikes" parent="." instance=ExtResource("9_jldd8")]
+position = Vector2(313, 269)
+
+[node name="Spikes2" parent="." instance=ExtResource("9_jldd8")]
+position = Vector2(228, 268)
+
+[node name="Spikes3" parent="." instance=ExtResource("9_jldd8")]
+position = Vector2(311, 112)
+
+[node name="Spikes4" parent="." instance=ExtResource("9_jldd8")]
+position = Vector2(312, 190)
+
+[node name="Spikes5" parent="." instance=ExtResource("9_jldd8")]
+position = Vector2(808, 805)
