@@ -64,6 +64,7 @@ size = Vector2(1119.5, 101)
 size = Vector2(789, 105)
 
 [node name="1" type="Node2D"]
+position = Vector2(-1, 2)
 script = ExtResource("1_ky4av")
 
 [node name="Background" type="TextureRect" parent="."]

@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var spikes = [get_node("Spikes"), get_node("Spikes2"), get_node("Spikes3"), get_node("Spikes4"), get_node("Spikes5")]
+@onready var spikes = [get_node("Spikes"), get_node("Spikes2"), get_node("Spikes3")]
 @onready var kapre1 = [get_node("Kapre"), get_node("Kapre3")]
-@onready var kapre2 = [get_node("Kapre2"), get_node("Kapre4")]
+@onready var kapre2 = [get_node("Kapre2")]
 @onready var player = get_node("Player")
 @onready var endpoint = get_node("EndPoint")
 

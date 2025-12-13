@@ -11,29 +11,29 @@ func _ready():
 	PlayerData.initData()
 
 	# MAIN MENU ENTRY
-	get_tree().change_scene_to_file("res://MainMenu/MainMenu.tscn")
-	return
+	#get_tree().change_scene_to_file("res://MainMenu/MainMenu.tscn")
+	#return
 
 	# ---------------------------------------
 	# ORIGINAL GAME LOGIC (disabled for now)
-	# if(PlayerData.taboo >= PHASE_3):
-	#     DUNGEON_NUM_FLOORS = 4
-	# elif(PlayerData.taboo >= PHASE_1):
-	#     DUNGEON_NUM_FLOORS = 3
-	# else:
-	#     DUNGEON_NUM_FLOORS = 2
+	if(PlayerData.taboo >= PHASE_3):
+		DUNGEON_NUM_FLOORS = 4
+	elif(PlayerData.taboo >= PHASE_1):
+		DUNGEON_NUM_FLOORS = 3
+	else:
+		DUNGEON_NUM_FLOORS = 2
 
-	# for i in range(DUNGEON_NUM_FLOORS):
-	#     PlayerData.floorsOnRun.append(i+1)
+	for i in range(DUNGEON_NUM_FLOORS):
+		PlayerData.floorsOnRun.append(i+1)
 
-	# for i in range(DUNGEON_NUM_FLOORS):
-	#     var swap_val = PlayerData.floorsOnRun[i]
-	#     var swap_idx = rng.randi_range(i, DUNGEON_NUM_FLOORS-1)
-	#     PlayerData.floorsOnRun[i] = PlayerData.floorsOnRun[swap_idx]
-	#     PlayerData.floorsOnRun[swap_idx] = swap_val
+	for i in range(DUNGEON_NUM_FLOORS):
+		var swap_val = PlayerData.floorsOnRun[i]
+		var swap_idx = rng.randi_range(i, DUNGEON_NUM_FLOORS-1)
+		PlayerData.floorsOnRun[i] = PlayerData.floorsOnRun[swap_idx]
+		PlayerData.floorsOnRun[swap_idx] = swap_val
 
-	# if PlayerData.setBonus[1] == '1':
-	#     PlayerData.floorsOnRun.pop_front()
+	if PlayerData.setBonus[1] == '1':
+		PlayerData.floorsOnRun.pop_front()
 
-	# PlayerData.dungeonFloorMovement()
+	PlayerData.dungeonFloorMovement()
 	# ---------------------------------------

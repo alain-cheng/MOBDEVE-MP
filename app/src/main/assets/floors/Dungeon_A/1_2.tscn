@@ -1,6 +1,6 @@
 [gd_scene load_steps=19 format=3 uid="uid://cprjyxqvf64c3"]
 
-[ext_resource type="Script" path="res://floors/Dungeon_A/1.gd" id="1_cmyaf"]
+[ext_resource type="Script" path="res://floors/Dungeon_A/1_2.gd" id="1_xt15k"]
 [ext_resource type="Texture2D" uid="uid://cxgtiwtg4t16" path="res://sprites/floors/A/1_2back.png" id="2_bk7cn"]
 [ext_resource type="Texture2D" uid="uid://c364ap7p8up06" path="res://sprites/floors/A/1_2 fore.png" id="3_52t5r"]
 [ext_resource type="PackedScene" uid="uid://btymg45ij342p" path="res://player/Player.tscn" id="4_q8a8u"]
@@ -70,7 +70,7 @@ size = Vector2(73.5229, 304.832)
 size = Vector2(1150.75, 29.9878)
 
 [node name="1" type="Node2D"]
-script = ExtResource("1_cmyaf")
+script = ExtResource("1_xt15k")
 
 [node name="Background" type="TextureRect" parent="."]
 z_index = -2

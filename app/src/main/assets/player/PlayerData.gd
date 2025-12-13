@@ -26,9 +26,9 @@ var floorsOnRun = [] #Array that contains what floors the player will go through
 
 #Floor arrays
 #Kapre Forest
-var group1 = ["res://floors/Dungeon_A/1.tscn"]
+var group1 = ["res://floors/Dungeon_A/1.tscn", "res://floors/Dungeon_A/1_2.tscn"]
 #Dragon Tower
-var group2 = ["res://floors/Dungeon_A/2.tscn"]
+var group2 = ["res://floors/Dungeon_A/2.tscn", "res://floors/Dungeon_A/2_2.tscn"]
 #The Furnace
 var group3 = ["res://floors/Dungeon_A/3.tscn"]
 #Spiral Ruins
